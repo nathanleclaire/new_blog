@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Data-Structures on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/data-structures/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Build a Linked List For Each Layer in a Binary Tree</title>
+      <link>http://localhost:1313/_posts/2014-03-01-build-a-linked-list-for-each-layer-in-a-binary-tree</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-03-01-build-a-linked-list-for-each-layer-in-a-binary-tree</guid>
+      <description>
+
+&lt;p&gt;{%img /images/linkedListTree/binary_tree.png %}&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been going through problems in &lt;a href=&#34;http://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X&#34;&gt;Cracking the Coding Interview&lt;/a&gt; to keep my chops strong and for giggles and this one took a little bit of wrangling for me to get:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Given a binary search tree, design an algorithm which creates a linked list of all the
+nodes at each depth (i e , if you have a tree with depth D, you’ll have D linked lists)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So a binary tree such as :&lt;/p&gt;
+
+&lt;pre&gt;
+       (1)
+      /   \
+     /     \
+   (2)     (3)
+  /  \     / \
+(4)  (5) (6) (7)
+&lt;/pre&gt;
+
+&lt;p&gt;Will return linked lists:&lt;/p&gt;
+
+&lt;pre&gt;
+(1) =&gt; NULL
+(2) =&gt; (3) =&gt; NULL
+(4) =&gt; (5) =&gt; (6) =&gt; (7) =&gt; NULL
+&lt;/pre&gt;
+
+&lt;p&gt;I wrote up my solution to this in Python, and I&amp;rsquo;m going to share it with you to study and critique.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Solution&lt;/h1&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;The Linked List Implementation&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;ve ever seen or written a linked list implementation before, you&amp;rsquo;ll probably realize there&amp;rsquo;s nothing particularly brilliant or innovative about this one.  Just a good old-fashioned, simple singly linked list.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;class LinkedList:
+    next = None
+    val = None
+ 
+    def __init__(self, val):
+        self.val = val
+ 
+    def add(self, val):
+        if self.next == None:
+            self.next = LinkedList(val)
+        else:
+            self.next.add(val)
+ 
+    def __str__(self):
+        return &amp;quot;({val}) &amp;quot;.format(val=self.val) + str(self.next)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Usage:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;ll = LinkedList(1)
+ll.add(2)
+ll.add(3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;The Binary Tree Implementation&lt;/h2&gt;
+
+&lt;p&gt;The binary tree implementation is similarly from scratch, and simlarly simple.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;class BinaryTree:
+    val = None
+    left = None
+    right = None
+    
+    def __init__(self, val):
+        self.val = val
+ 
+    def __str__(self):
+        return &amp;quot;&amp;lt;Binary Tree (val is {val}). \n\tleft is {left} \n\tright is {right}&amp;gt;&amp;quot;.format(val=self.val, left=self.left, right=self.right)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;No methods, I do all of the tree manipulation by hand.  This works okay for problems of this (considerably small) scale.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;The Algorithm&lt;/h2&gt;
+
+&lt;p&gt;The algorithm that I came up with is actually slightly different than what is listed as the solution in the book, and depends a bit of idiosyncracies of Python that aren&amp;rsquo;t in Java (which all of the solutions from the book are written in).  Namely, it uses optional arguments to avoid wrapper methods and it uses a dictionary instead of a &lt;code&gt;ArrayList&amp;lt;LinkedList&amp;lt;BinaryTree&amp;gt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I also differ from the solution in the book in that I grab the depth of the tree once and use that to determine the linked list&amp;rsquo;s index, which is slightly less efficient than the solution that they provide.  If I&amp;rsquo;m not mistaken, however, the asymptotic complexity is still the same (&lt;code&gt;O(n)&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;My depth function is exactly what you&amp;rsquo;d expect (recursive):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;def depth(tree):
+    if tree == None:
+        return 0
+    if tree.left == None and tree.right == None:
+        return 1
+    else:
+        depthLeft = 1+depth(tree.left)
+        depthRight = 1+depth(tree.right)
+        if depthLeft &amp;gt; depthRight:
+            return depthLeft
+        else:
+            return depthRight
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;My &lt;code&gt;tree_to_linked_lists&lt;/code&gt; function does a &lt;a href=&#34;http://en.wikipedia.org/wiki/Tree_traversal#Pre-order&#34;&gt;pre-order traversal&lt;/a&gt;, adding nodes to their corresponding linked list (based on depth) in the dictionary &lt;code&gt;lists&lt;/code&gt; as the tree is traversed.  &lt;code&gt;lists&lt;/code&gt; is passed into, and returned from (in its mutated state), each call to &lt;code&gt;tree_to_linked_lists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;def tree_to_linked_lists(tree, lists={}, d=None):
+    if d == None:
+        d = depth(tree)
+    if lists.get(d) == None:
+        lists[d] = LinkedList(tree.val)
+    else:
+        lists[d].add(tree.val)
+        if d == 1:
+            return lists
+    if tree.left != None:
+        lists = tree_to_linked_lists(tree.left, lists, d-1)
+    if tree.right != None:
+        lists = tree_to_linked_lists(tree.right, lists, d-1)
+    return lists
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This produces a result that is sort of in reverse order compared to the solution provided by the book, but it still satisfies the problem description to provide a collection of linked lists.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;You can find the entirety of the code &lt;a href=&#34;https://gist.github.com/nathanleclaire/9292861&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I need to be better at data structures and algorithms.  They are fun.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

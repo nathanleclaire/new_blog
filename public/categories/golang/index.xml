@@ -1,0 +1,1387 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Golang on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/golang/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Want to Work With Databases In Golang?  Let&#39;s Try Some gorp.</title>
+      <link>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Google&amp;rsquo;s Go&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://golang.org/&#34;&gt;Go&lt;/a&gt; is a new programming language released by &lt;a href=&#34;http://www.google.com&#34;&gt;Google&lt;/a&gt;.  It has an excellent pedigree (see &lt;a href=&#34;http://en.wikipedia.org/wiki/Rob_Pike&#34;&gt;Rob Pike&lt;/a&gt; and &lt;a href=&#34;http://en.wikipedia.org/wiki/Ken_Thompson_%28computer_programmer%29&#34;&gt;Ken Thompson&lt;/a&gt;) and it brings a lot of interesting things to the table as a programming tool. Go has been the subject of rave reviews as well as controversy.  As Google is a web company it&amp;rsquo;s no surprise that Go seems hard-wired from the start to be used in the context of the modern web and the standard libaries include everything from &lt;a href=&#34;http://golang.org/pkg/net/http/&#34;&gt;HTTP servers&lt;/a&gt; to &lt;a href=&#34;http://golang.org/pkg/html/template/&#34;&gt;a templating system&lt;/a&gt; to address these ends.  A lot of companies and hobbyist hackers seem to enjoy Go as a utility language that replaces components which used to be written in Python or Perl (with Go offering better performance).&lt;/p&gt;
+
+&lt;p&gt;Its supporters emphasize its &lt;a href=&#34;http://benchmarksgame.alioth.debian.org/u64q/benchmark.php?test=all&amp;amp;lang=go&amp;amp;lang2=yarv&amp;amp;data=u64q&#34;&gt;performance&lt;/a&gt;, nifty approach to concurrency (it&amp;rsquo;s &lt;a href=&#34;http://golang.org/doc/effective_go.html#concurrency&#34;&gt;built right in&lt;/a&gt;), and fast compile times as advantages.  Some of its detractors dislike its lack of exceptions and generics, but the purpose of this article is not to address these concerns, which have already been discussed &lt;em&gt;ad nauseum&lt;/em&gt;.  Instead, this article will talk about and examine the &lt;code&gt;gorp&lt;/code&gt; library.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/gorp/gorp.jpeg Eh? %}&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t actually mean GOOD OLD RAISINS &amp;amp; PEANUTS, of course- I mean &lt;a href=&#34;https://github.com/coopernurse/gorp&#34;&gt;gorp&lt;/a&gt;, an &amp;ldquo;ORM-ish library for Go&amp;rdquo;.  What is it, and how does it work its funny magic?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;ORM-ish?&lt;/h1&gt;
+
+&lt;p&gt;The README.md from &lt;code&gt;gorp&lt;/code&gt;&amp;rsquo;s repository is just too great an introduction to not quote, check it out:&lt;/p&gt;
+
+&lt;blockquote&gt;
+I hesitate to call gorp an ORM. Go doesn&#39;t really have objects, at least not in the classic Smalltalk/Java sense. There goes the &#34;O&#34;. gorp doesn&#39;t know anything about the relationships between your structs (at least not yet). So the &#34;R&#34; is questionable too (but I use it in the name because, well, it seemed more clever).
+
+The &#34;M&#34; is alive and well. Given some Go structs and a database, gorp should remove a fair amount of boilerplate busy-work from your code.
+
+I hope that gorp saves you time, minimizes the drudgery of getting data in and out of your database, and helps your code focus on algorithms, not infrastructure.
+&lt;/blockquote&gt;
+
+&lt;p&gt;When I was looking into &lt;a href=&#34;http://www.github.com/robfig/revel&#34;&gt;Revel&lt;/a&gt; as a possibility for a Go web application framework, I found myself frustrated by its lack of a database solution.  Persistence is just such a key aspect of web applications, and something that we&amp;rsquo;re so accustomed to letting frameworks take care of for us (a la Rails and Django) that it was hard to believe a large framework like Revel didn&amp;rsquo;t even want to touch the problem- especially since &lt;a href=&#34;http://www.playframework.com/documentation/1.2.1/model&#34;&gt;Play&lt;/a&gt;, a large source of inspiration, provides such functionality.  Revel is awesome in a lot of other ways, like its code hotswap feature, but for now at least it is &amp;ldquo;bring-your-own-ORM&amp;rdquo; (or other database solution).&lt;/p&gt;
+
+&lt;p&gt;So I set off to look into this funny &lt;code&gt;gorp&lt;/code&gt; business.  As it turns out, &lt;code&gt;gorp&lt;/code&gt; is pretty straightforward and powerful.  At the time of writing, &lt;code&gt;gorp&lt;/code&gt; can be used with MySQL, Sqlite3, and PostgreSQL (although there are some known issues that cause different drivers to behave slightly differently).&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Creating Tables&lt;/h1&gt;
+
+&lt;p&gt;The basic use case for &lt;code&gt;gorp&lt;/code&gt; is to define some structs and then register them with an instance of &lt;code&gt;gorp&lt;/code&gt;&amp;rsquo;s &lt;code&gt;DbMap&lt;/code&gt; structure.  This structure is responsible for generating the raw SQL to perform basic database operations on a table that will mirror your custom defined structure.  &lt;code&gt;gorp&lt;/code&gt; can easily create that table for you in the first place.  Check it out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;type Person struct {
+    Id      int64    
+    Created int64
+    Updated int64
+    FName   string
+    LName   string
+}
+
+// connect to db using standard Go database/sql API
+// use whatever database/sql driver you wish
+db, err := sql.Open(&amp;quot;mymysql&amp;quot;, &amp;quot;tcp:localhost:3306*mydb/myuser/mypassword&amp;quot;)
+
+// construct a gorp DbMap
+dbmap := &amp;amp;gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{&amp;quot;InnoDB&amp;quot;, &amp;quot;UTF8&amp;quot;}}
+
+table := dbmap.AddTable(Person{}).SetKeys(true, &amp;quot;Id&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can also use &lt;code&gt;AddTableWithName&lt;/code&gt; if you don&amp;rsquo;t want the table name to be the same as the structure type&amp;rsquo;s name (in fact, &lt;code&gt;AddTable&lt;/code&gt; calls &lt;code&gt;AddTableWithName&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;table := dbmap.AddTableWithName(Person{}, &amp;quot;People&amp;quot;).SetKeys(true, &amp;quot;Id&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can imagine, being able to easily create and drop tables like this is useful for unit tests.&lt;/p&gt;
+
+&lt;p&gt;You can use structure field tags if you want to change the name of the columns in the actual SQL (let&amp;rsquo;s say your team has a convention to have only lowercase column names, but all members of a Go struct must be uppercase).  Additionally you can tell &lt;code&gt;gorp&lt;/code&gt; to ignore fields completely with &lt;code&gt;db:&amp;quot;-&amp;quot;&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;type Person struct {
+    Id       int64                        `id`
+    Created  int64                        `created`
+    Updated  int64                        `modified`
+    FName    string                       `firstName`
+    LName    string                       `lastName`
+    Comments *SomeNonPersistentStructure  `db:&amp;quot;-&amp;quot;`
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A seemingly undocumented feature is that you can set the size of the table columns manually.  If you don&amp;rsquo;t, &lt;code&gt;gorp&lt;/code&gt; will automatically figure something out for you that may be a bit too large or too small.  For example, &lt;code&gt;gorp&lt;/code&gt; turns this structure definition:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// A Thing is a post (link submission or a comment)
+type Thing struct {
+    Id            int64
+    Username      string
+    Href          string
+    Upvotes       int64
+    Downvotes     int64
+    Description   string
+    ParentThingId int64
+    Created       int64
+    Updated       int64
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into this (with default behavior / MySQL driver):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| Id            | bigint(20)   | YES  |     | NULL    |       |
+| Username      | varchar(255) | YES  |     | NULL    |       |
+| Href          | varchar(255) | YES  |     | NULL    |       |
+| Upvotes       | bigint(20)   | YES  |     | NULL    |       |
+| Downvotes     | bigint(20)   | YES  |     | NULL    |       |
+| Description   | varchar(255) | YES  |     | NULL    |       |
+| ParentThingId | bigint(20)   | NO   | PRI | NULL    |       |
+| Created       | bigint(20)   | YES  |     | NULL    |       |
+| Updated       | bigint(20)   | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you call &lt;code&gt;gorp.DbMap.AddTableWithName&lt;/code&gt;, it returns you a pointer to a &lt;code&gt;TableMap&lt;/code&gt; struct that you can use to set the size of the columns.  So you think 255 characters is a bit long for a username?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;t1 := dbmap.AddTable(Person{}).SetKeys(true, &amp;quot;Id&amp;quot;)
+t1.ColMap(&amp;quot;Username&amp;quot;).SetMaxSize(25)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The things you learn from reading the unit tests (and digging in the &lt;a href=&#34;https://github.com/robfig/revel/blob/master/samples/booking/app/controllers/gorp.go&#34;&gt;Revel examples&lt;/a&gt;), huh?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;CRUD&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at what CRUD (Create-Read-Update-Delete) looks like using &lt;code&gt;gorp&lt;/code&gt;-mapped structures.&lt;/p&gt;
+
+&lt;p&gt;Inserting a new row is simple (note that you have to declare the structs as pointers so that optional callback hooks can operate on your actual data instead of copies):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;person := &amp;amp;Person{
+    Created: time.Now().UnixNow(), 
+    Updated: time.Now().UnixNow(),
+    FName: &amp;quot;Joe&amp;quot;,
+    LName: &amp;quot;Smith&amp;quot;
+}
+err := dbmap.Insert(person)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Want to select by primary key?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;primaryKey := 1
+p1, err := dbmap.Get(Person{}, primaryKey)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How about selecting by arbitrary (non-primary-key) fields?  You can use &lt;code&gt;dbm.Select&lt;/code&gt; to get a slice, or &lt;code&gt;dbm.SelectOne&lt;/code&gt; to populate the slice or structure with the revelant data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;var ids []int64
+_, err := dbmap.Select(&amp;amp;ids, &amp;quot;select id from Person&amp;quot;)
+
+lname = &amp;quot;LeClaire&amp;quot;
+var person Person
+err := dbmap.SelectOne(&amp;amp;person, &amp;quot;select * from Person where LName=?&amp;quot;, lname)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Update and delete work similarly :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// count is the # of rows updated / deleted
+person.FName = &amp;quot;Nate&amp;quot; 
+count, err := dbmap.Update(person)
+
+// or just delete it 
+count, err := dbmap.Delete(person)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;How does it do all of this crazy voodoo?&lt;/h1&gt;
+
+&lt;p&gt;Obviously gorp is really cool, and useful.  So how does it work?&lt;/p&gt;
+
+&lt;p&gt;{% img /images/gorp/use-the-source-luke.jpeg Best way to learn. %}&lt;/p&gt;
+
+&lt;p&gt;I had no idea, but I remembered the words of Jeff Atwood and other wise folks and cracked open the &lt;a href=&#34;https://github.com/coopernurse/gorp/blob/master/gorp.go&#34;&gt;source code on github&lt;/a&gt;.  Reading the unit tests also proved useful in understanding how &lt;code&gt;gorp&lt;/code&gt; should be used (one of the virtues of meticulously tested code - it documents).&lt;/p&gt;
+
+&lt;p&gt;Immediately upon cracking open the definition of &lt;code&gt;DbMap.AddTable&lt;/code&gt; and &lt;code&gt;DbMap.AddTableWithName&lt;/code&gt;, I had one of those &amp;ldquo;aha&amp;rdquo; moments that programmers know so well.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// AddTableWithName has the same behavior as AddTable, but sets
+// table.TableName to name.
+func (m *DbMap) AddTableWithName(i interface{}, name string) *TableMap {
+        t := reflect.TypeOf(i)
+        if name == &amp;quot;&amp;quot; {
+                name = t.Name()
+        }
+
+        // check if we have a table for this type already
+        // if so, update the name and return the existing pointer
+        for i := range m.tables {
+                table := m.tables[i]
+                if table.gotype == t {
+                        table.TableName = name
+                        return table
+                }
+        }
+
+        tmap := &amp;amp;TableMap{gotype: t, TableName: name, dbmap: m}
+        tmap.columns, tmap.version = readStructColumns(t)
+        m.tables = append(m.tables, tmap)
+
+        return tmap
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, it uses reflection!  Go&amp;rsquo;s &lt;a href=&#34;http://golang.org/pkg/reflect/&#34;&gt;reflect&lt;/a&gt; package is what powers this manipulation and mapping of structure metadata (I wasn&amp;rsquo;t aware Go was capable of reflection when I started using &lt;code&gt;gorp&lt;/code&gt;, so it was a bit of a surprise to find this out).&lt;/p&gt;
+
+&lt;p&gt;Suddenly everything became clearer to me and I feel like the code for &lt;code&gt;AddTableWithName&lt;/code&gt; is fairly self-explanatory if you are familiar with the usage of the library.  The first part of the method deals with naming the table (user defined or based on the name of the structure).  The middle section checks to see if the table already is in existence and if so it updates the name (consequently, we can set up a table for a structure with one name, then change the table name later on if we want).  Lastly, it adds the table if it doesn&amp;rsquo;t exist and returns a pointer to the &lt;code&gt;TableMap&lt;/code&gt; structure (we discussed this structure briefly earlier).&lt;/p&gt;
+
+&lt;p&gt;The code for the &lt;code&gt;readStructColumns&lt;/code&gt; internal method that you see called near the end of the method is pretty cool as well, it powers &lt;code&gt;gorp&lt;/code&gt;&amp;rsquo;s ability to deal with struct embedding (a pretty cool feature of the libary IMO).  I won&amp;rsquo;t reproduce it here, but if you are curious &lt;a href=&#34;https://github.com/coopernurse/gorp/blob/master/gorp.go&#34;&gt;go check it out&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_5&#34;&gt;The future&lt;/h1&gt;
+
+&lt;p&gt;Alas, we developers are never easy to please forever.  Here I will note some things that may become issues for users of &lt;code&gt;gorp&lt;/code&gt;, and hopefully get the ball rolling on conversation about directions for &lt;code&gt;gorp&lt;/code&gt;&amp;rsquo;s future development.&lt;/p&gt;
+
+&lt;p&gt;Support for &lt;code&gt;TEXT&lt;/code&gt; columns (and maybe other, &amp;ldquo;weirder&amp;rdquo; column types like PostgreSQL&amp;rsquo;s &lt;a href=&#34;http://www.postgresql.org/docs/9.2/static/datatype-json.html&#34;&gt;json data type&lt;/a&gt;) seems like something that will be needed to really bring &lt;code&gt;gorp&lt;/code&gt; into the limelight as a robust and mature tool (see &lt;a href=&#34;https://github.com/coopernurse/gorp/issues/34&#34;&gt;this issue&lt;/a&gt; on github, where someone brings up &lt;code&gt;TEXT&lt;/code&gt; specifically).  A &lt;code&gt;VARCHAR&lt;/code&gt; column arguably would be inappropriate for storing the content of a Reddit comment or a blog post, for example.  I&amp;rsquo;d be curious how the maintainers are interested in handling this- getting into defining custom data types with &lt;code&gt;gorp&lt;/code&gt; (e.g. &lt;code&gt;gorp.Text&lt;/code&gt;) might be dicey, for instance, or it could prove to be a robust solution.  In the long run, it&amp;rsquo;s worth considering how much of &lt;code&gt;gorp&lt;/code&gt;&amp;rsquo;s flexibility and power comes from its ability to discern those kinds of things with minimal input from the user, and how much of that we&amp;rsquo;re willing to give up to have a VERY robust database / ORM-ish solution for Golang.&lt;/p&gt;
+
+&lt;p&gt;Other tough nuts to crack with &lt;code&gt;gorp&lt;/code&gt; (Golang&amp;rsquo;s strict/static typing, which is definitely one of its advantages in some ways, is partially what makes some of these so challenging) :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Handling relational data&lt;/li&gt;
+&lt;li&gt;Joins (the existing solution looks pretty workable, but feels a bit stiff - admittedly I haven&amp;rsquo;t tried it though)&lt;/li&gt;
+&lt;li&gt;Data migrations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Any ideas?&lt;/p&gt;
+
+&lt;p&gt;Also, not to be &amp;ldquo;that guy&amp;rdquo;, but it could probably stand to be broken up into a few different files (one for each of the different structures, for instance) instead of one large &lt;code&gt;gorp.go&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_6&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;gorp&lt;/code&gt; is a very cool, if still young, tool / library.  I find it to be a good combination of abstraction and practicality.  What do you think?&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading, I&amp;rsquo;ll see you next week.&lt;/p&gt;
+
+&lt;p&gt;Nate&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Implementing a Concurrent Floodfill with Golang</title>
+      <link>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The setup&lt;/h1&gt;
+
+&lt;p&gt;Lately as part of a coding exercise I found myself implementing a &lt;a href=&#34;http://en.wikipedia.org/wiki/Flood_fill&#34;&gt;Flood Fill&lt;/a&gt; for &amp;ldquo;painting&amp;rdquo; an ASCII canvas.  For those of you unfamiliar with what that is, think back to MSPaint - remember that little paint bucket that would fill a region with your color of choice?  That paint bucket implements a flood fill algorithm, although I didn&amp;rsquo;t know that&amp;rsquo;s what it was called until I started working on implementing one myself.&lt;/p&gt;
+
+&lt;p&gt;{%img /images/flood-fill/flood-fill-basic.gif %}&lt;/p&gt;
+
+&lt;p&gt;My original implementation was in PHP and I had to go through a few iterations before I got to an implementation I was satisfied with.  It was surprisingly tricky to get correct as my depth-first implementation kept blowing the stack through excessive use of recursion.  A naive flood fill algorithm (depth first) looks like this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Store the color of the pixel where you are starting, then color it the new color.&lt;/li&gt;
+&lt;li&gt;For every adjacent pixel, if it is the same as the original color and you have never visited that pixel before, perform a flood fill on it.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are a lot of issues with this algorithm.  It takes a long time and it will quickly blow the stack if the canvas size contains more than a trivial number of pixels.&lt;/p&gt;
+
+&lt;p&gt;So I started thinking about ways to improve it, and it occurred to me to use a &lt;em&gt;breadth&lt;/em&gt;-first solution instead (this is actually the kind of solution that&amp;rsquo;s visualized in the GIF above).  That way, we could store the pixels that we want to visit / fill in a queue, and visit them one at a time without blowing the stack.  It worked pretty well.&lt;/p&gt;
+
+&lt;p&gt;Just one problem, though:  It was written in PHP, and PHP is dog slow.  It&amp;rsquo;s also painfully single-threaded to boot.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Go!&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;s&amp;gt;&lt;/code&gt; Since we all know that all the cool kids use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; nowadays &lt;code&gt;&amp;lt;/s&amp;gt;&lt;/code&gt;, I decided to take a crack at implementing a solution for this in Go, taking advantage of Go&amp;rsquo;s high performance and concurrency patterns.  Also, I just really like coding stuff in Go.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;&amp;ldquo;Canvas&amp;rdquo; abstraction&lt;/h2&gt;
+
+&lt;p&gt;The &amp;ldquo;canvas&amp;rdquo; I modeled as an two-dimensional array of byte arrays (which are chars for our purposes).  There&amp;rsquo;s another matrix that we use to keep track of which pixels we have visited before.  For convenient passing, we also have a struct &lt;code&gt;Node&lt;/code&gt; that contains data about a given pixel.  We will use this later on to make our helper functions a little bit more clean looking.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;type Canvas struct {
+    contents [][]byte
+    visited  [][]bool
+}
+
+type Node struct {
+    X     int
+    Y     int
+    Color byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function to initialize the &amp;ldquo;canvas&amp;rdquo; is pretty straightforward.  We also have an analagous method, &lt;code&gt;setVisitedMatrixToFalse&lt;/code&gt;, that we call before performing a flood fill operation to indicate we haven&amp;rsquo;t visited anywhere yet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Init(width int, height int, blankChar byte) {
+    c.contents = make([][]byte, width)
+    for i := 0; i &amp;lt; width; i++ {
+        c.contents[i] = make([]byte, height)
+        for j := 0; j &amp;lt; height; j++ {
+            c.contents[i][j] = blankChar
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Called like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;canvas := Canvas{}
+canvas.Init(120, 120, &#39;_&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We take advantage of easy casting from &lt;code&gt;[]byte&lt;/code&gt; type to &lt;code&gt;string&lt;/code&gt; for our function to print the contents of the canvas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Print() {
+    for _, row := range c.contents {
+        fmt.Println(string(row))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this code set up, we can get into the &amp;ldquo;meat&amp;rdquo; of the flood fill algorithm.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;Flood Fill&lt;/h2&gt;
+
+&lt;p&gt;Instead of using pure recursion, we will instead have a &amp;ldquo;master&amp;rdquo; goroutine that forks off visits to other pixels/nodes in their own goroutines.  The child goroutines will report back their &amp;ldquo;findings&amp;rdquo; to the main goroutine, including what pixels to visit next if any.  Through the use of buffered and unbuffered goroutines, we will prevent too many visits from firing off at once, and the Go runtime scheduler will take care of juggling these activities which are running concurrently.&lt;/p&gt;
+
+&lt;p&gt;The main goroutine looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) FloodFill(x int, y int, color byte) {
+    // If unbuffered, this channel will block when we go to send the
+    // initial nodes to visit (at most 4).  Not cool man.
+    toVisit := make(chan Node, 4)
+    visitDone := make(chan bool)
+
+    originalColor := c.contents[x][y]
+
+    c.setVisitedMatrixToFalse()
+
+    go c.floodFill(x, y, color, originalColor, toVisit, visitDone)
+    remainingVisits := 1
+
+    for {
+        select {
+        case nextVisit := &amp;lt;-toVisit:
+            if !c.visited[nextVisit.X][nextVisit.Y] {
+                c.visited[nextVisit.X][nextVisit.Y] = true
+                remainingVisits++
+                go c.floodFill(nextVisit.X, nextVisit.Y, color, originalColor, toVisit, visitDone)
+            }
+        case &amp;lt;-visitDone:
+            remainingVisits--
+        default:
+            if remainingVisits == 0 {
+                return
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start, we create two channels.  One is called &lt;code&gt;toVisit&lt;/code&gt; and is the channel through which we send Nodes that we still want to visit (color, then check if they have neighbors we should color).  You may notice that this channel is buffered.  This is because if it is not buffered, then when we attempt to send &lt;code&gt;Node&lt;/code&gt;s to visit over it, it will block and the whole program will deadlock.  Since we know that we will &amp;ldquo;queue up&amp;rdquo; at most four &lt;code&gt;Node&lt;/code&gt;s into the channel (for this exercise we don&amp;rsquo;t fill pixels which are diagonally adjacent), that&amp;rsquo;s why we set our buffer size to that.  Theoretically however it will work with any buffer value greater than or equal to one.&lt;/p&gt;
+
+&lt;p&gt;The other channel is called &lt;code&gt;visitDone&lt;/code&gt; and is used to indicate when a visit for a given node is finished.  We don&amp;rsquo;t care which one, since we just maintain a &amp;ldquo;one true counter&amp;rdquo; in our main routine (&lt;code&gt;remainingVisits&lt;/code&gt;) that tracks how many outstanding visits we have, and ensures that the function doesn&amp;rsquo;t return as long as there are visits outstanding.  Before I implemented this solution I was getting all kinds of frustrating race conditions where the &lt;code&gt;default&lt;/code&gt; block would sometimes get hit before any additional visits would get added, and so the program would exit prematurely.  If you have a better idea/solution to manage this, I&amp;rsquo;d love to hear!&lt;/p&gt;
+
+&lt;p&gt;We also keep track of the color of the original pixel, since that&amp;rsquo;s a condition of coloring (the pixels should be adjacent and the same color as the original pixel).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;floodFill&lt;/code&gt; method that we spin off into auxilliary goroutines looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) floodFill(x int, y int, color byte, originalColor byte, toVisit chan Node, visitDone chan bool) {
+    c.contents[x][y] = color
+    neighbors := c.getNeighbors(x, y)
+    for _, neighbor := range neighbors {
+        if neighbor.Color == originalColor {
+            toVisit &amp;lt;- neighbor
+        }
+    }
+    visitDone &amp;lt;- true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don&amp;rsquo;t know that I&amp;rsquo;m crazy about having the actual pixel coloring in this method, since it involves mutable data that&amp;rsquo;s shared between threads, so I might move it into the main method eventually, but for example purposes it works okay.  This method is fairly terse and simply colors the pixel, then calls this method to get the neighbors of the current pixel (ensuring that we don&amp;rsquo;t run over the bounds of the slice):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) getNeighbors(x int, y int) []Node {
+    var (
+        neighbors []Node
+        color     byte
+    )
+    if x+1 &amp;lt; len(c.contents) {
+        color = c.contents[x+1][y]
+        neighbors = append(neighbors, Node{x + 1, y, color})
+    }
+    if x-1 &amp;gt;= 0 {
+        color = c.contents[x-1][y]
+        neighbors = append(neighbors, Node{x - 1, y, color})
+    }
+    if y+1 &amp;lt; len(c.contents[0]) {
+        color = c.contents[x][y+1]
+        neighbors = append(neighbors, Node{x, y + 1, color})
+    }
+    if y-1 &amp;gt;= 0 {
+        color = c.contents[x][y-1]
+        neighbors = append(neighbors, Node{x, y - 1, color})
+    }
+    return neighbors
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, we send the returned nodes over the &lt;code&gt;toVisit&lt;/code&gt; channel if their color matches the original pixel&amp;rsquo;s color, and we send &lt;code&gt;true&lt;/code&gt; across &lt;code&gt;visitDone&lt;/code&gt; channel to indicate we are done when that is all through (this decrements our counter in the main goroutine).&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s all!&lt;/p&gt;
+
+&lt;p&gt;Check the sample output.&lt;/p&gt;
+
+&lt;p&gt;Before:&lt;/p&gt;
+
+&lt;pre&gt;
+____________________
+________//__________
+________//_______---
+__\\\\\\\\\\\\\\_---
+________//_______---
+________//_______---
+________//_______---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+&lt;/pre&gt;
+
+&lt;p&gt;After: (filled with &lt;code&gt;&#39;G&#39;&lt;/code&gt; char)&lt;/p&gt;
+
+&lt;pre&gt;
+GGGGGGGGGGGGGGGGGGGG
+GGGGGGGG//GGGGGGGGGG
+GGGGGGGG//GGGGGGG---
+GG\\\\\\\\\\\\\\G---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+&lt;/pre&gt;
+
+&lt;p&gt;It runs pretty satisfyingly quickly.  Wiki mentions a few alternative approaches that might work a little better (EDIT: it says that going line-by-line instead of pixel by pixel is an order of magnitude faster), but I like this one for its simplicity.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclude&lt;/h1&gt;
+
+&lt;p&gt;The code is &lt;a href=&#34;https://github.com/nathanleclaire/golangfloodfill&#34;&gt;up on Github&lt;/a&gt; if you&amp;rsquo;re curious.  I&amp;rsquo;d love to hear about other possible approaches, especially ones that are better at taking advtange of Go&amp;rsquo;s concurrency features.  I considered using &lt;code&gt;sync.WaitGroup&lt;/code&gt; but this didn&amp;rsquo;t really seem like a good case to do so.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Surprising Feature of Golang that Colored Me Impressed</title>
+      <link>http://localhost:1313/_posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</guid>
+      <description>
+
+&lt;p&gt;{%img /images/gopher/hardhat.png %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;go blog.Article()&lt;/h1&gt;
+
+&lt;p&gt;The amount of enthusiasm and momentum I&amp;rsquo;ve been seeing regarding the &lt;a href=&#34;http://golang.org&#34;&gt;Go programming language&lt;/a&gt; in the past few weeks has been really amazing.  Partially this is due to &lt;a href=&#34;http://gophercon.com&#34;&gt;Gophercon 2014&lt;/a&gt;, which at the time of writing has just occured.  I am insanely jealous of the attendees - the format and talks sound like they were awesome, and it&amp;rsquo;d be great to bump elbows with titans such as &lt;a href=&#34;https://twitter.com/rob_pike&#34;&gt;Rob Pike&lt;/a&gt; as well as hear all the cool stuff that everyone is building with Go.  I feel like additionally I&amp;rsquo;ve seen a big spike in blog articles related to Go lately, and many are making awesome pivots to include Go in their stack (for instance, &lt;a href=&#34;https://www.digitalocean.com/company/blog/new-super-fast-droplet-console-thanks-golang/&#34;&gt;Digital Ocean&lt;/a&gt;, new cloud startup darling of the masses, just announced they reworked a bunch of Perl code to Go and improved some things such as response time dramatically).&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve never written the obligatory &amp;ldquo;ZOMG I played with Golang for two weeks and it&amp;rsquo;s awesome&amp;rdquo; post, since I didn&amp;rsquo;t really find it had much of a value add in its myriad forms.  But recently I came across a Go feature that I considered a very cool reflection of its very excellent (in my opinion) attitude as a language.&lt;/p&gt;
+
+&lt;p&gt;Go&amp;rsquo;s &lt;code&gt;map&lt;/code&gt; iteration order (using the &lt;code&gt;range&lt;/code&gt; keyword) is random instead of in the order that the entries were added.  What does this mean (context), and why is it significant?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Maps&lt;/h1&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;Brief intro to maps&lt;/h2&gt;
+
+&lt;p&gt;Stolen directly from &lt;a href=&#34;http://blog.golang.org/go-maps-in-action&#34;&gt;&lt;em&gt;the&lt;/em&gt; article on maps&lt;/a&gt; by the prolific &lt;a href=&#34;https://twitter.com/enneff&#34;&gt;Andrew Gerrand&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;One of the most useful data structures in computer science is the hash table. Many hash table implementations exist with varying properties, but in general they offer fast lookups, adds, and deletes. Go provides a built-in map type that implements a hash table.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So in Go if you need a hash table you use a map.  Since Go is strongly typed you have to define what type the keys are, and what type the associated values are (e.g. strings, integers, pointers to structs, etc.).  A common use case, for instance, it to have a map where the strings are keys and the values they reference are keys.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;m := make(map[string]string)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Usage is pretty straightforward.  Keys don&amp;rsquo;t need to exist before they are assigned, or even before they are referenced (if they do not exist, we get the value type&amp;rsquo;s &amp;ldquo;zero value&amp;rdquo;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;m[&amp;quot;bandName&amp;quot;] = &amp;quot;Funny Bones&amp;quot;             // &amp;quot;create&amp;quot;
+websiteTitle := m[&amp;quot;bandName&amp;quot;] + &amp;quot; Music&amp;quot;  // &amp;quot;read&amp;quot;
+m[&amp;quot;bandName&amp;quot;] = &amp;quot;Moon Taxi&amp;quot;               // &amp;quot;update&amp;quot;
+delete(m, &amp;quot;bandName&amp;quot;)                     // &amp;quot;delete&amp;quot;
+fmt.Printf(m[&amp;quot;bandName&amp;quot;])                 // prints nothing since m[&amp;quot;bandName&amp;quot;] == &amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To iterate over all the entries in a map you use the &lt;code&gt;range&lt;/code&gt; keyword:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;for key, value := range m {
+    fmt.Println(&amp;quot;Key:&amp;quot;, key, &amp;quot;Value:&amp;quot;, value)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;Iteration Order&lt;/h2&gt;
+
+&lt;p&gt;At first glance you would think that the output of this code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import &amp;quot;fmt&amp;quot;
+
+func main() {
+    blogArticleViews := make(map[string]int)
+    blogArticleViews[&amp;quot;unix&amp;quot;] = 500
+    blogArticleViews[&amp;quot;python&amp;quot;] = 300
+    blogArticleViews[&amp;quot;go&amp;quot;] = 100
+    blogArticleViews[&amp;quot;javascript&amp;quot;] = 4000
+    blogArticleViews[&amp;quot;testing&amp;quot;] = 800
+    for key, views := range blogArticleViews {
+        fmt.Println(&amp;quot;There are&amp;quot;, views, &amp;quot;views for&amp;quot;, key)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Would be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run map_iteration_order.go
+There are 500 views for unix
+There are 300 views for python
+There are 100 views for go
+There are 4000 views for javascript
+There are 800 views for testing
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, since Go 1, the iteration order is actually random.  So in fact it will be more like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run map_iteration_order.go
+There are 800 views for testing
+There are 4000 views for javascript
+There are 300 views for python
+There are 100 views for go
+There are 500 views for unix
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Go language designers noticed that people were relying on the fact that keys were normally stored in the order they were added in, so they randomized the order in which the keys are iterated over.  Thus, if you want to output keys in the order they were added in, you need to keep track of which value is in which position in the order &lt;em&gt;yourself&lt;/em&gt; like so :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;import &amp;quot;sort&amp;quot;
+
+var m map[int]string
+var keys []int
+for k := range m {
+    keys = append(keys, k)
+}
+sort.Ints(keys)
+for _, k := range keys {
+    fmt.Println(&amp;quot;Key:&amp;quot;, k, &amp;quot;Value:&amp;quot;, m[k])
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the above codeblock is once again shamelessly stolen from &lt;a href=&#34;http://blog.golang.org/go-maps-in-action&#34;&gt;Andrew&amp;rsquo;s excellent article&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I think that peoples&amp;rsquo; reactions to these sort of things mostly can be categorized into two separate groups.&lt;/p&gt;
+
+&lt;p&gt;One group responds with anything from not understanding why this might be something that is done to being slightly peeved to vehemently disapproving.  These are most likely the ones who are comfortable making potentially dangerous or magical assumptions about what code is doing behind the scenes and they would prefer that the Go language designers allow them to continue to write dangerous code.&lt;/p&gt;
+
+&lt;p&gt;The other group accepts that this was an issue which was addressed, are thankful that the Go language designers are looking out for them, implements the provided solution and moves on.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_4&#34;&gt;Why is it significant?&lt;/h2&gt;
+
+&lt;p&gt;In one word: attitude.&lt;/p&gt;
+
+&lt;p&gt;This seemingly innocuous language feature is something that I consider to be a very good sign in terms of general language philosophy.  Instead of trying to be overly flexible and allow sloppy programming, Go forces you to get things straight from the get-go.  I think that this is one of the things that contributes to the reported &amp;ldquo;fuzzy good feeling&amp;rdquo; that Go programmers reference suggesting that if their program compiles (and especially if it conforms to Go idioms as outlined above), there is a good chance it will work as intended as well.  No sneaky typing bugs, missed semi-colons and so on.&lt;/p&gt;
+
+&lt;p&gt;In particular Andrew&amp;rsquo;s referenced article mentions that this was something the Go language designers &lt;em&gt;changed&lt;/em&gt; rather than continuing to allow people to rely on broken assumptions.  One of my hugest pet peeves is when broken or buggy functionality (this could happen in a deliverable, or in a programming language, or elsewhere) becomes a feature through acceptance and workarounds and then a huge stink is raised when the &amp;ldquo;feature&amp;rdquo; is attempted to be fixed!  It&amp;rsquo;s pretty clear that, say, PHP and JavaScript have let their culture wander in these directions for various reasons (they&amp;rsquo;re working on it, but there&amp;rsquo;s a huge crushing amount of debt to be paid, and some things that will never get fixed).&lt;/p&gt;
+
+&lt;p&gt;One of the biggest weak points of PHP, for instance, is the needle-versus-haystack problem.  My ideal language (Blub?) would have the sort of attitude that gets driven absolutely crazy by this sort of inconsistency.  This is also why I find the Go language designer&amp;rsquo;s refusal to cave to the cow-towing for exceptions and generics resassuring - they want very badly to &lt;em&gt;do the right thing&lt;/em&gt; and they know it takes time.  They&amp;rsquo;re in no rush and it&amp;rsquo;s a lot easier to add features than to un-add them.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_5&#34;&gt;Conclude&lt;/h1&gt;
+
+&lt;p&gt;Go is a pleasant language and just so well thought-out in many ways.  Don&amp;rsquo;t be too quick to judge or criticize because it lacks features you are accustomed to such as generics or dynamic typing- perhaps if you give it a try you will find that you do not miss them all that much and you are writing simple, clean, elegant code with easy-to-integrate concurrency.&lt;/p&gt;
+
+&lt;p&gt;Go is definitely still growing and evolving, and that&amp;rsquo;s part of the fun of it as well.  It is definitely proving to be no less than rock-solid and production-ready, yet still performance and reliability keeps improving.  Just check out the awesome numbers on these benchmarks [Rob Pike recently posted]() comparing the Go 1 release to tip (nearing 1.3):&lt;/p&gt;
+
+&lt;pre style=&#34;transition: 1s ease-in-out all;&#34; id=&#34;bench&#34;&gt;
+Delta from go1 to tip: 
+
+benchmark                          old ns/op      new ns/op      delta 
+BenchmarkBinaryTree17              7102124000     5790215308     &lt;span style=&#34;color: #32cd32&#34;&gt;-18.47%&lt;/span&gt; 
+BenchmarkFannkuch11                7139655000     4361664854     &lt;span style=&#34;color: #32cd32&#34;&gt;-38.91%&lt;/span&gt; 
+BenchmarkFmtFprintfEmpty           177            104            &lt;span style=&#34;color: #32cd32&#34;&gt;-41.24%&lt;/span&gt; 
+BenchmarkFmtFprintfString          575            312            &lt;span style=&#34;color: #32cd32&#34;&gt;-45.74%&lt;/span&gt; 
+BenchmarkFmtFprintfInt             424            230            &lt;span style=&#34;color: #32cd32&#34;&gt;-45.75%&lt;/span&gt; 
+BenchmarkFmtFprintfIntInt          682            403            &lt;span style=&#34;color: #32cd32&#34;&gt;-40.91%&lt;/span&gt; 
+BenchmarkFmtFprintfPrefixedInt     661            394            &lt;span style=&#34;color: #32cd32&#34;&gt;-40.39%&lt;/span&gt; 
+BenchmarkFmtFprintfFloat           907            598            &lt;span style=&#34;color: #32cd32&#34;&gt;-34.07%&lt;/span&gt; 
+BenchmarkFmtManyArgs               2787           1663           &lt;span style=&#34;color: #32cd32&#34;&gt;-40.33%&lt;/span&gt; 
+BenchmarkGobDecode                 31284200       10693446       &lt;span style=&#34;color: #32cd32&#34;&gt;-65.82%&lt;/span&gt; 
+BenchmarkGobEncode                 13900550       6919498        &lt;span style=&#34;color: #32cd32&#34;&gt;-50.22%&lt;/span&gt; 
+BenchmarkGzip                      636714400      704154254      &lt;span style=&#34;color: red&#34;&gt;+10.59%&lt;/span&gt; 
+BenchmarkGunzip                    275620600      139906588      &lt;span style=&#34;color: #32cd32&#34;&gt;-49.24%&lt;/span&gt; 
+BenchmarkHTTPClientServer          144041         71739          &lt;span style=&#34;color: #32cd32&#34;&gt;-50.20%&lt;/span&gt; 
+BenchmarkJSONEncode                83472200       32969241       &lt;span style=&#34;color: #32cd32&#34;&gt;-60.50%&lt;/span&gt; 
+BenchmarkJSONDecode                391968600      120858167      &lt;span style=&#34;color: #32cd32&#34;&gt;-69.17%&lt;/span&gt; 
+BenchmarkMandelbrot200             9540360        6062905        &lt;span style=&#34;color: #32cd32&#34;&gt;-36.45%&lt;/span&gt; 
+BenchmarkGoParse                   10007700       6760226        &lt;span style=&#34;color: #32cd32&#34;&gt;-32.45%&lt;/span&gt; 
+BenchmarkRegexpMatchEasy0_32       198            168            &lt;span style=&#34;color: #32cd32&#34;&gt;-15.15%&lt;/span&gt; 
+BenchmarkRegexpMatchEasy0_1K       540            479            &lt;span style=&#34;color: #32cd32&#34;&gt;-11.30%&lt;/span&gt; 
+BenchmarkRegexpMatchEasy1_32       175            149            &lt;span style=&#34;color: #32cd32&#34;&gt;-14.86%&lt;/span&gt; 
+BenchmarkRegexpMatchEasy1_1K       1353           1414           &lt;span style=&#34;color: red&#34;&gt;+4.51%&lt;/span&gt;
+BenchmarkRegexpMatchMedium_32      311            307            &lt;span style=&#34;color: #32cd32&#34;&gt;-1.29%&lt;/span&gt; 
+BenchmarkRegexpMatchMedium_1K      108924         126452         &lt;span style=&#34;color: red&#34;&gt;+16.09%&lt;/span&gt;
+BenchmarkRegexpMatchHard_32        4972           5681           &lt;span style=&#34;color: red&#34;&gt;+14.26%&lt;/span&gt;
+BenchmarkRegexpMatchHard_1K        157354         181042         &lt;span style=&#34;color: red&#34;&gt;+15.05%&lt;/span&gt;
+BenchmarkRevcomp                   1362067000     1162752845     &lt;span style=&#34;color: #32cd32&#34;&gt;-14.63%&lt;/span&gt; 
+BenchmarkTemplate                  714330000      144396424      &lt;span style=&#34;color: #32cd32&#34;&gt;-79.79%&lt;/span&gt; 
+BenchmarkTimeParse                 1651           669            &lt;span style=&#34;color: #32cd32&#34;&gt;-59.48%&lt;/span&gt; 
+BenchmarkTimeFormat                3215           714            &lt;span style=&#34;color: #32cd32&#34;&gt;-77.79%&lt;/span&gt; 
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;button id=&#34;relBench&#34; type=&#34;button&#34;&gt;Click me to show relative benchmarks above!!&lt;/button&gt;&lt;/p&gt;
+
+&lt;p&gt;I love this!  And I love Go.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.  And &lt;a href=&#34;http://nathanleclaire.com&#34;&gt;consider subscribing to my mailing list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+$(document).ready(function () {
+    $(&#39;#relBench&#39;).click(function () {
+        $(&#34;#bench&#34;).css(&#39;line-height&#39;, &#39;50px&#39;);
+        $(&#39;pre &gt; span&#39;).each(function(i, e) { 
+            var $e = $(e); 
+            $e.css(&#39;transition&#39;, &#39;1s ease-in-out all&#39;);
+            $e.css(&#39;font-size&#39;, $e.html().slice(1, $e.html().length-1) + &#39;px&#39;); 
+        }); 
+    });
+});
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sending Email From Gmail Using Golang</title>
+      <link>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</guid>
+      <description>
+
+&lt;p&gt;As part of the soon-to-be-deployed &lt;a href=&#34;http://github.com/nathanleclaire/checkforbrokenlinks&#34;&gt;checkforbrokenlinks&lt;/a&gt; app, I found myself faced with the task of creating a contact form that would allow users to send me feedback on the app, so I could improve it and make it better in the future.  In order to do so I had to figure out a way to configure my server-side backend, written in Golang, to perform all of the neccessary steps in order to send me an e-mail from the front-end (written in &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt;).  Looking into it, I don&amp;rsquo;t see too many e-mail sending implementations in Golang available easily online, so I&amp;rsquo;m putting the results of my research out there for all to see.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/golang-gmail/gopher_mail.jpeg A helpful little gopher. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;&lt;code&gt;net/smtp&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;Golang provides a &lt;code&gt;smtp&lt;/code&gt; (&lt;a href=&#34;http://golang.org/pkg/net/smtp/&#34;&gt;Simple Mail Transfer Protocol&lt;/a&gt;) library as part of its &lt;code&gt;net&lt;/code&gt; package.  &lt;code&gt;&amp;quot;net/smtp&amp;quot;&lt;/code&gt; exposes some useful functionality right out of the box.  As it turns out, it&amp;rsquo;s [not too hard]() to connect to [Gmail]() using &lt;code&gt;net/smtp&lt;/code&gt;, which saved me some serious misgivings I was having about setting up and configuring my own mail server (I&amp;rsquo;ve no doubt it could be done, but I was looking for a quick and simple solution).  So I signed up for a &lt;a href=&#34;https://accounts.google.com/SignUp?service=mail&amp;amp;hl=en_us&amp;amp;continue=http%3A%2F%2Fmail.google.com%2Fmail%2F%3Fpc%3Den-ha-na-us-bk&amp;amp;utm_campaign=en&amp;amp;utm_source=en-ha-na-us-bk&amp;amp;utm_medium=ha&#34;&gt;new Gmail account&lt;/a&gt; and connected to that to send e-mails to my primary address from the Check For Broken Links app form.  As it turns out, doing so with &lt;code&gt;&amp;quot;net/smtp&amp;quot;&lt;/code&gt; is fairly straightforward.  You call &lt;code&gt;smtp.PlainAuth&lt;/code&gt; with the proper credentials and domain name, and it returns you back an instance of &lt;code&gt;smtp.Auth&lt;/code&gt; that you can use to send e-mails.  I use a custom-defined &lt;code&gt;struct&lt;/code&gt; called &lt;code&gt;EmailUser&lt;/code&gt; to define the parameters for that call for clarity&amp;rsquo;s sake, and so that I can keep them defined in a configuration file.&lt;/p&gt;
+
+&lt;p&gt;This is an example usage:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type EmailUser struct {
+    Username    string
+    Password    string
+    EmailServer string
+    Port        int
+}
+
+emailUser := &amp;amp;EmailUser{&#39;yourGmailUsername&#39;, &#39;password&#39;, &#39;smtp.gmail.com&#39;, 587}
+
+auth := smtp.PlainAuth(&amp;quot;&amp;quot;,
+    emailUser.Username,
+    emailUser.Password,
+    emailUser.EmailServer
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Templating Mail&lt;/h1&gt;
+
+&lt;p&gt;Odds are good that you don&amp;rsquo;t want to send identical e-mails all of the time, so I&amp;rsquo;ll walk you through setting up some basic templated e-mails and then show you how to send them using &lt;code&gt;net/smtp&lt;/code&gt; after we&amp;rsquo;ve already connected to Gmail.  When you format an e-mail sent with SMTP correctly, useful information about the sender, subject, and so on will be parsed out of the e-mail&amp;rsquo;s body and interpreted/displayed by the recipients e-mail client in the manner that one would expect.  You can also use more complex template structures to generate e-mails that have more user-specific data, for example if you wanted to send your customers a customized report of their server&amp;rsquo;s bandwidth usage over time via e-mail, or a list of the items they purchased and their invoicing status.&lt;/p&gt;
+
+&lt;p&gt;I use a struct called &lt;code&gt;SmtpTemplateData&lt;/code&gt; to keep track of the basic information for templating the e-mail.  In this case, we know the value of the e-mail body text ahead of time, but we could also run a template for the body template if we wanted to include business-specific logic such as mentioned above.  We import &lt;code&gt;&amp;quot;text/template&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;bytes&amp;quot;&lt;/code&gt;, then:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type SmtpTemplateData struct {
+    From    string
+    To      string
+    Subject string
+    Body    string
+}
+
+const emailTemplate = `From: &amp;amp;#123;&amp;amp;#123;.From&amp;amp;#125;&amp;amp;#125;
+To: &amp;amp;#123;&amp;amp;#123;.To}&amp;amp;#125;&amp;amp;#125;
+Subject: &amp;amp;#123;&amp;amp;#123;.Subject&amp;amp;#125;&amp;amp;#125;
+
+&amp;amp;#123;&amp;amp;#123;.Body&amp;amp;#125;&amp;amp;#125;
+
+Sincerely,
+
+&amp;amp;#123;&amp;amp;#123;.From&amp;amp;#125;&amp;amp;#125;
+`
+var err error
+var doc bytes.Buffer
+
+context := &amp;amp;SmtpTemplateData{
+    &amp;quot;SmtpEmailSender&amp;quot;,
+    &amp;quot;recipient@domain.com&amp;quot;,
+    &amp;quot;This is the e-mail subject line!&amp;quot;,
+    &amp;quot;Hello, this is a test e-mail body.&amp;quot;
+}
+t := template.New(&amp;quot;emailTemplate&amp;quot;)
+t, err = t.Parse(emailTemplate)
+if err != nil {
+    log.Print(&amp;quot;error trying to parse mail template&amp;quot;)
+}
+err = t.Execute(&amp;amp;doc, context)
+if err != nil {
+    log.Print(&amp;quot;error trying to execute mail template&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, you can send mail with &lt;code&gt;smtp.SendMail&lt;/code&gt;, passing a list of recipients as well as the &lt;code&gt;bytes.Buffer&lt;/code&gt; buffer for the body of the e-mail:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;err = smtp.SendMail(emailUser.EmailServer+&amp;quot;:&amp;quot;+strconv.Itoa(emailUser.Port), // in our case, &amp;quot;smtp.google.com:587&amp;quot;
+    auth,
+    emailUser.Username,
+    []string{&amp;quot;nathanleclaire@gmail.com&amp;quot;},
+    doc.Bytes())
+if err != nil {
+    log.Print(&amp;quot;ERROR: attempting to send a mail &amp;quot;, err)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to send e-mails concurrently, or just not block in a HTTP handler, you can encapsulate the above functionality in a function and invoke it with &lt;code&gt;go sendMail(/* params ... */)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;quot;net/smtp&amp;quot;&lt;/code&gt; gets the job done, but specifically for the task of sending e-mails from Gmail it takes a little bit of setup.  I may take a whack at making a simple, clean implementation of a library for this purpose (also providing support for boiletplate templating).&lt;/p&gt;
+
+&lt;p&gt;Hope this article has been useful and you have a Merry Christmas.  And as always, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fear and Loathing With Golang and AngularJS</title>
+      <link>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
+      <description>
+
+&lt;p&gt;{% img /images/fearandloathing/fearandloathingwithgolangular.jpeg Complete and utter hyperbole. %}&lt;/p&gt;
+
+&lt;p&gt;Recently I&amp;rsquo;ve been building an app to check a web page for broken links using &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; (it&amp;rsquo;s for use with this blog, actually, as well as general public consumption).  It&amp;rsquo;s pretty close to being done, except for a contact form which will allow people to send an e-mail directly to me (which has involved all manner of fun with Go&amp;rsquo;s &lt;a href=&#34;http://golang.org/pkg/net/smtp/&#34;&gt;smtp&lt;/a&gt; library and will most likely be the subject of a future blog post) to make suggestions, send comments, flame me for creating a free tool for them to use, etc.  Though I am generally a huge fan of both of these technologies, I was tearing my hair out over a particular issue which turned out to be solvable by reading the Go source code.  This coincided with the timing of my weekly blog article.  So here I am sharing my frustration and catharsis with you, dear readers.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;What&amp;rsquo;s the rub?&lt;/h1&gt;
+
+&lt;p&gt;The rub has to do with the way that Angular sends HTTP POST requests, the way that Golang handles them, and how these two interact.&lt;/p&gt;
+
+&lt;p&gt;In AngularJS when we want to perform business logic (for example, calling out to a server to get some data to display ) we put that logic inside of a controller.  The controller sets properties on Angular&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt; variable that are accessible from the front end, and vice versa, providing us with two-way data binding.  If you want to make an AJAX call, you inject Angular&amp;rsquo;s &lt;code&gt;$http&lt;/code&gt; service (by passing it into the function where the controller is defined) and use it.  This is a little bit of a change from what most people are used to, which is usually something like &lt;code&gt;jQuery.ajax&lt;/code&gt;, but it&amp;rsquo;s not too unfamiliar.  Since Angular likes you to play exclusively in Anglar-land (in controllers at least), they provide you with this service to make sure that no funny business happens to interfere with Angular&amp;rsquo;s apply-digest cycle.  The syntax is fairly straightforward and looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;function MainCtrl($scope, $http) {
+    $http.get(&#39;/login&#39;, {
+        username: $scope.user,
+        password: $scope.password,
+    })
+    .success(function(data, status, headers, config) {
+        $scope.userLoggedIn = data.isLoginValid;
+    })
+    .error(function(err, status, headers, config) {
+        console.log(&amp;quot;Well, this is embarassing.&amp;quot;);
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works extremely well with GET requests, so one would expect it to work equally well with POST requests, right?  Maybe.  I had a use case where I was trying to submit form data through &lt;code&gt;$http.post&lt;/code&gt; and things were acting extremely funny.  No matter what I tried, it seemed that I could not retrieve anything on the back end, which in this case is written in Go.&lt;/p&gt;
+
+&lt;p&gt;Normally in Go you can just call &lt;code&gt;request.ParseForm()&lt;/code&gt; in the function that handles HTTP requests for the URI a form gets submitted to, and then the values you are interested in are accessible through &lt;code&gt;request.FormValue(&amp;quot;fieldName&amp;quot;)&lt;/code&gt; calls (&lt;code&gt;request.FormValue&lt;/code&gt; will automatically call &lt;code&gt;request.ParseForm&lt;/code&gt; for you if needed).  Normally it works smooth as silk- so you can imagine my surprise when I couldn&amp;rsquo;t for the life of me pull data out of the HTTP requests I was POSTing with Angular from my makeshift form.  I even upgraded my Go installation to 1.1.2, and still got nothing.  My code was something along the lines of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func emailHandler(w http.ResponseWriter, r *http.Request) {
+    var err error
+    response := map[string]interface{} {
+        &amp;quot;success&amp;quot;: true,
+    }
+    err = r.ParseForm()
+    if err != nil {
+        log.Print(&amp;quot;error parsing form &amp;quot;, err)
+        response[&amp;quot;success&amp;quot;] = false
+    }
+    name := r.FormValue(&amp;quot;yourName&amp;quot;)
+    email := r.FormValue(&amp;quot;yourEmail&amp;quot;)
+    feedback := r.FormValue(&amp;quot;feedback&amp;quot;)
+    go sendMail(name, email, feedback)
+    jsonResponse, err = json.Marshal(response)
+    if err != nil {
+        log.Print(err)
+    }
+    w.Write(jsonResponse)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;So what gives?&lt;/h1&gt;
+
+&lt;p&gt;Some Googling made me painfully aware that I was not the only one with an issue like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/17547227/angular-js-post-request-not-sending-json-data&#34;&gt;Angular JS POST request not sending JSON data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11442632/how-can-i-make-angular-js-post-data-as-form-data-instead-of-a-request-payload&#34;&gt;How can I make angular.js post data as form data instead of a request payload?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/#!msg/angular/5nAedJ1LyO0/4Vj_72EZcDsJ&#34;&gt;How to post application/x-www-form-encoded?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/&#34;&gt;Make AngularJS $http service behave like jQuery.ajax()&lt;/a&gt; (a good blog article detailing this problem)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Most StackOverflow answers suggested modifying stuff in Angular to get this to work (since there&amp;rsquo;s not much you can do about stuff not showing up in &lt;code&gt;$_POST&lt;/code&gt; in PHP, for example), but this left me dissatisfied.  As Ezekiel Victor points out in the aforementioned blog article:&lt;/p&gt;
+
+&lt;blockquote&gt;
+    The difference is in how jQuery and AngularJS serialize and transmit the data. Fundamentally, the problem lies with your server language of choice being unable to understand AngularJS’s transmission natively—that’s a darn shame because AngularJS is certainly not doing anything wrong. By default, jQuery transmits data using &lt;code&gt;Content-Type: x-www-form-urlencoded&lt;/code&gt; and the familiar &lt;code&gt;foo=bar&amp;baz=moe&lt;/code&gt; serialization. AngularJS, however, transmits data using &lt;code&gt;Content-Type: application/json&lt;/code&gt; and &lt;code&gt;{ &#34;foo&#34;: &#34;bar&#34;, &#34;baz&#34;: &#34;moe&#34; }&lt;/code&gt; JSON serialization, which unfortunately some Web server languages—notably PHP—do not unserialize natively.
+&lt;/blockquote&gt;
+
+&lt;p&gt;After poring over the documentation for Go&amp;rsquo;s &lt;code&gt;http.Request&lt;/code&gt; I was still stumped on how to make a basic &lt;code&gt;$http.post&lt;/code&gt; call work in Go without modifying something on the client side.  &lt;code&gt;request.Body&lt;/code&gt; didn&amp;rsquo;t seem to have anything useful, and calls to &lt;code&gt;request.FormValue&lt;/code&gt; were definitely not working.  The server, however, was definitely receiving a JSON payload, as dumping the request made clear (I&amp;rsquo;ve removed the &lt;code&gt;*/*&lt;/code&gt; value from the &lt;code&gt;Accept&lt;/code&gt; header so the request will play nice with the auto-pretty-printing of my blog):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;POST /email HTTP/1.1
+Host: localhost:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
+Content-Length: 68
+Accept: application/json, text/plain
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
+Origin: http://localhost:8000
+Referer: http://localhost:8000/
+
+{&amp;quot;yourName&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;yourEmail&amp;quot;:&amp;quot;John.Smith@gmail.com&amp;quot;,&amp;quot;feedback&amp;quot;:&amp;quot;I really like your new webapp!&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Let&amp;rsquo;s Go Digging In The request.go Source!&lt;/h1&gt;
+
+&lt;p&gt;Not being able to receive the values with &lt;code&gt;request.FormValue&lt;/code&gt; was one thing, but I also could not successfully deserialize the JSON payload into a Go struct- the payload was seemingly nowhere to be found in the &lt;code&gt;Request&lt;/code&gt; struct provided to my handler.  I could not believe that the Go language designers, who are otherwise very meticulous and reliable, had overlooked something like &lt;code&gt;Content-Type: application/json&lt;/code&gt; handling.  But checking out the source for &lt;code&gt;Request.ParseForm&lt;/code&gt; and &lt;code&gt;Request.parsePostForm&lt;/code&gt; led me to my &amp;ldquo;aha&amp;rdquo; moment.  The source for &lt;code&gt;Request.ParseForm&lt;/code&gt; (from &lt;a href=&#34;http://golang.org/src/pkg/net/http/request.go?m=text&amp;amp;ModPagespeed=noscript&#34;&gt;golang.org&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// ParseForm parses the raw query from the URL and updates r.Form.
+//
+// For POST or PUT requests, it also parses the request body as a form and
+// put the results into both r.PostForm and r.Form.
+// POST and PUT body parameters take precedence over URL query string values
+// in r.Form.
+//
+// If the request Body&#39;s size has not already been limited by MaxBytesReader,
+// the size is capped at 10MB.
+//
+// ParseMultipartForm calls ParseForm automatically.
+// It is idempotent.
+func (r *Request) ParseForm() error {
+    var err error
+    if r.PostForm == nil {
+        if r.Method == &amp;quot;POST&amp;quot; || r.Method == &amp;quot;PUT&amp;quot; {
+            r.PostForm, err = parsePostForm(r)
+        }
+        if r.PostForm == nil {
+            r.PostForm = make(url.Values)
+        }
+    }
+    if r.Form == nil {
+        if len(r.PostForm) &amp;gt; 0 {
+            r.Form = make(url.Values)
+            copyValues(r.Form, r.PostForm)
+        }
+        var newValues url.Values
+        if r.URL != nil {
+            var e error
+            newValues, e = url.ParseQuery(r.URL.RawQuery)
+            if err == nil {
+                err = e
+            }
+        }
+        if newValues == nil {
+            newValues = make(url.Values)
+        }
+        if r.Form == nil {
+            r.Form = newValues
+        } else {
+            copyValues(r.Form, newValues)
+        }
+    }
+    return err
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The relevant bit for us is that call to &lt;code&gt;parsePostForm&lt;/code&gt; if &lt;code&gt;r.Method&lt;/code&gt; is &lt;code&gt;&amp;quot;POST&amp;quot;&lt;/code&gt; (since it is in our case).  The code for &lt;code&gt;parsePostForm&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func parsePostForm(r *Request) (vs url.Values, err error) {
+    if r.Body == nil {
+        err = errors.New(&amp;quot;missing form body&amp;quot;)
+        return
+    }
+    ct := r.Header.Get(&amp;quot;Content-Type&amp;quot;)
+    ct, _, err = mime.ParseMediaType(ct)
+    switch {
+    case ct == &amp;quot;application/x-www-form-urlencoded&amp;quot;:
+        var reader io.Reader = r.Body
+        maxFormSize := int64(1&amp;lt;&amp;lt;63 - 1)
+        if _, ok := r.Body.(*maxBytesReader); !ok {
+            maxFormSize = int64(10 &amp;lt;&amp;lt; 20) // 10 MB is a lot of text.
+            reader = io.LimitReader(r.Body, maxFormSize+1)
+        }
+        b, e := ioutil.ReadAll(reader)
+        if e != nil {
+            if err == nil {
+                err = e
+            }
+            break
+        }
+        if int64(len(b)) &amp;gt; maxFormSize {
+            err = errors.New(&amp;quot;http: POST too large&amp;quot;)
+            return
+        }
+        vs, e = url.ParseQuery(string(b))
+        if err == nil {
+            err = e
+        }
+    case ct == &amp;quot;multipart/form-data&amp;quot;:
+        // handled by ParseMultipartForm (which is calling us, or should be)
+        // TODO(bradfitz): there are too many possible
+        // orders to call too many functions here.
+        // Clean this up and write more tests.
+        // request_test.go contains the start of this,
+        // in TestRequestMultipartCallOrder.
+    }
+    return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Initially I thought that the source code for this function might need to be modified to add another case to the switch block to handle the case where the content type is &lt;code&gt;application/json&lt;/code&gt;, but then I had a moment of insight.&lt;/p&gt;
+
+&lt;p&gt;I shouldn&amp;rsquo;t be trying to parse a form at all!  Cue facepalm, and guilt of hours spent solving this issue (at least I&amp;rsquo;ll know better next time).  My request payload wasn&amp;rsquo;t encoded as a form, it was encoded as JSON.  If I just took out the call to &lt;code&gt;request.ParseForm&lt;/code&gt;, I probably would have usable data in &lt;code&gt;request.Body&lt;/code&gt; that I could &lt;code&gt;Demarshal&lt;/code&gt;.  Indeed, this proved to be the case.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;It seems that the issue in this case was mostly &lt;a href=&#34;http://en.wikipedia.org/wiki/User_error&#34;&gt;PEBKAC&lt;/a&gt; (naturally).  I think that &lt;code&gt;ParseForm&lt;/code&gt; is doing the right thing not handling requests with &lt;code&gt;Content-Type: application/json&lt;/code&gt; in &lt;code&gt;ParseForm&lt;/code&gt; (since they&amp;rsquo;re not really form submissions), but it would be nice if there were some kind of API to handle this directly from the &lt;code&gt;Request&lt;/code&gt; (though the JSON deserialization functions provided by &lt;code&gt;encoding/json&lt;/code&gt; work really well), or this was better documented in some place (partially why I wanted to write this article).  I&amp;rsquo;d be curious to talk to some of the Go language maintainers about this, and may shoot an e-mail around.&lt;/p&gt;
+
+&lt;p&gt;At any rate, it definitely goes to show that a knowledge of HTTP basics is helpful, as I was equating form submissions with POST requests like a newbie.  Perhaps there&amp;rsquo;s been too much developing for me over this Thanksgiving weekend :)&lt;/p&gt;
+
+&lt;p&gt;Originally I monkey patched a fix in Angular&amp;rsquo;s &lt;code&gt;$httpProvider&lt;/code&gt; config to work around this issue.  However, removing the call to &lt;code&gt;ParseForm&lt;/code&gt; from my server side code seems to be a much cleaner solution.  Now my Go program can accept Angular POST requests like a charm.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading, and I&amp;rsquo;ll catch you next week.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Wait for All Goroutines to Finish Executing Before Continuing</title>
+      <link>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt;  As pointed out by effenn in &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/cfh9fg7&#34;&gt;this Reddit comment&lt;/a&gt;, a lot of information in this article is &amp;ldquo;dangerously inaccurate&amp;rdquo;.  OOPS!  I&amp;rsquo;ve written a followup/correction article [here]() for your viewing pleasure, but I&amp;rsquo;m leaving this article up for &amp;ldquo;historical purposes&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;{%img /images/syncwaitgroup/gophermegaphones.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;Goroutines and channels are one of &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;&amp;rsquo;s nicest language features.  They provide a rather headache-free way to use the power of concurrency in your Go programs, and they are baked into the language itself instead of relying on standard or external libraries.  I was very excited when I started playing around with them but eventually came across a problem : what if you want to wait for all goroutines (a kind of lightweight thread in case you&amp;rsquo;re not familiar) to finish executing before you continue execution in the current goroutine?&lt;/p&gt;
+
+&lt;p&gt;For instance, I came across this problem when I wanted to run a batch operation (transform some strings from a slice- kind of like a map) in parallel (and yes, I know that &lt;a href=&#34;http://blog.golang.org/concurrency-is-not-parallelism&#34;&gt;concurrency is not parallelism&lt;/a&gt;).  I needed to know when this execution was over so my program didn&amp;rsquo;t exit prematurely.  How?&lt;/p&gt;
+
+&lt;p&gt;(Psst:  In case you just want the answer, and not the journey, it&amp;rsquo;s to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;!)&lt;/p&gt;
+
+&lt;p&gt;In this article, I assume that you have some elementary proficiency with &lt;a href=&#34;http://golang.org/doc/codewalk/sharemem/&#34;&gt;goroutines and channels&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The Hacky Way&lt;/h1&gt;
+
+&lt;p&gt;A lot of tutorials or blog articles that you come across online when you start getting into this stuff will have examples like this (forgive me for being a little bit contrived but hopefully you&amp;rsquo;ll be familiar with the general idea):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    time.Sleep(time.Second * 5)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will print out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;3
+2
+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because the goroutines all execute concurrently and some of the numbers sleep for longer than others.  If it weren&amp;rsquo;t for that &lt;code&gt;time.Sleep(time.Second * 5)&lt;/code&gt; at the end, though, the program would terminate execution BEFORE the goroutines got a chance to finish executing and it would print nothing.&lt;/p&gt;
+
+&lt;p&gt;This kind of works for our contrived example but its hackiness makes me go &amp;ldquo;ICK!&amp;rdquo;.  Trying to make this style work in any nontrivial program would be a complete nightmare - what if we don&amp;rsquo;t know how long our goroutines will be executing for?  We&amp;rsquo;d rather not just cross our fingers and hope for the best.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;The &amp;ldquo;Old-School&amp;rdquo; Way&lt;/h1&gt;
+
+&lt;p&gt;As mentioned by a commenter in &lt;a href=&#34;http://stackoverflow.com/questions/18207772/how-to-wait-for-all-goroutines-to-finish-without-using-time-sleep&#34;&gt;this StackOverflow post&lt;/a&gt;, the way that this was accomplished without using &lt;code&gt;sync.WaitGroup&lt;/code&gt; is to use an additional channel to signify the end of execution.  Using this solution our previous example would look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+
+    // Use this channel to follow the execution status
+    // of our goroutines :D
+    done := make(chan bool)
+
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+        done &amp;lt;- true
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+        done &amp;lt;- true
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+        done &amp;lt;- true
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        &amp;lt;-done
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This method is a little better but sacrifices some flexibility.  For instance, it introduces some additional weirdness in the case that we don&amp;rsquo;t actually know how many goroutines we want to spin up ahead of time.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;The Canonical Way&lt;/h1&gt;
+
+&lt;p&gt;As mentioned, the canonical way to do this is to use the &lt;code&gt;sync&lt;/code&gt; package&amp;rsquo;s &lt;code&gt;WaitGroup&lt;/code&gt; structure (&lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;link&lt;/a&gt;).  From the docs:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A WaitGroup waits for a collection of goroutines to finish. The main goroutine calls Add to set the number of goroutines to wait for. Then each of the goroutines runs and calls Done when finished. At the same time, Wait can be used to block until all goroutines have finished.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To use &lt;code&gt;sync.WaitGroup&lt;/code&gt; we:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new instance of a &lt;code&gt;sync.WaitGroup&lt;/code&gt; (we&amp;rsquo;ll call it &lt;code&gt;wg&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;wg.Add(n)&lt;/code&gt; where &lt;code&gt;n&lt;/code&gt; is the number of goroutines to wait for (we can also call &lt;code&gt;wg.Add(1)&lt;/code&gt; &lt;code&gt;n&lt;/code&gt; times)&lt;/li&gt;
+&lt;li&gt;Execute &lt;code&gt;defer wg.Done()&lt;/code&gt; in each goroutine to indicate that goroutine is finished executing to the &lt;code&gt;WaitGroup&lt;/code&gt; (see &lt;a href=&#34;http://golang.org/doc/effective_go.html#defer&#34;&gt;defer&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;wg.Wait()&lt;/code&gt; where we want to block.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This fits our use case perfectly.  Rewritten, our code now uses &lt;code&gt;sync.WaitGroup&lt;/code&gt; and looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;sync&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    var wg sync.WaitGroup
+
+    // you can also add these one at 
+    // a time if you need to 
+
+    wg.Add(3)
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }() 
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+
+    wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This example is a little silly, but suppose we wanted to slurp JSON data from 3 different subreddits concurrently.  We don&amp;rsquo;t know how long those HTTP requests are going to take, and we don&amp;rsquo;t want to cause a race condition by trying to work with data that hasn&amp;rsquo;t been populated yet in our Go program, so &lt;code&gt;sync.WaitGroup&lt;/code&gt; ends up being very handy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;io/ioutil&amp;quot;
+    &amp;quot;log&amp;quot;
+    &amp;quot;net/http&amp;quot;
+    &amp;quot;sync&amp;quot;
+)
+
+func main() {
+    urls := []string{
+        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
+    }
+    jsonResponses := make(chan string)
+
+    var wg sync.WaitGroup
+
+    wg.Add(len(urls))
+
+    for _, url := range urls {
+        go func(url string) {
+            defer wg.Done()
+            res, err := http.Get(url)
+            if err != nil {
+                log.Fatal(err)
+            } else {
+                defer res.Body.Close()
+                body, err := ioutil.ReadAll(res.Body)
+                if err != nil {
+                    log.Fatal(err)
+                } else {
+                    jsonResponses &amp;lt;- string(body)
+                }
+            }
+        }(url)
+    }
+
+    go func() {
+        for response := range jsonResponses {
+            fmt.Println(response)
+        }
+    }()
+
+    wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out a &lt;a href=&#34;http://runnable.com/UwEzO6LcUjMdAABH/using-sync-waitgroup-to-slurp-json-from-reddit-concurrently-wait-for-all-goroutines-to-finish-before-continuing-&#34;&gt;Runnable&lt;/a&gt; of this code in action!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Go is so very fun.  I need to start writing more of it again and put down this silly JavaScript stuff XD  &lt;a href=&#34;http://martini.codegangsta.io/&#34;&gt;Martini&lt;/a&gt; looks super promising, so maybe I will develop and application with it.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Wait for All Goroutines to Finish Executing Before Continuing, Part Two:  Fixing My Oops</title>
+      <link>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</guid>
+      <description>
+
+&lt;p&gt;Earlier this week I published an article called &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/&#34;&gt;How To Wait for All Goroutines to Finish Executing Before Continuing&lt;/a&gt; detailing a problem that I&amp;rsquo;d run into while coding with Golang and the solution that I&amp;rsquo;d encountered, which was to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;.  I was still basking a little in that I-just-finished-a-new-blog-article afterglow when something in the &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/&#34;&gt;Reddit comments&lt;/a&gt; caught my eye!&lt;/p&gt;
+
+&lt;p&gt;{%img /images/syncwaitgroup2/enneff_speaks.jpeg Oh. %}&lt;/p&gt;
+
+&lt;p&gt;Turns out that my approach in the previous article causes a race condition.  So, just so you guys are all aware, I was wrong, and here&amp;rsquo;s why.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;What was wrong&lt;/h1&gt;
+
+&lt;p&gt;As &lt;a href=&#34;http://reddit.com/u/enneff&#34;&gt;/u/enneff&lt;/a&gt; pointed out, there are a variety of issues with the examples I provided.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;What was wrong with the &amp;ldquo;Old-School way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ll start at the second example (The &amp;ldquo;Old-School&amp;rdquo; way) since the first example is REALLY bad by design (please don&amp;rsquo;t write Go like that).  I used a &amp;ldquo;done&amp;rdquo; channel to communicate the status of the goroutines, and it turns out that this was completely unneccsary.&lt;/p&gt;
+
+&lt;p&gt;The original code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+
+    // Use this channel to follow the execution status
+    // of our goroutines :D
+    done := make(chan bool)
+
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+        done &amp;lt;- true
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+        done &amp;lt;- true
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+        done &amp;lt;- true
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        &amp;lt;-done
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thinking about it a bit, enneff&amp;rsquo;s assertion that the channel is unneeded makes a lot of sense, since you know the number of messages ahead of time.  It&amp;rsquo;s a great example of how you shouldn&amp;rsquo;t needlessly overcomplicate things (&lt;a href=&#34;http://legacy.python.org/dev/peps/pep-0020/&#34;&gt;simple is better than complex&lt;/a&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }()
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        fmt.Println(&amp;lt;-messages)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code is shorter, and doesn&amp;rsquo;t introduce unneeded complexity.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;What was wrong with the &amp;ldquo;Canonical way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;Well, for one thing, the messages channel doesn&amp;rsquo;t get closed, which could cause a memory leak.  It&amp;rsquo;s also not exactly cosidered the best use for a &lt;code&gt;WaitGroup&lt;/code&gt;.  As enneff put it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The original program leaves the printing goroutine hanging (it blocks trying to receive a fourth message that never comes). This will create a memory leak in a long-running problem. You need to close the messages channel after the wg.Wait, to make sure that goroutine terminates. Obviously not a problem in a trivial program, but we should teach good practices at all times. But that still doesn&amp;rsquo;t solve the problem of the racing and printing goroutines, and there&amp;rsquo;s no reason why the so-called &amp;ldquo;old-school&amp;rdquo; way isn&amp;rsquo;t appropriate here. When you know the number of messages to expect you might as well count them to know when to finish. Here the waitgroup is superfluous and confusing. WaitGroups are more useful for doing different tasks in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;More importantly, I mistakenly put the code to print the results in its own goroutine, which causes a race condition between the main goroutine and the goroutine that is printing.  In many cases, the main goroutine will win this race, which is BAD!!  Turns out that my whole &amp;ldquo;sleep for a few seconds, then send a message down the channel&amp;rdquo; example is actually not a good example for wait groups at all.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;fetch some JSON from the Reddit API&amp;rdquo; example, however, actually is a good candidate for &lt;code&gt;sync.WaitGroup&lt;/code&gt;, and enneff even featured a rewrite that takes advantage of multiple channels to send errors in case something goes wrong!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// This snippet was prepared in response to this article:
+// http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/
+package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;io/ioutil&amp;quot;
+    &amp;quot;net/http&amp;quot;
+)
+
+func main() {
+    urls := []string{
+        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
+    }
+
+    resc, errc := make(chan string), make(chan error)
+
+    for _, url := range urls {
+        go func(url string) {
+            body, err := fetch(url)
+            if err != nil {
+                errc &amp;lt;- err
+                return
+            }
+            resc &amp;lt;- string(body)
+        }(url)
+    }
+
+    for i := 0; i &amp;lt; len(urls); i++ {
+        select {
+        case res := &amp;lt;-resc:
+            fmt.Println(res)
+        case err := &amp;lt;-errc:
+            fmt.Println(err)
+        }
+    }
+}
+
+func fetch(url string) (string, error) {
+    res, err := http.Get(url)
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    body, err := ioutil.ReadAll(res.Body)
+    res.Body.Close()
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    return string(body), nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lookin&amp;rsquo; good!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;All I know is that I don&amp;rsquo;t know nothing.&lt;/p&gt;
+
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/5HtUnubXAO4&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Thanks again to &lt;a href=&#34;https://twitter.com/enneff&#34;&gt;Andrew Gerrand&lt;/a&gt; for helping me to learn more about Go.  And until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

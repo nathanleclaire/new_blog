@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Concurrency on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/concurrency/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Implementing a Concurrent Floodfill with Golang</title>
+      <link>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The setup&lt;/h1&gt;
+
+&lt;p&gt;Lately as part of a coding exercise I found myself implementing a &lt;a href=&#34;http://en.wikipedia.org/wiki/Flood_fill&#34;&gt;Flood Fill&lt;/a&gt; for &amp;ldquo;painting&amp;rdquo; an ASCII canvas.  For those of you unfamiliar with what that is, think back to MSPaint - remember that little paint bucket that would fill a region with your color of choice?  That paint bucket implements a flood fill algorithm, although I didn&amp;rsquo;t know that&amp;rsquo;s what it was called until I started working on implementing one myself.&lt;/p&gt;
+
+&lt;p&gt;{%img /images/flood-fill/flood-fill-basic.gif %}&lt;/p&gt;
+
+&lt;p&gt;My original implementation was in PHP and I had to go through a few iterations before I got to an implementation I was satisfied with.  It was surprisingly tricky to get correct as my depth-first implementation kept blowing the stack through excessive use of recursion.  A naive flood fill algorithm (depth first) looks like this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Store the color of the pixel where you are starting, then color it the new color.&lt;/li&gt;
+&lt;li&gt;For every adjacent pixel, if it is the same as the original color and you have never visited that pixel before, perform a flood fill on it.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are a lot of issues with this algorithm.  It takes a long time and it will quickly blow the stack if the canvas size contains more than a trivial number of pixels.&lt;/p&gt;
+
+&lt;p&gt;So I started thinking about ways to improve it, and it occurred to me to use a &lt;em&gt;breadth&lt;/em&gt;-first solution instead (this is actually the kind of solution that&amp;rsquo;s visualized in the GIF above).  That way, we could store the pixels that we want to visit / fill in a queue, and visit them one at a time without blowing the stack.  It worked pretty well.&lt;/p&gt;
+
+&lt;p&gt;Just one problem, though:  It was written in PHP, and PHP is dog slow.  It&amp;rsquo;s also painfully single-threaded to boot.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Go!&lt;/h1&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;s&amp;gt;&lt;/code&gt; Since we all know that all the cool kids use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; nowadays &lt;code&gt;&amp;lt;/s&amp;gt;&lt;/code&gt;, I decided to take a crack at implementing a solution for this in Go, taking advantage of Go&amp;rsquo;s high performance and concurrency patterns.  Also, I just really like coding stuff in Go.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;&amp;ldquo;Canvas&amp;rdquo; abstraction&lt;/h2&gt;
+
+&lt;p&gt;The &amp;ldquo;canvas&amp;rdquo; I modeled as an two-dimensional array of byte arrays (which are chars for our purposes).  There&amp;rsquo;s another matrix that we use to keep track of which pixels we have visited before.  For convenient passing, we also have a struct &lt;code&gt;Node&lt;/code&gt; that contains data about a given pixel.  We will use this later on to make our helper functions a little bit more clean looking.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;type Canvas struct {
+    contents [][]byte
+    visited  [][]bool
+}
+
+type Node struct {
+    X     int
+    Y     int
+    Color byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The function to initialize the &amp;ldquo;canvas&amp;rdquo; is pretty straightforward.  We also have an analagous method, &lt;code&gt;setVisitedMatrixToFalse&lt;/code&gt;, that we call before performing a flood fill operation to indicate we haven&amp;rsquo;t visited anywhere yet.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Init(width int, height int, blankChar byte) {
+    c.contents = make([][]byte, width)
+    for i := 0; i &amp;lt; width; i++ {
+        c.contents[i] = make([]byte, height)
+        for j := 0; j &amp;lt; height; j++ {
+            c.contents[i][j] = blankChar
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Called like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;canvas := Canvas{}
+canvas.Init(120, 120, &#39;_&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We take advantage of easy casting from &lt;code&gt;[]byte&lt;/code&gt; type to &lt;code&gt;string&lt;/code&gt; for our function to print the contents of the canvas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Print() {
+    for _, row := range c.contents {
+        fmt.Println(string(row))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this code set up, we can get into the &amp;ldquo;meat&amp;rdquo; of the flood fill algorithm.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;Flood Fill&lt;/h2&gt;
+
+&lt;p&gt;Instead of using pure recursion, we will instead have a &amp;ldquo;master&amp;rdquo; goroutine that forks off visits to other pixels/nodes in their own goroutines.  The child goroutines will report back their &amp;ldquo;findings&amp;rdquo; to the main goroutine, including what pixels to visit next if any.  Through the use of buffered and unbuffered goroutines, we will prevent too many visits from firing off at once, and the Go runtime scheduler will take care of juggling these activities which are running concurrently.&lt;/p&gt;
+
+&lt;p&gt;The main goroutine looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) FloodFill(x int, y int, color byte) {
+    // If unbuffered, this channel will block when we go to send the
+    // initial nodes to visit (at most 4).  Not cool man.
+    toVisit := make(chan Node, 4)
+    visitDone := make(chan bool)
+
+    originalColor := c.contents[x][y]
+
+    c.setVisitedMatrixToFalse()
+
+    go c.floodFill(x, y, color, originalColor, toVisit, visitDone)
+    remainingVisits := 1
+
+    for {
+        select {
+        case nextVisit := &amp;lt;-toVisit:
+            if !c.visited[nextVisit.X][nextVisit.Y] {
+                c.visited[nextVisit.X][nextVisit.Y] = true
+                remainingVisits++
+                go c.floodFill(nextVisit.X, nextVisit.Y, color, originalColor, toVisit, visitDone)
+            }
+        case &amp;lt;-visitDone:
+            remainingVisits--
+        default:
+            if remainingVisits == 0 {
+                return
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start, we create two channels.  One is called &lt;code&gt;toVisit&lt;/code&gt; and is the channel through which we send Nodes that we still want to visit (color, then check if they have neighbors we should color).  You may notice that this channel is buffered.  This is because if it is not buffered, then when we attempt to send &lt;code&gt;Node&lt;/code&gt;s to visit over it, it will block and the whole program will deadlock.  Since we know that we will &amp;ldquo;queue up&amp;rdquo; at most four &lt;code&gt;Node&lt;/code&gt;s into the channel (for this exercise we don&amp;rsquo;t fill pixels which are diagonally adjacent), that&amp;rsquo;s why we set our buffer size to that.  Theoretically however it will work with any buffer value greater than or equal to one.&lt;/p&gt;
+
+&lt;p&gt;The other channel is called &lt;code&gt;visitDone&lt;/code&gt; and is used to indicate when a visit for a given node is finished.  We don&amp;rsquo;t care which one, since we just maintain a &amp;ldquo;one true counter&amp;rdquo; in our main routine (&lt;code&gt;remainingVisits&lt;/code&gt;) that tracks how many outstanding visits we have, and ensures that the function doesn&amp;rsquo;t return as long as there are visits outstanding.  Before I implemented this solution I was getting all kinds of frustrating race conditions where the &lt;code&gt;default&lt;/code&gt; block would sometimes get hit before any additional visits would get added, and so the program would exit prematurely.  If you have a better idea/solution to manage this, I&amp;rsquo;d love to hear!&lt;/p&gt;
+
+&lt;p&gt;We also keep track of the color of the original pixel, since that&amp;rsquo;s a condition of coloring (the pixels should be adjacent and the same color as the original pixel).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;floodFill&lt;/code&gt; method that we spin off into auxilliary goroutines looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) floodFill(x int, y int, color byte, originalColor byte, toVisit chan Node, visitDone chan bool) {
+    c.contents[x][y] = color
+    neighbors := c.getNeighbors(x, y)
+    for _, neighbor := range neighbors {
+        if neighbor.Color == originalColor {
+            toVisit &amp;lt;- neighbor
+        }
+    }
+    visitDone &amp;lt;- true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don&amp;rsquo;t know that I&amp;rsquo;m crazy about having the actual pixel coloring in this method, since it involves mutable data that&amp;rsquo;s shared between threads, so I might move it into the main method eventually, but for example purposes it works okay.  This method is fairly terse and simply colors the pixel, then calls this method to get the neighbors of the current pixel (ensuring that we don&amp;rsquo;t run over the bounds of the slice):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) getNeighbors(x int, y int) []Node {
+    var (
+        neighbors []Node
+        color     byte
+    )
+    if x+1 &amp;lt; len(c.contents) {
+        color = c.contents[x+1][y]
+        neighbors = append(neighbors, Node{x + 1, y, color})
+    }
+    if x-1 &amp;gt;= 0 {
+        color = c.contents[x-1][y]
+        neighbors = append(neighbors, Node{x - 1, y, color})
+    }
+    if y+1 &amp;lt; len(c.contents[0]) {
+        color = c.contents[x][y+1]
+        neighbors = append(neighbors, Node{x, y + 1, color})
+    }
+    if y-1 &amp;gt;= 0 {
+        color = c.contents[x][y-1]
+        neighbors = append(neighbors, Node{x, y - 1, color})
+    }
+    return neighbors
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, we send the returned nodes over the &lt;code&gt;toVisit&lt;/code&gt; channel if their color matches the original pixel&amp;rsquo;s color, and we send &lt;code&gt;true&lt;/code&gt; across &lt;code&gt;visitDone&lt;/code&gt; channel to indicate we are done when that is all through (this decrements our counter in the main goroutine).&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s all!&lt;/p&gt;
+
+&lt;p&gt;Check the sample output.&lt;/p&gt;
+
+&lt;p&gt;Before:&lt;/p&gt;
+
+&lt;pre&gt;
+____________________
+________//__________
+________//_______---
+__\\\\\\\\\\\\\\_---
+________//_______---
+________//_______---
+________//_______---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+&lt;/pre&gt;
+
+&lt;p&gt;After: (filled with &lt;code&gt;&#39;G&#39;&lt;/code&gt; char)&lt;/p&gt;
+
+&lt;pre&gt;
+GGGGGGGGGGGGGGGGGGGG
+GGGGGGGG//GGGGGGGGGG
+GGGGGGGG//GGGGGGG---
+GG\\\\\\\\\\\\\\G---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+&lt;/pre&gt;
+
+&lt;p&gt;It runs pretty satisfyingly quickly.  Wiki mentions a few alternative approaches that might work a little better (EDIT: it says that going line-by-line instead of pixel by pixel is an order of magnitude faster), but I like this one for its simplicity.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclude&lt;/h1&gt;
+
+&lt;p&gt;The code is &lt;a href=&#34;https://github.com/nathanleclaire/golangfloodfill&#34;&gt;up on Github&lt;/a&gt; if you&amp;rsquo;re curious.  I&amp;rsquo;d love to hear about other possible approaches, especially ones that are better at taking advtange of Go&amp;rsquo;s concurrency features.  I considered using &lt;code&gt;sync.WaitGroup&lt;/code&gt; but this didn&amp;rsquo;t really seem like a good case to do so.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Wait for All Goroutines to Finish Executing Before Continuing</title>
+      <link>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt;  As pointed out by effenn in &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/cfh9fg7&#34;&gt;this Reddit comment&lt;/a&gt;, a lot of information in this article is &amp;ldquo;dangerously inaccurate&amp;rdquo;.  OOPS!  I&amp;rsquo;ve written a followup/correction article [here]() for your viewing pleasure, but I&amp;rsquo;m leaving this article up for &amp;ldquo;historical purposes&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;{%img /images/syncwaitgroup/gophermegaphones.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;Goroutines and channels are one of &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;&amp;rsquo;s nicest language features.  They provide a rather headache-free way to use the power of concurrency in your Go programs, and they are baked into the language itself instead of relying on standard or external libraries.  I was very excited when I started playing around with them but eventually came across a problem : what if you want to wait for all goroutines (a kind of lightweight thread in case you&amp;rsquo;re not familiar) to finish executing before you continue execution in the current goroutine?&lt;/p&gt;
+
+&lt;p&gt;For instance, I came across this problem when I wanted to run a batch operation (transform some strings from a slice- kind of like a map) in parallel (and yes, I know that &lt;a href=&#34;http://blog.golang.org/concurrency-is-not-parallelism&#34;&gt;concurrency is not parallelism&lt;/a&gt;).  I needed to know when this execution was over so my program didn&amp;rsquo;t exit prematurely.  How?&lt;/p&gt;
+
+&lt;p&gt;(Psst:  In case you just want the answer, and not the journey, it&amp;rsquo;s to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;!)&lt;/p&gt;
+
+&lt;p&gt;In this article, I assume that you have some elementary proficiency with &lt;a href=&#34;http://golang.org/doc/codewalk/sharemem/&#34;&gt;goroutines and channels&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The Hacky Way&lt;/h1&gt;
+
+&lt;p&gt;A lot of tutorials or blog articles that you come across online when you start getting into this stuff will have examples like this (forgive me for being a little bit contrived but hopefully you&amp;rsquo;ll be familiar with the general idea):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    time.Sleep(time.Second * 5)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will print out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;3
+2
+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because the goroutines all execute concurrently and some of the numbers sleep for longer than others.  If it weren&amp;rsquo;t for that &lt;code&gt;time.Sleep(time.Second * 5)&lt;/code&gt; at the end, though, the program would terminate execution BEFORE the goroutines got a chance to finish executing and it would print nothing.&lt;/p&gt;
+
+&lt;p&gt;This kind of works for our contrived example but its hackiness makes me go &amp;ldquo;ICK!&amp;rdquo;.  Trying to make this style work in any nontrivial program would be a complete nightmare - what if we don&amp;rsquo;t know how long our goroutines will be executing for?  We&amp;rsquo;d rather not just cross our fingers and hope for the best.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;The &amp;ldquo;Old-School&amp;rdquo; Way&lt;/h1&gt;
+
+&lt;p&gt;As mentioned by a commenter in &lt;a href=&#34;http://stackoverflow.com/questions/18207772/how-to-wait-for-all-goroutines-to-finish-without-using-time-sleep&#34;&gt;this StackOverflow post&lt;/a&gt;, the way that this was accomplished without using &lt;code&gt;sync.WaitGroup&lt;/code&gt; is to use an additional channel to signify the end of execution.  Using this solution our previous example would look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+
+    // Use this channel to follow the execution status
+    // of our goroutines :D
+    done := make(chan bool)
+
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+        done &amp;lt;- true
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+        done &amp;lt;- true
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+        done &amp;lt;- true
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        &amp;lt;-done
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This method is a little better but sacrifices some flexibility.  For instance, it introduces some additional weirdness in the case that we don&amp;rsquo;t actually know how many goroutines we want to spin up ahead of time.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;The Canonical Way&lt;/h1&gt;
+
+&lt;p&gt;As mentioned, the canonical way to do this is to use the &lt;code&gt;sync&lt;/code&gt; package&amp;rsquo;s &lt;code&gt;WaitGroup&lt;/code&gt; structure (&lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;link&lt;/a&gt;).  From the docs:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A WaitGroup waits for a collection of goroutines to finish. The main goroutine calls Add to set the number of goroutines to wait for. Then each of the goroutines runs and calls Done when finished. At the same time, Wait can be used to block until all goroutines have finished.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To use &lt;code&gt;sync.WaitGroup&lt;/code&gt; we:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new instance of a &lt;code&gt;sync.WaitGroup&lt;/code&gt; (we&amp;rsquo;ll call it &lt;code&gt;wg&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;wg.Add(n)&lt;/code&gt; where &lt;code&gt;n&lt;/code&gt; is the number of goroutines to wait for (we can also call &lt;code&gt;wg.Add(1)&lt;/code&gt; &lt;code&gt;n&lt;/code&gt; times)&lt;/li&gt;
+&lt;li&gt;Execute &lt;code&gt;defer wg.Done()&lt;/code&gt; in each goroutine to indicate that goroutine is finished executing to the &lt;code&gt;WaitGroup&lt;/code&gt; (see &lt;a href=&#34;http://golang.org/doc/effective_go.html#defer&#34;&gt;defer&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Call &lt;code&gt;wg.Wait()&lt;/code&gt; where we want to block.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This fits our use case perfectly.  Rewritten, our code now uses &lt;code&gt;sync.WaitGroup&lt;/code&gt; and looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;sync&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    var wg sync.WaitGroup
+
+    // you can also add these one at 
+    // a time if you need to 
+
+    wg.Add(3)
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }() 
+    go func() {
+        defer wg.Done()
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+
+    wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This example is a little silly, but suppose we wanted to slurp JSON data from 3 different subreddits concurrently.  We don&amp;rsquo;t know how long those HTTP requests are going to take, and we don&amp;rsquo;t want to cause a race condition by trying to work with data that hasn&amp;rsquo;t been populated yet in our Go program, so &lt;code&gt;sync.WaitGroup&lt;/code&gt; ends up being very handy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;io/ioutil&amp;quot;
+    &amp;quot;log&amp;quot;
+    &amp;quot;net/http&amp;quot;
+    &amp;quot;sync&amp;quot;
+)
+
+func main() {
+    urls := []string{
+        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
+    }
+    jsonResponses := make(chan string)
+
+    var wg sync.WaitGroup
+
+    wg.Add(len(urls))
+
+    for _, url := range urls {
+        go func(url string) {
+            defer wg.Done()
+            res, err := http.Get(url)
+            if err != nil {
+                log.Fatal(err)
+            } else {
+                defer res.Body.Close()
+                body, err := ioutil.ReadAll(res.Body)
+                if err != nil {
+                    log.Fatal(err)
+                } else {
+                    jsonResponses &amp;lt;- string(body)
+                }
+            }
+        }(url)
+    }
+
+    go func() {
+        for response := range jsonResponses {
+            fmt.Println(response)
+        }
+    }()
+
+    wg.Wait()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check out a &lt;a href=&#34;http://runnable.com/UwEzO6LcUjMdAABH/using-sync-waitgroup-to-slurp-json-from-reddit-concurrently-wait-for-all-goroutines-to-finish-before-continuing-&#34;&gt;Runnable&lt;/a&gt; of this code in action!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Go is so very fun.  I need to start writing more of it again and put down this silly JavaScript stuff XD  &lt;a href=&#34;http://martini.codegangsta.io/&#34;&gt;Martini&lt;/a&gt; looks super promising, so maybe I will develop and application with it.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Wait for All Goroutines to Finish Executing Before Continuing, Part Two:  Fixing My Oops</title>
+      <link>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</guid>
+      <description>
+
+&lt;p&gt;Earlier this week I published an article called &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/&#34;&gt;How To Wait for All Goroutines to Finish Executing Before Continuing&lt;/a&gt; detailing a problem that I&amp;rsquo;d run into while coding with Golang and the solution that I&amp;rsquo;d encountered, which was to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;.  I was still basking a little in that I-just-finished-a-new-blog-article afterglow when something in the &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/&#34;&gt;Reddit comments&lt;/a&gt; caught my eye!&lt;/p&gt;
+
+&lt;p&gt;{%img /images/syncwaitgroup2/enneff_speaks.jpeg Oh. %}&lt;/p&gt;
+
+&lt;p&gt;Turns out that my approach in the previous article causes a race condition.  So, just so you guys are all aware, I was wrong, and here&amp;rsquo;s why.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;What was wrong&lt;/h1&gt;
+
+&lt;p&gt;As &lt;a href=&#34;http://reddit.com/u/enneff&#34;&gt;/u/enneff&lt;/a&gt; pointed out, there are a variety of issues with the examples I provided.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;What was wrong with the &amp;ldquo;Old-School way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ll start at the second example (The &amp;ldquo;Old-School&amp;rdquo; way) since the first example is REALLY bad by design (please don&amp;rsquo;t write Go like that).  I used a &amp;ldquo;done&amp;rdquo; channel to communicate the status of the goroutines, and it turns out that this was completely unneccsary.&lt;/p&gt;
+
+&lt;p&gt;The original code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+
+    // Use this channel to follow the execution status
+    // of our goroutines :D
+    done := make(chan bool)
+
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+        done &amp;lt;- true
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+        done &amp;lt;- true
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+        done &amp;lt;- true
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        &amp;lt;-done
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thinking about it a bit, enneff&amp;rsquo;s assertion that the channel is unneeded makes a lot of sense, since you know the number of messages ahead of time.  It&amp;rsquo;s a great example of how you shouldn&amp;rsquo;t needlessly overcomplicate things (&lt;a href=&#34;http://legacy.python.org/dev/peps/pep-0020/&#34;&gt;simple is better than complex&lt;/a&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }()
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        fmt.Println(&amp;lt;-messages)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code is shorter, and doesn&amp;rsquo;t introduce unneeded complexity.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;What was wrong with the &amp;ldquo;Canonical way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;Well, for one thing, the messages channel doesn&amp;rsquo;t get closed, which could cause a memory leak.  It&amp;rsquo;s also not exactly cosidered the best use for a &lt;code&gt;WaitGroup&lt;/code&gt;.  As enneff put it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The original program leaves the printing goroutine hanging (it blocks trying to receive a fourth message that never comes). This will create a memory leak in a long-running problem. You need to close the messages channel after the wg.Wait, to make sure that goroutine terminates. Obviously not a problem in a trivial program, but we should teach good practices at all times. But that still doesn&amp;rsquo;t solve the problem of the racing and printing goroutines, and there&amp;rsquo;s no reason why the so-called &amp;ldquo;old-school&amp;rdquo; way isn&amp;rsquo;t appropriate here. When you know the number of messages to expect you might as well count them to know when to finish. Here the waitgroup is superfluous and confusing. WaitGroups are more useful for doing different tasks in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;More importantly, I mistakenly put the code to print the results in its own goroutine, which causes a race condition between the main goroutine and the goroutine that is printing.  In many cases, the main goroutine will win this race, which is BAD!!  Turns out that my whole &amp;ldquo;sleep for a few seconds, then send a message down the channel&amp;rdquo; example is actually not a good example for wait groups at all.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;fetch some JSON from the Reddit API&amp;rdquo; example, however, actually is a good candidate for &lt;code&gt;sync.WaitGroup&lt;/code&gt;, and enneff even featured a rewrite that takes advantage of multiple channels to send errors in case something goes wrong!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// This snippet was prepared in response to this article:
+// http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/
+package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;io/ioutil&amp;quot;
+    &amp;quot;net/http&amp;quot;
+)
+
+func main() {
+    urls := []string{
+        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
+    }
+
+    resc, errc := make(chan string), make(chan error)
+
+    for _, url := range urls {
+        go func(url string) {
+            body, err := fetch(url)
+            if err != nil {
+                errc &amp;lt;- err
+                return
+            }
+            resc &amp;lt;- string(body)
+        }(url)
+    }
+
+    for i := 0; i &amp;lt; len(urls); i++ {
+        select {
+        case res := &amp;lt;-resc:
+            fmt.Println(res)
+        case err := &amp;lt;-errc:
+            fmt.Println(err)
+        }
+    }
+}
+
+func fetch(url string) (string, error) {
+    res, err := http.Get(url)
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    body, err := ioutil.ReadAll(res.Body)
+    res.Body.Close()
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    return string(body), nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lookin&amp;rsquo; good!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;All I know is that I don&amp;rsquo;t know nothing.&lt;/p&gt;
+
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/5HtUnubXAO4&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Thanks again to &lt;a href=&#34;https://twitter.com/enneff&#34;&gt;Andrew Gerrand&lt;/a&gt; for helping me to learn more about Go.  And until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

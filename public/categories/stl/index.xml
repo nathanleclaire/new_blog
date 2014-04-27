@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Stl on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/stl/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Three Elements That Sum To Zero</title>
+      <link>http://localhost:1313/_posts/2013-10-22-three-elements-that-sum-to-zero</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-10-22-three-elements-that-sum-to-zero</guid>
+      <description>
+
+&lt;p&gt;There&amp;rsquo;s an interview question (for developers) that recently I&amp;rsquo;ve been asking (if they have already proven they can &lt;a href=&#34;http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html&#34;&gt;FizzBuzz&lt;/a&gt;) which goes a little something like this:&lt;/p&gt;
+
+&lt;blockquote&gt;Given a collection of integers, return the indices of any three elements which sum to zero.  For instance, if you are given &lt;code&gt;{-1, 6, 8, 9, 10, -100, 78, 0, 1}&lt;/code&gt;, you could return &lt;code&gt;{0, 7, 8}&lt;/code&gt; because &lt;code&gt;-1 + 1 + 0 == 0&lt;/code&gt;.  You can&#39;t use the same index twice, and if there is no match you should return &lt;code&gt;{-1, -1, -1}&lt;/code&gt;.&lt;/blockquote&gt;
+
+&lt;p&gt;I first heard this question in an interview with a San Francisco-based startup, and it has since become sort of a workhorse interview question around the office.  As it turns out, this question has the potential to &lt;a href=&#34;http://xkcd.com/356/&#34;&gt;nerd snipe&lt;/a&gt; developers pretty effectively.  I know, because I coded up the naive solution first before deciding that it wasn&amp;rsquo;t good enough, and that I wanted to write it a faster way.  Combining this with my recent revival of interest in C++ (I learned it long ago but have been mostly working with scripting languages lately) proved to be an interesting experience.  This is the story of one man (me), and his quest to write code to efficiently solve this problem.  In my solutions I use the &lt;code&gt;std::vector&lt;/code&gt; class, as I also used this as an opportunity to refresh some STL knowledge, but in the article I use the words &amp;ldquo;array&amp;rdquo; and &amp;ldquo;vector&amp;rdquo; interchangably (these solutions could also be implemented with arrays, there is nothing special about using vectors in this case).&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Solving Things Naively&lt;/h1&gt;
+
+&lt;p&gt;The obvious way to do this is with brute force.  Starting with the zeroeth, first, and second elements of the collection, compare every possible combination of three elements to see if they sum to zero.  Sample code (&lt;code&gt;using namespace std;&lt;/code&gt; is implied):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;vector&amp;lt;int&amp;gt; three_indices_that_sum_to_zero_naive(vector&amp;lt;int&amp;gt; v)
+{
+    // O(n ** 3) time complexity in average case
+    int i, j, k, n;
+    n = v.size();
+    for(i = 0; i &amp;lt; n-2; i++)
+    {
+        for(j = i+1; j &amp;lt; n-1; j++)
+        {
+            for(k = j+1; k &amp;lt; n; k++)
+            {
+                if ((v.at(i) + v.at(j) + v.at(k)) == 0)
+                {
+                    return three_vec(i, j, k);
+                }
+            }
+        }   
+    }
+    return three_vec(-1, -1, -1); 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;three_vec&lt;/code&gt; is a utility method that I use to return a vector of three integers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;vector&amp;lt;int&amp;gt; three_vec(int i, int j, int k)
+{
+    int arr[] = {i, j, k};
+    vector&amp;lt;int&amp;gt; indices (arr, arr + sizeof(arr) / sizeof(arr[0]));
+    return indices;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the obvious way to do the problem at first glance, and it has the advantage of simplicity and readability (a competent developer looking at the code should be able to figure it out fairly quickly).  However, as noted in the comments for the function defined, it runs with a time complexity of O(&lt;em&gt;n&lt;sup&gt;3&lt;/sup&gt;&lt;/em&gt;).  Can we do better?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Solving Things Suavely&lt;/h1&gt;
+
+&lt;p&gt;Of course we can, or else I wouldn&amp;rsquo;t be writing this article!  Reaching into our algorithmic bag of tricks, we begin to ask ourselves: Is there anything we can do to this otherwise unordered vector of integers that would make it easier for us to get what we&amp;rsquo;re after?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Hm,&amp;rdquo;&lt;/em&gt; you say to yourself.  &lt;em&gt;&amp;ldquo;We could trying sorting it.  This will run in O(n log n) time but it will allow us to find what we are looking for much more quickly.&amp;rdquo;&lt;/em&gt;   But wait- sorting the vector will change the place of the elements, and consequently their index, which is what we are after.  Therefore, we must rely on an additional (simple) data structure if we are going to take this approach:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;typedef struct index_value_pair {
+    int index;
+    int value;
+} index_value_pair;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we can make a new array and sort that based on &lt;code&gt;index_value_pair&lt;/code&gt;&amp;rsquo;s &lt;code&gt;value&lt;/code&gt; element:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;/* Utility Function to create an index_value_pair */
+index_value_pair make_index_value_pair(int index, int value)
+{
+    index_value_pair ivp;
+    ivp.index = index;
+    ivp.value = value;
+    return ivp;
+}
+
+vector&amp;lt;int&amp;gt; three_indices_that_sum_to_zero_suave(vector&amp;lt;int&amp;gt; v)
+{
+    int i, j, k, n, sum;
+    n = v.size();
+    vector&amp;lt;index_value_pair&amp;gt; value_index_vec;
+    for (i = 0; i &amp;lt; n; i++) 
+    {
+        value_index_vec.push_back(make_index_value_pair(i, v.at(i)));
+    }
+    sort(value_index_vec.begin(), value_index_vec.end(), suave_comp);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, we can work our way forwards from the beginning of the array starting with the zeroeth and first elements (let&amp;rsquo;s call them the &lt;code&gt;i&lt;/code&gt;th and &lt;code&gt;j&lt;/code&gt;th), and &lt;em&gt;backwards&lt;/em&gt; from the end of the array with the third (the &lt;code&gt;k&lt;/code&gt;th).  &lt;code&gt;i&lt;/code&gt; will go to &lt;code&gt;n-2&lt;/code&gt; and start off an inner loop where &lt;code&gt;j = i + 1&lt;/code&gt;.  In the inner loop, if the sum of the elements is positive, we decrement &lt;code&gt;k&lt;/code&gt; because we need a smaller sum (closer to zero).  If the sum of the elements is negative, we increment &lt;code&gt;j&lt;/code&gt; because we need a larger sum (also closer to zero).  If the elements sum to zero, great!  We have our match.  If &lt;code&gt;j&lt;/code&gt; and &lt;code&gt;k&lt;/code&gt; meet, we go on to the next loop.  This process shaves a whole multiple of &lt;code&gt;n&lt;/code&gt; comparisons off our algorithm&amp;rsquo;s runtime and allows us to do things in O(&lt;em&gt;n&lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;) time.&lt;/p&gt;
+
+&lt;p&gt;You can intuitively grasp why this is faster by asking yourself how many comparisons it would take to find the elements that sum to zero with this array (sorted) and this algorithm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{-10, -8, -6, 0, 3, 5, 18}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;versus this one (same elements, different order) with brute force:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{-6, -8, 0, 3, 10, -8, 18}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Therefore the whole function looks like this and runs with O(&lt;em&gt;n log n + n&lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;) time complexity including the sort.  O(&lt;em&gt;n &lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;) is asymptotically larger than O(&lt;em&gt;n log n&lt;/em&gt;), so this time complexity resolves to O(&lt;em&gt;n &lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;) (&lt;em&gt;editor&amp;rsquo;s note&lt;/em&gt;: thanks to Reddit user Olathe for pointing this out).  This should outperform the O(&lt;em&gt;n&lt;sup&gt;3&lt;/sup&gt;&lt;/em&gt;) algorithm in most cases:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;c++&#34;&gt;vector&amp;lt;int&amp;gt; three_indices_that_sum_to_zero_suave(vector&amp;lt;int&amp;gt; v)
+{
+    int i, j, k, n, sum;
+    n = v.size();
+    vector&amp;lt;index_value_pair&amp;gt; value_index_vec;
+    for (i = 0; i &amp;lt; n; i++) 
+    {
+        value_index_vec.push_back(make_index_value_pair(i, v.at(i)));
+    }
+    // print_value_index_vec(value_index_vec);
+    sort(value_index_vec.begin(), value_index_vec.end(), suave_comp);
+    for (i = 0; i &amp;lt; n-2; i++)
+    {
+        j = i+1;
+        k = n-1;
+        while (k &amp;gt; j)
+        {
+            sum = sum_from_value_index_vec(value_index_vec, i, j, k);
+            if (sum == 0)
+            {
+                return three_vec(value_index_vec.at(i).index, value_index_vec.at(j).index, value_index_vec.at(k).index);   
+            }
+
+            if (sum &amp;gt; 0)
+            {
+                k--;
+            }
+            else
+            {
+                j++;
+            }
+
+        }
+    }
+    return three_vec(-1, -1, -1);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Interestingly, with the first few benchmarks I ran, the naive version was outperforming the efficient version, and I couldn&amp;rsquo;t quite figure out why (the first command line argument indicates how many random elements to generate in our test array- in other words, &lt;code&gt;N&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./indices_sum_to_zero 100000
+Initializing...
+
+Using naive...
+Performance: 0 ticks
+Naive : {0, 1, 77}
+Using suave...
+The elements: -100 0 100
+Performance: 10000 ticks
+Suave : {73045, 48974, 3270}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How could this be?  My carefully crafted algorithm was getting stomped by an algorithm I knew to be inferior.  After generating and poking around at a few callgrind files attempting to track down the issue, I suddenly realized that it was right in front of my eyes, in two constant definitions I had made and forgotten about early on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;static int LOWERBOUND = -100;
+static int UPPERBOUND = 100;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These settings were used to specify the range of the pseudorandom integers I was using to test the algorithms with, and when they were so close together the naive algorithm was outperforming the &amp;ldquo;suave&amp;rdquo; one because the additional overhead of sorting was so costly.&lt;/p&gt;
+
+&lt;p&gt;What if we change the bounds to be &lt;code&gt;{-10000000, 10000000}&lt;/code&gt;?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./indices_sum_to_zero 100000
+Initializing...
+
+Using naive...
+Performance: 70000 ticks
+Naive : {0, 539, 31774}
+Using suave...
+Performance: 10000 ticks
+Suave : {78891, 33850, 54525}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Much closer to what we expect!  For smaller values of N, and upper/lower bounds that are closer together, the naive version seems to perform better.  As the range and value of N gets larger, the &amp;ldquo;suave&amp;rdquo; algorithm begins to get more appealing.  I&amp;rsquo;d be curious to see a more rigorous numerical analysis of why this is.&lt;/p&gt;
+
+&lt;p&gt;Check out the &lt;a href=&#34;https://github.com/nathanleclaire/algorithms_and_data_structures/blob/master/indices_sum_to_zero/indices_sum_to_zero.cc&#34;&gt;code on github&lt;/a&gt; if you&amp;rsquo;re so inclined.  Cheers, and I&amp;rsquo;ll see you next week!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;EDIT&lt;/em&gt; : Based on some feedback from Reddit I have revised a few things, notably:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;There was a bug in the implementation of &lt;code&gt;three_vec&lt;/code&gt; that caused the returned value to be the same for suave and naive versions (fixed in &lt;a href=&#34;https://github.com/nathanleclaire/algorithms_and_data_structures/commit/794993e01b1e0fa6154c722c4d74009b02cdef45&#34;&gt;794993e01b1e0fa6154c722c4d74009b02cdef45&lt;/a&gt; )&lt;/li&gt;
+&lt;li&gt;Constant definition is now done with &lt;code&gt;static const&lt;/code&gt; instead of &lt;code&gt;#define&lt;/code&gt; statements&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

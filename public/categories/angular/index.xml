@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Angular on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/angular/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Don&#39;t Fear Directives In AngularJS</title>
+      <link>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</guid>
+      <description>
+
+&lt;p&gt;{% img /images/directivefear/anghero.jpeg Superheroic. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Direct what?&lt;/h1&gt;
+
+&lt;p&gt;As I mentioned in &lt;a href=&#34;http://nathanleclaire.com/blog/2013/11/30/fear-and-loathing-with-golang-and-angular-dot-js/&#34;&gt;last week&amp;rsquo;s article&lt;/a&gt; I have been working with &lt;a href=&#34;http://angularjs.org/&#34;&gt;AngularJS&lt;/a&gt; for personal projects lately.  This was largely the result of me, approximately six or seven months ago, feeling like I was missing out on the new hotness by not knowing a client-side MV* framework.  I looked around at a lot of options, including:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://backbonejs.org/&#34;&gt;Backbone.js&lt;/a&gt; (A crowd favorite, with rock-solid online support/documentation/tutorials)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://knockoutjs.com/&#34;&gt;Knockout.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ultimately I fell into learning Angular for a variety of reasons.  Partially it was because I went to a &amp;ldquo;Coffee Shop Coders&amp;rdquo; presentation where the presenter (&lt;a href=&#34;http://www.tauruscolvin.com/&#34;&gt;Taurus Colvin&lt;/a&gt; - a very friendly dude) explained the basics and impressed me with the possibilities the framework offers.  Maybe it was because I tried to bootstrap a simple Ember project and couldn&amp;rsquo;t get anything working.  I don&amp;rsquo;t know if it was the documentation, the learning curve, my own shortcomings, or all three, but something about Ember didn&amp;rsquo;t click with me.  My choice of Angular was also at least somewhat because I was seduced by &lt;a href=&#34;http://yeoman.io/&#34;&gt;Yeoman&lt;/a&gt; (which, at the time of writing, uses an Angular generator in its usage example) around the time I attempted my first Angular app.  It was a foray which went down in flames, largely because I was so hesitant to make my own directives and services.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;$scope Creep&lt;/h1&gt;
+
+&lt;p&gt;One day after I had started getting interested in Angular I mentioned to a coworker that I was developing an app with the framework.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Oh yeah,&amp;rdquo; he said, &amp;ldquo;I watched a presentation about making directives - seems to be where the real power of it is.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Since I knew that the funny attributes Angular introduces such as &lt;code&gt;ng-show&lt;/code&gt;, &lt;code&gt;ng-class&lt;/code&gt;, and &lt;code&gt;ng-repeat&lt;/code&gt; were directives, I had a feeling he was onto something.  However, I was a little bit too timid to actually tackle making my own.  After all, directives were something that smart people made, not me.  I&amp;rsquo;d have to understand that difficult link/compile stuff, right?  Remember, this was April of 2013 and, though it seems silly to say since at the time of writing only eight months have passed, the quality of documentation, tutorials, and examples for AngularJS was not as good as it is today.  I think &lt;a href=&#34;http://egghead.io&#34;&gt;egghead.io&lt;/a&gt; (an excellent Angular resource if you&amp;rsquo;re not aware) was just getting off the ground, but I certianly hadn&amp;rsquo;t heard of it.&lt;/p&gt;
+
+&lt;p&gt;Less so through concious decision and more so through my own hesitance to learn something I was irrationally afraid of, I began slipping into the trap of creating a tangled mess that stuffed everything possible into &lt;code&gt;$scope&lt;/code&gt;, used &lt;code&gt;ng-include&lt;/code&gt; when I could have used directives, and relied on &lt;code&gt;$broadcast&lt;/code&gt;ing down from &lt;code&gt;$rootScope&lt;/code&gt; when I could have used services.&lt;/p&gt;
+
+&lt;p&gt;I was a fool.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;How Not To Fear The Directive&lt;/h1&gt;
+
+&lt;p&gt;If I could go back and stop myself from making a whole bunch of mistakes in that app, I would have started with explaining that a directive is just a simple little reusable component for describing the way HTML should behave.  The Angular docs try to harp on this but inevitably they make it seem obtuse and complicated.  &lt;em&gt;Note:  Though they could be better I don&amp;rsquo;t think it&amp;rsquo;s cool to hate on the Angular docs.  They&amp;rsquo;ve gotten way better even in the short time I&amp;rsquo;ve been using the framework.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In my opinion it&amp;rsquo;s a very useful tool because it allows you to encapsulate functionality in a semantic way that will (hopefully) make sense to anyone looking at your markup, and keep your functionality well &amp;ldquo;chunked&amp;rdquo; so that you can keep track of what is happening where instead of dealing with things mutating globally (which most of us hopefully know by now is bad news).&lt;/p&gt;
+
+&lt;p&gt;Ever had this happen with jQuery? You need to do some JavaScript magic with a particular element on the page, and so you give it some arbitrary &lt;code&gt;id&lt;/code&gt; so you can access it with &lt;code&gt;$(&#39;element#id&#39;)&lt;/code&gt;.  Now you get to write a bunch of JavaScript that listens for the relevant events, checks the element&amp;rsquo;s state to see that it is congruent with our expectations, modify its class to change how it is displayed, and so on.  It starts out as a few simple functions using a very powerful tool that soon grows into a complicated mess of callbacks, weird looking selectors, and re-render functions.  It may be strewn across several files with no rhyme or reason.&lt;/p&gt;
+
+&lt;p&gt;Not only is it no fun, it makes it very hard for your designer friends to look at your markup and know what the expected behavior for that HTML is.  So, Angular provides us with directives, which are actually pretty simple to create.  So don&amp;rsquo;t be scared of them like I was.  You just have to create an Angular app:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;var myApp = angular.module(&#39;myApp&#39;, []);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then attach a simple directive:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;myApp.directive(&#39;myDirective&#39;, function() {
+    return {
+        restrict: &#39;E&#39;,
+        template: &#39;&amp;lt;h1&amp;gt;I made a directive!&amp;lt;/h1&amp;gt;&#39;
+    };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s all, you just created a directive!  Now, when you go looking around for some examples of directives online, it&amp;rsquo;s easy to get lost in all of the Angular-specific jargon like linking functions, the &amp;ldquo;restrict&amp;rdquo; property, scope hierarchies and so on.  But I highly recommend that you try not to panic, and realize that there is meaning behind all of the weird symbols and abbreviations you see.  For instance, in the definition for the directive above, I define a &lt;code&gt;restrict: &#39;E&#39;&lt;/code&gt; setting.  What the heck does that mean?&lt;/p&gt;
+
+&lt;p&gt;Well, what it means is, &amp;ldquo;restrict the usage of this directive to only Elements&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;So, you can use it in HTML like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot;&amp;gt;
+    &amp;lt;myDirective&amp;gt;&amp;lt;/myDirective&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But not like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot;&amp;gt;
+    &amp;lt;span my-directive&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Angular &amp;ldquo;normalizes&amp;rdquo; the &lt;code&gt;hyphen-usage-attribute&lt;/code&gt; to &lt;code&gt;camelCase&lt;/code&gt; as part of their normalization process for directives - see the &lt;a href=&#34;http://docs.angularjs.org/guide/directive&#34;&gt;documentation&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Why is it useful?&lt;/h1&gt;
+
+&lt;p&gt;So, other than providing a convenient way to make little repeatable bits of HTML that have their own names, why is this useful?&lt;/p&gt;
+
+&lt;p&gt;Well, by default every directive inherits the parent scope but it is also possible for a directive to have its own &lt;a href=&#34;http://www.thinkster.io/pick/KnxWvHUW64/angularjs-understanding-isolate-scope&#34;&gt;isolate scope&lt;/a&gt;.  What this means is, it can have its own little properties that it sets on its own unique &lt;code&gt;$scope&lt;/code&gt; that won&amp;rsquo;t mess around with any of the other properties that you are setting in the rest of your app.  Especially if you are going to use the component in multiple places, or have it in a &lt;code&gt;ng-repeat&lt;/code&gt;, this is incredibly useful.  It allows you to break things down into much more modular components than using some giant &lt;code&gt;BigBallOfMudController&lt;/code&gt; (or several &lt;code&gt;BigBallOfMudController&lt;/code&gt;s) to control the state of your app (which is usually the essence of what ends up happening in the &amp;ldquo;traditional jQuery&amp;rdquo; mess described above).  Instead, each directive is responsible for its own data and it works on it in isolation from the other directives.  In Angular this antipattern would look something like having a big array of objects in a central Controller, and updating individual properties of those objects in that controller instead of having a directive to modularize that kind of operation.&lt;/p&gt;
+
+&lt;p&gt;Check out this example, where I created a &lt;code&gt;gear&lt;/code&gt; directive using &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt;&amp;rsquo;s spinning gear icon.  The end result is a lot more flexible than an attempt at creating this using jQuery, or vanilla JavaScript.  Each gear keeps track of whether it is currently spinning or not in the new shared scope automagically created by the ngRepeat directive, so they spin or remain stationary indepent of each other.  However, they are all influenced equally by the &lt;code&gt;ng-model&lt;/code&gt; properties of the parent scope.&lt;/p&gt;
+
+&lt;p&gt;Writing a &lt;code&gt;link&lt;/code&gt; function provides even more power and flexibility, but that&amp;rsquo;s a little outside the scope of this article.  Perhaps another time.&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/i2StmWcxKNZCQb0YtYp0/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Enjoy your directives, kids, and never ever be scared of them.  &lt;a href=&#34;http://misko.hevery.com/&#34;&gt;Miško&lt;/a&gt;&amp;rsquo;s been up late at night so you can experience HTML as it could have been.&lt;/p&gt;
+
+&lt;p&gt;On a more serious/philosophical note, I wanted to close with a thought that I have that creating your own directives reminds me a bit of &lt;a href=&#34;http://en.wikipedia.org/wiki/Metcalfe&#39;s_law&#34;&gt;Metcalfe&amp;rsquo;s Law&lt;/a&gt; (by analogy of course).  Each directive that gets created increases the power and usefulness of all the other directives.  An Angular in which &lt;code&gt;ng-repeat&lt;/code&gt; exists, for instance, is so much more powerful than one in which it doesn&amp;rsquo;t.  So, remember that they can be stacked and it makes your webapp that much better.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Nathan&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire</title>
+      <link>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
+      <description>
+
+&lt;p&gt;Developers almost universally agree that unit tests are a &lt;em&gt;VERY GOOD THING&lt;/em&gt; when working on a project.  They help you feel like your code is airtight, ensure reliability in production, and let you refactor with confidence when there is a need to do so.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/angularjs-unit-testing/test-code-refactor-cycle.png The Test-Driven Development cycle. %}&lt;/p&gt;
+
+&lt;p&gt;AngularJS code touts its high degree of &lt;a href=&#34;http://angularjs.org/#embed-and-inject&#34;&gt;testability&lt;/a&gt;, which is a reasonable claim.  In much of the documentation end to end tests are provided with the examples.  Like so many things with Angular, however, I was finding that although unit testing was simple, it was not easy.  Examples were sparse and though the &lt;a href=&#34;http://docs.angularjs.org/guide/dev_guide.unit-testing&#34;&gt;official documentation&lt;/a&gt; provided some snippets of examples, putting it all together in my &amp;ldquo;real-world&amp;rdquo; case was proving challenging.  So here I&amp;rsquo;ve written a little bit about how I ended up getting that wonderful green light for a passing build to show up.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Instant Karma&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://karma-runner.github.io/&#34;&gt;Karma&lt;/a&gt; is a test runner for JavaScript that was created by the Angular team.  It is a very useful tool as it allows you to automate tasks that you would otherwise have to do by hand or with your own cobbled-together collection of scripts (such as re-running your test suite or loading up the dependencies for said tests).  Karma and Angular go together like peanut butter and jelly.&lt;/p&gt;
+
+&lt;p&gt;With Karma, you simply define a configuration file, start Karma, and then it will take care of the rest, executing the tests in the browser(s) of your choice to ensure that they work in the environments where you plan on deploying to.  You can specify these browsers in the aforementioned configuration file.  &lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt;, which I highly recommend, comes with a decent out-of-the-box Karma config that will allow you to hit the ground running quickly.   The Karma configuration in my most recent project looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module.exports = function(config) {
+    config.set({
+        basePath: &#39;../&#39;,
+
+        files: [
+            &#39;app/lib/angular/angular.js&#39;,
+            &#39;app/lib/angular/angular-*.js&#39;,
+            &#39;app/js/**/*.js&#39;,
+            &#39;test/lib/recaptcha/recaptcha_ajax.js&#39;,
+            &#39;test/lib/angular/angular-mocks.js&#39;,
+            &#39;test/unit/**/*.js&#39;
+        ],
+
+        exclude: [
+            &#39;app/lib/angular/angular-loader.js&#39;,
+            &#39;app/lib/angular/*.min.js&#39;,
+            &#39;app/lib/angular/angular-scenario.js&#39;
+        ],
+
+        autoWatch: true,
+
+        frameworks: [&#39;jasmine&#39;],
+
+        browsers: [&#39;PhantomJS&#39;],
+
+        plugins: [
+            &#39;karma-junit-reporter&#39;,
+            &#39;karma-chrome-launcher&#39;,
+            &#39;karma-firefox-launcher&#39;,
+            &#39;karma-jasmine&#39;,
+            &#39;karma-phantomjs-launcher&#39;
+        ],
+
+        junitReporter: {
+            outputFile: &#39;test_out/unit.xml&#39;,
+            suite: &#39;unit&#39;
+        }
+
+    })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which is very similar to the default configuration in &lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt;, except for a few things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I have switched the browser the tests run in from Chrome to &lt;a href=&#34;http://phantomjs.org/&#34;&gt;PhantomJS&lt;/a&gt;, a headless browser, so that they can run without opening a browser window and causing an awkward viewport shuffle in OSX.  Therefore the &lt;code&gt;plugins&lt;/code&gt; and &lt;code&gt;browsers&lt;/code&gt; settings have been changed.&lt;/li&gt;
+&lt;li&gt;I added &lt;code&gt;recaptcha_ajax.js&lt;/code&gt;, the minified file that Google provides for their Recaptcha service, since my app depends on it being included.  Having this change be as simple as adding a line in the Karma config file was really nice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;autoWatch&lt;/code&gt; is a particularly cool setting, since it will have Karma re-run your tests whenever they, or the files they test, change.&lt;/p&gt;
+
+&lt;p&gt;You can install Karma with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g karma
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt; provides a handy little script for starting the Karma test runner, which is in &lt;code&gt;scripts/test.sh&lt;/code&gt;.  Use it!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Writing Tests With Jasmine&lt;/h1&gt;
+
+&lt;p&gt;Most of the resources available at the time of writing for unit testing with Angular use &lt;a href=&#34;http://pivotal.github.io/jasmine/&#34;&gt;Jasmine&lt;/a&gt;, a behavior-driven development framework for testing JavaScript code.  That&amp;rsquo;s what I&amp;rsquo;ll be describing here.&lt;/p&gt;
+
+&lt;p&gt;To unit test an AngularJS controller, you can take advantage of Angular&amp;rsquo;s &lt;a href=&#34;http://docs.angularjs.org/guide/di&#34;&gt;dependency injection&lt;/a&gt; and inject your own version of the services those controllers depend on to control the environment in which the test takes place and also to check that the expected results are occurring.  For example, I have this controller defined in my app to control the highlighting of which tab has been navigated to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.controller(&#39;NavCtrl&#39;, function($scope, $location) {
+    $scope.isActive = function(route) {
+        return route === $location.path();
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I want to test the &lt;code&gt;isActive&lt;/code&gt; function, how do I do so?  I need to ensure that the &lt;code&gt;$location&lt;/code&gt; service returns what is expected, and that the output of the function is what is expected.  So in our test spec we have a &lt;code&gt;beforeEach&lt;/code&gt; call that gets made that sets up some local variables to hold our (controlled) version of those services, and injects them into the controller so that those are the ones to get used.  Then in our actual test we have assertions that are congruent with our expectations.  It looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe(&#39;NavCtrl&#39;, function() {
+    var $scope, $location, $rootScope, createController;
+
+    beforeEach(inject(function($injector) {
+        $location = $injector.get(&#39;$location&#39;);
+        $rootScope = $injector.get(&#39;$rootScope&#39;);
+        $scope = $rootScope.$new();
+
+        var $controller = $injector.get(&#39;$controller&#39;);
+
+        createController = function() {
+            return $controller(&#39;NavCtrl&#39;, {
+                &#39;$scope&#39;: $scope
+            });
+        };
+    }));
+
+    it(&#39;should have a method to check if the path is active&#39;, function() {
+        var controller = createController();
+        $location.path(&#39;/about&#39;);
+        expect($location.path()).toBe(&#39;/about&#39;);
+        expect($scope.isActive(&#39;/about&#39;)).toBe(true);
+        expect($scope.isActive(&#39;/contact&#39;)).toBe(false);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this basic structure, you can set up all kinds of stuff.  Since we are providing the controller with our own custom scope to start with, you could do stuff like setting a bunch of properties on it and then running a function you have to clear them, then make assertions that they actually were cleared.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;&lt;code&gt;$httpBackend&lt;/code&gt; Is Cool&lt;/h1&gt;
+
+&lt;p&gt;But what if you are doing stuff like using the &lt;code&gt;$http&lt;/code&gt; service to call out to your server to get or post data?  Well, Angular provides a way to mock the server with a thing called &lt;code&gt;$httpBackend&lt;/code&gt;.  That way, you can set up expectations for what server calls get made, or just ensure that the response can be controlled so the results of the unit tests can be consistent.&lt;/p&gt;
+
+&lt;p&gt;This looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe(&#39;MainCtrl&#39;, function() {
+    var $scope, $rootScope, $httpBackend, $timeout, createController;
+    beforeEach(inject(function($injector) {
+        $timeout = $injector.get(&#39;$timeout&#39;);
+        $httpBackend = $injector.get(&#39;$httpBackend&#39;);
+        $rootScope = $injector.get(&#39;$rootScope&#39;);
+        $scope = $rootScope.$new();
+
+
+        var $controller = $injector.get(&#39;$controller&#39;);
+
+        createController = function() {
+            return $controller(&#39;MainCtrl&#39;, {
+                &#39;$scope&#39;: $scope
+            });
+        };
+    }));
+
+    afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it(&#39;should run the Test to get the link data from the go backend&#39;, function() {
+        var controller = createController();
+        $scope.urlToScrape = &#39;success.com&#39;;
+
+        $httpBackend.expect(&#39;GET&#39;, &#39;/slurp?urlToScrape=http:%2F%2Fsuccess.com&#39;)
+            .respond({
+                &amp;quot;success&amp;quot;: true,
+                &amp;quot;links&amp;quot;: [&amp;quot;http://www.google.com&amp;quot;, &amp;quot;http://angularjs.org&amp;quot;, &amp;quot;http://amazon.com&amp;quot;]
+            });
+
+        // have to use $apply to trigger the $digest which will
+        // take care of the HTTP request
+        $scope.$apply(function() {
+            $scope.runTest();
+        });
+
+        expect($scope.parseOriginalUrlStatus).toEqual(&#39;calling&#39;);
+
+        $httpBackend.flush();
+
+        expect($scope.retrievedUrls).toEqual([&amp;quot;http://www.google.com&amp;quot;, &amp;quot;http://angularjs.org&amp;quot;, &amp;quot;http://amazon.com&amp;quot;]);
+        expect($scope.parseOriginalUrlStatus).toEqual(&#39;waiting&#39;);
+        expect($scope.doneScrapingOriginalUrl).toEqual(true);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, the &lt;code&gt;beforeEach&lt;/code&gt; call is very similar, with the only exception being we are getting &lt;code&gt;$httpBackend&lt;/code&gt; from the injector rather than &lt;code&gt;$http&lt;/code&gt;.  However, there are a few notable differences with how we set up the other test.  For starters, there is an &lt;code&gt;afterEach&lt;/code&gt; call that ensures &lt;code&gt;$httpBackend&lt;/code&gt; doesn&amp;rsquo;t have any outstanding expecations or requests after each test has been run.  And if you look at the way the test is set up and utilizes &lt;code&gt;$httpBackend&lt;/code&gt;, there are a few things that are not exactly intuitive.&lt;/p&gt;
+
+&lt;p&gt;The actual call to &lt;code&gt;$httpBackend.expect&lt;/code&gt; is fairly self-explanatory, but it is not in itself enough- we have to wrap our call to &lt;code&gt;$scope.runTest&lt;/code&gt;, the function we are actually testing in this case, in a function that we pass to &lt;code&gt;$scope.$apply&lt;/code&gt;, so that we can trigger the &lt;code&gt;$digest&lt;/code&gt; which will actually take care of the HTTP request.  And as you can see, the HTTP request to &lt;code&gt;$httpBackend&lt;/code&gt; will not resolve until we call &lt;code&gt;$httpBackend.flush()&lt;/code&gt;, so this allows us to test what things should be like when the call is in progress but hasn&amp;rsquo;t returned yet (in the example above, the controller&amp;rsquo;s &lt;code&gt;$scope.parseOriginalUrlStatus&lt;/code&gt; property will be set to &lt;code&gt;&#39;calling&#39;&lt;/code&gt; so we can display an in-progress spinny).&lt;/p&gt;
+
+&lt;p&gt;The next few lines are assertions about properties on &lt;code&gt;$scope&lt;/code&gt; that will change after the call resolves.  Pretty cool, eh?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;NOTE:&lt;/em&gt; In some places users have made it convention to have &lt;code&gt;scope&lt;/code&gt; without the dollar sign when it is referenced as a var in setting up unit tests.  This doesn&amp;rsquo;t seem to be enforced or emphasized particularly strongly by the Angular docs and I find it a little bit more consistent / readable to just use &lt;code&gt;$scope&lt;/code&gt; like you do everywhere else, so that&amp;rsquo;s how I&amp;rsquo;ve done things here.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Maybe this is one of those things that others just take to a bit more naturally that I do, but learning to write unit tests in Angular was pretty painful for me in the beginning.  I found my understanding of how to do so to be mostly cobbled together from various blog posts and sources around the Internet, with no real consistency or definitive best practice other than that established by natural selection.  I wanted to provide some documentation of what I eventually came up with to help other people who might be in a tight spot, and just want to get coding instead of having to learn all of the quirks and idiosyncracies of Angular and Jasmine.  So I hope this article has been of use to you.&lt;/p&gt;
+
+&lt;p&gt;Unit next week, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AngularJS isn&#39;t MVC, it&#39;s SDC</title>
+      <link>http://localhost:1313/_posts/2014-03-15-angularjs-isnt-mvc-its-sdc</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-03-15-angularjs-isnt-mvc-its-sdc</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Intro&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/notmvc/angular-homepage-old.gif %}&lt;/p&gt;
+
+&lt;p&gt;I first started learning AngularJS because I was interested in exploring the world of MV&amp;#42; JavaScript frameworks for the client side.  There was something intruiging and exciting happening about a year or two ago in that space, as several JS frameworks started to get some steam and critical mass and the mainstream of client-side development (even those boring &lt;a href=&#34;http://www.hanselman.com/blog/501DevelopersFamilyAndExcitementAboutTheCraft.aspx&#34;&gt;5:01 developers&lt;/a&gt; couldn&amp;rsquo;t ignore the zeitgeist anymore) seemed to wake up and realize that maybe there was a need for something more than just vanilla jQuery in applications where everything was spiraling way out of control.&lt;/p&gt;
+
+&lt;p&gt;So I started looking into Angular for the myriad reasons you usually hear people cite as a reason for using it.  It was backed by Google.  It was easy to get going quickly.  The quality of documentation and tutorials, though not fantastic, was starting to improve relative to Ember or more obscure frameworks.  It was fun.&lt;/p&gt;
+
+&lt;p&gt;My first foray went down in flames.&lt;/p&gt;
+
+&lt;p&gt;{%img /images/notmvc/javascript.png %}&lt;/p&gt;
+
+&lt;p&gt;I fell into a common Angular antipattern (I may discuss Angular antipatterns more in a future article) where I stuffed everything into the controller.  Services and directives looked a little scary, and required learning esoteric things like what the meaning of &lt;code&gt;@&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;, and &lt;code&gt;=&lt;/code&gt; was in a directive, and instead I saw fit to simply stuff everything into &lt;code&gt;$scope&lt;/code&gt; and coordinate activities using event broadcasting and listening.&lt;/p&gt;
+
+&lt;p&gt;That project became so un-fun to work on that I just stopped.  I had dug myself into a hole deeper than I would ever get out of without a complete rewrite.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, partially through writing about Angular a lot, I eventually wised up.&lt;/p&gt;
+
+&lt;p&gt;I learned that Angular is structured in some ways that are similar to what we have experienced before, but it also hearkens a little bit to the future of the client side (see &lt;a href=&#34;http://www.w3.org/TR/components-intro/&#34;&gt;Web Components&lt;/a&gt;).  And because of that, it had a little bit of new stuff too that threw me.&lt;/p&gt;
+
+&lt;p&gt;You may be used to the Model View Controller pattern- but that&amp;rsquo;s not what Angular is.   A subsection of it kind of looks like that, but if you take a step back you will see a bigger picture emerge.&lt;/p&gt;
+
+&lt;p&gt;Angular is Service, Directive, Controller.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;The Angular Way&lt;/h1&gt;
+
+&lt;p&gt;Angular is all about testability, and testability mandates that we be able to break our application into components.  In most cases, monoliths are considered harmful.  You probably understand why if you&amp;rsquo;ve ever worked on one.  Things become too brittle and easy to break.  They become tightly coupled.  It&amp;rsquo;s impossible to change codes without introducing bugs in unrelated places.  And so on.&lt;/p&gt;
+
+&lt;p&gt;Angular draws lines between separate parts of the architecture so that you can avoid many of these headaches.  In particular, dependency injection treats us well, as we rely on Angular&amp;rsquo;s injector to provide us with the things that we need instead of getting them ourselves.  This also allows us more control over how they are provided, which eases testing significantly (the developer has a smaller surface area that he needs to control).&lt;/p&gt;
+
+&lt;p&gt;Most applications use these underlying principles to do three things: Retrieve, process, or send out data (usually communicating with the &amp;ldquo;outside world&amp;rdquo; such as a database or API), present (display) that data to the user in a useful way, and coordinate the general state of the application (this includes features such as routing).&lt;/p&gt;
+
+&lt;p&gt;The first things that we mentioned, handling data, is the job of services.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;Services&lt;/h2&gt;
+
+&lt;p&gt;The main point of services is to dictate how data flows into or out of your application, not within it.  If you are talking to the outside world, this is a perfect use case for a service.  Controllers use methods and data provided by these services to update properties on &lt;code&gt;$scope&lt;/code&gt;, which in turn dictates how the DOM changes when a new digest cycle hits.&lt;/p&gt;
+
+&lt;p&gt;When I was new to Angular, I flubbed this.  In particular the difference between &lt;a href=&#34;http://stackoverflow.com/questions/15666048/angular-js-service-vs-provider-vs-factory&#34;&gt;services and factories&lt;/a&gt; wasn&amp;rsquo;t clear to me, so I avoided them.  Instead I made &lt;code&gt;$http&lt;/code&gt; calls inside of my controllers, which ended up turning my controllers into a confused mess of business and application logic.&lt;/p&gt;
+
+&lt;p&gt;This is &lt;em&gt;NOT&lt;/em&gt; the way to go.  Instead, anything that involves setting, retrieving, or processing data should happen in services.  The leaner that your controllers are, the better.&lt;/p&gt;
+
+&lt;p&gt;Services should NEVER manipulate &lt;code&gt;$scope&lt;/code&gt;.  That is the job of the controller.  If you need to change values in &lt;code&gt;$scope&lt;/code&gt; based on the result of, say, an AJAX call, use &lt;a href=&#34;http://docs.angularjs.org/api/ng/service/$q&#34;&gt;promises&lt;/a&gt;.  Check out &lt;a href=&#34;http://nathanleclaire.com/blog/2014/01/04/5-smooth-angularjs-application-tips/&#34;&gt;this blog article I wrote&lt;/a&gt; for more details.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;Directives&lt;/h2&gt;
+
+&lt;p&gt;Directives are definitely one of the most confusing parts of AngularJS to a newcomer.  The prospect of writing your own is intimidating.  Especialy when I first started learning, the quality of available documentation and tutorials for them was not very high (this has improved a lot in the last year or so though).&lt;/p&gt;
+
+&lt;p&gt;But directives, for all that they intimidate the newbie, promise a land of amazing power.  Most people who are coming to Angular from a jQuery way of thinking run the risk of getting themselves in trouble by performing DOM manipulation outside of directives.  They are so used to the old way of doing things, where an element can be accessed willy-nilly by any piece of client side code that needs it.&lt;/p&gt;
+
+&lt;p&gt;Directives have several different forms but usually they are either completely new HTML elements, or attributes that you can throw on existing elements, to perform some kind of DOM manipulation.  They can have their own scope and they can be reused, which is one of their most useful properties.&lt;/p&gt;
+
+&lt;p&gt;In some ways we are all still fighting our way towards manifesting in reality the Platonic ideal of what directives represent, e.g. I should never have to rewrite a calendar widget if it is already existing, I should just be able to use a &lt;code&gt;&amp;lt;calendar&amp;gt;&amp;lt;/calendar&amp;gt;&lt;/code&gt; element and set properties to customize it the way that I like.  But in other ways this &lt;em&gt;is&lt;/em&gt; approaching reality, especially as Angular grows in popularity and as systems such as Bower become more useful and flexible.&lt;/p&gt;
+
+&lt;p&gt;Directives promise no more spaghetti jQuery code (do they deliver?).  Instead, everything gets broken out into modular components that are far easier to test.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_4&#34;&gt;What about Views?&lt;/h2&gt;
+
+&lt;p&gt;In a lot of ways the &amp;ldquo;view&amp;rdquo; is the same as it&amp;rsquo;s ever been, modulo directives which we have already discussed.  &lt;code&gt;ngView&lt;/code&gt; promises new, snappy navigation, which is exciting.  Views in AngularJS do the same job they always have and they do it well.  Technically I probably should have called this article &amp;ldquo;Angular isn&amp;rsquo;t MVC, it&amp;rsquo;s SDVC&amp;rdquo; but I didn&amp;rsquo;t think it had the same ring to it.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_5&#34;&gt;Controllers&lt;/h2&gt;
+
+&lt;p&gt;Finally we discuss the piece that ties it all together.  The controller.&lt;/p&gt;
+
+&lt;p&gt;Without controllers, directives are useless.  Controllers set properties on &lt;code&gt;$scope&lt;/code&gt; for directives to use.&lt;/p&gt;
+
+&lt;p&gt;Likewise, without controllers, services are useless.  They are just objects for playing with data.  Therefore controllers are like the &amp;ldquo;glue&amp;rdquo; of your application.&lt;/p&gt;
+
+&lt;p&gt;Controllers should be as lean and lightweight as possible.  It makes it easier to see what&amp;rsquo;s going on, and it makes it easier to test them.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_6&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Angular is a new framework and it requires a new way of thinking.  Trying to apply the old patterns, or being inflexible and unwilling to learn about the different components of Angular and how they fit together will get you in trouble.&lt;/p&gt;
+
+&lt;p&gt;Everyone likes jQuery because jQuery is a useful tool.  It is simple and it allows you to build whatever you want.  It isn&amp;rsquo;t very opinionated about the way you do so (in fact it provides you with a lot of options).&lt;/p&gt;
+
+&lt;p&gt;Angular, on the other hand, is like a house.  It already has a framework and a foundation for how to do things, you just have to furnish it.  Trying to use Angular like a hammer will only result in tears.  It is like trying to use a house to build a house.&lt;/p&gt;
+
+&lt;p&gt;I hope that this essay may help to clear some things up to people who are new to Angular.&lt;/p&gt;
+
+&lt;p&gt;Until next week, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fear and Loathing With Golang and AngularJS</title>
+      <link>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
+      <description>
+
+&lt;p&gt;{% img /images/fearandloathing/fearandloathingwithgolangular.jpeg Complete and utter hyperbole. %}&lt;/p&gt;
+
+&lt;p&gt;Recently I&amp;rsquo;ve been building an app to check a web page for broken links using &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; (it&amp;rsquo;s for use with this blog, actually, as well as general public consumption).  It&amp;rsquo;s pretty close to being done, except for a contact form which will allow people to send an e-mail directly to me (which has involved all manner of fun with Go&amp;rsquo;s &lt;a href=&#34;http://golang.org/pkg/net/smtp/&#34;&gt;smtp&lt;/a&gt; library and will most likely be the subject of a future blog post) to make suggestions, send comments, flame me for creating a free tool for them to use, etc.  Though I am generally a huge fan of both of these technologies, I was tearing my hair out over a particular issue which turned out to be solvable by reading the Go source code.  This coincided with the timing of my weekly blog article.  So here I am sharing my frustration and catharsis with you, dear readers.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;What&amp;rsquo;s the rub?&lt;/h1&gt;
+
+&lt;p&gt;The rub has to do with the way that Angular sends HTTP POST requests, the way that Golang handles them, and how these two interact.&lt;/p&gt;
+
+&lt;p&gt;In AngularJS when we want to perform business logic (for example, calling out to a server to get some data to display ) we put that logic inside of a controller.  The controller sets properties on Angular&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt; variable that are accessible from the front end, and vice versa, providing us with two-way data binding.  If you want to make an AJAX call, you inject Angular&amp;rsquo;s &lt;code&gt;$http&lt;/code&gt; service (by passing it into the function where the controller is defined) and use it.  This is a little bit of a change from what most people are used to, which is usually something like &lt;code&gt;jQuery.ajax&lt;/code&gt;, but it&amp;rsquo;s not too unfamiliar.  Since Angular likes you to play exclusively in Anglar-land (in controllers at least), they provide you with this service to make sure that no funny business happens to interfere with Angular&amp;rsquo;s apply-digest cycle.  The syntax is fairly straightforward and looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;function MainCtrl($scope, $http) {
+    $http.get(&#39;/login&#39;, {
+        username: $scope.user,
+        password: $scope.password,
+    })
+    .success(function(data, status, headers, config) {
+        $scope.userLoggedIn = data.isLoginValid;
+    })
+    .error(function(err, status, headers, config) {
+        console.log(&amp;quot;Well, this is embarassing.&amp;quot;);
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This works extremely well with GET requests, so one would expect it to work equally well with POST requests, right?  Maybe.  I had a use case where I was trying to submit form data through &lt;code&gt;$http.post&lt;/code&gt; and things were acting extremely funny.  No matter what I tried, it seemed that I could not retrieve anything on the back end, which in this case is written in Go.&lt;/p&gt;
+
+&lt;p&gt;Normally in Go you can just call &lt;code&gt;request.ParseForm()&lt;/code&gt; in the function that handles HTTP requests for the URI a form gets submitted to, and then the values you are interested in are accessible through &lt;code&gt;request.FormValue(&amp;quot;fieldName&amp;quot;)&lt;/code&gt; calls (&lt;code&gt;request.FormValue&lt;/code&gt; will automatically call &lt;code&gt;request.ParseForm&lt;/code&gt; for you if needed).  Normally it works smooth as silk- so you can imagine my surprise when I couldn&amp;rsquo;t for the life of me pull data out of the HTTP requests I was POSTing with Angular from my makeshift form.  I even upgraded my Go installation to 1.1.2, and still got nothing.  My code was something along the lines of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func emailHandler(w http.ResponseWriter, r *http.Request) {
+    var err error
+    response := map[string]interface{} {
+        &amp;quot;success&amp;quot;: true,
+    }
+    err = r.ParseForm()
+    if err != nil {
+        log.Print(&amp;quot;error parsing form &amp;quot;, err)
+        response[&amp;quot;success&amp;quot;] = false
+    }
+    name := r.FormValue(&amp;quot;yourName&amp;quot;)
+    email := r.FormValue(&amp;quot;yourEmail&amp;quot;)
+    feedback := r.FormValue(&amp;quot;feedback&amp;quot;)
+    go sendMail(name, email, feedback)
+    jsonResponse, err = json.Marshal(response)
+    if err != nil {
+        log.Print(err)
+    }
+    w.Write(jsonResponse)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;So what gives?&lt;/h1&gt;
+
+&lt;p&gt;Some Googling made me painfully aware that I was not the only one with an issue like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/17547227/angular-js-post-request-not-sending-json-data&#34;&gt;Angular JS POST request not sending JSON data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11442632/how-can-i-make-angular-js-post-data-as-form-data-instead-of-a-request-payload&#34;&gt;How can I make angular.js post data as form data instead of a request payload?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/#!msg/angular/5nAedJ1LyO0/4Vj_72EZcDsJ&#34;&gt;How to post application/x-www-form-encoded?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/&#34;&gt;Make AngularJS $http service behave like jQuery.ajax()&lt;/a&gt; (a good blog article detailing this problem)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Most StackOverflow answers suggested modifying stuff in Angular to get this to work (since there&amp;rsquo;s not much you can do about stuff not showing up in &lt;code&gt;$_POST&lt;/code&gt; in PHP, for example), but this left me dissatisfied.  As Ezekiel Victor points out in the aforementioned blog article:&lt;/p&gt;
+
+&lt;blockquote&gt;
+    The difference is in how jQuery and AngularJS serialize and transmit the data. Fundamentally, the problem lies with your server language of choice being unable to understand AngularJS’s transmission natively—that’s a darn shame because AngularJS is certainly not doing anything wrong. By default, jQuery transmits data using &lt;code&gt;Content-Type: x-www-form-urlencoded&lt;/code&gt; and the familiar &lt;code&gt;foo=bar&amp;baz=moe&lt;/code&gt; serialization. AngularJS, however, transmits data using &lt;code&gt;Content-Type: application/json&lt;/code&gt; and &lt;code&gt;{ &#34;foo&#34;: &#34;bar&#34;, &#34;baz&#34;: &#34;moe&#34; }&lt;/code&gt; JSON serialization, which unfortunately some Web server languages—notably PHP—do not unserialize natively.
+&lt;/blockquote&gt;
+
+&lt;p&gt;After poring over the documentation for Go&amp;rsquo;s &lt;code&gt;http.Request&lt;/code&gt; I was still stumped on how to make a basic &lt;code&gt;$http.post&lt;/code&gt; call work in Go without modifying something on the client side.  &lt;code&gt;request.Body&lt;/code&gt; didn&amp;rsquo;t seem to have anything useful, and calls to &lt;code&gt;request.FormValue&lt;/code&gt; were definitely not working.  The server, however, was definitely receiving a JSON payload, as dumping the request made clear (I&amp;rsquo;ve removed the &lt;code&gt;*/*&lt;/code&gt; value from the &lt;code&gt;Accept&lt;/code&gt; header so the request will play nice with the auto-pretty-printing of my blog):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;POST /email HTTP/1.1
+Host: localhost:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
+Content-Length: 68
+Accept: application/json, text/plain
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
+Origin: http://localhost:8000
+Referer: http://localhost:8000/
+
+{&amp;quot;yourName&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;yourEmail&amp;quot;:&amp;quot;John.Smith@gmail.com&amp;quot;,&amp;quot;feedback&amp;quot;:&amp;quot;I really like your new webapp!&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Let&amp;rsquo;s Go Digging In The request.go Source!&lt;/h1&gt;
+
+&lt;p&gt;Not being able to receive the values with &lt;code&gt;request.FormValue&lt;/code&gt; was one thing, but I also could not successfully deserialize the JSON payload into a Go struct- the payload was seemingly nowhere to be found in the &lt;code&gt;Request&lt;/code&gt; struct provided to my handler.  I could not believe that the Go language designers, who are otherwise very meticulous and reliable, had overlooked something like &lt;code&gt;Content-Type: application/json&lt;/code&gt; handling.  But checking out the source for &lt;code&gt;Request.ParseForm&lt;/code&gt; and &lt;code&gt;Request.parsePostForm&lt;/code&gt; led me to my &amp;ldquo;aha&amp;rdquo; moment.  The source for &lt;code&gt;Request.ParseForm&lt;/code&gt; (from &lt;a href=&#34;http://golang.org/src/pkg/net/http/request.go?m=text&amp;amp;ModPagespeed=noscript&#34;&gt;golang.org&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// ParseForm parses the raw query from the URL and updates r.Form.
+//
+// For POST or PUT requests, it also parses the request body as a form and
+// put the results into both r.PostForm and r.Form.
+// POST and PUT body parameters take precedence over URL query string values
+// in r.Form.
+//
+// If the request Body&#39;s size has not already been limited by MaxBytesReader,
+// the size is capped at 10MB.
+//
+// ParseMultipartForm calls ParseForm automatically.
+// It is idempotent.
+func (r *Request) ParseForm() error {
+    var err error
+    if r.PostForm == nil {
+        if r.Method == &amp;quot;POST&amp;quot; || r.Method == &amp;quot;PUT&amp;quot; {
+            r.PostForm, err = parsePostForm(r)
+        }
+        if r.PostForm == nil {
+            r.PostForm = make(url.Values)
+        }
+    }
+    if r.Form == nil {
+        if len(r.PostForm) &amp;gt; 0 {
+            r.Form = make(url.Values)
+            copyValues(r.Form, r.PostForm)
+        }
+        var newValues url.Values
+        if r.URL != nil {
+            var e error
+            newValues, e = url.ParseQuery(r.URL.RawQuery)
+            if err == nil {
+                err = e
+            }
+        }
+        if newValues == nil {
+            newValues = make(url.Values)
+        }
+        if r.Form == nil {
+            r.Form = newValues
+        } else {
+            copyValues(r.Form, newValues)
+        }
+    }
+    return err
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The relevant bit for us is that call to &lt;code&gt;parsePostForm&lt;/code&gt; if &lt;code&gt;r.Method&lt;/code&gt; is &lt;code&gt;&amp;quot;POST&amp;quot;&lt;/code&gt; (since it is in our case).  The code for &lt;code&gt;parsePostForm&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func parsePostForm(r *Request) (vs url.Values, err error) {
+    if r.Body == nil {
+        err = errors.New(&amp;quot;missing form body&amp;quot;)
+        return
+    }
+    ct := r.Header.Get(&amp;quot;Content-Type&amp;quot;)
+    ct, _, err = mime.ParseMediaType(ct)
+    switch {
+    case ct == &amp;quot;application/x-www-form-urlencoded&amp;quot;:
+        var reader io.Reader = r.Body
+        maxFormSize := int64(1&amp;lt;&amp;lt;63 - 1)
+        if _, ok := r.Body.(*maxBytesReader); !ok {
+            maxFormSize = int64(10 &amp;lt;&amp;lt; 20) // 10 MB is a lot of text.
+            reader = io.LimitReader(r.Body, maxFormSize+1)
+        }
+        b, e := ioutil.ReadAll(reader)
+        if e != nil {
+            if err == nil {
+                err = e
+            }
+            break
+        }
+        if int64(len(b)) &amp;gt; maxFormSize {
+            err = errors.New(&amp;quot;http: POST too large&amp;quot;)
+            return
+        }
+        vs, e = url.ParseQuery(string(b))
+        if err == nil {
+            err = e
+        }
+    case ct == &amp;quot;multipart/form-data&amp;quot;:
+        // handled by ParseMultipartForm (which is calling us, or should be)
+        // TODO(bradfitz): there are too many possible
+        // orders to call too many functions here.
+        // Clean this up and write more tests.
+        // request_test.go contains the start of this,
+        // in TestRequestMultipartCallOrder.
+    }
+    return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Initially I thought that the source code for this function might need to be modified to add another case to the switch block to handle the case where the content type is &lt;code&gt;application/json&lt;/code&gt;, but then I had a moment of insight.&lt;/p&gt;
+
+&lt;p&gt;I shouldn&amp;rsquo;t be trying to parse a form at all!  Cue facepalm, and guilt of hours spent solving this issue (at least I&amp;rsquo;ll know better next time).  My request payload wasn&amp;rsquo;t encoded as a form, it was encoded as JSON.  If I just took out the call to &lt;code&gt;request.ParseForm&lt;/code&gt;, I probably would have usable data in &lt;code&gt;request.Body&lt;/code&gt; that I could &lt;code&gt;Demarshal&lt;/code&gt;.  Indeed, this proved to be the case.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;It seems that the issue in this case was mostly &lt;a href=&#34;http://en.wikipedia.org/wiki/User_error&#34;&gt;PEBKAC&lt;/a&gt; (naturally).  I think that &lt;code&gt;ParseForm&lt;/code&gt; is doing the right thing not handling requests with &lt;code&gt;Content-Type: application/json&lt;/code&gt; in &lt;code&gt;ParseForm&lt;/code&gt; (since they&amp;rsquo;re not really form submissions), but it would be nice if there were some kind of API to handle this directly from the &lt;code&gt;Request&lt;/code&gt; (though the JSON deserialization functions provided by &lt;code&gt;encoding/json&lt;/code&gt; work really well), or this was better documented in some place (partially why I wanted to write this article).  I&amp;rsquo;d be curious to talk to some of the Go language maintainers about this, and may shoot an e-mail around.&lt;/p&gt;
+
+&lt;p&gt;At any rate, it definitely goes to show that a knowledge of HTTP basics is helpful, as I was equating form submissions with POST requests like a newbie.  Perhaps there&amp;rsquo;s been too much developing for me over this Thanksgiving weekend :)&lt;/p&gt;
+
+&lt;p&gt;Originally I monkey patched a fix in Angular&amp;rsquo;s &lt;code&gt;$httpProvider&lt;/code&gt; config to work around this issue.  However, removing the call to &lt;code&gt;ParseForm&lt;/code&gt; from my server side code seems to be a much cleaner solution.  Now my Go program can accept Angular POST requests like a charm.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading, and I&amp;rsquo;ll catch you next week.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

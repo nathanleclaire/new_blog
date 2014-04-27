@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Pitfall on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/pitfall/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>5 AngularJS Antipatterns &amp; Pitfalls</title>
+      <link>http://localhost:1313/_posts/2014-04-19-5-angularjs-antipatterns-and-pitfalls</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-04-19-5-angularjs-antipatterns-and-pitfalls</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The Angular Jungle&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/angular-antipatterns/jungle.jpg %}&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; is a big JavaScript framework and it gives you just enough rope to hang yourself with.  I&amp;rsquo;ve written a lot about it in this blog and really hope that I have made a noteworthy impact on improving the general availability of resources.  I&amp;rsquo;ve been working on a project using AngularJS at my dayjob lately and noticed some antipatterns and pitfalls that people fall into when they are new to Angular (myself included, so they&amp;rsquo;re based on my own sweat and blood learning the framework) and I&amp;rsquo;ve consolidated some of them here for you to peruse.  Hopefully I&amp;rsquo;ll save you some pain.&lt;/p&gt;
+
+&lt;p&gt;They are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Not having a dot in your &lt;code&gt;ng-model&lt;/code&gt; (or other places you need it!)&lt;/li&gt;
+&lt;li&gt;Extreme overuse of event broadcasting and listening (&lt;code&gt;$emit&lt;/code&gt;, &lt;code&gt;$broadcast&lt;/code&gt;, &lt;code&gt;$on&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Too much stuff in controllers&lt;/li&gt;
+&lt;li&gt;Misunderstanding or misusing isolate scope&lt;/li&gt;
+&lt;li&gt;Using the outside world instead of doing things the Angular way&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;1. Not having a dot in your &lt;code&gt;ng-model&lt;/code&gt; (or other places you need it!)&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/angular-antipatterns/george.jpg %}&lt;/p&gt;
+
+&lt;p&gt;Angular&amp;rsquo;s &lt;a href=&#34;https://docs.angularjs.org/guide/directive&#34;&gt;directives&lt;/a&gt; provide fantastic flexibility and an amazing way to write HTML that describes its interactive behavior in a clean and clear fashion.  They provide a way to create &lt;a href=&#34;https://egghead.io/lessons/angularjs-understanding-isolate-scope&#34;&gt;isolate scope&lt;/a&gt; to promote reusability and creating a directive that uses this looks something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;angular.module(&#39;myApp&#39;).directive(&#39;myDir&#39;, function () {
+  return  {
+    restrict: &#39;E&#39;,
+    scope: {
+      aProperty: &#39;=&#39;,
+      bProperty: &#39;&amp;amp;&#39;
+    },
+    // and so on...
+  };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above definition &lt;code&gt;aProperty&lt;/code&gt; gets passed in through an attribute (normalized to &lt;code&gt;a-property&lt;/code&gt;) and creates a two-way data binding between the parent scope and the child scope.  That means if you change one, the other will be updated to match it and vice versa.  However, because of the way that JavaScript&amp;rsquo;s prototypal inheritance works, sometimes this may not work &amp;ldquo;magically&amp;rdquo; as you would expect.  I will dicuss a particular situation with &lt;code&gt;ng-model&lt;/code&gt; here but know that understanding how this all ties together will save you lots of tears due to &lt;code&gt;ng-switch&lt;/code&gt;, &lt;code&gt;ng-repeat&lt;/code&gt;, etc. creating their own scopes (and &amp;ldquo;shadow&amp;rdquo; properties in the prototype chain) that throw off the way you might be expecting things to work.&lt;/p&gt;
+
+&lt;p&gt;In particular, when you have an &lt;code&gt;ng-model&lt;/code&gt; bound to a property on &lt;code&gt;$scope&lt;/code&gt; which was originally passed in using &lt;code&gt;=&lt;/code&gt; in your child directive:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;“Whenever you have ng-model there’s gotta be a dot in there somewhere. If you don’t have a dot, you’re doing it wrong.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Words from the mouth of Miško himself.&lt;/p&gt;
+
+&lt;p&gt;This is because &lt;em&gt;primitives&lt;/em&gt; (String, Number, etc.) passed in to a child scope create their own &amp;ldquo;shadow&amp;rdquo; property in the child scope, which hides the original property on the parent scope due to the way that JavaScript prototypes work (the prototype chain will not need to be consulted to determine the value of &lt;code&gt;foo&lt;/code&gt; if &lt;code&gt;foo&lt;/code&gt; is not an &lt;code&gt;Object&lt;/code&gt; or &lt;code&gt;Array&lt;/code&gt;).  If they are bound using &lt;code&gt;=&lt;/code&gt; and they are objects, however, &lt;code&gt;foo.bar&lt;/code&gt; &lt;em&gt;will&lt;/em&gt; be bound correctly to the original property in the parent scope.&lt;/p&gt;
+
+&lt;p&gt;Understanding this will save you soooo much pain.  Seriously, if you&amp;rsquo;re serious about Angular at all, take the time to read the offical article I link at the end of this section.  Then read it again.&lt;/p&gt;
+
+&lt;p&gt;I suspect that a misunderstanding of this (communicating effectively from scope to scope up and down the prototype chain) is at least partially what contributes to people digging themselves further and further into a hole by misusing event broadcasting/emitting/listening and isoalte scope, as detailed later on in this article.  When things spiral out of control in this manner, it can really be pure torture.  You&amp;rsquo;re fighting against the framework, and nobody wins in that battle, least of all the people who have to maintain your code.&lt;/p&gt;
+
+&lt;p&gt;The point is, most people new to Angular (and even people who have been doing it for a while) expect this to work :&lt;/p&gt;
+
+&lt;p&gt;{% raw %}
+```
+&lt;p&gt; You have {{dollars}} dollars &lt;/p&gt;
+&lt;crazy-awesome-widget ng-repeat=&#34;account in accounts&#34; info=&#34;dollars&#34;&gt;
+&lt;/crazy-awesome-widget&gt;&lt;/p&gt;
+
+&lt;p&gt;
+angular.module(&amp;lsquo;dotDemo&amp;rsquo;).controller(&amp;lsquo;OuterCtrl&amp;rsquo;, function($scope) {
+  $scope.dollars = 5;
+  $scope.accounts = [&amp;ldquo;Tom&amp;rdquo;, &amp;ldquo;Bobby&amp;rdquo;, &amp;ldquo;Sally&amp;rdquo;];
+});
+angular.module(&amp;lsquo;dotDemo&amp;rsquo;).directive(&amp;lsquo;crazyAwesomeWidget&amp;rsquo;, function() {
+  return {
+    restrict: &amp;lsquo;E&amp;rsquo;,
+    template: &amp;lsquo;&lt;input type=&#34;text&#34; ng-model=&#34;info&#34; /&gt;&amp;rsquo;,
+    scope: {
+      info: &amp;lsquo;=&amp;rsquo;
+    }
+  };
+});
+
+```
+{% endraw %}&lt;/p&gt;
+
+&lt;p&gt;Can you spot the bug?  If you&amp;rsquo;ve been paying attention, you should be able to pick it out easily.&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/ii8xZoOIRcWw4LlNMayf/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Come on, intone it with me.  &lt;em&gt;I need a dot. I need a dot. I need a dot.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above code the input boxes won&amp;rsquo;t update the property in the parent scope.  The prototype chain creates a new property &lt;code&gt;info&lt;/code&gt; which is unique to the child scope instead of bound to the parent scope.  It won&amp;rsquo;t work this way.  You need an object.  The code should look like this instead:&lt;/p&gt;
+
+&lt;p&gt;{% raw %}
+```
+&lt;p&gt; You have {{customerData.dollars}} dollars &lt;/p&gt;
+&lt;crazy-awesome-widget ng-repeat=&#34;account in accounts&#34; info=&#34;customerData&#34;&gt;
+&lt;/crazy-awesome-widget&gt;&lt;/p&gt;
+
+&lt;p&gt;
+angular.module(&amp;lsquo;dotDemo&amp;rsquo;).controller(&amp;lsquo;OuterCtrl&amp;rsquo;, function($scope) {
+  $scope.customerData = {
+    dollars: 5
+  };
+  $scope.accounts = [&amp;ldquo;Tom&amp;rdquo;, &amp;ldquo;Bobby&amp;rdquo;, &amp;ldquo;Sally&amp;rdquo;];
+});
+angular.module(&amp;lsquo;dotDemo&amp;rsquo;).directive(&amp;lsquo;crazyAwesomeWidget&amp;rsquo;, function() {
+  return {
+    restrict: &amp;lsquo;E&amp;rsquo;,
+    template: &amp;lsquo;&lt;input type=&#34;text&#34; ng-model=&#34;info.dollars&#34; /&gt;&amp;rsquo;,
+    scope: {
+      info: &amp;lsquo;=&amp;rsquo;
+    }
+  };
+});
+
+```
+{% endraw %}&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/IVkqcNVhwQXd1zQ9nZQ2/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Boom, synchronization from parent scope =&amp;gt; isolated child scopes and back again.&lt;/p&gt;
+
+&lt;p&gt;Big shout out to Reddit user &lt;a href=&#34;http://www.reddit.com/user/Commentares&#34;&gt;Commentares&lt;/a&gt; who caught a flaw in the original implementation of my first example in the first draft of this article.&lt;/p&gt;
+
+&lt;p&gt;See for reference:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jimhoskins.com/2012/12/14/nested-scopes-in-angularjs.html&#34;&gt;This excellent article by Jim Hoskins&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/angular/angular.js/wiki/Understanding-Scopes&#34;&gt;This aforementioned Angular documentation gettin&amp;rsquo; mad deep about scopes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;2. Extreme overuse of event broadcasting and listening (&lt;code&gt;$emit&lt;/code&gt;, &lt;code&gt;$broadcast&lt;/code&gt;, &lt;code&gt;$on&lt;/code&gt;)&lt;/h1&gt;
+
+&lt;p&gt;Everybody loves to hate on GOTOs.  Poor little GOTOs.  All they ever wanted to do was help control program execution flow and branching, and they get the Rodney Dangerfield treatment.  They&amp;rsquo;re reviled with that sort of knee-jerk reaction that only programmers can revile something with.  You know the type.  They&amp;rsquo;re the ones who got burned by &lt;code&gt;git rebase&lt;/code&gt; one time (it was their own fault) and spend way too much effort and energy spreading FUD about rebases.  But I digress.  My point is, there&amp;rsquo;s this Angular antipattern I&amp;rsquo;ve seen and fallen into, where &lt;code&gt;$scope.$emit&lt;/code&gt; and &lt;code&gt;$scope.$broadcast&lt;/code&gt; have become the new GOTO.  Except that it&amp;rsquo;s shiny and new and Angular-ey, so everybody gives it a pass.  &lt;code&gt;$scope.$watch&lt;/code&gt; can kind of be abused in the same way, but the others are slightly easier to pick on.&lt;/p&gt;
+
+&lt;p&gt;I really feel that you should keep manual event broadcasting and catching out of your code if possible.  It doesn&amp;rsquo;t usually do a whole lot of good and confuses the hell out of the people who have to maintain your code (including you!).  The problem is thus:  Let&amp;rsquo;s say you have something going wacky in a &lt;code&gt;$scope.$on&lt;/code&gt;.  You set a breakpoint in the defined callback function that runs when that &lt;code&gt;$scope.$on&lt;/code&gt; catches its defined event.  OK, now what?  You have no idea where that event came from or what its intended purpose is, and if it&amp;rsquo;s wreaking all sorts of unintended havoc you&amp;rsquo;re in big trouble.  Usually this can be avoided by careful use of services and proper scope inheritance.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;3. Too much stuff in controllers&lt;/h1&gt;
+
+&lt;p&gt;It&amp;rsquo;s unfortunate that I have to point this one out, but as I&amp;rsquo;ve personally fallen into this pitfall especially when first getting started with Angular, I suppose I can give people a free pass on making this mistake once or twice.  After that, however, they should definitely learn.&lt;/p&gt;
+
+&lt;p&gt;Your controllers should be lean.  Say it with me.&lt;/p&gt;
+
+&lt;p&gt;My controllers should be lean.&lt;/p&gt;
+
+&lt;p&gt;My controllers should be lean.&lt;/p&gt;
+
+&lt;p&gt;My controllers &lt;em&gt;are&lt;/em&gt; lean.&lt;/p&gt;
+
+&lt;p&gt;This means that absolutely everything which can be stripped out of them, should be.  They exist to coordinate the delicate dance between your other resources (services and directives).&lt;/p&gt;
+
+&lt;p&gt;For instance, I came across a line introduced in one of our controllers that looked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(&#39;body&#39;).attr(&#39;data-state&#39;, &#39;someNewState&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This was my reaction upon finding this code in this controller:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/angular-antipatterns/hulk.gif %}&lt;/p&gt;
+
+&lt;p&gt;Note:  My actual reaction was way more passive aggressive (wrote about it in my &lt;em&gt;blog&lt;/em&gt;!  Showed that guy).&lt;/p&gt;
+
+&lt;p&gt;In Angular, DOM manipulation is done inside directives.  NOT controllers.  DOM manipulation is done inside directives.  Every aspiring Angular programmer should have this branded into his or her brain.&lt;/p&gt;
+
+&lt;p&gt;Other common things that slip into controllers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ajax (sometimes disguised in a half-baked abstraction) - this should be done in services&lt;/li&gt;
+&lt;li&gt;Tangled mess of event handling as discussed in last section&lt;/li&gt;
+&lt;li&gt;Things that are basically service or factory logic, but eh I&amp;rsquo;m too lazy to move this code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Don&amp;rsquo;t do it.  If you keep your controllers lean and small they will reward you with readability and ease of debugging.  If you let them spiral out of control you will be punished unceremoniously.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;4. Misunderstanding or misusing isolate scope&lt;/h1&gt;
+
+&lt;p&gt;Isolate scope is really nice.  It prevents directives from just accessing / modifying the parent scope willy-nilly, opening the door to all kinds of bugs associated with global-ish scope, and promotes reusability.  But it&amp;rsquo;s important to realize that this is the point of isolate scope.  Consequently, if you&amp;rsquo;re passing a bunch of properties into your directive&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt;, and then cascading them downwards through a variety of child scopes, you are probably doing something wrong.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve seen this a bit.  If you are passing a bunch of information down to your directive&amp;rsquo;s scope, either it should be inheriting by default (in which case you don&amp;rsquo;t want isolate scope), or you should bundle the properties that you can together in an object or two to keep the &lt;code&gt;scope&lt;/code&gt; definition nice and clean and promote readability of the HTML.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_5&#34;&gt;5. Using the outside world instead of doing things the Angular way&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/angular-antipatterns/but-computers.png Aren&amp;rsquo;t we all nowadays? %}&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s really tempting, especially when first learning Angular, and directives in particular, to just write jQuery code like we always have that happens to be wrapped in an Angular directive.  While this is still probably better than rolling with no framework at all and creating a tangled mess, it indicates a basic ungrok of the Angular way.&lt;/p&gt;
+
+&lt;p&gt;Things should be done in Angular, when they can.  Angular provides so much niceness in the form of built-in directives, services (&lt;code&gt;$window&lt;/code&gt;, &lt;code&gt;$timeout&lt;/code&gt;, &lt;code&gt;$http&lt;/code&gt; et al. wrap these things for you so you don&amp;rsquo;t have to worry about accidentally interfering with Angular&amp;rsquo;s internals!) that we should only reach for custom solutions when we have to (and believe me, you will - just think carefully before doing so).  Just wrapping jQuery code in a directive doesn&amp;rsquo;t do us any good, and creates complications when we need to start doing stuff like chucking &lt;code&gt;$scope.$apply&lt;/code&gt; into things.  So think things through, and do them the Angular way.&lt;/p&gt;
+
+&lt;p&gt;Likewise dependencies that you had before (modules you are relying on etc.) should be refactored into e.g. factories for increased ease of use and testability.  If you have the time to use Angular into your project, you have the time to do this too.  Angular will reward you with layers of increased richness.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_6&#34;&gt;Fin&lt;/h1&gt;
+
+&lt;p&gt;I really hope that this article helps people avoid these bad behaviors, or at least see them when they come across them and refactor them into something better.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.  And &lt;a href=&#34;http://nathanleclaire.com&#34;&gt;consider subscribing to my mailing list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nate&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

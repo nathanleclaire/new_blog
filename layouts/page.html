@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<!-- START OF _layouts/page.html -->
+<article>
+<header>
+	{{ if .Title }}
+			<h1 class="center">{{ .Title }}</h1>
+	{{ end }}
+</header>
+{{ .Content }}
+</article>
+<!-- END OF _layouts/page.html -->

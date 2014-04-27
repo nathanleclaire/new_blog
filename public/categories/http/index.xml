@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Http on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/http/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>4 Smooth AngularJS Application Tips</title>
+      <link>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</guid>
+      <description>
+
+&lt;p&gt;Anyone who follows my blog even a little closely can probably see that I &amp;lt;3 AngularJS:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/&#34;&gt;How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nathanleclaire.com/blog/2013/12/07/dont-fear-directives-in-angular-dot-js/&#34;&gt;Don’t Fear Directives In AngularJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nathanleclaire.com/blog/2013/11/30/fear-and-loathing-with-golang-and-angular-dot-js/&#34;&gt;Fear and Loathing With Golang and AngularJS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As I&amp;rsquo;ve learned more about the framework, I&amp;rsquo;ve come to appreciate many of the design decisions in spite of their initial (beastly) learning curve.  For example, directives provide an absurd amount of flexibility and expressiveness in writing declarative HTML that is unmatched by jQuery-style imperative DOM twiddling.  But the learning curve on them, and other bits of Angular, is weird:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/smooth-angular-tips/js-learning-curves.jpeg Hearkens to the Emacs graph of yore. %}&lt;/p&gt;
+
+&lt;p&gt;Some things that should be pretty straightforward, like navigating from tab to tab in single-page web applications, can be a little confusing to cough up in code &lt;em&gt;100% GUARANTEED TO BE CORRECT &amp;#0153;&lt;/em&gt;.  So here&amp;rsquo;s a blog article with some cool tips to help you out.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Highlighting the active tab for the view&lt;/h1&gt;
+
+&lt;p&gt;I touched on this a little bit in my unit testing article.  In many applications (single-page ones especially) you&amp;rsquo;ll want to assign or get rid of classes on tabs or other navigation features to help the user understand where they&amp;rsquo;re navigating to or from (see Bootstrap&amp;rsquo;s &lt;code&gt;.active&lt;/code&gt; class).  How do we set these conditionally in Angular when we are using partials, and the default routing solution rednering in the &lt;code&gt;ng-view&lt;/code&gt; directive?  Simple.  We can use the &lt;code&gt;$location&lt;/code&gt; service and declare an &lt;code&gt;ng-class&lt;/code&gt; attribute that depends on the result of a simple &lt;code&gt;$scope&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;In the controller:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.controller(&#39;NavCtrl&#39;, function($scope, $location) {
+    $scope.isActive = function(route) {
+        return route === $location.path();
+    };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the view:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&amp;quot;nav navbar-nav&amp;quot;&amp;gt;
+    &amp;lt;li ng-class=&amp;quot;{active: isActive(&#39;/profile&#39;)}&amp;quot;&amp;gt;
+        &amp;lt;a href=&amp;quot;#/profile&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-dashboard&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; You&amp;lt;/a&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li ng-class=&amp;quot;{active: isActive(&#39;/find&#39;)}&amp;quot;&amp;gt;
+        &amp;lt;a href=&amp;quot;#/find&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-bar-chart-o&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Find Friends&amp;lt;/a&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li ng-class=&amp;quot;{active: isActive(&#39;/network&#39;)}&amp;quot;&amp;gt;
+        &amp;lt;a href=&amp;quot;#/network&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-table&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Network &amp;lt;/a&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li ng-class=&amp;quot;{active: isActive(&#39;/chat&#39;)}&amp;quot;&amp;gt;
+        &amp;lt;a href=&amp;quot;#/chat&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fa fa-edit&amp;quot;&amp;gt;&amp;lt;/i&amp;gt; Chat Room &amp;lt;/a&amp;gt;
+    &amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Plunker demo of this concept:&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/Yci9oM/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Very useful and IMO, very clean.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Abstracting business / data providing logic into services&lt;/h1&gt;
+
+&lt;p&gt;This is more of an architecture tip than a general solution for common problems, but with my &lt;a href=&#34;http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/&#34;&gt;recent article on unit testing Angular applications&lt;/a&gt; a commenter on Hacker News pointed out that for a variety of reasons I should be putting more of my functions / code that retrieves data to be used in &lt;code&gt;$scope&lt;/code&gt; by the controller into services, freeing the controller to just &amp;ldquo;glue it all together&amp;rdquo; (this also makes mocking things like AJAX calls a lot easier by avoiding &lt;code&gt;$httpBackend&lt;/code&gt;).  I hadn&amp;rsquo;t really used services very much and all of the talk of factories etc., as well as a general dearth of actual examples in the official documentation on how or why to use them, left me a little bit hesitant to jump right in.  He was kind enough to provide some example code and it made things a bit more lucid for me.  Hopefully the following explanation will help to explain the use case for services as well as provide an illuminating example.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say that you want to keep track of some data which multiple controllers can access.  Perhaps it is weather data, preloaded into the page upon load (we&amp;rsquo;ll cover using AJAX in this case later in the article) and you need to access it in the user&amp;rsquo;s menu bar at the top of the page (to display the current temperature) as well as in a view frame for visualizing complex weather data over time.  We could attempt to jerry-rig together a solution for communicating this from controller to controller using Angular&amp;rsquo;s &lt;a href=&#34;http://docs.angularjs.org/api/ng.$rootScope.Scope&#34;&gt;event system&lt;/a&gt; or we could just chuck the aggregate data into &lt;code&gt;$rootScope&lt;/code&gt;, but both of those situations are highly awkward from a standpoint of both future and present development.  The solution that Angular provides us for usecases where we need to share (possibly mutable) data between controllers, or interact with things outside of Angular-land (other than the DOM, which is what directives are used for) is to use services.  Services are singleton objects (only instantiated once) that serve as this kind of &amp;ldquo;bridge&amp;rdquo; or interface from Angular to the outside world or between different parts of your Angular application.  In case you&amp;rsquo;re unfamiliar, services are usually created using the &lt;code&gt;factory&lt;/code&gt; method on your application module and injected into controllers for use like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.factory(&#39;weatherService&#39;, function() {
+    var weatherData = window.jsObjFromBackend.weather.data;
+    return {
+        // default to A2 Michigan
+        state : &#39;MI&#39;,
+        city: &#39;Ann Arbor&#39;,
+        getTemperature : function() {
+            return weatherData[this.state][this.city].temperature;
+        },
+
+        setCity : function(city) {
+            this.city = city;
+        },
+
+        setState : function(state) {
+            this.state = state;
+        } 
+    };
+});
+app.controller(&#39;MainCtrl&#39;, function(weatherService) {
+    $scope.temperature = weatherService.getTemperature();   
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can use them in several controllers and they will save you the headache of trying to sync up data over multiple controllers.  They are also a great place to store &lt;code&gt;AWKWARD_CONSTANT_THAT_WOULD_OTHERWISE_BE_GLOBAL&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Retaining state when switching from view to view&lt;/h1&gt;
+
+&lt;p&gt;Services also can save you a potential history headache when navigating from view to view.  If you have some kind of state in one view that you want to be preserved so you can navigate to another view, then back to the original view intact (instead of re-loading the partial which is Angular&amp;rsquo;s default behavior), you will find this to be a very handy use case for a service.&lt;/p&gt;
+
+&lt;p&gt;For instance, if you wanted to keep track of where a user had scrolled in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element with its &lt;code&gt;overflow&lt;/code&gt; propert(y|ies) set to &lt;code&gt;scroll&lt;/code&gt;, you could use a combination of a service and a directive to maintain this state.  We will keep track of where the user has scrolled in a service, and coordinate adjusting the element back to that &lt;code&gt;scrollTop&lt;/code&gt; state in the &lt;code&gt;link&lt;/code&gt; function of the directive (you can inject services into directives much like you inject them into controllers).&lt;/p&gt;
+
+&lt;p&gt;Our service is simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.factory(&#39;rememberService&#39;, function() {
+    return {
+        scrollTop: undefined
+    };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our directive does a little bit more:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.directive(&#39;scroller&#39;, function($timeout, rememberService) {
+    return {
+        restrict: &#39;A&#39;, // this gets tacked on to an existing &amp;lt;div&amp;gt;
+        scope: {},
+        link: function(scope, elm, attrs) {
+            var raw = elm[0];  // get raw element object to access its scrollTop property
+            
+            elm.bind(&#39;scroll&#39;, function() {
+                // remember where we are
+                rememberService.scrollTop = raw.scrollTop;
+            });
+
+            // Need to wait until the digest cycle is complete to apply this property change to the element.
+            $timeout(function() {
+                raw.scrollTop = rememberService.scrollTop;
+            });
+        }
+    };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We attach it to the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; we want to affect like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;scroll-thru-me&amp;quot; scroller&amp;gt;
+ &amp;lt;div id=&amp;quot;lots-of-stuff&amp;quot;&amp;gt;
+    . . .
+ &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The element will render in the correct &lt;code&gt;scrollTop&lt;/code&gt; location.  Obviously this service can be made more complex if neccesary to coordinate maintaining state in a large application.&lt;/p&gt;
+
+&lt;p&gt;The following plunker, a modified version of the first plunker on this page, demonstrates the idea.  Try navigating to tab 2, scrolling around a bit, travelling back to view 1 and then back to view 2 yet again.  As you can see, the state of where the user has scrolled to is retained.&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/3ozt9s/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Making AJAX calls from services&lt;/h1&gt;
+
+&lt;p&gt;So what if you want to use Angular&amp;rsquo;s &lt;code&gt;$http&lt;/code&gt; service to retrieve or set some data on the server, and interact with it from a controller?  We know by now that we should be using services to perform this kind of data-getting, but how do we deal with this asynchrony?  Doing so is not too painful, we simply return the &lt;code&gt;promise&lt;/code&gt; Angular gives us when we make an AJAX call, and use the &lt;code&gt;then&lt;/code&gt; method to define our callback in the controller.  A simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.factory(&#39;githubService&#39;, function($http) {
+    var GITHUB_API_ENDPOINT = &#39;https://api.github.com&#39;;
+    return {
+        getUserInfo: function(username) {
+            return $http.get(GITHUB_API_ENDPOINT + &#39;/users/&#39; + username);
+        }
+    }   
+});  
+
+app.controller(&#39;MainCtrl&#39;, function($scope, githubService) {
+    // assuming $scope.username is set with ng-model
+    githubService.getUserInfo($scope.username).then(function(data) {
+        $scope.userInfo = data;
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But what if you want the service to take care of some more stuff (e.g. parsing the response for the desired data) for the controller so they don&amp;rsquo;t have to mess with all that business logic?  As an example, note that the response from &lt;code&gt;&#39;https://api.github.com/users/nathanleclaire&#39;&lt;/code&gt; returns&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;login&amp;quot;: &amp;quot;nathanleclaire&amp;quot;,
+  &amp;quot;id&amp;quot;: 1476820,
+  &amp;quot;avatar_url&amp;quot;: &amp;quot;https://gravatar.com/avatar/3dc6ac660128ff3640413d4036fed744?d=https%3A%2F%2Fidenticons.github.com%2F32974b06cb69bfa6e7331cd4a26dc033.png&amp;amp;r=x&amp;quot;,
+  &amp;quot;gravatar_id&amp;quot;: &amp;quot;3dc6ac660128ff3640413d4036fed744&amp;quot;,
+  &amp;quot;url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire&amp;quot;,
+  &amp;quot;html_url&amp;quot;: &amp;quot;https://github.com/nathanleclaire&amp;quot;,
+  &amp;quot;followers_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/followers&amp;quot;,
+  &amp;quot;following_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/following{/other_user}&amp;quot;,
+  &amp;quot;gists_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/gists{/gist_id}&amp;quot;,
+  &amp;quot;starred_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/starred{/owner}{/repo}&amp;quot;,
+  &amp;quot;subscriptions_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/subscriptions&amp;quot;,
+  &amp;quot;organizations_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/orgs&amp;quot;,
+  &amp;quot;repos_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/repos&amp;quot;,
+  &amp;quot;events_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/events{/privacy}&amp;quot;,
+  &amp;quot;received_events_url&amp;quot;: &amp;quot;https://api.github.com/users/nathanleclaire/received_events&amp;quot;,
+  &amp;quot;type&amp;quot;: &amp;quot;User&amp;quot;,
+  &amp;quot;site_admin&amp;quot;: false,
+  &amp;quot;name&amp;quot;: &amp;quot;Nathan LeClaire&amp;quot;,
+  &amp;quot;company&amp;quot;: &amp;quot;Systems In Motion&amp;quot;,
+  &amp;quot;blog&amp;quot;: null,
+  &amp;quot;location&amp;quot;: &amp;quot;Ann Arbor&amp;quot;,
+  &amp;quot;email&amp;quot;: null,
+  &amp;quot;hireable&amp;quot;: false,
+  &amp;quot;bio&amp;quot;: null,
+  &amp;quot;public_repos&amp;quot;: 18,
+  &amp;quot;public_gists&amp;quot;: 7,
+  &amp;quot;followers&amp;quot;: 12,
+  &amp;quot;following&amp;quot;: 9,
+  &amp;quot;created_at&amp;quot;: &amp;quot;2012-02-26T23:19:45Z&amp;quot;,
+  &amp;quot;updated_at&amp;quot;: &amp;quot;2014-01-04T23:01:51Z&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There&amp;rsquo;s quite a bit of information here, and with more complex API calls response will be full of nested objects and arrays.  What if we just wanted to get the &lt;code&gt;avatar_url&lt;/code&gt; with &lt;code&gt;githubService.getUserAvatarUrl(username)&lt;/code&gt; and didn&amp;rsquo;t care about any of the other stuff?  We can use promise chaining to take care of this logic in the service.  Whatever is returned from the callback on the &lt;code&gt;then&lt;/code&gt; method which has been invoked on the result of our &lt;code&gt;$http.get()&lt;/code&gt; call (a promise object) will be passed to the callback function on the controller promise&amp;rsquo;s &lt;code&gt;then&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.factory(&#39;githubService&#39;, function($http, $q) {
+    var GITHUB_API_ENDPOINT = &#39;https://api.github.com&#39;;
+    return {
+        getUserAvatarUrl: function(username) {
+            return $http.get(GITHUB_API_ENDPOINT + &#39;/users/&#39; + username).then(function(res) {
+                // Though our return value is simple here, it could easily involve searching/parsing
+                // through the response to extract some metadata, higher-order information, etc. that
+                // we really shouldn&#39;t be parsing in the controller 
+                return res.data.avatar_url;
+            });
+        }
+    }   
+});
+
+app.controller(&#39;MainCtrl&#39;, function($scope, githubService) {
+    // assuming $scope.username is set with ng-model
+    githubService.getUserAvatarUrl($scope.username).then(function(avatarSrc) {
+        $scope.avatarSrc = avatarSrc;
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Smooth.&lt;/p&gt;
+
+&lt;p&gt;Plunkr demo:&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/e9MHuI/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you&amp;rsquo;ve picked up some useful stuff along the way.  And as always, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

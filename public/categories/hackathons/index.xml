@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Hackathons on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/hackathons/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>I Love Hackathons, Long Live Hackathons. I Hate Hackathons, Hackathons Must Die.</title>
+      <link>http://localhost:1313/_posts/2014-01-18-i-love-hackathons-i-hate-hackathons</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2014-01-18-i-love-hackathons-i-hate-hackathons</guid>
+      <description>
+
+&lt;p&gt;{%img /images/mhacks/crowd.jpeg A pic I snapped of some of the attendees. %}&lt;/p&gt;
+
+&lt;p&gt;This weekend I&amp;rsquo;ve been attending &lt;a href=&#34;http://mhacks.org/&#34;&gt;MHacks&lt;/a&gt;, which is an event in Detroit geared mostly towards college students.  It is sponsored by a variety of companies including &lt;a href=&#34;http://www.quickenloans.com&#34;&gt;Quicken Loans&lt;/a&gt;, &lt;a href=&#34;http://twilio.com&#34;&gt;Twilio&lt;/a&gt;, &lt;a href=&#34;http://yahoo.com&#34;&gt;Yahoo!&lt;/a&gt;, &lt;a href=&#34;http://mashery.com&#34;&gt;Mashery&lt;/a&gt;, &lt;a href=&#34;http://apple.com&#34;&gt;Apple&lt;/a&gt; and many more.  For those of you unfamiliar with the concept, a hackathon is an event where (mostly) young people interested in technology get together to &lt;a href=&#34;http://stallman.org/&#34;&gt;hack&lt;/a&gt; (not the naughty kind of hacking) on side projects of their choice and perhaps even compete with each other to win some sweet prizes, or just glory and the respect of their peers.  The attendees are typically mostly men, although I feel that MHacks&amp;rsquo; female attendance and culture is very positive compared to some other events I&amp;rsquo;ve experienced in the past).  Sleep deprivation, stimulants, and indoor activities are encouraged.  Starting to get the picture yet?&lt;/p&gt;
+
+&lt;p&gt;Something that strikes me about MHacks in particular as interesting is that the sponsors are paying for so much stuff that it might just blow your mind (attendance is free).  It&amp;rsquo;s set off a weird mix of reactions in me, so I decided to write about it.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Long Live Hackathons&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve had so many nerd chills this weekend it&amp;rsquo;s ridiculous.  I felt like a little kid in a candy store when I saw someone rocking the first pair of &lt;a href=&#34;http://www.google.com/glass/start/&#34;&gt;Google Glass&lt;/a&gt; that I had ever seen in real life.  We opted to work on a &lt;a href=&#34;http://dogecoin.com/&#34;&gt;Dogecoin&lt;/a&gt; site where you can buy them with regular old credit and debit cards (currently you can only buy them with Bitcoins), and the warm reactions we got were fantastic.  Historically peoples&amp;rsquo; eyes have glazed over when I even so much as mention Bitcoin or cyptocurrency, at least until recently.&lt;/p&gt;
+
+&lt;p&gt;In a lot of ways, being here is like living in the future now.  Everyone is forward-thinking technologically and interested in doing things that haven&amp;rsquo;t really been done before.  I had the great fortune of getting to try on an &lt;a href=&#34;http://www.oculusvr.com/&#34;&gt;Oculus Rift&lt;/a&gt;, something I&amp;rsquo;ve wanted to try for a long time, and I have to say that it feels like the future of gaming.  The developer working on it had it rigged up to an XBox Kinect and tracking my hand motions, which appeared as spheres in the little simulation I was immersed in.  The team working on it wants to use it to visualize and manipulate large amounts of data in realtime.  Run that one by &lt;a href=&#34;http://www.edwardtufte.com/tufte/&#34;&gt;Edward Tufte&lt;/a&gt; and get back to me, will ya?&lt;/p&gt;
+
+&lt;p&gt;The money behind the conference was out in full effect, with sponsors manning booths on prime real estate and giving away copious amounts of swag, evangelizing their products and prowess as employers as students shy and outgoing alike stopped by to chat.  We hear all the time nowadays about how the Millenials are having trouble entering the workforce but in the reality distortion field here that becomes increasingly hard to believe (&lt;code&gt;&amp;lt;snark&amp;gt;&lt;/code&gt; they must not be trying hard enough &lt;code&gt;&amp;lt;/snark&amp;gt;&lt;/code&gt;) Pretty much every company I talked to told me they are hiring like mad (though granted, those are the types of companies that would be sponsoring a hackathon).&lt;/p&gt;
+
+&lt;p&gt;I also can&amp;rsquo;t resist posting this gem, scrawled on the whiteboarded walls in the main area like something from Randall Monroe&amp;rsquo;s wildest lucid dreams:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/mhacks/twerking-algorithm.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;The authors are working on an app that will evaluate your twerking ability (you keep your phone in your pocket while you twerk) and rank results against your friends&amp;rsquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Hackathons Must Die&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been doing a lot of reflection on the state of the technology industry industry and the ugly sense of self-entitlement / willful ignorance that a lot of people live in lately.  Though many of the people I&amp;rsquo;ve met this weekend are great folks, even if some of them are a bit socially awkward (not to keep perpetuating that stereotype or anything), I can&amp;rsquo;t help but shake this feeling of general existential doom and gloom that has been hanging over me like a black cloud lately.  I suppose it&amp;rsquo;s because as much as you can see the great side of what people are capable of, you can see just as much of the not so great side as well.&lt;/p&gt;
+
+&lt;p&gt;For starters, I have a hard time getting behind an event that pretty much gleefully encourages you to disregard your physical health and well-being for a weekend of get-some-small-stuff-done-but-also-goof-off-a-lot-but-still-feel-like-you&amp;rsquo;re-working-hard.  I &lt;em&gt;really&lt;/em&gt; hate this trend in the technology industry (sacrificing your physical well-being for&amp;hellip; some &amp;ldquo;greater&amp;rdquo; goal?) because it&amp;rsquo;s crazy harmful and it should be considered as such.  It&amp;rsquo;s the same reason why I really dislike when companies offer free soda as a perk at the office, put eloquently into words by Patrick Mackenzie (talking about free soda as a perk in &lt;a href=&#34;http://www.kalzumeus.com/2011/10/28/dont-call-yourself-a-programmer/&#34;&gt;Don&amp;rsquo;t Call Yourself a Programmer&lt;/a&gt;):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;There are other benefits like “free soda”, “catered lunches”, “free programming books”, etc.  These are social signals more than anything else.  When I say that I’m going to buy you soda, that says a specific thing about how I run my workplace, who I expect to work for me, and how I expect to treat them.  (It says “I like to move the behavior of unsophisticated young engineers by making this job seem fun by buying 20 cent cans of soda, saving myself tens of thousands in compensation while simultaneously encouraging them to ruin their health.”  And I like soda.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, suffice it to say that I&amp;rsquo;m not too into a culture of sleep deprivation and health-ruining for no good reason.  And I wrote this after standing in line to get free Insomnia Cookies.  Maybe that makes me a hypocrite, or maybe that makes me painfully self-aware. You decide.  Additionally, on the attendee/student side, I&amp;rsquo;d be lying if I said I wasn&amp;rsquo;t picking up on a little bit of a pampered / self-entitled / whiny vibe from some people considering the generally high quality of the event. But there&amp;rsquo;s a few bad apples in every bunch&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;There aren&amp;rsquo;t &lt;em&gt;that&lt;/em&gt; many projects working on problems that are so first world it&amp;rsquo;s painful, but naturally there are a few.  Generally the vibe of a self-directed hackathon reinforces my belief in the maxim that mankind&amp;rsquo;s appetite for distractions is pretty much endless.  Ironically, it&amp;rsquo;s pretty hard to focus here.  Everyone&amp;rsquo;s attention is on snacks or networking or just generally being distracted by the noise levels and crowded spaces instead of working on their project in a manner that&amp;rsquo;s likely to be sustainable.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Don&amp;rsquo;t let me being a negative nancy get you down too much.  I love these kind of events but I&amp;rsquo;m a sleepy bear today, and a little grumpy.  I&amp;rsquo;m probably just irritable since getting and configuring an SSL cert has been more arduous than I had anticipated.  Just another example of the fact that I don&amp;rsquo;t know what I don&amp;rsquo;t know and I don&amp;rsquo;t know that I don&amp;rsquo;t know it.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

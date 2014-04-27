@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Karma on nathan leclaire </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/karma/index.xml</link>
+    
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire</title>
+      <link>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
+      <description>
+
+&lt;p&gt;Developers almost universally agree that unit tests are a &lt;em&gt;VERY GOOD THING&lt;/em&gt; when working on a project.  They help you feel like your code is airtight, ensure reliability in production, and let you refactor with confidence when there is a need to do so.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/angularjs-unit-testing/test-code-refactor-cycle.png The Test-Driven Development cycle. %}&lt;/p&gt;
+
+&lt;p&gt;AngularJS code touts its high degree of &lt;a href=&#34;http://angularjs.org/#embed-and-inject&#34;&gt;testability&lt;/a&gt;, which is a reasonable claim.  In much of the documentation end to end tests are provided with the examples.  Like so many things with Angular, however, I was finding that although unit testing was simple, it was not easy.  Examples were sparse and though the &lt;a href=&#34;http://docs.angularjs.org/guide/dev_guide.unit-testing&#34;&gt;official documentation&lt;/a&gt; provided some snippets of examples, putting it all together in my &amp;ldquo;real-world&amp;rdquo; case was proving challenging.  So here I&amp;rsquo;ve written a little bit about how I ended up getting that wonderful green light for a passing build to show up.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Instant Karma&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://karma-runner.github.io/&#34;&gt;Karma&lt;/a&gt; is a test runner for JavaScript that was created by the Angular team.  It is a very useful tool as it allows you to automate tasks that you would otherwise have to do by hand or with your own cobbled-together collection of scripts (such as re-running your test suite or loading up the dependencies for said tests).  Karma and Angular go together like peanut butter and jelly.&lt;/p&gt;
+
+&lt;p&gt;With Karma, you simply define a configuration file, start Karma, and then it will take care of the rest, executing the tests in the browser(s) of your choice to ensure that they work in the environments where you plan on deploying to.  You can specify these browsers in the aforementioned configuration file.  &lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt;, which I highly recommend, comes with a decent out-of-the-box Karma config that will allow you to hit the ground running quickly.   The Karma configuration in my most recent project looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module.exports = function(config) {
+    config.set({
+        basePath: &#39;../&#39;,
+
+        files: [
+            &#39;app/lib/angular/angular.js&#39;,
+            &#39;app/lib/angular/angular-*.js&#39;,
+            &#39;app/js/**/*.js&#39;,
+            &#39;test/lib/recaptcha/recaptcha_ajax.js&#39;,
+            &#39;test/lib/angular/angular-mocks.js&#39;,
+            &#39;test/unit/**/*.js&#39;
+        ],
+
+        exclude: [
+            &#39;app/lib/angular/angular-loader.js&#39;,
+            &#39;app/lib/angular/*.min.js&#39;,
+            &#39;app/lib/angular/angular-scenario.js&#39;
+        ],
+
+        autoWatch: true,
+
+        frameworks: [&#39;jasmine&#39;],
+
+        browsers: [&#39;PhantomJS&#39;],
+
+        plugins: [
+            &#39;karma-junit-reporter&#39;,
+            &#39;karma-chrome-launcher&#39;,
+            &#39;karma-firefox-launcher&#39;,
+            &#39;karma-jasmine&#39;,
+            &#39;karma-phantomjs-launcher&#39;
+        ],
+
+        junitReporter: {
+            outputFile: &#39;test_out/unit.xml&#39;,
+            suite: &#39;unit&#39;
+        }
+
+    })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which is very similar to the default configuration in &lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt;, except for a few things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I have switched the browser the tests run in from Chrome to &lt;a href=&#34;http://phantomjs.org/&#34;&gt;PhantomJS&lt;/a&gt;, a headless browser, so that they can run without opening a browser window and causing an awkward viewport shuffle in OSX.  Therefore the &lt;code&gt;plugins&lt;/code&gt; and &lt;code&gt;browsers&lt;/code&gt; settings have been changed.&lt;/li&gt;
+&lt;li&gt;I added &lt;code&gt;recaptcha_ajax.js&lt;/code&gt;, the minified file that Google provides for their Recaptcha service, since my app depends on it being included.  Having this change be as simple as adding a line in the Karma config file was really nice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;autoWatch&lt;/code&gt; is a particularly cool setting, since it will have Karma re-run your tests whenever they, or the files they test, change.&lt;/p&gt;
+
+&lt;p&gt;You can install Karma with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g karma
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/angular/angular-seed&#34;&gt;angular-seed&lt;/a&gt; provides a handy little script for starting the Karma test runner, which is in &lt;code&gt;scripts/test.sh&lt;/code&gt;.  Use it!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Writing Tests With Jasmine&lt;/h1&gt;
+
+&lt;p&gt;Most of the resources available at the time of writing for unit testing with Angular use &lt;a href=&#34;http://pivotal.github.io/jasmine/&#34;&gt;Jasmine&lt;/a&gt;, a behavior-driven development framework for testing JavaScript code.  That&amp;rsquo;s what I&amp;rsquo;ll be describing here.&lt;/p&gt;
+
+&lt;p&gt;To unit test an AngularJS controller, you can take advantage of Angular&amp;rsquo;s &lt;a href=&#34;http://docs.angularjs.org/guide/di&#34;&gt;dependency injection&lt;/a&gt; and inject your own version of the services those controllers depend on to control the environment in which the test takes place and also to check that the expected results are occurring.  For example, I have this controller defined in my app to control the highlighting of which tab has been navigated to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.controller(&#39;NavCtrl&#39;, function($scope, $location) {
+    $scope.isActive = function(route) {
+        return route === $location.path();
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If I want to test the &lt;code&gt;isActive&lt;/code&gt; function, how do I do so?  I need to ensure that the &lt;code&gt;$location&lt;/code&gt; service returns what is expected, and that the output of the function is what is expected.  So in our test spec we have a &lt;code&gt;beforeEach&lt;/code&gt; call that gets made that sets up some local variables to hold our (controlled) version of those services, and injects them into the controller so that those are the ones to get used.  Then in our actual test we have assertions that are congruent with our expectations.  It looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe(&#39;NavCtrl&#39;, function() {
+    var $scope, $location, $rootScope, createController;
+
+    beforeEach(inject(function($injector) {
+        $location = $injector.get(&#39;$location&#39;);
+        $rootScope = $injector.get(&#39;$rootScope&#39;);
+        $scope = $rootScope.$new();
+
+        var $controller = $injector.get(&#39;$controller&#39;);
+
+        createController = function() {
+            return $controller(&#39;NavCtrl&#39;, {
+                &#39;$scope&#39;: $scope
+            });
+        };
+    }));
+
+    it(&#39;should have a method to check if the path is active&#39;, function() {
+        var controller = createController();
+        $location.path(&#39;/about&#39;);
+        expect($location.path()).toBe(&#39;/about&#39;);
+        expect($scope.isActive(&#39;/about&#39;)).toBe(true);
+        expect($scope.isActive(&#39;/contact&#39;)).toBe(false);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this basic structure, you can set up all kinds of stuff.  Since we are providing the controller with our own custom scope to start with, you could do stuff like setting a bunch of properties on it and then running a function you have to clear them, then make assertions that they actually were cleared.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;&lt;code&gt;$httpBackend&lt;/code&gt; Is Cool&lt;/h1&gt;
+
+&lt;p&gt;But what if you are doing stuff like using the &lt;code&gt;$http&lt;/code&gt; service to call out to your server to get or post data?  Well, Angular provides a way to mock the server with a thing called &lt;code&gt;$httpBackend&lt;/code&gt;.  That way, you can set up expectations for what server calls get made, or just ensure that the response can be controlled so the results of the unit tests can be consistent.&lt;/p&gt;
+
+&lt;p&gt;This looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe(&#39;MainCtrl&#39;, function() {
+    var $scope, $rootScope, $httpBackend, $timeout, createController;
+    beforeEach(inject(function($injector) {
+        $timeout = $injector.get(&#39;$timeout&#39;);
+        $httpBackend = $injector.get(&#39;$httpBackend&#39;);
+        $rootScope = $injector.get(&#39;$rootScope&#39;);
+        $scope = $rootScope.$new();
+
+
+        var $controller = $injector.get(&#39;$controller&#39;);
+
+        createController = function() {
+            return $controller(&#39;MainCtrl&#39;, {
+                &#39;$scope&#39;: $scope
+            });
+        };
+    }));
+
+    afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it(&#39;should run the Test to get the link data from the go backend&#39;, function() {
+        var controller = createController();
+        $scope.urlToScrape = &#39;success.com&#39;;
+
+        $httpBackend.expect(&#39;GET&#39;, &#39;/slurp?urlToScrape=http:%2F%2Fsuccess.com&#39;)
+            .respond({
+                &amp;quot;success&amp;quot;: true,
+                &amp;quot;links&amp;quot;: [&amp;quot;http://www.google.com&amp;quot;, &amp;quot;http://angularjs.org&amp;quot;, &amp;quot;http://amazon.com&amp;quot;]
+            });
+
+        // have to use $apply to trigger the $digest which will
+        // take care of the HTTP request
+        $scope.$apply(function() {
+            $scope.runTest();
+        });
+
+        expect($scope.parseOriginalUrlStatus).toEqual(&#39;calling&#39;);
+
+        $httpBackend.flush();
+
+        expect($scope.retrievedUrls).toEqual([&amp;quot;http://www.google.com&amp;quot;, &amp;quot;http://angularjs.org&amp;quot;, &amp;quot;http://amazon.com&amp;quot;]);
+        expect($scope.parseOriginalUrlStatus).toEqual(&#39;waiting&#39;);
+        expect($scope.doneScrapingOriginalUrl).toEqual(true);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, the &lt;code&gt;beforeEach&lt;/code&gt; call is very similar, with the only exception being we are getting &lt;code&gt;$httpBackend&lt;/code&gt; from the injector rather than &lt;code&gt;$http&lt;/code&gt;.  However, there are a few notable differences with how we set up the other test.  For starters, there is an &lt;code&gt;afterEach&lt;/code&gt; call that ensures &lt;code&gt;$httpBackend&lt;/code&gt; doesn&amp;rsquo;t have any outstanding expecations or requests after each test has been run.  And if you look at the way the test is set up and utilizes &lt;code&gt;$httpBackend&lt;/code&gt;, there are a few things that are not exactly intuitive.&lt;/p&gt;
+
+&lt;p&gt;The actual call to &lt;code&gt;$httpBackend.expect&lt;/code&gt; is fairly self-explanatory, but it is not in itself enough- we have to wrap our call to &lt;code&gt;$scope.runTest&lt;/code&gt;, the function we are actually testing in this case, in a function that we pass to &lt;code&gt;$scope.$apply&lt;/code&gt;, so that we can trigger the &lt;code&gt;$digest&lt;/code&gt; which will actually take care of the HTTP request.  And as you can see, the HTTP request to &lt;code&gt;$httpBackend&lt;/code&gt; will not resolve until we call &lt;code&gt;$httpBackend.flush()&lt;/code&gt;, so this allows us to test what things should be like when the call is in progress but hasn&amp;rsquo;t returned yet (in the example above, the controller&amp;rsquo;s &lt;code&gt;$scope.parseOriginalUrlStatus&lt;/code&gt; property will be set to &lt;code&gt;&#39;calling&#39;&lt;/code&gt; so we can display an in-progress spinny).&lt;/p&gt;
+
+&lt;p&gt;The next few lines are assertions about properties on &lt;code&gt;$scope&lt;/code&gt; that will change after the call resolves.  Pretty cool, eh?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;NOTE:&lt;/em&gt; In some places users have made it convention to have &lt;code&gt;scope&lt;/code&gt; without the dollar sign when it is referenced as a var in setting up unit tests.  This doesn&amp;rsquo;t seem to be enforced or emphasized particularly strongly by the Angular docs and I find it a little bit more consistent / readable to just use &lt;code&gt;$scope&lt;/code&gt; like you do everywhere else, so that&amp;rsquo;s how I&amp;rsquo;ve done things here.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Maybe this is one of those things that others just take to a bit more naturally that I do, but learning to write unit tests in Angular was pretty painful for me in the beginning.  I found my understanding of how to do so to be mostly cobbled together from various blog posts and sources around the Internet, with no real consistency or definitive best practice other than that established by natural selection.  I wanted to provide some documentation of what I eventually came up with to help other people who might be in a tight spot, and just want to get coding instead of having to learn all of the quirks and idiosyncracies of Angular and Jasmine.  So I hope this article has been of use to you.&lt;/p&gt;
+
+&lt;p&gt;Unit next week, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
