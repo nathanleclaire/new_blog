@@ -11,10 +11,10 @@
     
     <item>
       <title>Don&#39;t Fear Directives In AngularJS</title>
-      <link>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</link>
+      <link>http://localhost:1313/posts/2013-12-07-dont-fear-directives-in-angular-js</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</guid>
+      <guid>http://localhost:1313/posts/2013-12-07-dont-fear-directives-in-angular-js</guid>
       <description>
 
 &lt;p&gt;{% img /images/directivefear/anghero.jpeg Superheroic. %}&lt;/p&gt;
@@ -114,10 +114,10 @@
     
     <item>
       <title>How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire</title>
-      <link>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
+      <link>http://localhost:1313/posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
+      <guid>http://localhost:1313/posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
       <description>
 
 &lt;p&gt;Developers almost universally agree that unit tests are a &lt;em&gt;VERY GOOD THING&lt;/em&gt; when working on a project.  They help you feel like your code is airtight, ensure reliability in production, and let you refactor with confidence when there is a need to do so.&lt;/p&gt;
@@ -312,10 +312,10 @@
     
     <item>
       <title>AngularJS isn&#39;t MVC, it&#39;s SDC</title>
-      <link>http://localhost:1313/_posts/2014-03-15-angularjs-isnt-mvc-its-sdc</link>
+      <link>http://localhost:1313/posts/2014-03-15-angularjs-isnt-mvc-its-sdc</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-15-angularjs-isnt-mvc-its-sdc</guid>
+      <guid>http://localhost:1313/posts/2014-03-15-angularjs-isnt-mvc-its-sdc</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Intro&lt;/h1&gt;
@@ -408,10 +408,10 @@
     
     <item>
       <title>Fear and Loathing With Golang and AngularJS</title>
-      <link>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
+      <link>http://localhost:1313/posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
+      <guid>http://localhost:1313/posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
       <description>
 
 &lt;p&gt;{% img /images/fearandloathing/fearandloathingwithgolangular.jpeg Complete and utter hyperbole. %}&lt;/p&gt;

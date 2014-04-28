@@ -11,10 +11,10 @@
     
     <item>
       <title>Fixing Cygwin&#39;s SSL issues with git clone / c_rehash bug</title>
-      <link>http://localhost:1313/_posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</link>
+      <link>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</guid>
+      <guid>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Cygwin&amp;rsquo;s git clone drama&lt;/h1&gt;

@@ -11,10 +11,10 @@
     
     <item>
       <title>Want to Work With Databases In Golang?  Let&#39;s Try Some gorp.</title>
-      <link>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</link>
+      <link>http://localhost:1313/posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</guid>
+      <guid>http://localhost:1313/posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Google&amp;rsquo;s Go&lt;/h1&gt;
@@ -238,10 +238,10 @@ func (m *DbMap) AddTableWithName(i interface{}, name string) *TableMap {
     
     <item>
       <title>Implementing a Concurrent Floodfill with Golang</title>
-      <link>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</link>
+      <link>http://localhost:1313/posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</guid>
+      <guid>http://localhost:1313/posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;The setup&lt;/h1&gt;
@@ -469,11 +469,188 @@ GGGGGGGGGGGGGGGGG---
     </item>
     
     <item>
-      <title>A Surprising Feature of Golang that Colored Me Impressed</title>
-      <link>http://localhost:1313/_posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</link>
+      <title>How to Wait for All Goroutines to Finish Executing Before Continuing, Part Two:  Fixing My Oops</title>
+      <link>http://localhost:1313/posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</guid>
+      <guid>http://localhost:1313/posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</guid>
+      <description>
+
+&lt;p&gt;Earlier this week I published an article called &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/&#34;&gt;How To Wait for All Goroutines to Finish Executing Before Continuing&lt;/a&gt; detailing a problem that I&amp;rsquo;d run into while coding with Golang and the solution that I&amp;rsquo;d encountered, which was to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;.  I was still basking a little in that I-just-finished-a-new-blog-article afterglow when something in the &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/&#34;&gt;Reddit comments&lt;/a&gt; caught my eye!&lt;/p&gt;
+
+&lt;p&gt;{%img /images/syncwaitgroup2/enneff_speaks.jpeg Oh. %}&lt;/p&gt;
+
+&lt;p&gt;Turns out that my approach in the previous article causes a race condition.  So, just so you guys are all aware, I was wrong, and here&amp;rsquo;s why.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;What was wrong&lt;/h1&gt;
+
+&lt;p&gt;As &lt;a href=&#34;http://reddit.com/u/enneff&#34;&gt;/u/enneff&lt;/a&gt; pointed out, there are a variety of issues with the examples I provided.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;What was wrong with the &amp;ldquo;Old-School way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ll start at the second example (The &amp;ldquo;Old-School&amp;rdquo; way) since the first example is REALLY bad by design (please don&amp;rsquo;t write Go like that).  I used a &amp;ldquo;done&amp;rdquo; channel to communicate the status of the goroutines, and it turns out that this was completely unneccsary.&lt;/p&gt;
+
+&lt;p&gt;The original code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+
+    // Use this channel to follow the execution status
+    // of our goroutines :D
+    done := make(chan bool)
+
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+        done &amp;lt;- true
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+        done &amp;lt;- true
+    }() 
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+        done &amp;lt;- true
+    }()
+    go func() {
+        for i := range messages {
+            fmt.Println(i)
+        }
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        &amp;lt;-done
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thinking about it a bit, enneff&amp;rsquo;s assertion that the channel is unneeded makes a lot of sense, since you know the number of messages ahead of time.  It&amp;rsquo;s a great example of how you shouldn&amp;rsquo;t needlessly overcomplicate things (&lt;a href=&#34;http://legacy.python.org/dev/peps/pep-0020/&#34;&gt;simple is better than complex&lt;/a&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func main() {
+    messages := make(chan int)
+    go func() {
+        time.Sleep(time.Second * 3)
+        messages &amp;lt;- 1
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        messages &amp;lt;- 2
+    }()
+    go func() {
+        time.Sleep(time.Second * 1)
+        messages &amp;lt;- 3
+    }()
+    for i := 0; i &amp;lt; 3; i++ {
+        fmt.Println(&amp;lt;-messages)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code is shorter, and doesn&amp;rsquo;t introduce unneeded complexity.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_2&#34;&gt;What was wrong with the &amp;ldquo;Canonical way&amp;rdquo; code?&lt;/h2&gt;
+
+&lt;p&gt;Well, for one thing, the messages channel doesn&amp;rsquo;t get closed, which could cause a memory leak.  It&amp;rsquo;s also not exactly cosidered the best use for a &lt;code&gt;WaitGroup&lt;/code&gt;.  As enneff put it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The original program leaves the printing goroutine hanging (it blocks trying to receive a fourth message that never comes). This will create a memory leak in a long-running problem. You need to close the messages channel after the wg.Wait, to make sure that goroutine terminates. Obviously not a problem in a trivial program, but we should teach good practices at all times. But that still doesn&amp;rsquo;t solve the problem of the racing and printing goroutines, and there&amp;rsquo;s no reason why the so-called &amp;ldquo;old-school&amp;rdquo; way isn&amp;rsquo;t appropriate here. When you know the number of messages to expect you might as well count them to know when to finish. Here the waitgroup is superfluous and confusing. WaitGroups are more useful for doing different tasks in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;More importantly, I mistakenly put the code to print the results in its own goroutine, which causes a race condition between the main goroutine and the goroutine that is printing.  In many cases, the main goroutine will win this race, which is BAD!!  Turns out that my whole &amp;ldquo;sleep for a few seconds, then send a message down the channel&amp;rdquo; example is actually not a good example for wait groups at all.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;fetch some JSON from the Reddit API&amp;rdquo; example, however, actually is a good candidate for &lt;code&gt;sync.WaitGroup&lt;/code&gt;, and enneff even featured a rewrite that takes advantage of multiple channels to send errors in case something goes wrong!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// This snippet was prepared in response to this article:
+// http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/
+package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;io/ioutil&amp;quot;
+    &amp;quot;net/http&amp;quot;
+)
+
+func main() {
+    urls := []string{
+        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
+        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
+    }
+
+    resc, errc := make(chan string), make(chan error)
+
+    for _, url := range urls {
+        go func(url string) {
+            body, err := fetch(url)
+            if err != nil {
+                errc &amp;lt;- err
+                return
+            }
+            resc &amp;lt;- string(body)
+        }(url)
+    }
+
+    for i := 0; i &amp;lt; len(urls); i++ {
+        select {
+        case res := &amp;lt;-resc:
+            fmt.Println(res)
+        case err := &amp;lt;-errc:
+            fmt.Println(err)
+        }
+    }
+}
+
+func fetch(url string) (string, error) {
+    res, err := http.Get(url)
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    body, err := ioutil.ReadAll(res.Body)
+    res.Body.Close()
+    if err != nil {
+        return &amp;quot;&amp;quot;, err
+    }
+    return string(body), nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lookin&amp;rsquo; good!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;All I know is that I don&amp;rsquo;t know nothing.&lt;/p&gt;
+
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/5HtUnubXAO4&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Thanks again to &lt;a href=&#34;https://twitter.com/enneff&#34;&gt;Andrew Gerrand&lt;/a&gt; for helping me to learn more about Go.  And until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Surprising Feature of Golang that Colored Me Impressed</title>
+      <link>http://localhost:1313/posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-04-27-a-surprising-feature-of-golang-that-colored-me-impressed</guid>
       <description>
 
 &lt;p&gt;{%img /images/gopher/hardhat.png %}&lt;/p&gt;
@@ -660,10 +837,10 @@ $(document).ready(function () {
     
     <item>
       <title>Sending Email From Gmail Using Golang</title>
-      <link>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</link>
+      <link>http://localhost:1313/posts/2013-12-17-sending-email-from-gmail-using-golang</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</guid>
+      <guid>http://localhost:1313/posts/2013-12-17-sending-email-from-gmail-using-golang</guid>
       <description>
 
 &lt;p&gt;As part of the soon-to-be-deployed &lt;a href=&#34;http://github.com/nathanleclaire/checkforbrokenlinks&#34;&gt;checkforbrokenlinks&lt;/a&gt; app, I found myself faced with the task of creating a contact form that would allow users to send me feedback on the app, so I could improve it and make it better in the future.  In order to do so I had to figure out a way to configure my server-side backend, written in Golang, to perform all of the neccessary steps in order to send me an e-mail from the front-end (written in &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt;).  Looking into it, I don&amp;rsquo;t see too many e-mail sending implementations in Golang available easily online, so I&amp;rsquo;m putting the results of my research out there for all to see.&lt;/p&gt;
@@ -762,219 +939,11 @@ if err != nil {
     </item>
     
     <item>
-      <title>Fear and Loathing With Golang and AngularJS</title>
-      <link>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
-      <description>
-
-&lt;p&gt;{% img /images/fearandloathing/fearandloathingwithgolangular.jpeg Complete and utter hyperbole. %}&lt;/p&gt;
-
-&lt;p&gt;Recently I&amp;rsquo;ve been building an app to check a web page for broken links using &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; (it&amp;rsquo;s for use with this blog, actually, as well as general public consumption).  It&amp;rsquo;s pretty close to being done, except for a contact form which will allow people to send an e-mail directly to me (which has involved all manner of fun with Go&amp;rsquo;s &lt;a href=&#34;http://golang.org/pkg/net/smtp/&#34;&gt;smtp&lt;/a&gt; library and will most likely be the subject of a future blog post) to make suggestions, send comments, flame me for creating a free tool for them to use, etc.  Though I am generally a huge fan of both of these technologies, I was tearing my hair out over a particular issue which turned out to be solvable by reading the Go source code.  This coincided with the timing of my weekly blog article.  So here I am sharing my frustration and catharsis with you, dear readers.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;What&amp;rsquo;s the rub?&lt;/h1&gt;
-
-&lt;p&gt;The rub has to do with the way that Angular sends HTTP POST requests, the way that Golang handles them, and how these two interact.&lt;/p&gt;
-
-&lt;p&gt;In AngularJS when we want to perform business logic (for example, calling out to a server to get some data to display ) we put that logic inside of a controller.  The controller sets properties on Angular&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt; variable that are accessible from the front end, and vice versa, providing us with two-way data binding.  If you want to make an AJAX call, you inject Angular&amp;rsquo;s &lt;code&gt;$http&lt;/code&gt; service (by passing it into the function where the controller is defined) and use it.  This is a little bit of a change from what most people are used to, which is usually something like &lt;code&gt;jQuery.ajax&lt;/code&gt;, but it&amp;rsquo;s not too unfamiliar.  Since Angular likes you to play exclusively in Anglar-land (in controllers at least), they provide you with this service to make sure that no funny business happens to interfere with Angular&amp;rsquo;s apply-digest cycle.  The syntax is fairly straightforward and looks like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;function MainCtrl($scope, $http) {
-    $http.get(&#39;/login&#39;, {
-        username: $scope.user,
-        password: $scope.password,
-    })
-    .success(function(data, status, headers, config) {
-        $scope.userLoggedIn = data.isLoginValid;
-    })
-    .error(function(err, status, headers, config) {
-        console.log(&amp;quot;Well, this is embarassing.&amp;quot;);
-    });
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This works extremely well with GET requests, so one would expect it to work equally well with POST requests, right?  Maybe.  I had a use case where I was trying to submit form data through &lt;code&gt;$http.post&lt;/code&gt; and things were acting extremely funny.  No matter what I tried, it seemed that I could not retrieve anything on the back end, which in this case is written in Go.&lt;/p&gt;
-
-&lt;p&gt;Normally in Go you can just call &lt;code&gt;request.ParseForm()&lt;/code&gt; in the function that handles HTTP requests for the URI a form gets submitted to, and then the values you are interested in are accessible through &lt;code&gt;request.FormValue(&amp;quot;fieldName&amp;quot;)&lt;/code&gt; calls (&lt;code&gt;request.FormValue&lt;/code&gt; will automatically call &lt;code&gt;request.ParseForm&lt;/code&gt; for you if needed).  Normally it works smooth as silk- so you can imagine my surprise when I couldn&amp;rsquo;t for the life of me pull data out of the HTTP requests I was POSTing with Angular from my makeshift form.  I even upgraded my Go installation to 1.1.2, and still got nothing.  My code was something along the lines of this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func emailHandler(w http.ResponseWriter, r *http.Request) {
-    var err error
-    response := map[string]interface{} {
-        &amp;quot;success&amp;quot;: true,
-    }
-    err = r.ParseForm()
-    if err != nil {
-        log.Print(&amp;quot;error parsing form &amp;quot;, err)
-        response[&amp;quot;success&amp;quot;] = false
-    }
-    name := r.FormValue(&amp;quot;yourName&amp;quot;)
-    email := r.FormValue(&amp;quot;yourEmail&amp;quot;)
-    feedback := r.FormValue(&amp;quot;feedback&amp;quot;)
-    go sendMail(name, email, feedback)
-    jsonResponse, err = json.Marshal(response)
-    if err != nil {
-        log.Print(err)
-    }
-    w.Write(jsonResponse)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;So what gives?&lt;/h1&gt;
-
-&lt;p&gt;Some Googling made me painfully aware that I was not the only one with an issue like this:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/17547227/angular-js-post-request-not-sending-json-data&#34;&gt;Angular JS POST request not sending JSON data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11442632/how-can-i-make-angular-js-post-data-as-form-data-instead-of-a-request-payload&#34;&gt;How can I make angular.js post data as form data instead of a request payload?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/#!msg/angular/5nAedJ1LyO0/4Vj_72EZcDsJ&#34;&gt;How to post application/x-www-form-encoded?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/&#34;&gt;Make AngularJS $http service behave like jQuery.ajax()&lt;/a&gt; (a good blog article detailing this problem)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most StackOverflow answers suggested modifying stuff in Angular to get this to work (since there&amp;rsquo;s not much you can do about stuff not showing up in &lt;code&gt;$_POST&lt;/code&gt; in PHP, for example), but this left me dissatisfied.  As Ezekiel Victor points out in the aforementioned blog article:&lt;/p&gt;
-
-&lt;blockquote&gt;
-    The difference is in how jQuery and AngularJS serialize and transmit the data. Fundamentally, the problem lies with your server language of choice being unable to understand AngularJS’s transmission natively—that’s a darn shame because AngularJS is certainly not doing anything wrong. By default, jQuery transmits data using &lt;code&gt;Content-Type: x-www-form-urlencoded&lt;/code&gt; and the familiar &lt;code&gt;foo=bar&amp;baz=moe&lt;/code&gt; serialization. AngularJS, however, transmits data using &lt;code&gt;Content-Type: application/json&lt;/code&gt; and &lt;code&gt;{ &#34;foo&#34;: &#34;bar&#34;, &#34;baz&#34;: &#34;moe&#34; }&lt;/code&gt; JSON serialization, which unfortunately some Web server languages—notably PHP—do not unserialize natively.
-&lt;/blockquote&gt;
-
-&lt;p&gt;After poring over the documentation for Go&amp;rsquo;s &lt;code&gt;http.Request&lt;/code&gt; I was still stumped on how to make a basic &lt;code&gt;$http.post&lt;/code&gt; call work in Go without modifying something on the client side.  &lt;code&gt;request.Body&lt;/code&gt; didn&amp;rsquo;t seem to have anything useful, and calls to &lt;code&gt;request.FormValue&lt;/code&gt; were definitely not working.  The server, however, was definitely receiving a JSON payload, as dumping the request made clear (I&amp;rsquo;ve removed the &lt;code&gt;*/*&lt;/code&gt; value from the &lt;code&gt;Accept&lt;/code&gt; header so the request will play nice with the auto-pretty-printing of my blog):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;POST /email HTTP/1.1
-Host: localhost:8000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
-Content-Length: 68
-Accept: application/json, text/plain
-Accept-Encoding: gzip,deflate,sdch
-Accept-Language: en-US,en;q=0.8
-Connection: keep-alive
-Content-Type: application/json;charset=UTF-8
-Origin: http://localhost:8000
-Referer: http://localhost:8000/
-
-{&amp;quot;yourName&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;yourEmail&amp;quot;:&amp;quot;John.Smith@gmail.com&amp;quot;,&amp;quot;feedback&amp;quot;:&amp;quot;I really like your new webapp!&amp;quot;}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;Let&amp;rsquo;s Go Digging In The request.go Source!&lt;/h1&gt;
-
-&lt;p&gt;Not being able to receive the values with &lt;code&gt;request.FormValue&lt;/code&gt; was one thing, but I also could not successfully deserialize the JSON payload into a Go struct- the payload was seemingly nowhere to be found in the &lt;code&gt;Request&lt;/code&gt; struct provided to my handler.  I could not believe that the Go language designers, who are otherwise very meticulous and reliable, had overlooked something like &lt;code&gt;Content-Type: application/json&lt;/code&gt; handling.  But checking out the source for &lt;code&gt;Request.ParseForm&lt;/code&gt; and &lt;code&gt;Request.parsePostForm&lt;/code&gt; led me to my &amp;ldquo;aha&amp;rdquo; moment.  The source for &lt;code&gt;Request.ParseForm&lt;/code&gt; (from &lt;a href=&#34;http://golang.org/src/pkg/net/http/request.go?m=text&amp;amp;ModPagespeed=noscript&#34;&gt;golang.org&lt;/a&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// ParseForm parses the raw query from the URL and updates r.Form.
-//
-// For POST or PUT requests, it also parses the request body as a form and
-// put the results into both r.PostForm and r.Form.
-// POST and PUT body parameters take precedence over URL query string values
-// in r.Form.
-//
-// If the request Body&#39;s size has not already been limited by MaxBytesReader,
-// the size is capped at 10MB.
-//
-// ParseMultipartForm calls ParseForm automatically.
-// It is idempotent.
-func (r *Request) ParseForm() error {
-    var err error
-    if r.PostForm == nil {
-        if r.Method == &amp;quot;POST&amp;quot; || r.Method == &amp;quot;PUT&amp;quot; {
-            r.PostForm, err = parsePostForm(r)
-        }
-        if r.PostForm == nil {
-            r.PostForm = make(url.Values)
-        }
-    }
-    if r.Form == nil {
-        if len(r.PostForm) &amp;gt; 0 {
-            r.Form = make(url.Values)
-            copyValues(r.Form, r.PostForm)
-        }
-        var newValues url.Values
-        if r.URL != nil {
-            var e error
-            newValues, e = url.ParseQuery(r.URL.RawQuery)
-            if err == nil {
-                err = e
-            }
-        }
-        if newValues == nil {
-            newValues = make(url.Values)
-        }
-        if r.Form == nil {
-            r.Form = newValues
-        } else {
-            copyValues(r.Form, newValues)
-        }
-    }
-    return err
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The relevant bit for us is that call to &lt;code&gt;parsePostForm&lt;/code&gt; if &lt;code&gt;r.Method&lt;/code&gt; is &lt;code&gt;&amp;quot;POST&amp;quot;&lt;/code&gt; (since it is in our case).  The code for &lt;code&gt;parsePostForm&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func parsePostForm(r *Request) (vs url.Values, err error) {
-    if r.Body == nil {
-        err = errors.New(&amp;quot;missing form body&amp;quot;)
-        return
-    }
-    ct := r.Header.Get(&amp;quot;Content-Type&amp;quot;)
-    ct, _, err = mime.ParseMediaType(ct)
-    switch {
-    case ct == &amp;quot;application/x-www-form-urlencoded&amp;quot;:
-        var reader io.Reader = r.Body
-        maxFormSize := int64(1&amp;lt;&amp;lt;63 - 1)
-        if _, ok := r.Body.(*maxBytesReader); !ok {
-            maxFormSize = int64(10 &amp;lt;&amp;lt; 20) // 10 MB is a lot of text.
-            reader = io.LimitReader(r.Body, maxFormSize+1)
-        }
-        b, e := ioutil.ReadAll(reader)
-        if e != nil {
-            if err == nil {
-                err = e
-            }
-            break
-        }
-        if int64(len(b)) &amp;gt; maxFormSize {
-            err = errors.New(&amp;quot;http: POST too large&amp;quot;)
-            return
-        }
-        vs, e = url.ParseQuery(string(b))
-        if err == nil {
-            err = e
-        }
-    case ct == &amp;quot;multipart/form-data&amp;quot;:
-        // handled by ParseMultipartForm (which is calling us, or should be)
-        // TODO(bradfitz): there are too many possible
-        // orders to call too many functions here.
-        // Clean this up and write more tests.
-        // request_test.go contains the start of this,
-        // in TestRequestMultipartCallOrder.
-    }
-    return
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Initially I thought that the source code for this function might need to be modified to add another case to the switch block to handle the case where the content type is &lt;code&gt;application/json&lt;/code&gt;, but then I had a moment of insight.&lt;/p&gt;
-
-&lt;p&gt;I shouldn&amp;rsquo;t be trying to parse a form at all!  Cue facepalm, and guilt of hours spent solving this issue (at least I&amp;rsquo;ll know better next time).  My request payload wasn&amp;rsquo;t encoded as a form, it was encoded as JSON.  If I just took out the call to &lt;code&gt;request.ParseForm&lt;/code&gt;, I probably would have usable data in &lt;code&gt;request.Body&lt;/code&gt; that I could &lt;code&gt;Demarshal&lt;/code&gt;.  Indeed, this proved to be the case.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;It seems that the issue in this case was mostly &lt;a href=&#34;http://en.wikipedia.org/wiki/User_error&#34;&gt;PEBKAC&lt;/a&gt; (naturally).  I think that &lt;code&gt;ParseForm&lt;/code&gt; is doing the right thing not handling requests with &lt;code&gt;Content-Type: application/json&lt;/code&gt; in &lt;code&gt;ParseForm&lt;/code&gt; (since they&amp;rsquo;re not really form submissions), but it would be nice if there were some kind of API to handle this directly from the &lt;code&gt;Request&lt;/code&gt; (though the JSON deserialization functions provided by &lt;code&gt;encoding/json&lt;/code&gt; work really well), or this was better documented in some place (partially why I wanted to write this article).  I&amp;rsquo;d be curious to talk to some of the Go language maintainers about this, and may shoot an e-mail around.&lt;/p&gt;
-
-&lt;p&gt;At any rate, it definitely goes to show that a knowledge of HTTP basics is helpful, as I was equating form submissions with POST requests like a newbie.  Perhaps there&amp;rsquo;s been too much developing for me over this Thanksgiving weekend :)&lt;/p&gt;
-
-&lt;p&gt;Originally I monkey patched a fix in Angular&amp;rsquo;s &lt;code&gt;$httpProvider&lt;/code&gt; config to work around this issue.  However, removing the call to &lt;code&gt;ParseForm&lt;/code&gt; from my server side code seems to be a much cleaner solution.  Now my Go program can accept Angular POST requests like a charm.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading, and I&amp;rsquo;ll catch you next week.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Nathan&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>How to Wait for All Goroutines to Finish Executing Before Continuing</title>
-      <link>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</link>
+      <link>http://localhost:1313/posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</guid>
+      <guid>http://localhost:1313/posts/2014-02-15-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt;  As pointed out by effenn in &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/cfh9fg7&#34;&gt;this Reddit comment&lt;/a&gt;, a lot of information in this article is &amp;ldquo;dangerously inaccurate&amp;rdquo;.  OOPS!  I&amp;rsquo;ve written a followup/correction article [here]() for your viewing pleasure, but I&amp;rsquo;m leaving this article up for &amp;ldquo;historical purposes&amp;rdquo;.&lt;/p&gt;
@@ -1207,175 +1176,206 @@ func main() {
     </item>
     
     <item>
-      <title>How to Wait for All Goroutines to Finish Executing Before Continuing, Part Two:  Fixing My Oops</title>
-      <link>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</link>
+      <title>Fear and Loathing With Golang and AngularJS</title>
+      <link>http://localhost:1313/posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-02-21-how-to-wait-for-all-goroutines-to-finish-executing-before-continuing-part-two-fixing-my-ooops</guid>
+      <guid>http://localhost:1313/posts/2013-11-30-fear-and-loathing-with-golang-and-angular-js</guid>
       <description>
 
-&lt;p&gt;Earlier this week I published an article called &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/&#34;&gt;How To Wait for All Goroutines to Finish Executing Before Continuing&lt;/a&gt; detailing a problem that I&amp;rsquo;d run into while coding with Golang and the solution that I&amp;rsquo;d encountered, which was to use &lt;a href=&#34;http://golang.org/pkg/sync/#WaitGroup&#34;&gt;sync.WaitGroup&lt;/a&gt;.  I was still basking a little in that I-just-finished-a-new-blog-article afterglow when something in the &lt;a href=&#34;http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/&#34;&gt;Reddit comments&lt;/a&gt; caught my eye!&lt;/p&gt;
+&lt;p&gt;{% img /images/fearandloathing/fearandloathingwithgolangular.jpeg Complete and utter hyperbole. %}&lt;/p&gt;
 
-&lt;p&gt;{%img /images/syncwaitgroup2/enneff_speaks.jpeg Oh. %}&lt;/p&gt;
+&lt;p&gt;Recently I&amp;rsquo;ve been building an app to check a web page for broken links using &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; (it&amp;rsquo;s for use with this blog, actually, as well as general public consumption).  It&amp;rsquo;s pretty close to being done, except for a contact form which will allow people to send an e-mail directly to me (which has involved all manner of fun with Go&amp;rsquo;s &lt;a href=&#34;http://golang.org/pkg/net/smtp/&#34;&gt;smtp&lt;/a&gt; library and will most likely be the subject of a future blog post) to make suggestions, send comments, flame me for creating a free tool for them to use, etc.  Though I am generally a huge fan of both of these technologies, I was tearing my hair out over a particular issue which turned out to be solvable by reading the Go source code.  This coincided with the timing of my weekly blog article.  So here I am sharing my frustration and catharsis with you, dear readers.&lt;/p&gt;
 
-&lt;p&gt;Turns out that my approach in the previous article causes a race condition.  So, just so you guys are all aware, I was wrong, and here&amp;rsquo;s why.&lt;/p&gt;
+&lt;h1 id=&#34;toc_0&#34;&gt;What&amp;rsquo;s the rub?&lt;/h1&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;What was wrong&lt;/h1&gt;
+&lt;p&gt;The rub has to do with the way that Angular sends HTTP POST requests, the way that Golang handles them, and how these two interact.&lt;/p&gt;
 
-&lt;p&gt;As &lt;a href=&#34;http://reddit.com/u/enneff&#34;&gt;/u/enneff&lt;/a&gt; pointed out, there are a variety of issues with the examples I provided.&lt;/p&gt;
+&lt;p&gt;In AngularJS when we want to perform business logic (for example, calling out to a server to get some data to display ) we put that logic inside of a controller.  The controller sets properties on Angular&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt; variable that are accessible from the front end, and vice versa, providing us with two-way data binding.  If you want to make an AJAX call, you inject Angular&amp;rsquo;s &lt;code&gt;$http&lt;/code&gt; service (by passing it into the function where the controller is defined) and use it.  This is a little bit of a change from what most people are used to, which is usually something like &lt;code&gt;jQuery.ajax&lt;/code&gt;, but it&amp;rsquo;s not too unfamiliar.  Since Angular likes you to play exclusively in Anglar-land (in controllers at least), they provide you with this service to make sure that no funny business happens to interfere with Angular&amp;rsquo;s apply-digest cycle.  The syntax is fairly straightforward and looks like this:&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;What was wrong with the &amp;ldquo;Old-School way&amp;rdquo; code?&lt;/h2&gt;
-
-&lt;p&gt;I&amp;rsquo;ll start at the second example (The &amp;ldquo;Old-School&amp;rdquo; way) since the first example is REALLY bad by design (please don&amp;rsquo;t write Go like that).  I used a &amp;ldquo;done&amp;rdquo; channel to communicate the status of the goroutines, and it turns out that this was completely unneccsary.&lt;/p&gt;
-
-&lt;p&gt;The original code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
-
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;time&amp;quot;
-)
-
-func main() {
-    messages := make(chan int)
-
-    // Use this channel to follow the execution status
-    // of our goroutines :D
-    done := make(chan bool)
-
-    go func() {
-        time.Sleep(time.Second * 3)
-        messages &amp;lt;- 1
-        done &amp;lt;- true
-    }()
-    go func() {
-        time.Sleep(time.Second * 2)
-        messages &amp;lt;- 2
-        done &amp;lt;- true
-    }() 
-    go func() {
-        time.Sleep(time.Second * 1)
-        messages &amp;lt;- 3
-        done &amp;lt;- true
-    }()
-    go func() {
-        for i := range messages {
-            fmt.Println(i)
-        }
-    }()
-    for i := 0; i &amp;lt; 3; i++ {
-        &amp;lt;-done
-    }
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;function MainCtrl($scope, $http) {
+    $http.get(&#39;/login&#39;, {
+        username: $scope.user,
+        password: $scope.password,
+    })
+    .success(function(data, status, headers, config) {
+        $scope.userLoggedIn = data.isLoginValid;
+    })
+    .error(function(err, status, headers, config) {
+        console.log(&amp;quot;Well, this is embarassing.&amp;quot;);
+    });
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Thinking about it a bit, enneff&amp;rsquo;s assertion that the channel is unneeded makes a lot of sense, since you know the number of messages ahead of time.  It&amp;rsquo;s a great example of how you shouldn&amp;rsquo;t needlessly overcomplicate things (&lt;a href=&#34;http://legacy.python.org/dev/peps/pep-0020/&#34;&gt;simple is better than complex&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;This works extremely well with GET requests, so one would expect it to work equally well with POST requests, right?  Maybe.  I had a use case where I was trying to submit form data through &lt;code&gt;$http.post&lt;/code&gt; and things were acting extremely funny.  No matter what I tried, it seemed that I could not retrieve anything on the back end, which in this case is written in Go.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;package main
+&lt;p&gt;Normally in Go you can just call &lt;code&gt;request.ParseForm()&lt;/code&gt; in the function that handles HTTP requests for the URI a form gets submitted to, and then the values you are interested in are accessible through &lt;code&gt;request.FormValue(&amp;quot;fieldName&amp;quot;)&lt;/code&gt; calls (&lt;code&gt;request.FormValue&lt;/code&gt; will automatically call &lt;code&gt;request.ParseForm&lt;/code&gt; for you if needed).  Normally it works smooth as silk- so you can imagine my surprise when I couldn&amp;rsquo;t for the life of me pull data out of the HTTP requests I was POSTing with Angular from my makeshift form.  I even upgraded my Go installation to 1.1.2, and still got nothing.  My code was something along the lines of this:&lt;/p&gt;
 
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;time&amp;quot;
-)
-
-func main() {
-    messages := make(chan int)
-    go func() {
-        time.Sleep(time.Second * 3)
-        messages &amp;lt;- 1
-    }()
-    go func() {
-        time.Sleep(time.Second * 2)
-        messages &amp;lt;- 2
-    }()
-    go func() {
-        time.Sleep(time.Second * 1)
-        messages &amp;lt;- 3
-    }()
-    for i := 0; i &amp;lt; 3; i++ {
-        fmt.Println(&amp;lt;-messages)
+&lt;pre&gt;&lt;code&gt;func emailHandler(w http.ResponseWriter, r *http.Request) {
+    var err error
+    response := map[string]interface{} {
+        &amp;quot;success&amp;quot;: true,
     }
+    err = r.ParseForm()
+    if err != nil {
+        log.Print(&amp;quot;error parsing form &amp;quot;, err)
+        response[&amp;quot;success&amp;quot;] = false
+    }
+    name := r.FormValue(&amp;quot;yourName&amp;quot;)
+    email := r.FormValue(&amp;quot;yourEmail&amp;quot;)
+    feedback := r.FormValue(&amp;quot;feedback&amp;quot;)
+    go sendMail(name, email, feedback)
+    jsonResponse, err = json.Marshal(response)
+    if err != nil {
+        log.Print(err)
+    }
+    w.Write(jsonResponse)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This code is shorter, and doesn&amp;rsquo;t introduce unneeded complexity.&lt;/p&gt;
+&lt;h1 id=&#34;toc_1&#34;&gt;So what gives?&lt;/h1&gt;
 
-&lt;h2 id=&#34;toc_2&#34;&gt;What was wrong with the &amp;ldquo;Canonical way&amp;rdquo; code?&lt;/h2&gt;
+&lt;p&gt;Some Googling made me painfully aware that I was not the only one with an issue like this:&lt;/p&gt;
 
-&lt;p&gt;Well, for one thing, the messages channel doesn&amp;rsquo;t get closed, which could cause a memory leak.  It&amp;rsquo;s also not exactly cosidered the best use for a &lt;code&gt;WaitGroup&lt;/code&gt;.  As enneff put it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/17547227/angular-js-post-request-not-sending-json-data&#34;&gt;Angular JS POST request not sending JSON data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/11442632/how-can-i-make-angular-js-post-data-as-form-data-instead-of-a-request-payload&#34;&gt;How can I make angular.js post data as form data instead of a request payload?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/#!msg/angular/5nAedJ1LyO0/4Vj_72EZcDsJ&#34;&gt;How to post application/x-www-form-encoded?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/&#34;&gt;Make AngularJS $http service behave like jQuery.ajax()&lt;/a&gt; (a good blog article detailing this problem)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Most StackOverflow answers suggested modifying stuff in Angular to get this to work (since there&amp;rsquo;s not much you can do about stuff not showing up in &lt;code&gt;$_POST&lt;/code&gt; in PHP, for example), but this left me dissatisfied.  As Ezekiel Victor points out in the aforementioned blog article:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;The original program leaves the printing goroutine hanging (it blocks trying to receive a fourth message that never comes). This will create a memory leak in a long-running problem. You need to close the messages channel after the wg.Wait, to make sure that goroutine terminates. Obviously not a problem in a trivial program, but we should teach good practices at all times. But that still doesn&amp;rsquo;t solve the problem of the racing and printing goroutines, and there&amp;rsquo;s no reason why the so-called &amp;ldquo;old-school&amp;rdquo; way isn&amp;rsquo;t appropriate here. When you know the number of messages to expect you might as well count them to know when to finish. Here the waitgroup is superfluous and confusing. WaitGroups are more useful for doing different tasks in parallel.&lt;/p&gt;
+    The difference is in how jQuery and AngularJS serialize and transmit the data. Fundamentally, the problem lies with your server language of choice being unable to understand AngularJS’s transmission natively—that’s a darn shame because AngularJS is certainly not doing anything wrong. By default, jQuery transmits data using &lt;code&gt;Content-Type: x-www-form-urlencoded&lt;/code&gt; and the familiar &lt;code&gt;foo=bar&amp;baz=moe&lt;/code&gt; serialization. AngularJS, however, transmits data using &lt;code&gt;Content-Type: application/json&lt;/code&gt; and &lt;code&gt;{ &#34;foo&#34;: &#34;bar&#34;, &#34;baz&#34;: &#34;moe&#34; }&lt;/code&gt; JSON serialization, which unfortunately some Web server languages—notably PHP—do not unserialize natively.
 &lt;/blockquote&gt;
 
-&lt;p&gt;More importantly, I mistakenly put the code to print the results in its own goroutine, which causes a race condition between the main goroutine and the goroutine that is printing.  In many cases, the main goroutine will win this race, which is BAD!!  Turns out that my whole &amp;ldquo;sleep for a few seconds, then send a message down the channel&amp;rdquo; example is actually not a good example for wait groups at all.&lt;/p&gt;
+&lt;p&gt;After poring over the documentation for Go&amp;rsquo;s &lt;code&gt;http.Request&lt;/code&gt; I was still stumped on how to make a basic &lt;code&gt;$http.post&lt;/code&gt; call work in Go without modifying something on the client side.  &lt;code&gt;request.Body&lt;/code&gt; didn&amp;rsquo;t seem to have anything useful, and calls to &lt;code&gt;request.FormValue&lt;/code&gt; were definitely not working.  The server, however, was definitely receiving a JSON payload, as dumping the request made clear (I&amp;rsquo;ve removed the &lt;code&gt;*/*&lt;/code&gt; value from the &lt;code&gt;Accept&lt;/code&gt; header so the request will play nice with the auto-pretty-printing of my blog):&lt;/p&gt;
 
-&lt;p&gt;The &amp;ldquo;fetch some JSON from the Reddit API&amp;rdquo; example, however, actually is a good candidate for &lt;code&gt;sync.WaitGroup&lt;/code&gt;, and enneff even featured a rewrite that takes advantage of multiple channels to send errors in case something goes wrong!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;POST /email HTTP/1.1
+Host: localhost:8000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
+Content-Length: 68
+Accept: application/json, text/plain
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json;charset=UTF-8
+Origin: http://localhost:8000
+Referer: http://localhost:8000/
 
-&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;// This snippet was prepared in response to this article:
-// http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/
-package main
+{&amp;quot;yourName&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;yourEmail&amp;quot;:&amp;quot;John.Smith@gmail.com&amp;quot;,&amp;quot;feedback&amp;quot;:&amp;quot;I really like your new webapp!&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
 
-import (
-    &amp;quot;fmt&amp;quot;
-    &amp;quot;io/ioutil&amp;quot;
-    &amp;quot;net/http&amp;quot;
-)
+&lt;h1 id=&#34;toc_2&#34;&gt;Let&amp;rsquo;s Go Digging In The request.go Source!&lt;/h1&gt;
 
-func main() {
-    urls := []string{
-        &amp;quot;http://www.reddit.com/r/aww.json&amp;quot;,
-        &amp;quot;http://www.reddit.com/r/funny.json&amp;quot;,
-        &amp;quot;http://www.reddit.com/r/programming.json&amp;quot;,
-    }
+&lt;p&gt;Not being able to receive the values with &lt;code&gt;request.FormValue&lt;/code&gt; was one thing, but I also could not successfully deserialize the JSON payload into a Go struct- the payload was seemingly nowhere to be found in the &lt;code&gt;Request&lt;/code&gt; struct provided to my handler.  I could not believe that the Go language designers, who are otherwise very meticulous and reliable, had overlooked something like &lt;code&gt;Content-Type: application/json&lt;/code&gt; handling.  But checking out the source for &lt;code&gt;Request.ParseForm&lt;/code&gt; and &lt;code&gt;Request.parsePostForm&lt;/code&gt; led me to my &amp;ldquo;aha&amp;rdquo; moment.  The source for &lt;code&gt;Request.ParseForm&lt;/code&gt; (from &lt;a href=&#34;http://golang.org/src/pkg/net/http/request.go?m=text&amp;amp;ModPagespeed=noscript&#34;&gt;golang.org&lt;/a&gt;):&lt;/p&gt;
 
-    resc, errc := make(chan string), make(chan error)
-
-    for _, url := range urls {
-        go func(url string) {
-            body, err := fetch(url)
-            if err != nil {
-                errc &amp;lt;- err
-                return
-            }
-            resc &amp;lt;- string(body)
-        }(url)
-    }
-
-    for i := 0; i &amp;lt; len(urls); i++ {
-        select {
-        case res := &amp;lt;-resc:
-            fmt.Println(res)
-        case err := &amp;lt;-errc:
-            fmt.Println(err)
+&lt;pre&gt;&lt;code&gt;// ParseForm parses the raw query from the URL and updates r.Form.
+//
+// For POST or PUT requests, it also parses the request body as a form and
+// put the results into both r.PostForm and r.Form.
+// POST and PUT body parameters take precedence over URL query string values
+// in r.Form.
+//
+// If the request Body&#39;s size has not already been limited by MaxBytesReader,
+// the size is capped at 10MB.
+//
+// ParseMultipartForm calls ParseForm automatically.
+// It is idempotent.
+func (r *Request) ParseForm() error {
+    var err error
+    if r.PostForm == nil {
+        if r.Method == &amp;quot;POST&amp;quot; || r.Method == &amp;quot;PUT&amp;quot; {
+            r.PostForm, err = parsePostForm(r)
+        }
+        if r.PostForm == nil {
+            r.PostForm = make(url.Values)
         }
     }
-}
-
-func fetch(url string) (string, error) {
-    res, err := http.Get(url)
-    if err != nil {
-        return &amp;quot;&amp;quot;, err
+    if r.Form == nil {
+        if len(r.PostForm) &amp;gt; 0 {
+            r.Form = make(url.Values)
+            copyValues(r.Form, r.PostForm)
+        }
+        var newValues url.Values
+        if r.URL != nil {
+            var e error
+            newValues, e = url.ParseQuery(r.URL.RawQuery)
+            if err == nil {
+                err = e
+            }
+        }
+        if newValues == nil {
+            newValues = make(url.Values)
+        }
+        if r.Form == nil {
+            r.Form = newValues
+        } else {
+            copyValues(r.Form, newValues)
+        }
     }
-    body, err := ioutil.ReadAll(res.Body)
-    res.Body.Close()
-    if err != nil {
-        return &amp;quot;&amp;quot;, err
-    }
-    return string(body), nil
+    return err
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Lookin&amp;rsquo; good!&lt;/p&gt;
+&lt;p&gt;The relevant bit for us is that call to &lt;code&gt;parsePostForm&lt;/code&gt; if &lt;code&gt;r.Method&lt;/code&gt; is &lt;code&gt;&amp;quot;POST&amp;quot;&lt;/code&gt; (since it is in our case).  The code for &lt;code&gt;parsePostForm&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func parsePostForm(r *Request) (vs url.Values, err error) {
+    if r.Body == nil {
+        err = errors.New(&amp;quot;missing form body&amp;quot;)
+        return
+    }
+    ct := r.Header.Get(&amp;quot;Content-Type&amp;quot;)
+    ct, _, err = mime.ParseMediaType(ct)
+    switch {
+    case ct == &amp;quot;application/x-www-form-urlencoded&amp;quot;:
+        var reader io.Reader = r.Body
+        maxFormSize := int64(1&amp;lt;&amp;lt;63 - 1)
+        if _, ok := r.Body.(*maxBytesReader); !ok {
+            maxFormSize = int64(10 &amp;lt;&amp;lt; 20) // 10 MB is a lot of text.
+            reader = io.LimitReader(r.Body, maxFormSize+1)
+        }
+        b, e := ioutil.ReadAll(reader)
+        if e != nil {
+            if err == nil {
+                err = e
+            }
+            break
+        }
+        if int64(len(b)) &amp;gt; maxFormSize {
+            err = errors.New(&amp;quot;http: POST too large&amp;quot;)
+            return
+        }
+        vs, e = url.ParseQuery(string(b))
+        if err == nil {
+            err = e
+        }
+    case ct == &amp;quot;multipart/form-data&amp;quot;:
+        // handled by ParseMultipartForm (which is calling us, or should be)
+        // TODO(bradfitz): there are too many possible
+        // orders to call too many functions here.
+        // Clean this up and write more tests.
+        // request_test.go contains the start of this,
+        // in TestRequestMultipartCallOrder.
+    }
+    return
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Initially I thought that the source code for this function might need to be modified to add another case to the switch block to handle the case where the content type is &lt;code&gt;application/json&lt;/code&gt;, but then I had a moment of insight.&lt;/p&gt;
+
+&lt;p&gt;I shouldn&amp;rsquo;t be trying to parse a form at all!  Cue facepalm, and guilt of hours spent solving this issue (at least I&amp;rsquo;ll know better next time).  My request payload wasn&amp;rsquo;t encoded as a form, it was encoded as JSON.  If I just took out the call to &lt;code&gt;request.ParseForm&lt;/code&gt;, I probably would have usable data in &lt;code&gt;request.Body&lt;/code&gt; that I could &lt;code&gt;Demarshal&lt;/code&gt;.  Indeed, this proved to be the case.&lt;/p&gt;
 
 &lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
 
-&lt;p&gt;All I know is that I don&amp;rsquo;t know nothing.&lt;/p&gt;
+&lt;p&gt;It seems that the issue in this case was mostly &lt;a href=&#34;http://en.wikipedia.org/wiki/User_error&#34;&gt;PEBKAC&lt;/a&gt; (naturally).  I think that &lt;code&gt;ParseForm&lt;/code&gt; is doing the right thing not handling requests with &lt;code&gt;Content-Type: application/json&lt;/code&gt; in &lt;code&gt;ParseForm&lt;/code&gt; (since they&amp;rsquo;re not really form submissions), but it would be nice if there were some kind of API to handle this directly from the &lt;code&gt;Request&lt;/code&gt; (though the JSON deserialization functions provided by &lt;code&gt;encoding/json&lt;/code&gt; work really well), or this was better documented in some place (partially why I wanted to write this article).  I&amp;rsquo;d be curious to talk to some of the Go language maintainers about this, and may shoot an e-mail around.&lt;/p&gt;
 
-&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/5HtUnubXAO4&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;At any rate, it definitely goes to show that a knowledge of HTTP basics is helpful, as I was equating form submissions with POST requests like a newbie.  Perhaps there&amp;rsquo;s been too much developing for me over this Thanksgiving weekend :)&lt;/p&gt;
 
-&lt;p&gt;Thanks again to &lt;a href=&#34;https://twitter.com/enneff&#34;&gt;Andrew Gerrand&lt;/a&gt; for helping me to learn more about Go.  And until next time, stay sassy Internet.&lt;/p&gt;
+&lt;p&gt;Originally I monkey patched a fix in Angular&amp;rsquo;s &lt;code&gt;$httpProvider&lt;/code&gt; config to work around this issue.  However, removing the call to &lt;code&gt;ParseForm&lt;/code&gt; from my server side code seems to be a much cleaner solution.  Now my Go program can accept Angular POST requests like a charm.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading, and I&amp;rsquo;ll catch you next week.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;

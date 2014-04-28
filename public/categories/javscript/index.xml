@@ -11,10 +11,10 @@
     
     <item>
       <title>Banging Your Head Against an AngularJS Issue?  Try This</title>
-      <link>http://localhost:1313/_posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</link>
+      <link>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</guid>
+      <guid>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</guid>
       <description>
 
 &lt;p&gt;{%img /images/scope-apply/frustration.jpg Have you been debugging something that seems trivial in Angular for so long that your face looks like this? %}&lt;/p&gt;
@@ -158,10 +158,10 @@
     
     <item>
       <title>4 Smooth AngularJS Application Tips</title>
-      <link>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</link>
+      <link>http://localhost:1313/posts/2014-01-04-5-smooth-angularjs-application-tips</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</guid>
+      <guid>http://localhost:1313/posts/2014-01-04-5-smooth-angularjs-application-tips</guid>
       <description>
 
 &lt;p&gt;Anyone who follows my blog even a little closely can probably see that I &amp;lt;3 AngularJS:&lt;/p&gt;

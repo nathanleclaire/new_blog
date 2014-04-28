@@ -11,10 +11,10 @@
     
     <item>
       <title>Speed Up Your Workflow By Running PHPUnit Tests Inside of Vim</title>
-      <link>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</link>
+      <link>http://localhost:1313/posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</guid>
+      <guid>http://localhost:1313/posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</guid>
       <description>
 
 &lt;p&gt;{%img /images/vim-phpunit/phpunitdemo.gif No more CTRL Z for me. %}&lt;/p&gt;
@@ -121,10 +121,10 @@ nnoremap &amp;lt;leader&amp;gt;f :call RunPHPUnitTest(1)&amp;lt;cr&amp;gt;
     
     <item>
       <title>How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire</title>
-      <link>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
+      <link>http://localhost:1313/posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
+      <guid>http://localhost:1313/posts/2013-12-13-how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire</guid>
       <description>
 
 &lt;p&gt;Developers almost universally agree that unit tests are a &lt;em&gt;VERY GOOD THING&lt;/em&gt; when working on a project.  They help you feel like your code is airtight, ensure reliability in production, and let you refactor with confidence when there is a need to do so.&lt;/p&gt;
@@ -319,10 +319,10 @@ nnoremap &amp;lt;leader&amp;gt;f :call RunPHPUnitTest(1)&amp;lt;cr&amp;gt;
     
     <item>
       <title>Unit Testing Services in AngularJS for Fun and for Profit</title>
-      <link>http://localhost:1313/_posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</link>
+      <link>http://localhost:1313/posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</guid>
+      <guid>http://localhost:1313/posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</guid>
       <description>
 
 &lt;p&gt;{%img /images/unit-test-angularjs-service/jasmine.png Your new best friend. %}&lt;/p&gt;

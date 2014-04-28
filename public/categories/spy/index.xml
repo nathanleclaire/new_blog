@@ -11,10 +11,10 @@
     
     <item>
       <title>Unit Testing Services in AngularJS for Fun and for Profit</title>
-      <link>http://localhost:1313/_posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</link>
+      <link>http://localhost:1313/posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</guid>
+      <guid>http://localhost:1313/posts/2014-04-12-unit-testing-services-in-angularjs-for-fun-and-for-profit</guid>
       <description>
 
 &lt;p&gt;{%img /images/unit-test-angularjs-service/jasmine.png Your new best friend. %}&lt;/p&gt;

@@ -11,10 +11,10 @@
     
     <item>
       <title>Sending Email From Gmail Using Golang</title>
-      <link>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</link>
+      <link>http://localhost:1313/posts/2013-12-17-sending-email-from-gmail-using-golang</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-12-17-sending-email-from-gmail-using-golang</guid>
+      <guid>http://localhost:1313/posts/2013-12-17-sending-email-from-gmail-using-golang</guid>
       <description>
 
 &lt;p&gt;As part of the soon-to-be-deployed &lt;a href=&#34;http://github.com/nathanleclaire/checkforbrokenlinks&#34;&gt;checkforbrokenlinks&lt;/a&gt; app, I found myself faced with the task of creating a contact form that would allow users to send me feedback on the app, so I could improve it and make it better in the future.  In order to do so I had to figure out a way to configure my server-side backend, written in Golang, to perform all of the neccessary steps in order to send me an e-mail from the front-end (written in &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt;).  Looking into it, I don&amp;rsquo;t see too many e-mail sending implementations in Golang available easily online, so I&amp;rsquo;m putting the results of my research out there for all to see.&lt;/p&gt;

@@ -11,10 +11,10 @@
     
     <item>
       <title>5 Cool Unix Hacks For Fun and Productivity</title>
-      <link>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
+      <link>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
+      <guid>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
       <description>
 
 &lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;

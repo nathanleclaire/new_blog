@@ -11,10 +11,10 @@
     
     <item>
       <title>Speed Up Your Workflow By Running PHPUnit Tests Inside of Vim</title>
-      <link>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</link>
+      <link>http://localhost:1313/posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</guid>
+      <guid>http://localhost:1313/posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</guid>
       <description>
 
 &lt;p&gt;{%img /images/vim-phpunit/phpunitdemo.gif No more CTRL Z for me. %}&lt;/p&gt;

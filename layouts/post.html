@@ -1,10 +1,10 @@
----
-layout: default
-single: true
----
+{{ template "chrome/header.html" . }}
 
-<!-- START OF _layouts/post.html -->
+<div class="wrap">
+	{{ template "chrome/sidebar.html" . }}
+	<div id="content">
+		{{ .Content }}
+	</div>
+</div>
 
-{% include article.html %}
-
-<!-- END OF _/layouts/post.html -->
+{{ template "chrome/footer.html" }}

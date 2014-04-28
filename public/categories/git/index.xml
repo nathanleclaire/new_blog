@@ -10,11 +10,107 @@
     <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
     
     <item>
-      <title>Fixing Cygwin&#39;s SSL issues with git clone / c_rehash bug</title>
-      <link>http://localhost:1313/_posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</link>
+      <title>5 Cool Unix Hacks For Fun and Productivity</title>
+      <link>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</guid>
+      <guid>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
+      <description>
+
+&lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Raged silently at a coworker for spamming the left arrow key to get to the beginning of their terminal prompt when they could have just pressed CTRL + A ?&lt;/li&gt;
+&lt;li&gt;Watched someone as they enter the same command over and over when they could have just prefaced it with &lt;code&gt;!&lt;/code&gt; ?&lt;/li&gt;
+&lt;li&gt;Rolled your eyes as your buddy expounds at length on the virtues of IDEs when you know that you could &amp;ldquo;roflstomp&amp;rdquo; him or her using &lt;code&gt;vim&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If so, then these tips might be for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;DISCLAIMER:&lt;/em&gt; There&amp;rsquo;s an admitted bias towards &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;git&lt;/code&gt;, and the terminal here.  I don&amp;rsquo;t intend to start a holy war about terminal vs. IDEs, just have some fun and point out these fun tricks that work well for me.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;git add -p&lt;/h1&gt;
+
+&lt;p&gt;If you&amp;rsquo;ve worked with &lt;code&gt;git&lt;/code&gt; for any non-trivial amount of time you hopefully have come across the notion of making &lt;a href=&#34;http://stackoverflow.com/questions/6543913/git-commit-best-practices&#34;&gt;atomic commits&lt;/a&gt;.  Essentially, the notion is that a commit should contain only interrelated details, and not anything that&amp;rsquo;s logically unrelated to the things you are committing.  For example, it makes sense to commit changes to a class and its corresponding unit test in one commit, but if you&amp;rsquo;ve made changes to another class that deal with completely different business logic then those should be in another commit.&lt;/p&gt;
+
+&lt;p&gt;However, what happens when you are working within one file that contains multiple unrelated changes, or changes that you&amp;rsquo;d like to split up into more than one commit in case you need to revert them separately?  Or you have sprinkled logging statements all over the file that you don&amp;rsquo;t want to commit to the repo?  The normal sequence of git commands that people use fails us here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git diff
+diff --git a/some-file.c b/some-file.c
+index f383179..09e4e35 100644
+--- a/some-file.c
++++ b/some-file.c
+@@ -2,6 +2,8 @@
+
+ int main(void) {
+        printf(&amp;quot;doing some stuff\n&amp;quot;);
+-       printf(&amp;quot;doing some more stuff\n&amp;quot;);
++       do_some_stuff();
++       printf(&amp;quot;doing some unrelated stuff\n&amp;quot;);
++       do_some_unrelated_stuff();
+        return 0;
+ }
+$ git add some-file.c
+$ git commit
+[master 1938906] some unrelated stuff, cramming it all in one commit &#39;cause I&#39;m lazy
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+$ echo &amp;quot;Whoops we just committed unrelated stuff.  Not very modular of us.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;-p&lt;/code&gt; (standing for patch) flag for &lt;code&gt;git add&lt;/code&gt; is ridiculously useful for these kinds of cases.  This tells &lt;code&gt;git add&lt;/code&gt; that we want to do a &lt;em&gt;partial&lt;/em&gt; add of the file, and we&amp;rsquo;re presented with a nice interative menu which allows us to specify with a lovely amount of detail exactly which parts of the file we want to stage.  &lt;code&gt;git&lt;/code&gt; splits the changes into hunks automatically, which you can approve or reject with &lt;code&gt;y&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt; respectively, or use &lt;code&gt;s&lt;/code&gt; to split up into finer grained hunks.  If &lt;code&gt;git&lt;/code&gt; can&amp;rsquo;t split the hunks up the way you want automatically, you can specify as much detail as you want with the &lt;code&gt;e&lt;/code&gt; (edit) option.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/git-add-minus-p.jpeg And now our commits are nice and tidy. %}&lt;/p&gt;
+
+&lt;p&gt;See here for more details on &lt;code&gt;git add -p&lt;/code&gt;: &lt;a href=&#34;http://stackoverflow.com/questions/1085162/how-can-i-commit-only-part-of-a-file-in-git&#34;&gt;How can I commit only part of a file in git?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that this usage of &lt;code&gt;-p&lt;/code&gt; flag also works for commands such as &lt;code&gt;git checkout --&lt;/code&gt;.  Therefore you could hypothetically send only part of a file back to the way it was at HEAD, and keep your other changes.  Handy!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;vim&amp;rsquo;s CTRL-P / CTRL-N autocomplete feature&lt;/h1&gt;
+
+&lt;p&gt;This is one of those killer features of &lt;code&gt;vim&lt;/code&gt; that I am surprised to find out people (even experienced &lt;code&gt;vim&lt;/code&gt; gurus) don&amp;rsquo;t use more frequently.  Even if you are a casual user (hop into &lt;code&gt;vim&lt;/code&gt; to edit some config files while &lt;code&gt;ssh&lt;/code&gt;ed into a box) it has the potential to help you out quite a bit.  One of the reasons people claim they couldn&amp;rsquo;t live without IDEs is the existence of features such as Intellisense that provide autocompletion of variable/function names.  These features are very nice since they cut down on mistakes due to misspelling properties and thereby speed up the compile/run/debug cycle a fair bit.  Many people don&amp;rsquo;t seem to realize that there is an analog which comes straight out of the box in &lt;code&gt;vim&lt;/code&gt;, no plugins needed.&lt;/p&gt;
+
+&lt;p&gt;You can press CTRL-N to move down the list of suggested completions when typing in INSERT mode (which vim draws from the current buffers, and from the &lt;code&gt;tags&lt;/code&gt; file if you have one), or CTRL-P to move back up (representing &amp;ldquo;NEXT&amp;rdquo; and &amp;ldquo;PREVIOUS&amp;rdquo; if you didn&amp;rsquo;t catch the mnemonic).  If there is only one possible completion, &lt;code&gt;vim&lt;/code&gt; will just go ahead and insert it.  Very handy and speedy, especially in codebases with a lot of long variable / method / constant names.&lt;/p&gt;
+
+&lt;p&gt;CTRL-P/CTRL-N have a lot of synergy with the next tip as well, as touched upon briefly in the above paragraph.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-n-vim.jpeg And you barely need to leave the home row. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;exuberant ctags&lt;/h1&gt;
+
+&lt;p&gt;Everyone who uses &lt;code&gt;vim&lt;/code&gt; knows that it can be a bit of a kerfluffle sometimes to open a file in a distant directory (tab completion helps ease this with &lt;code&gt;:e&lt;/code&gt;, but it&amp;rsquo;s still not usually instantaneous).  If you happen to be working on a team, or a very large project, the ability to do this quickly will likely be a vital part of your workflow.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ctags.sourceforge.net/&#34;&gt;Exuberant Ctags&lt;/a&gt; is a tool that makes this worlds easier than it would be without.  With ctags, you can  you just run a command in the top directory of the project you&amp;rsquo;re working on to generate a &amp;ldquo;tags&amp;rdquo; file, then you can use CTRL-] to &amp;ldquo;pop into&amp;rdquo; the definition of whatever it is your cursor is over (say, a class name).  Press CTRL+T to get back to where you were before.&lt;/p&gt;
+
+&lt;p&gt;You can even set up a &lt;a href=&#34;http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html&#34;&gt;post-commit hook in git&lt;/a&gt; to generate your ctags file automatically when you make a commit!  Nice.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;CTRL-R in bash and zsh&lt;/h1&gt;
+
+&lt;p&gt;Ever been typing in a command at the terminal, when you suddenly find yourself wishing that there was an easy way to just autofill the prompt with something that you&amp;rsquo;d entered previously so you can edit it or just run it again?  If so, then I&amp;rsquo;ve got good news for you:  You can!  Just press CTRL+R and start typing the thing that you are looking for.  The terminal will fill in what it thinks you are looking for, and if there is more than one option you can cycle through them by pressing CTRL+R repeatedly.  When you&amp;rsquo;ve found the thing you&amp;rsquo;re after, you can break out of the prompt with any of the usual movement commands (CTRL+A, CTRL+E, arrow keys, etc. if you have standard &lt;code&gt;bash&lt;/code&gt; keybindings).  Try it out!  Very handy if you can&amp;rsquo;t remember the name of the box you want to &lt;code&gt;ssh&lt;/code&gt; into.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-r.jpeg What was that IP address again? %}&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;history | grep $COMMAND&lt;/code&gt; will treat you well too, if you just want to review all of the times you&amp;rsquo;ve run that command in recent times.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;vim macros&lt;/h1&gt;
+
+&lt;p&gt;A lot of the time when you&amp;rsquo;re writing code, or doing related tasks, you find yourself in need of a way to repeat the same editor commands over and over, perhaps with a slight variation.  Different editors provide slightly different ways of addressing this.  &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;, for example, has a &amp;ldquo;killer feature&amp;rdquo; where you are able to place multiple cursors in various locations and edit away.  In &lt;code&gt;vim&lt;/code&gt; (and in &lt;code&gt;emacs&lt;/code&gt; too, but here we&amp;rsquo;ll be covering the &lt;code&gt;vim&lt;/code&gt; method) you record and playback keyboard macros to accomplish this.  It is a tool with an absurd amount of power and flexibility, and offers the chance to speed up productivity on repetitive editing tasks by an order of magnitude.&lt;/p&gt;
+
+&lt;p&gt;To make a macro, press &lt;code&gt;q&lt;/code&gt; in normal mode, then press another key to &amp;ldquo;name&amp;rdquo; the macro (usually I use &lt;code&gt;q&lt;/code&gt; again).  &lt;code&gt;vim&lt;/code&gt; will start recording your keystrokes.  &lt;code&gt;vim&lt;/code&gt; will remember which keystrokes you make until you press &lt;code&gt;q&lt;/code&gt; again to save the macro.  You can replay with &lt;code&gt;@&lt;/code&gt;-letter in normal mode, so I am usually pressing &lt;code&gt;@q&lt;/code&gt;.  You can also preface the &lt;code&gt;@&lt;/code&gt;/replay command with a number so that you can rapidly execute your macro over and over (like much in &lt;code&gt;vim&lt;/code&gt;-land, the &amp;ldquo;grammar&amp;rdquo; behaves as you would be accustomed to).  If you&amp;rsquo;re accustomed to using &lt;code&gt;vim&lt;/code&gt;&amp;rsquo;s fancy movement commands (for instance, using &lt;code&gt;/&lt;/code&gt; search to navigate), and practice a little bit, you will soon be able to whip up thunderous macros that will leave your mouse-dependent colleagues in the dust.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/vim-macros.gif Who needs multiple cursors? %}&lt;/p&gt;
+
+&lt;p&gt;For more info on &lt;code&gt;vim&lt;/code&gt; macros, see here: &lt;a href=&#34;http://vim.wikia.com/wiki/Macros&#34;&gt;Vim Wiki (Macros)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you enjoyed and I&amp;rsquo;ll see you next week!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fixing Cygwin&#39;s SSL issues with git clone / c_rehash bug</title>
+      <link>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Cygwin&amp;rsquo;s git clone drama&lt;/h1&gt;
@@ -116,102 +212,6 @@ $ chmod +x /cygdrive/c/Program\ Files\ \(x86\)/Git/bin/openssl
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>5 Cool Unix Hacks For Fun and Productivity</title>
-      <link>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
-      <description>
-
-&lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Raged silently at a coworker for spamming the left arrow key to get to the beginning of their terminal prompt when they could have just pressed CTRL + A ?&lt;/li&gt;
-&lt;li&gt;Watched someone as they enter the same command over and over when they could have just prefaced it with &lt;code&gt;!&lt;/code&gt; ?&lt;/li&gt;
-&lt;li&gt;Rolled your eyes as your buddy expounds at length on the virtues of IDEs when you know that you could &amp;ldquo;roflstomp&amp;rdquo; him or her using &lt;code&gt;vim&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If so, then these tips might be for you.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;DISCLAIMER:&lt;/em&gt; There&amp;rsquo;s an admitted bias towards &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;git&lt;/code&gt;, and the terminal here.  I don&amp;rsquo;t intend to start a holy war about terminal vs. IDEs, just have some fun and point out these fun tricks that work well for me.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;git add -p&lt;/h1&gt;
-
-&lt;p&gt;If you&amp;rsquo;ve worked with &lt;code&gt;git&lt;/code&gt; for any non-trivial amount of time you hopefully have come across the notion of making &lt;a href=&#34;http://stackoverflow.com/questions/6543913/git-commit-best-practices&#34;&gt;atomic commits&lt;/a&gt;.  Essentially, the notion is that a commit should contain only interrelated details, and not anything that&amp;rsquo;s logically unrelated to the things you are committing.  For example, it makes sense to commit changes to a class and its corresponding unit test in one commit, but if you&amp;rsquo;ve made changes to another class that deal with completely different business logic then those should be in another commit.&lt;/p&gt;
-
-&lt;p&gt;However, what happens when you are working within one file that contains multiple unrelated changes, or changes that you&amp;rsquo;d like to split up into more than one commit in case you need to revert them separately?  Or you have sprinkled logging statements all over the file that you don&amp;rsquo;t want to commit to the repo?  The normal sequence of git commands that people use fails us here:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git diff
-diff --git a/some-file.c b/some-file.c
-index f383179..09e4e35 100644
---- a/some-file.c
-+++ b/some-file.c
-@@ -2,6 +2,8 @@
-
- int main(void) {
-        printf(&amp;quot;doing some stuff\n&amp;quot;);
--       printf(&amp;quot;doing some more stuff\n&amp;quot;);
-+       do_some_stuff();
-+       printf(&amp;quot;doing some unrelated stuff\n&amp;quot;);
-+       do_some_unrelated_stuff();
-        return 0;
- }
-$ git add some-file.c
-$ git commit
-[master 1938906] some unrelated stuff, cramming it all in one commit &#39;cause I&#39;m lazy
- 1 file changed, 3 insertions(+), 1 deletion(-)
-$ echo &amp;quot;Whoops we just committed unrelated stuff.  Not very modular of us.&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;-p&lt;/code&gt; (standing for patch) flag for &lt;code&gt;git add&lt;/code&gt; is ridiculously useful for these kinds of cases.  This tells &lt;code&gt;git add&lt;/code&gt; that we want to do a &lt;em&gt;partial&lt;/em&gt; add of the file, and we&amp;rsquo;re presented with a nice interative menu which allows us to specify with a lovely amount of detail exactly which parts of the file we want to stage.  &lt;code&gt;git&lt;/code&gt; splits the changes into hunks automatically, which you can approve or reject with &lt;code&gt;y&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt; respectively, or use &lt;code&gt;s&lt;/code&gt; to split up into finer grained hunks.  If &lt;code&gt;git&lt;/code&gt; can&amp;rsquo;t split the hunks up the way you want automatically, you can specify as much detail as you want with the &lt;code&gt;e&lt;/code&gt; (edit) option.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/git-add-minus-p.jpeg And now our commits are nice and tidy. %}&lt;/p&gt;
-
-&lt;p&gt;See here for more details on &lt;code&gt;git add -p&lt;/code&gt;: &lt;a href=&#34;http://stackoverflow.com/questions/1085162/how-can-i-commit-only-part-of-a-file-in-git&#34;&gt;How can I commit only part of a file in git?&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that this usage of &lt;code&gt;-p&lt;/code&gt; flag also works for commands such as &lt;code&gt;git checkout --&lt;/code&gt;.  Therefore you could hypothetically send only part of a file back to the way it was at HEAD, and keep your other changes.  Handy!&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;vim&amp;rsquo;s CTRL-P / CTRL-N autocomplete feature&lt;/h1&gt;
-
-&lt;p&gt;This is one of those killer features of &lt;code&gt;vim&lt;/code&gt; that I am surprised to find out people (even experienced &lt;code&gt;vim&lt;/code&gt; gurus) don&amp;rsquo;t use more frequently.  Even if you are a casual user (hop into &lt;code&gt;vim&lt;/code&gt; to edit some config files while &lt;code&gt;ssh&lt;/code&gt;ed into a box) it has the potential to help you out quite a bit.  One of the reasons people claim they couldn&amp;rsquo;t live without IDEs is the existence of features such as Intellisense that provide autocompletion of variable/function names.  These features are very nice since they cut down on mistakes due to misspelling properties and thereby speed up the compile/run/debug cycle a fair bit.  Many people don&amp;rsquo;t seem to realize that there is an analog which comes straight out of the box in &lt;code&gt;vim&lt;/code&gt;, no plugins needed.&lt;/p&gt;
-
-&lt;p&gt;You can press CTRL-N to move down the list of suggested completions when typing in INSERT mode (which vim draws from the current buffers, and from the &lt;code&gt;tags&lt;/code&gt; file if you have one), or CTRL-P to move back up (representing &amp;ldquo;NEXT&amp;rdquo; and &amp;ldquo;PREVIOUS&amp;rdquo; if you didn&amp;rsquo;t catch the mnemonic).  If there is only one possible completion, &lt;code&gt;vim&lt;/code&gt; will just go ahead and insert it.  Very handy and speedy, especially in codebases with a lot of long variable / method / constant names.&lt;/p&gt;
-
-&lt;p&gt;CTRL-P/CTRL-N have a lot of synergy with the next tip as well, as touched upon briefly in the above paragraph.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/ctrl-n-vim.jpeg And you barely need to leave the home row. %}&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;exuberant ctags&lt;/h1&gt;
-
-&lt;p&gt;Everyone who uses &lt;code&gt;vim&lt;/code&gt; knows that it can be a bit of a kerfluffle sometimes to open a file in a distant directory (tab completion helps ease this with &lt;code&gt;:e&lt;/code&gt;, but it&amp;rsquo;s still not usually instantaneous).  If you happen to be working on a team, or a very large project, the ability to do this quickly will likely be a vital part of your workflow.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://ctags.sourceforge.net/&#34;&gt;Exuberant Ctags&lt;/a&gt; is a tool that makes this worlds easier than it would be without.  With ctags, you can  you just run a command in the top directory of the project you&amp;rsquo;re working on to generate a &amp;ldquo;tags&amp;rdquo; file, then you can use CTRL-] to &amp;ldquo;pop into&amp;rdquo; the definition of whatever it is your cursor is over (say, a class name).  Press CTRL+T to get back to where you were before.&lt;/p&gt;
-
-&lt;p&gt;You can even set up a &lt;a href=&#34;http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html&#34;&gt;post-commit hook in git&lt;/a&gt; to generate your ctags file automatically when you make a commit!  Nice.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;CTRL-R in bash and zsh&lt;/h1&gt;
-
-&lt;p&gt;Ever been typing in a command at the terminal, when you suddenly find yourself wishing that there was an easy way to just autofill the prompt with something that you&amp;rsquo;d entered previously so you can edit it or just run it again?  If so, then I&amp;rsquo;ve got good news for you:  You can!  Just press CTRL+R and start typing the thing that you are looking for.  The terminal will fill in what it thinks you are looking for, and if there is more than one option you can cycle through them by pressing CTRL+R repeatedly.  When you&amp;rsquo;ve found the thing you&amp;rsquo;re after, you can break out of the prompt with any of the usual movement commands (CTRL+A, CTRL+E, arrow keys, etc. if you have standard &lt;code&gt;bash&lt;/code&gt; keybindings).  Try it out!  Very handy if you can&amp;rsquo;t remember the name of the box you want to &lt;code&gt;ssh&lt;/code&gt; into.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/ctrl-r.jpeg What was that IP address again? %}&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;history | grep $COMMAND&lt;/code&gt; will treat you well too, if you just want to review all of the times you&amp;rsquo;ve run that command in recent times.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;vim macros&lt;/h1&gt;
-
-&lt;p&gt;A lot of the time when you&amp;rsquo;re writing code, or doing related tasks, you find yourself in need of a way to repeat the same editor commands over and over, perhaps with a slight variation.  Different editors provide slightly different ways of addressing this.  &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;, for example, has a &amp;ldquo;killer feature&amp;rdquo; where you are able to place multiple cursors in various locations and edit away.  In &lt;code&gt;vim&lt;/code&gt; (and in &lt;code&gt;emacs&lt;/code&gt; too, but here we&amp;rsquo;ll be covering the &lt;code&gt;vim&lt;/code&gt; method) you record and playback keyboard macros to accomplish this.  It is a tool with an absurd amount of power and flexibility, and offers the chance to speed up productivity on repetitive editing tasks by an order of magnitude.&lt;/p&gt;
-
-&lt;p&gt;To make a macro, press &lt;code&gt;q&lt;/code&gt; in normal mode, then press another key to &amp;ldquo;name&amp;rdquo; the macro (usually I use &lt;code&gt;q&lt;/code&gt; again).  &lt;code&gt;vim&lt;/code&gt; will start recording your keystrokes.  &lt;code&gt;vim&lt;/code&gt; will remember which keystrokes you make until you press &lt;code&gt;q&lt;/code&gt; again to save the macro.  You can replay with &lt;code&gt;@&lt;/code&gt;-letter in normal mode, so I am usually pressing &lt;code&gt;@q&lt;/code&gt;.  You can also preface the &lt;code&gt;@&lt;/code&gt;/replay command with a number so that you can rapidly execute your macro over and over (like much in &lt;code&gt;vim&lt;/code&gt;-land, the &amp;ldquo;grammar&amp;rdquo; behaves as you would be accustomed to).  If you&amp;rsquo;re accustomed to using &lt;code&gt;vim&lt;/code&gt;&amp;rsquo;s fancy movement commands (for instance, using &lt;code&gt;/&lt;/code&gt; search to navigate), and practice a little bit, you will soon be able to whip up thunderous macros that will leave your mouse-dependent colleagues in the dust.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/vim-macros.gif Who needs multiple cursors? %}&lt;/p&gt;
-
-&lt;p&gt;For more info on &lt;code&gt;vim&lt;/code&gt; macros, see here: &lt;a href=&#34;http://vim.wikia.com/wiki/Macros&#34;&gt;Vim Wiki (Macros)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you enjoyed and I&amp;rsquo;ll see you next week!&lt;/p&gt;
 </description>
     </item>
     

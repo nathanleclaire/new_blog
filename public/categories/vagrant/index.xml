@@ -10,11 +10,85 @@
     <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
     
     <item>
-      <title>5 Reasons We Won Startup Weekend</title>
-      <link>http://localhost:1313/_posts/2014-02-10-5-reasons-we-won-startup-weekend</link>
+      <title>What is this Docker thing that everyone is so hyped about?</title>
+      <link>http://localhost:1313/posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-02-10-5-reasons-we-won-startup-weekend</guid>
+      <guid>http://localhost:1313/posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</guid>
+      <description>
+
+&lt;p&gt;{%img /images/what-is-docker/moby-dick.jpg Just another day in Devops. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Docker&lt;/h1&gt;
+
+&lt;p&gt;Approximately one year ago I was browsing &lt;a href=&#34;http://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt; and I came across this video:&lt;/p&gt;
+
+&lt;div style=&#34;text-align: center;&#34;&gt;
+&lt;iframe style=&#34;width: 420px !important;&#34; width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/wW9CAH9nSLs&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I found it profoundly exciting for reasons I could not explain, mostly Solomon&amp;rsquo;s infectious enthusiasm and the enthusiasm that the Hacker News commmunity reacted to it with.  When I learned that Docker was being written in &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; I was even more intruiged.  Especially having played with Go quite a bit, I have a hunch that Go will be a language which dictates the future of the &amp;ldquo;cloud&amp;rdquo; in a lot of ways.  &lt;a href=&#34;http://cloudflare.com&#34;&gt;Cloudflare&lt;/a&gt;, for instance, has a ton of infrastructure written in Go that powers their CDN and other cool tools they provide such as &lt;a href=&#34;https://www.cloudflare.com/railgun&#34;&gt;Railgun&lt;/a&gt;.  This was definitely a project to keep an eye on.  I mentally dog-eared it.&lt;/p&gt;
+
+&lt;p&gt;There was only one problem:  I didn&amp;rsquo;t understand what Docker &lt;em&gt;was&lt;/em&gt; yet.  There was talk of containers and shipping but I didn&amp;rsquo;t understand what it all meant, or what it could be used for.&lt;/p&gt;
+
+&lt;p&gt;Then about six months ago, things began to gel and sink in for me.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;The Problem&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/what-is-docker/matrix-from-hell.png %}&lt;/p&gt;
+
+&lt;p&gt;In order to better understand Docker you have to understand the problem it is trying to solve.&lt;/p&gt;
+
+&lt;p&gt;Modern day development (I&amp;rsquo;ll be focusing on the web here) lives in a world of lots of complexity.  In even the most basic application you are likely to have a back-end language that lives on the server, a front-end language (almost ubiquitously JavaScript) that lives on the client, third-party and in-house libraries for both of these languages to manage, a database, an operating system (often deploying to Linux but developing on God-knows-what OS), and more.  And this is for a &lt;em&gt;basic&lt;/em&gt; app!  What if you have utility programs that are written in another language?  What if you have other weird dependencies and requirements?&lt;/p&gt;
+
+&lt;p&gt;My point is that this all adds up to a lot of complexity, and worst of all- it is complexity that you have to manage across multiple platforms.  If I got an app up and running on my Macbook, and wanted to deploy to Linux, my options were not great.  If you&amp;rsquo;ve ever administrated your own VPS, much less a bare metal server, you know what I mean.  Having to install all of the packages and dependencies that you have in a totally different way is a recipe for headaches and tears.  Getting stuff to production is a completely different ball game from writing it in the first place.  Different technologies on different platforms create a &amp;ldquo;Matrix from Hell&amp;rdquo; (pictured above) that makes even the most courageous ops person want to set her hair on fire.&lt;/p&gt;
+
+&lt;p&gt;Traditionally there have been a variety of solutions that have popped up in response to this, ranging from &amp;ldquo;just develop in PHP and FTP is your deploy&amp;rdquo; (ew) to &lt;a href=&#34;http://heroku.com&#34;&gt;Heroku&lt;/a&gt; (&lt;code&gt;git push heroku master&lt;/code&gt; is your deploy) to virtualization with provisioning (see &lt;a href=&#34;http://vagrantup.com&#34;&gt;Vagrant&lt;/a&gt;).  Vagrant in particular has been gaining a lot of steam lately, for very good reason, and is a great technology (see my post on &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/10/5-reasons-we-won-startup-weekend/&#34;&gt;how we won Startup Weekend&lt;/a&gt; if you&amp;rsquo;re curious why Vagrant was useful to us in that case).  However, virtual machines have several disadvantages as well.  Because the VM software has to simulate actual physical hardware, you take a big performance hit.  They are slow to start up and, especially before Vagrant started to become popular, difficult to get inexperienced developers started on (Download Vagrant and its dependencies and run &lt;code&gt;vagrant up&lt;/code&gt; is a lot nicer than going through all of the VirtualBox menus, then provisioning your box manually).&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Containers&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/what-is-docker/containers.jpg %}&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://linuxcontainers.org/&#34;&gt;Containers&lt;/a&gt; popped up as a solution to this issue.  They are sort of like virtual machines, but they focus on process isolation and containment instead of emulating a full-fledged physical machine.  The &amp;ldquo;guest&amp;rdquo; container uses the same kernel as the &amp;ldquo;host&amp;rdquo; machine (and possibly some other resources as well, but my understanding of this at this time is a little fuzzy).  This allows many of the advantages of virtual machines without some of the aforementioned disadvantages.&lt;/p&gt;
+
+&lt;p&gt;Enter &lt;a href=&#34;http://docker.io&#34;&gt;Docker&lt;/a&gt; (from the homepage):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Docker is an open-source project to easily create lightweight, portable, self-sufficient containers from any application. The same container that a developer builds and tests on a laptop can run at scale, in production, on VMs, bare metal, OpenStack clusters, public clouds and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;{%img /images/what-is-docker/docker.png %}&lt;/p&gt;
+
+&lt;p&gt;Docker&amp;rsquo;s goal is to provide a software solution that will allow users to &amp;ldquo;pack up&amp;rdquo; their applications into a standardized container and &amp;ldquo;ship it off&amp;rdquo; to wherever their heart desires.  A container, once developed, can be deployed anywhere that Docker runs.  They compare these containers to actual &lt;a href=&#34;http://en.wikipedia.org/wiki/Containerization&#34;&gt;physical shipping containers&lt;/a&gt;, pictured above, which revolutionized international trade when it was standardized after World War 2.  From Wikipedia:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Containerization dramatically reduced transport costs &amp;hellip; reduced congestion in ports, significantly shortened shipping time, and reduced losses from damage and theft.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sound like benefits that would be nice to have for your business?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;A Cambrian Explosion&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/what-is-docker/cambrian.png %}&lt;/p&gt;
+
+&lt;p&gt;What is really interesting about Docker though, to me personally at least, is the Cambrian Explosion-esque fugue of creativity that it has inspired so far and continues to inspire in people everywhere.  It is being used for things online that aren&amp;rsquo;t exactly aligned to its original use case but really hearken to a bold new future of tech.  I know of at least one example where it is being used to make possible a interpreter-by-runnable-code editor for conducting Python interviews.  &lt;a href=&#34;http://www.runnable.com&#34;&gt;Runnable.com&lt;/a&gt; uses Docker to host self-contained executable / editable little code projects where you can look at existing code which you know works, edit it on the fly, and re-run it.  That&amp;rsquo;s awesome!&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m super optimistic for the future of this technology.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>5 Reasons We Won Startup Weekend</title>
+      <link>http://localhost:1313/posts/2014-02-10-5-reasons-we-won-startup-weekend</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-02-10-5-reasons-we-won-startup-weekend</guid>
       <description>
 
 &lt;p&gt;This previous weekend I participated in &lt;a href=&#34;http://annarbor.startupweekend.org/&#34;&gt;Ann Arbor Startup Weekend&lt;/a&gt; and had a blast.  Our company&amp;rsquo;s name is &lt;a href=&#34;http://fixworthy.co&#34;&gt;Fixworthy&lt;/a&gt; and we built a photo-based bug tracking app for real life (think Github Issues meets Instagram).&lt;/p&gt;
@@ -112,80 +186,6 @@
 &lt;p&gt;I had an inkling that it might be so when we were some of the last participants to get shooed out of the common space on Saturday night, but I didn&amp;rsquo;t want to jinx us by bringing it up.  Besides, as all pseudo-mystics and hippies are so fond of pointing out, the journey is the destination.  Given that my last Startup Weekend company was less than satisfactory (though it was a long time ago), I couldn&amp;rsquo;t be any happier.&lt;/p&gt;
 
 &lt;p&gt;Until next time, stay sassy Internet.  And don&amp;rsquo;t forget to keep hustlin&amp;rsquo;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Nathan&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>What is this Docker thing that everyone is so hyped about?</title>
-      <link>http://localhost:1313/_posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</guid>
-      <description>
-
-&lt;p&gt;{%img /images/what-is-docker/moby-dick.jpg Just another day in Devops. %}&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;Docker&lt;/h1&gt;
-
-&lt;p&gt;Approximately one year ago I was browsing &lt;a href=&#34;http://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt; and I came across this video:&lt;/p&gt;
-
-&lt;div style=&#34;text-align: center;&#34;&gt;
-&lt;iframe style=&#34;width: 420px !important;&#34; width=&#34;420&#34; height=&#34;315&#34; src=&#34;//www.youtube.com/embed/wW9CAH9nSLs&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I found it profoundly exciting for reasons I could not explain, mostly Solomon&amp;rsquo;s infectious enthusiasm and the enthusiasm that the Hacker News commmunity reacted to it with.  When I learned that Docker was being written in &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; I was even more intruiged.  Especially having played with Go quite a bit, I have a hunch that Go will be a language which dictates the future of the &amp;ldquo;cloud&amp;rdquo; in a lot of ways.  &lt;a href=&#34;http://cloudflare.com&#34;&gt;Cloudflare&lt;/a&gt;, for instance, has a ton of infrastructure written in Go that powers their CDN and other cool tools they provide such as &lt;a href=&#34;https://www.cloudflare.com/railgun&#34;&gt;Railgun&lt;/a&gt;.  This was definitely a project to keep an eye on.  I mentally dog-eared it.&lt;/p&gt;
-
-&lt;p&gt;There was only one problem:  I didn&amp;rsquo;t understand what Docker &lt;em&gt;was&lt;/em&gt; yet.  There was talk of containers and shipping but I didn&amp;rsquo;t understand what it all meant, or what it could be used for.&lt;/p&gt;
-
-&lt;p&gt;Then about six months ago, things began to gel and sink in for me.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;The Problem&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/what-is-docker/matrix-from-hell.png %}&lt;/p&gt;
-
-&lt;p&gt;In order to better understand Docker you have to understand the problem it is trying to solve.&lt;/p&gt;
-
-&lt;p&gt;Modern day development (I&amp;rsquo;ll be focusing on the web here) lives in a world of lots of complexity.  In even the most basic application you are likely to have a back-end language that lives on the server, a front-end language (almost ubiquitously JavaScript) that lives on the client, third-party and in-house libraries for both of these languages to manage, a database, an operating system (often deploying to Linux but developing on God-knows-what OS), and more.  And this is for a &lt;em&gt;basic&lt;/em&gt; app!  What if you have utility programs that are written in another language?  What if you have other weird dependencies and requirements?&lt;/p&gt;
-
-&lt;p&gt;My point is that this all adds up to a lot of complexity, and worst of all- it is complexity that you have to manage across multiple platforms.  If I got an app up and running on my Macbook, and wanted to deploy to Linux, my options were not great.  If you&amp;rsquo;ve ever administrated your own VPS, much less a bare metal server, you know what I mean.  Having to install all of the packages and dependencies that you have in a totally different way is a recipe for headaches and tears.  Getting stuff to production is a completely different ball game from writing it in the first place.  Different technologies on different platforms create a &amp;ldquo;Matrix from Hell&amp;rdquo; (pictured above) that makes even the most courageous ops person want to set her hair on fire.&lt;/p&gt;
-
-&lt;p&gt;Traditionally there have been a variety of solutions that have popped up in response to this, ranging from &amp;ldquo;just develop in PHP and FTP is your deploy&amp;rdquo; (ew) to &lt;a href=&#34;http://heroku.com&#34;&gt;Heroku&lt;/a&gt; (&lt;code&gt;git push heroku master&lt;/code&gt; is your deploy) to virtualization with provisioning (see &lt;a href=&#34;http://vagrantup.com&#34;&gt;Vagrant&lt;/a&gt;).  Vagrant in particular has been gaining a lot of steam lately, for very good reason, and is a great technology (see my post on &lt;a href=&#34;http://nathanleclaire.com/blog/2014/02/10/5-reasons-we-won-startup-weekend/&#34;&gt;how we won Startup Weekend&lt;/a&gt; if you&amp;rsquo;re curious why Vagrant was useful to us in that case).  However, virtual machines have several disadvantages as well.  Because the VM software has to simulate actual physical hardware, you take a big performance hit.  They are slow to start up and, especially before Vagrant started to become popular, difficult to get inexperienced developers started on (Download Vagrant and its dependencies and run &lt;code&gt;vagrant up&lt;/code&gt; is a lot nicer than going through all of the VirtualBox menus, then provisioning your box manually).&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;Containers&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/what-is-docker/containers.jpg %}&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://linuxcontainers.org/&#34;&gt;Containers&lt;/a&gt; popped up as a solution to this issue.  They are sort of like virtual machines, but they focus on process isolation and containment instead of emulating a full-fledged physical machine.  The &amp;ldquo;guest&amp;rdquo; container uses the same kernel as the &amp;ldquo;host&amp;rdquo; machine (and possibly some other resources as well, but my understanding of this at this time is a little fuzzy).  This allows many of the advantages of virtual machines without some of the aforementioned disadvantages.&lt;/p&gt;
-
-&lt;p&gt;Enter &lt;a href=&#34;http://docker.io&#34;&gt;Docker&lt;/a&gt; (from the homepage):&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Docker is an open-source project to easily create lightweight, portable, self-sufficient containers from any application. The same container that a developer builds and tests on a laptop can run at scale, in production, on VMs, bare metal, OpenStack clusters, public clouds and more.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;{%img /images/what-is-docker/docker.png %}&lt;/p&gt;
-
-&lt;p&gt;Docker&amp;rsquo;s goal is to provide a software solution that will allow users to &amp;ldquo;pack up&amp;rdquo; their applications into a standardized container and &amp;ldquo;ship it off&amp;rdquo; to wherever their heart desires.  A container, once developed, can be deployed anywhere that Docker runs.  They compare these containers to actual &lt;a href=&#34;http://en.wikipedia.org/wiki/Containerization&#34;&gt;physical shipping containers&lt;/a&gt;, pictured above, which revolutionized international trade when it was standardized after World War 2.  From Wikipedia:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Containerization dramatically reduced transport costs &amp;hellip; reduced congestion in ports, significantly shortened shipping time, and reduced losses from damage and theft.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Sound like benefits that would be nice to have for your business?&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;A Cambrian Explosion&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/what-is-docker/cambrian.png %}&lt;/p&gt;
-
-&lt;p&gt;What is really interesting about Docker though, to me personally at least, is the Cambrian Explosion-esque fugue of creativity that it has inspired so far and continues to inspire in people everywhere.  It is being used for things online that aren&amp;rsquo;t exactly aligned to its original use case but really hearken to a bold new future of tech.  I know of at least one example where it is being used to make possible a interpreter-by-runnable-code editor for conducting Python interviews.  &lt;a href=&#34;http://www.runnable.com&#34;&gt;Runnable.com&lt;/a&gt; uses Docker to host self-contained executable / editable little code projects where you can look at existing code which you know works, edit it on the fly, and re-run it.  That&amp;rsquo;s awesome!&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m super optimistic for the future of this technology.&lt;/p&gt;
-
-&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;

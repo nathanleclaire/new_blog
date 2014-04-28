@@ -10,20 +10,11 @@
     <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
     
     <item>
-      <title>Why the async Library for Node.js is So Freaking Awesome</title>
-      <link>http://localhost:1313/_posts/2014-01-31-why-the-async-library-for-node-dot-js-is-so-freaking-awesome</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2014-01-31-why-the-async-library-for-node-dot-js-is-so-freaking-awesome</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Commit Every Day, Blog Every Week</title>
-      <link>http://localhost:1313/_posts/2013-10-16-commit-every-day</link>
+      <link>http://localhost:1313/posts/2013-10-16-commit-every-day</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-10-16-commit-every-day</guid>
+      <guid>http://localhost:1313/posts/2013-10-16-commit-every-day</guid>
       <description>
 
 &lt;p&gt;It is with the greatest of pride that I am announcing today my newest initiative.  I am going to write at least one blog post every week for the next 52 weeks, and I am going to make at least one commit every day- preferably to Github, and most likely on my own personal projects, but bonus points would be given for committing to community projects.  This effort is more than a little inspired by Jennifer Dewalt&amp;rsquo;s impressive &lt;a href=&#34;http://jenniferdewalt.com/index.html&#34;&gt;180 websites in 180 days&lt;/a&gt; project.&lt;/p&gt;
@@ -57,138 +48,100 @@
     </item>
     
     <item>
-      <title>Build a Linked List For Each Layer in a Binary Tree</title>
-      <link>http://localhost:1313/_posts/2014-03-01-build-a-linked-list-for-each-layer-in-a-binary-tree</link>
+      <title>Why the async Library for Node.js is So Freaking Awesome</title>
+      <link>http://localhost:1313/posts/2014-01-31-why-the-async-library-for-node-dot-js-is-so-freaking-awesome</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-01-build-a-linked-list-for-each-layer-in-a-binary-tree</guid>
+      <guid>http://localhost:1313/posts/2014-01-31-why-the-async-library-for-node-dot-js-is-so-freaking-awesome</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/about</guid>
+      <description>&lt;p&gt;{%img /images/naaaate.jpg %}&lt;/p&gt;
+
+&lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m Nathan LeClaire and I &amp;lt;3 technology.  When I was 14 or so I started to learn programming on a TI-83+ calculator so I could do algebra problems more quickly.  This, coupled with a reading of Michael Crichton&amp;rsquo;s excellent book &lt;a href=&#34;http://www.amazon.com/gp/product/0061703087/ref=as_li_tf_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0061703087&amp;amp;linkCode=as2&amp;amp;tag=natlecwrionbu-20&#34;&gt;Prey&lt;/a&gt; that ignited an interest in studying computational systems which mimicked biology, led me on a path where I began to learn C++, Python, Linux and more.  To this day, the very notion of AI and systems such as artificial neural networks (especically given how much data is available in the modern age!) is fascinating to me.&lt;/p&gt;
+
+&lt;p&gt;I programmed on and off for a few years after taking in more in high school, mostly about Java, and eventually majored in Philosophy for college.  I love analyzing arguments and discussions of great philosophical thinkers all the way from Plato to Leibniz to Dennett.  Studying philosophy made me a better thinker and communciator as I realized that no line of argument was perfect.&lt;/p&gt;
+
+&lt;p&gt;When I graduated from college, began interning at &lt;a href=&#34;http://21cparks.org&#34;&gt;21st Century Parks&lt;/a&gt; and I stumbled across a rekindled enjoyment of programing and technology.  When I started maintaining their website and the website of my band &lt;a href=&#34;http://funnybonesbeats.org&#34;&gt;Funny Bones&lt;/a&gt;, I knew I was onto something.  Thus began my career in technology.&lt;/p&gt;
+
+&lt;p&gt;I continue to experiment with exciting new technologies like &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; in my free time, as well as writing about them, computer science, and some old favorites such as Python in my blog.&lt;/p&gt;
+
+&lt;p&gt;Areas of interest for me in computing include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Scalability &amp;amp; Distributed Systems&lt;/li&gt;
+&lt;li&gt;Machine Learning, Artificial Neural Nets, Genetic Algorithms/Programming etc.&lt;/li&gt;
+&lt;li&gt;Security (reverse engineering exploits and network vulnerabilities)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Though I am currently employed I am always interested in talking about other opportunities, particularly involving the interests listed above and in the following cities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New York, NY&lt;/li&gt;
+&lt;li&gt;San Francisco, CA&lt;/li&gt;
+&lt;li&gt;Portland, OR&lt;/li&gt;
+&lt;li&gt;Denver, CO&lt;/li&gt;
+&lt;li&gt;Austin, TX&lt;/li&gt;
+&lt;li&gt;Berlin, Germany&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I enjoy getting e-mail, you should &lt;a href=&#34;mailto:nathanleclaire@gmail.com&#34;&gt;send me one&lt;/a&gt;.  Thanks for visiting!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I Love Hackathons, Long Live Hackathons. I Hate Hackathons, Hackathons Must Die.</title>
+      <link>http://localhost:1313/posts/2014-01-18-i-love-hackathons-i-hate-hackathons</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-01-18-i-love-hackathons-i-hate-hackathons</guid>
       <description>
 
-&lt;p&gt;{%img /images/linkedListTree/binary_tree.png %}&lt;/p&gt;
+&lt;p&gt;{%img /images/mhacks/crowd.jpeg A pic I snapped of some of the attendees. %}&lt;/p&gt;
 
-&lt;p&gt;I&amp;rsquo;ve been going through problems in &lt;a href=&#34;http://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X&#34;&gt;Cracking the Coding Interview&lt;/a&gt; to keep my chops strong and for giggles and this one took a little bit of wrangling for me to get:&lt;/p&gt;
+&lt;p&gt;This weekend I&amp;rsquo;ve been attending &lt;a href=&#34;http://mhacks.org/&#34;&gt;MHacks&lt;/a&gt;, which is an event in Detroit geared mostly towards college students.  It is sponsored by a variety of companies including &lt;a href=&#34;http://www.quickenloans.com&#34;&gt;Quicken Loans&lt;/a&gt;, &lt;a href=&#34;http://twilio.com&#34;&gt;Twilio&lt;/a&gt;, &lt;a href=&#34;http://yahoo.com&#34;&gt;Yahoo!&lt;/a&gt;, &lt;a href=&#34;http://mashery.com&#34;&gt;Mashery&lt;/a&gt;, &lt;a href=&#34;http://apple.com&#34;&gt;Apple&lt;/a&gt; and many more.  For those of you unfamiliar with the concept, a hackathon is an event where (mostly) young people interested in technology get together to &lt;a href=&#34;http://stallman.org/&#34;&gt;hack&lt;/a&gt; (not the naughty kind of hacking) on side projects of their choice and perhaps even compete with each other to win some sweet prizes, or just glory and the respect of their peers.  The attendees are typically mostly men, although I feel that MHacks&amp;rsquo; female attendance and culture is very positive compared to some other events I&amp;rsquo;ve experienced in the past).  Sleep deprivation, stimulants, and indoor activities are encouraged.  Starting to get the picture yet?&lt;/p&gt;
+
+&lt;p&gt;Something that strikes me about MHacks in particular as interesting is that the sponsors are paying for so much stuff that it might just blow your mind (attendance is free).  It&amp;rsquo;s set off a weird mix of reactions in me, so I decided to write about it.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Long Live Hackathons&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve had so many nerd chills this weekend it&amp;rsquo;s ridiculous.  I felt like a little kid in a candy store when I saw someone rocking the first pair of &lt;a href=&#34;http://www.google.com/glass/start/&#34;&gt;Google Glass&lt;/a&gt; that I had ever seen in real life.  We opted to work on a &lt;a href=&#34;http://dogecoin.com/&#34;&gt;Dogecoin&lt;/a&gt; site where you can buy them with regular old credit and debit cards (currently you can only buy them with Bitcoins), and the warm reactions we got were fantastic.  Historically peoples&amp;rsquo; eyes have glazed over when I even so much as mention Bitcoin or cyptocurrency, at least until recently.&lt;/p&gt;
+
+&lt;p&gt;In a lot of ways, being here is like living in the future now.  Everyone is forward-thinking technologically and interested in doing things that haven&amp;rsquo;t really been done before.  I had the great fortune of getting to try on an &lt;a href=&#34;http://www.oculusvr.com/&#34;&gt;Oculus Rift&lt;/a&gt;, something I&amp;rsquo;ve wanted to try for a long time, and I have to say that it feels like the future of gaming.  The developer working on it had it rigged up to an XBox Kinect and tracking my hand motions, which appeared as spheres in the little simulation I was immersed in.  The team working on it wants to use it to visualize and manipulate large amounts of data in realtime.  Run that one by &lt;a href=&#34;http://www.edwardtufte.com/tufte/&#34;&gt;Edward Tufte&lt;/a&gt; and get back to me, will ya?&lt;/p&gt;
+
+&lt;p&gt;The money behind the conference was out in full effect, with sponsors manning booths on prime real estate and giving away copious amounts of swag, evangelizing their products and prowess as employers as students shy and outgoing alike stopped by to chat.  We hear all the time nowadays about how the Millenials are having trouble entering the workforce but in the reality distortion field here that becomes increasingly hard to believe (&lt;code&gt;&amp;lt;snark&amp;gt;&lt;/code&gt; they must not be trying hard enough &lt;code&gt;&amp;lt;/snark&amp;gt;&lt;/code&gt;) Pretty much every company I talked to told me they are hiring like mad (though granted, those are the types of companies that would be sponsoring a hackathon).&lt;/p&gt;
+
+&lt;p&gt;I also can&amp;rsquo;t resist posting this gem, scrawled on the whiteboarded walls in the main area like something from Randall Monroe&amp;rsquo;s wildest lucid dreams:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/mhacks/twerking-algorithm.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;The authors are working on an app that will evaluate your twerking ability (you keep your phone in your pocket while you twerk) and rank results against your friends&amp;rsquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Hackathons Must Die&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been doing a lot of reflection on the state of the technology industry industry and the ugly sense of self-entitlement / willful ignorance that a lot of people live in lately.  Though many of the people I&amp;rsquo;ve met this weekend are great folks, even if some of them are a bit socially awkward (not to keep perpetuating that stereotype or anything), I can&amp;rsquo;t help but shake this feeling of general existential doom and gloom that has been hanging over me like a black cloud lately.  I suppose it&amp;rsquo;s because as much as you can see the great side of what people are capable of, you can see just as much of the not so great side as well.&lt;/p&gt;
+
+&lt;p&gt;For starters, I have a hard time getting behind an event that pretty much gleefully encourages you to disregard your physical health and well-being for a weekend of get-some-small-stuff-done-but-also-goof-off-a-lot-but-still-feel-like-you&amp;rsquo;re-working-hard.  I &lt;em&gt;really&lt;/em&gt; hate this trend in the technology industry (sacrificing your physical well-being for&amp;hellip; some &amp;ldquo;greater&amp;rdquo; goal?) because it&amp;rsquo;s crazy harmful and it should be considered as such.  It&amp;rsquo;s the same reason why I really dislike when companies offer free soda as a perk at the office, put eloquently into words by Patrick Mackenzie (talking about free soda as a perk in &lt;a href=&#34;http://www.kalzumeus.com/2011/10/28/dont-call-yourself-a-programmer/&#34;&gt;Don&amp;rsquo;t Call Yourself a Programmer&lt;/a&gt;):&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Given a binary search tree, design an algorithm which creates a linked list of all the
-nodes at each depth (i e , if you have a tree with depth D, you’ll have D linked lists)&lt;/p&gt;
+&lt;p&gt;There are other benefits like “free soda”, “catered lunches”, “free programming books”, etc.  These are social signals more than anything else.  When I say that I’m going to buy you soda, that says a specific thing about how I run my workplace, who I expect to work for me, and how I expect to treat them.  (It says “I like to move the behavior of unsophisticated young engineers by making this job seem fun by buying 20 cent cans of soda, saving myself tens of thousands in compensation while simultaneously encouraging them to ruin their health.”  And I like soda.)&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;So a binary tree such as :&lt;/p&gt;
+&lt;p&gt;So, suffice it to say that I&amp;rsquo;m not too into a culture of sleep deprivation and health-ruining for no good reason.  And I wrote this after standing in line to get free Insomnia Cookies.  Maybe that makes me a hypocrite, or maybe that makes me painfully self-aware. You decide.  Additionally, on the attendee/student side, I&amp;rsquo;d be lying if I said I wasn&amp;rsquo;t picking up on a little bit of a pampered / self-entitled / whiny vibe from some people considering the generally high quality of the event. But there&amp;rsquo;s a few bad apples in every bunch&amp;hellip;&lt;/p&gt;
 
-&lt;pre&gt;
-       (1)
-      /   \
-     /     \
-   (2)     (3)
-  /  \     / \
-(4)  (5) (6) (7)
-&lt;/pre&gt;
+&lt;p&gt;There aren&amp;rsquo;t &lt;em&gt;that&lt;/em&gt; many projects working on problems that are so first world it&amp;rsquo;s painful, but naturally there are a few.  Generally the vibe of a self-directed hackathon reinforces my belief in the maxim that mankind&amp;rsquo;s appetite for distractions is pretty much endless.  Ironically, it&amp;rsquo;s pretty hard to focus here.  Everyone&amp;rsquo;s attention is on snacks or networking or just generally being distracted by the noise levels and crowded spaces instead of working on their project in a manner that&amp;rsquo;s likely to be sustainable.&lt;/p&gt;
 
-&lt;p&gt;Will return linked lists:&lt;/p&gt;
+&lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
 
-&lt;pre&gt;
-(1) =&gt; NULL
-(2) =&gt; (3) =&gt; NULL
-(4) =&gt; (5) =&gt; (6) =&gt; (7) =&gt; NULL
-&lt;/pre&gt;
-
-&lt;p&gt;I wrote up my solution to this in Python, and I&amp;rsquo;m going to share it with you to study and critique.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;Solution&lt;/h1&gt;
-
-&lt;h2 id=&#34;toc_1&#34;&gt;The Linked List Implementation&lt;/h2&gt;
-
-&lt;p&gt;If you&amp;rsquo;ve ever seen or written a linked list implementation before, you&amp;rsquo;ll probably realize there&amp;rsquo;s nothing particularly brilliant or innovative about this one.  Just a good old-fashioned, simple singly linked list.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;class LinkedList:
-    next = None
-    val = None
- 
-    def __init__(self, val):
-        self.val = val
- 
-    def add(self, val):
-        if self.next == None:
-            self.next = LinkedList(val)
-        else:
-            self.next.add(val)
- 
-    def __str__(self):
-        return &amp;quot;({val}) &amp;quot;.format(val=self.val) + str(self.next)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Usage:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;ll = LinkedList(1)
-ll.add(2)
-ll.add(3)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;toc_2&#34;&gt;The Binary Tree Implementation&lt;/h2&gt;
-
-&lt;p&gt;The binary tree implementation is similarly from scratch, and simlarly simple.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;class BinaryTree:
-    val = None
-    left = None
-    right = None
-    
-    def __init__(self, val):
-        self.val = val
- 
-    def __str__(self):
-        return &amp;quot;&amp;lt;Binary Tree (val is {val}). \n\tleft is {left} \n\tright is {right}&amp;gt;&amp;quot;.format(val=self.val, left=self.left, right=self.right)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;No methods, I do all of the tree manipulation by hand.  This works okay for problems of this (considerably small) scale.&lt;/p&gt;
-
-&lt;h2 id=&#34;toc_3&#34;&gt;The Algorithm&lt;/h2&gt;
-
-&lt;p&gt;The algorithm that I came up with is actually slightly different than what is listed as the solution in the book, and depends a bit of idiosyncracies of Python that aren&amp;rsquo;t in Java (which all of the solutions from the book are written in).  Namely, it uses optional arguments to avoid wrapper methods and it uses a dictionary instead of a &lt;code&gt;ArrayList&amp;lt;LinkedList&amp;lt;BinaryTree&amp;gt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;I also differ from the solution in the book in that I grab the depth of the tree once and use that to determine the linked list&amp;rsquo;s index, which is slightly less efficient than the solution that they provide.  If I&amp;rsquo;m not mistaken, however, the asymptotic complexity is still the same (&lt;code&gt;O(n)&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;My depth function is exactly what you&amp;rsquo;d expect (recursive):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;def depth(tree):
-    if tree == None:
-        return 0
-    if tree.left == None and tree.right == None:
-        return 1
-    else:
-        depthLeft = 1+depth(tree.left)
-        depthRight = 1+depth(tree.right)
-        if depthLeft &amp;gt; depthRight:
-            return depthLeft
-        else:
-            return depthRight
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;My &lt;code&gt;tree_to_linked_lists&lt;/code&gt; function does a &lt;a href=&#34;http://en.wikipedia.org/wiki/Tree_traversal#Pre-order&#34;&gt;pre-order traversal&lt;/a&gt;, adding nodes to their corresponding linked list (based on depth) in the dictionary &lt;code&gt;lists&lt;/code&gt; as the tree is traversed.  &lt;code&gt;lists&lt;/code&gt; is passed into, and returned from (in its mutated state), each call to &lt;code&gt;tree_to_linked_lists&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;def tree_to_linked_lists(tree, lists={}, d=None):
-    if d == None:
-        d = depth(tree)
-    if lists.get(d) == None:
-        lists[d] = LinkedList(tree.val)
-    else:
-        lists[d].add(tree.val)
-        if d == 1:
-            return lists
-    if tree.left != None:
-        lists = tree_to_linked_lists(tree.left, lists, d-1)
-    if tree.right != None:
-        lists = tree_to_linked_lists(tree.right, lists, d-1)
-    return lists
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This produces a result that is sort of in reverse order compared to the solution provided by the book, but it still satisfies the problem description to provide a collection of linked lists.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;You can find the entirety of the code &lt;a href=&#34;https://gist.github.com/nathanleclaire/9292861&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I need to be better at data structures and algorithms.  They are fun.&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t let me being a negative nancy get you down too much.  I love these kind of events but I&amp;rsquo;m a sleepy bear today, and a little grumpy.  I&amp;rsquo;m probably just irritable since getting and configuring an SSL cert has been more arduous than I had anticipated.  Just another example of the fact that I don&amp;rsquo;t know what I don&amp;rsquo;t know and I don&amp;rsquo;t know that I don&amp;rsquo;t know it.&lt;/p&gt;
 
 &lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
 
@@ -199,189 +152,252 @@ ll.add(3)
     </item>
     
     <item>
-      <title>How To Get Banned From /r/javascript - Promote Original Content</title>
-      <link>http://localhost:1313/_posts/2014-01-31-how-to-get-banned-from-slash-r-slash-javascript-promote-original-content</link>
+      <title>5 Cool Unix Hacks For Fun and Productivity</title>
+      <link>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-31-how-to-get-banned-from-slash-r-slash-javascript-promote-original-content</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>How I Automated &#34;Finding Almost Anyone&#39;s Email Address&#34;</title>
-      <link>http://localhost:1313/_posts/2013-11-23-how-i-automated-finding-almost-anyones-email-address</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-11-23-how-i-automated-finding-almost-anyones-email-address</guid>
+      <guid>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
       <description>
 
-&lt;p&gt;{% img /images/autorap/demo-fast.gif A demo, complete with colors. %}&lt;/p&gt;
+&lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;EDIT:  The original article author, Rob Ousbey, has popped up on various social media sites to remind everyone to use this tool/knowledge responsibly.  I agree.  Please be responsible.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raged silently at a coworker for spamming the left arrow key to get to the beginning of their terminal prompt when they could have just pressed CTRL + A ?&lt;/li&gt;
+&lt;li&gt;Watched someone as they enter the same command over and over when they could have just prefaced it with &lt;code&gt;!&lt;/code&gt; ?&lt;/li&gt;
+&lt;li&gt;Rolled your eyes as your buddy expounds at length on the virtues of IDEs when you know that you could &amp;ldquo;roflstomp&amp;rdquo; him or her using &lt;code&gt;vim&lt;/code&gt; ?&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Not too long ago I came across an article on &lt;a href=&#34;https://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt; called &amp;ldquo;&lt;a href=&#34;http://www.startupmoon.com/how-i-got-meetings-at-twitter-linkedin-and-github-using-cold-emails/&#34;&gt;The cold emails that got me meetings at Twitter, LinkedIn and GitHub&lt;/a&gt;&amp;rdquo;.  It&amp;rsquo;s by a woman named Iris Shoor who is a co-founder of a startup called &lt;a href=&#34;http://www.takipi.com/&#34;&gt;Takipi&lt;/a&gt;.  In the article she describes how she used a certain technique originally presented &lt;a href=&#34;http://www.distilled.net/blog/miscellaneous/find-almost-anybodys-email-address/&#34;&gt;here&lt;/a&gt; to obtain access to the emails of decision makers at tech companies and cold email them to glean meetings which resulted in sales of her product.  Both of the articles are engaging reads and I highly recommend them, especially if you are interested in &amp;ldquo;growth hacking&amp;rdquo;, or &amp;ldquo;sales and marketing&amp;rdquo; if you insist on using boring non-buzzwords.&lt;/p&gt;
+&lt;p&gt;If so, then these tips might be for you.&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_0&#34;&gt;How Does It Work?&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;DISCLAIMER:&lt;/em&gt; There&amp;rsquo;s an admitted bias towards &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;git&lt;/code&gt;, and the terminal here.  I don&amp;rsquo;t intend to start a holy war about terminal vs. IDEs, just have some fun and point out these fun tricks that work well for me.&lt;/p&gt;
 
-&lt;p&gt;In the original &amp;ldquo;How To Find Almost Anyone&amp;rsquo;s Email Address&amp;rdquo; article, Rob Ousbey presents a Google Doc spreadsheet that will generate a large number of possible emails for someone based on their name and the domain name of the company they work for.  &lt;a href=&#34;http://bit.ly/name2email&#34;&gt;Go ahead, try it out&lt;/a&gt;.  Many peoples&amp;rsquo; emails are something along the lines of &lt;em&gt;[firstname].[lastname]@[company].com&lt;/em&gt;, so there&amp;rsquo;s a high likelihood that their email will be in the list of generated possibilities.&lt;/p&gt;
+&lt;h1 id=&#34;toc_0&#34;&gt;git add -p&lt;/h1&gt;
 
-&lt;p&gt;Then, users are encouraged to exhaustively test each possibility in their Gmail account using the &lt;a href=&#34;https://rapportive.com/&#34;&gt;Rapportive&lt;/a&gt; Chrome extension until they come across a &amp;lsquo;hit&amp;rsquo; (although a little bit of creative Googling will sometimes yield the desired result for you in less time).&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve worked with &lt;code&gt;git&lt;/code&gt; for any non-trivial amount of time you hopefully have come across the notion of making &lt;a href=&#34;http://stackoverflow.com/questions/6543913/git-commit-best-practices&#34;&gt;atomic commits&lt;/a&gt;.  Essentially, the notion is that a commit should contain only interrelated details, and not anything that&amp;rsquo;s logically unrelated to the things you are committing.  For example, it makes sense to commit changes to a class and its corresponding unit test in one commit, but if you&amp;rsquo;ve made changes to another class that deal with completely different business logic then those should be in another commit.&lt;/p&gt;
 
-&lt;p&gt;When trying this out for the first time on a recruiter I was interested in contacting, I found myself clicking the generated permutations in succession with a looming disbelief that this trick would actually work.  Then, suddenly, Rapportive lit up with their portrait and social media info and I felt a funny buzzing sensation in my head as the possibilities swirled around in it.&lt;/p&gt;
+&lt;p&gt;However, what happens when you are working within one file that contains multiple unrelated changes, or changes that you&amp;rsquo;d like to split up into more than one commit in case you need to revert them separately?  Or you have sprinkled logging statements all over the file that you don&amp;rsquo;t want to commit to the repo?  The normal sequence of git commands that people use fails us here:&lt;/p&gt;
 
-&lt;p&gt;{% img /images/autorap/larry.png I feel funny about this. %}&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git diff
+diff --git a/some-file.c b/some-file.c
+index f383179..09e4e35 100644
+--- a/some-file.c
++++ b/some-file.c
+@@ -2,6 +2,8 @@
 
-&lt;p&gt;However, doing it this way was exhausting and tedious, as it required a lot of focus and time.  My programmer instincts revved up and I became convinced that I could automate the process.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;Automating It&lt;/h1&gt;
-
-&lt;p&gt;I won&amp;rsquo;t be publishing my full source code because this has so much potential for abuse, but I will talk a little bit here about how I accomplished automating this.  I chose to reach for my old friend Python to write the script to automate this process.  I wanted to get things done quickly and easily and Python proved to be a great boon here, even providing the excellent &lt;code&gt;argparse&lt;/code&gt; module to make the script much more usable from the command line.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/autorap/copy-as-curl.jpeg Useful Developer Tools are useful. %}&lt;/p&gt;
-
-&lt;p&gt;First, I got an example cURL request using Chrome&amp;rsquo;s handy developer tools.&lt;/p&gt;
-
-&lt;p&gt;Then, I called the &amp;ldquo;secret&amp;rdquo; Rapportive API using &lt;code&gt;pycurl&lt;/code&gt;.  There&amp;rsquo;s a few fields that can be used to identify whether a response has come back for the suggested user, and we use that to determine whether the user, and consequently their email address, has been found.  We also check it against the returned full name to ensure that we haven&amp;rsquo;t gotten back a false positive (for example, Rapportive may return something for &amp;ldquo;larry@google.com&amp;rdquo;, but it may not be the Larry we are looking for).  Outputting all of the emails we try to the terminal, we color the bunk addresses red, the &amp;ldquo;false positive&amp;rdquo; emails yellow, and the successful return results green.  Like good Internet citizens, we wait for a specified interval in between calls to the Rapportive server (2 seconds in the demo at the top of this page).  Upon finding the email for the person we&amp;rsquo;re looking for, the program exits.&lt;/p&gt;
-
-&lt;p&gt;The Rapportive API is surprisingly flexible on what you send it as far as HTTP headers goes, seeming to rely mostly on the &lt;code&gt;X-Session-Token&lt;/code&gt; header for user authentication.&lt;/p&gt;
-
-&lt;p&gt;The main loop in Python looks like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;if __name__ == &#39;__main__&#39;:
-    args = argument_handler.handle_args()   
-    rap_client = RapportiveClient(args.name, verbose=args.verbose)
-    permutator = Permutator(args.name, args.domain) 
-    permutations = permutator.get_permutations()
-
-    for permutation in permutations:
-        output = permutation 
-        rap_client.perform(permutation)
-        if args.should_color:
-            output = colorer.color(permutation, rap_client)
-        if not args.quiet: 
-            print output 
-            if rap_client.was_user_found() and rap_client.name_match():
-                sys.exit(0)
-        else:
-            if rap_client.was_user_found():
-                print output
-                sys.exit(0) 
-        time.sleep(args.wait_interval)
+ int main(void) {
+        printf(&amp;quot;doing some stuff\n&amp;quot;);
+-       printf(&amp;quot;doing some more stuff\n&amp;quot;);
++       do_some_stuff();
++       printf(&amp;quot;doing some unrelated stuff\n&amp;quot;);
++       do_some_unrelated_stuff();
+        return 0;
+ }
+$ git add some-file.c
+$ git commit
+[master 1938906] some unrelated stuff, cramming it all in one commit &#39;cause I&#39;m lazy
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+$ echo &amp;quot;Whoops we just committed unrelated stuff.  Not very modular of us.&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;The &lt;code&gt;-p&lt;/code&gt; (standing for patch) flag for &lt;code&gt;git add&lt;/code&gt; is ridiculously useful for these kinds of cases.  This tells &lt;code&gt;git add&lt;/code&gt; that we want to do a &lt;em&gt;partial&lt;/em&gt; add of the file, and we&amp;rsquo;re presented with a nice interative menu which allows us to specify with a lovely amount of detail exactly which parts of the file we want to stage.  &lt;code&gt;git&lt;/code&gt; splits the changes into hunks automatically, which you can approve or reject with &lt;code&gt;y&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt; respectively, or use &lt;code&gt;s&lt;/code&gt; to split up into finer grained hunks.  If &lt;code&gt;git&lt;/code&gt; can&amp;rsquo;t split the hunks up the way you want automatically, you can specify as much detail as you want with the &lt;code&gt;e&lt;/code&gt; (edit) option.&lt;/p&gt;
 
-&lt;p&gt;Rapportive is a subsidiary of LinkedIn and LinkedIn has been catching a lot of heat lately for everything from their &lt;a href=&#34;http://engineering.linkedin.com/mobile/linkedin-intro-doing-impossible-ios&#34;&gt;iOS MITM hack&lt;/a&gt; to their &lt;a href=&#34;http://blog.linkedin.com/2012/06/06/linkedin-member-passwords-compromised/&#34;&gt;notorious password breach&lt;/a&gt;.  They&amp;rsquo;re a popular company to love to hate.  However, I think their tools have as much potential for cool stuff as they do for abuse.  Honestly, I&amp;rsquo;m surprised that the trick described in this article is not more well-known.  I haven&amp;rsquo;t cold emailed anyone whose address I have obtained this way, but if I needed to do so I&amp;rsquo;d be very pleased to have this tool at my disposal.&lt;/p&gt;
+&lt;p&gt;{% img /images/five-tips/git-add-minus-p.jpeg And now our commits are nice and tidy. %}&lt;/p&gt;
 
-&lt;p&gt;Cheers and I&amp;rsquo;ll see you next week.&lt;/p&gt;
+&lt;p&gt;See here for more details on &lt;code&gt;git add -p&lt;/code&gt;: &lt;a href=&#34;http://stackoverflow.com/questions/1085162/how-can-i-commit-only-part-of-a-file-in-git&#34;&gt;How can I commit only part of a file in git?&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Nathan&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that this usage of &lt;code&gt;-p&lt;/code&gt; flag also works for commands such as &lt;code&gt;git checkout --&lt;/code&gt;.  Therefore you could hypothetically send only part of a file back to the way it was at HEAD, and keep your other changes.  Handy!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;vim&amp;rsquo;s CTRL-P / CTRL-N autocomplete feature&lt;/h1&gt;
+
+&lt;p&gt;This is one of those killer features of &lt;code&gt;vim&lt;/code&gt; that I am surprised to find out people (even experienced &lt;code&gt;vim&lt;/code&gt; gurus) don&amp;rsquo;t use more frequently.  Even if you are a casual user (hop into &lt;code&gt;vim&lt;/code&gt; to edit some config files while &lt;code&gt;ssh&lt;/code&gt;ed into a box) it has the potential to help you out quite a bit.  One of the reasons people claim they couldn&amp;rsquo;t live without IDEs is the existence of features such as Intellisense that provide autocompletion of variable/function names.  These features are very nice since they cut down on mistakes due to misspelling properties and thereby speed up the compile/run/debug cycle a fair bit.  Many people don&amp;rsquo;t seem to realize that there is an analog which comes straight out of the box in &lt;code&gt;vim&lt;/code&gt;, no plugins needed.&lt;/p&gt;
+
+&lt;p&gt;You can press CTRL-N to move down the list of suggested completions when typing in INSERT mode (which vim draws from the current buffers, and from the &lt;code&gt;tags&lt;/code&gt; file if you have one), or CTRL-P to move back up (representing &amp;ldquo;NEXT&amp;rdquo; and &amp;ldquo;PREVIOUS&amp;rdquo; if you didn&amp;rsquo;t catch the mnemonic).  If there is only one possible completion, &lt;code&gt;vim&lt;/code&gt; will just go ahead and insert it.  Very handy and speedy, especially in codebases with a lot of long variable / method / constant names.&lt;/p&gt;
+
+&lt;p&gt;CTRL-P/CTRL-N have a lot of synergy with the next tip as well, as touched upon briefly in the above paragraph.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-n-vim.jpeg And you barely need to leave the home row. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;exuberant ctags&lt;/h1&gt;
+
+&lt;p&gt;Everyone who uses &lt;code&gt;vim&lt;/code&gt; knows that it can be a bit of a kerfluffle sometimes to open a file in a distant directory (tab completion helps ease this with &lt;code&gt;:e&lt;/code&gt;, but it&amp;rsquo;s still not usually instantaneous).  If you happen to be working on a team, or a very large project, the ability to do this quickly will likely be a vital part of your workflow.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ctags.sourceforge.net/&#34;&gt;Exuberant Ctags&lt;/a&gt; is a tool that makes this worlds easier than it would be without.  With ctags, you can  you just run a command in the top directory of the project you&amp;rsquo;re working on to generate a &amp;ldquo;tags&amp;rdquo; file, then you can use CTRL-] to &amp;ldquo;pop into&amp;rdquo; the definition of whatever it is your cursor is over (say, a class name).  Press CTRL+T to get back to where you were before.&lt;/p&gt;
+
+&lt;p&gt;You can even set up a &lt;a href=&#34;http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html&#34;&gt;post-commit hook in git&lt;/a&gt; to generate your ctags file automatically when you make a commit!  Nice.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;CTRL-R in bash and zsh&lt;/h1&gt;
+
+&lt;p&gt;Ever been typing in a command at the terminal, when you suddenly find yourself wishing that there was an easy way to just autofill the prompt with something that you&amp;rsquo;d entered previously so you can edit it or just run it again?  If so, then I&amp;rsquo;ve got good news for you:  You can!  Just press CTRL+R and start typing the thing that you are looking for.  The terminal will fill in what it thinks you are looking for, and if there is more than one option you can cycle through them by pressing CTRL+R repeatedly.  When you&amp;rsquo;ve found the thing you&amp;rsquo;re after, you can break out of the prompt with any of the usual movement commands (CTRL+A, CTRL+E, arrow keys, etc. if you have standard &lt;code&gt;bash&lt;/code&gt; keybindings).  Try it out!  Very handy if you can&amp;rsquo;t remember the name of the box you want to &lt;code&gt;ssh&lt;/code&gt; into.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-r.jpeg What was that IP address again? %}&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;history | grep $COMMAND&lt;/code&gt; will treat you well too, if you just want to review all of the times you&amp;rsquo;ve run that command in recent times.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;vim macros&lt;/h1&gt;
+
+&lt;p&gt;A lot of the time when you&amp;rsquo;re writing code, or doing related tasks, you find yourself in need of a way to repeat the same editor commands over and over, perhaps with a slight variation.  Different editors provide slightly different ways of addressing this.  &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;, for example, has a &amp;ldquo;killer feature&amp;rdquo; where you are able to place multiple cursors in various locations and edit away.  In &lt;code&gt;vim&lt;/code&gt; (and in &lt;code&gt;emacs&lt;/code&gt; too, but here we&amp;rsquo;ll be covering the &lt;code&gt;vim&lt;/code&gt; method) you record and playback keyboard macros to accomplish this.  It is a tool with an absurd amount of power and flexibility, and offers the chance to speed up productivity on repetitive editing tasks by an order of magnitude.&lt;/p&gt;
+
+&lt;p&gt;To make a macro, press &lt;code&gt;q&lt;/code&gt; in normal mode, then press another key to &amp;ldquo;name&amp;rdquo; the macro (usually I use &lt;code&gt;q&lt;/code&gt; again).  &lt;code&gt;vim&lt;/code&gt; will start recording your keystrokes.  &lt;code&gt;vim&lt;/code&gt; will remember which keystrokes you make until you press &lt;code&gt;q&lt;/code&gt; again to save the macro.  You can replay with &lt;code&gt;@&lt;/code&gt;-letter in normal mode, so I am usually pressing &lt;code&gt;@q&lt;/code&gt;.  You can also preface the &lt;code&gt;@&lt;/code&gt;/replay command with a number so that you can rapidly execute your macro over and over (like much in &lt;code&gt;vim&lt;/code&gt;-land, the &amp;ldquo;grammar&amp;rdquo; behaves as you would be accustomed to).  If you&amp;rsquo;re accustomed to using &lt;code&gt;vim&lt;/code&gt;&amp;rsquo;s fancy movement commands (for instance, using &lt;code&gt;/&lt;/code&gt; search to navigate), and practice a little bit, you will soon be able to whip up thunderous macros that will leave your mouse-dependent colleagues in the dust.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/vim-macros.gif Who needs multiple cursors? %}&lt;/p&gt;
+
+&lt;p&gt;For more info on &lt;code&gt;vim&lt;/code&gt; macros, see here: &lt;a href=&#34;http://vim.wikia.com/wiki/Macros&#34;&gt;Vim Wiki (Macros)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you enjoyed and I&amp;rsquo;ll see you next week!&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Speed Up Your Workflow By Running PHPUnit Tests Inside of Vim</title>
-      <link>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</link>
+      <title>Dragging and Dropping Images From One Browser Tab to Another In AngularJS</title>
+      <link>http://localhost:1313/posts/2014-01-11-dragging-and-dropping-images-from-one-browser-tab-to-another-in-angularjs</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-20-speed-up-your-workflow-by-running-phpunit-tests-inside-of-vim</guid>
+      <guid>http://localhost:1313/posts/2014-01-11-dragging-and-dropping-images-from-one-browser-tab-to-another-in-angularjs</guid>
       <description>
 
-&lt;p&gt;{%img /images/vim-phpunit/phpunitdemo.gif No more CTRL Z for me. %}&lt;/p&gt;
+&lt;p&gt;{% img /images/drag-drop-angular/demo.gif Nice. %}&lt;/p&gt;
 
-&lt;p&gt;If you&amp;rsquo;re a dev that cares about nice, clean, working code you should probably be writing unit tests.  I&amp;rsquo;ve discussed unit testing in &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; a bit in &lt;a href=&#34;http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/&#34;&gt;one of my previous posts&lt;/a&gt;, but what if you are working on the server side with one of the &lt;a href=&#34;http://langpop.com/&#34;&gt;most wildly popular web application languages of all time&lt;/a&gt;?  That&amp;rsquo;s right folks, I&amp;rsquo;m talking about &lt;a href=&#34;http://php.net/&#34;&gt;PHP&lt;/a&gt; and whether you love it or hate it if you are working with it there&amp;rsquo;s a damn good chance that you are unit testing it with the venerable &lt;a href=&#34;http://phpunit.de/&#34;&gt;PHPUnit&lt;/a&gt; (if you&amp;rsquo;re not unit testing at all, you&amp;rsquo;re on the naughty list).  At the time of writing, this is what I do at my day job (my night job is as a costumed crusader fighting crime in the mean streets of &lt;a href=&#34;http://www.a2gov.org/Pages/default.aspx&#34;&gt;Ann Arbor, Michigan&lt;/a&gt;.  For a long time the unit testing part of my development workflow in PHP went something like this:&lt;/p&gt;
+&lt;p&gt;So, I catch a lot of flak for not having a &lt;a href=&#34;https://facebook.com&#34;&gt;Facebook&lt;/a&gt;.  I used to have one about six years ago, when &lt;code&gt;&amp;lt;trolling&amp;gt;&lt;/code&gt; it was actually cool, our parents weren&amp;rsquo;t on it, and we had no idea the NSA was watching our every little status update &lt;code&gt;&amp;lt;/trolling&amp;gt;&lt;/code&gt;.  Then, for a variety of reasons, I deleted it.  Since then, people have complained endlessly about a dearth of Nate on social media, so I have started on a new website/project called The Natewerk, which is going to be the #1 social network for people who know me.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Be editing a PHP file and the file that tests it inside of &lt;code&gt;vim&lt;/code&gt; over &lt;code&gt;ssh&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Change something in the test or the class that is likely to break the test, or add new tests&lt;/li&gt;
-&lt;li&gt;Pop out of &lt;code&gt;vim&lt;/code&gt; using &lt;code&gt;CTRL+Z&lt;/code&gt; to suspend the process, and run the test on the command line using &lt;code&gt;phpunit --colors FileTest.php&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Note the results of the test.&lt;/li&gt;
-&lt;li&gt;Type &lt;code&gt;fg&lt;/code&gt; to get back into &lt;code&gt;vim&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Change the files to correspond &lt;em&gt;OR&lt;/em&gt; Wait, what was the thing that was off again?&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GOTO 1&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;It&amp;rsquo;s written using &lt;a href=&#34;http://nodejs.org&#34;&gt;Node.js&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;Angular.js&lt;/a&gt;, and part of the functionality that I wanted was to have the ability for users to drag an image from a separate tab and drop it into the Natewerk tab, &lt;a href=&#34;http://imgur.com&#34;&gt;Imgur&lt;/a&gt; style, taking an action appropriate for where the user was located in the app.  For instance, if they were on their profile page, I want the app to automatically upload that image to the server (perhaps with a prompt to confirm, also like Imgur), so they can easily add pictures of themselves to their profile.  If they were in the chatroom, it would show the image in the currently active conversation, so that people can post funny gifs/pictures and also easily post images for other people to see (this is one of the annoying things about Skype, in my opinion- you can drag and drop files but it won&amp;rsquo;t display inline, the person you&amp;rsquo;re chatting with has to download it).&lt;/p&gt;
 
-&lt;p&gt;Needless to say it&amp;rsquo;s a little exhausting, especially on those days where your brain&amp;rsquo;s moving slower than your fingers and you just can&amp;rsquo;t seem to inject enough coffee into your system.  But if your workflow is like this, you might be excited to find out that there is a better way.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;Let&amp;rsquo;s Write Some VimScript&lt;/h1&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;And when you gaze long into an abyss the abyss also gazes into you.&lt;/p&gt;
+&lt;p&gt;Googling around found a few promising articles:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikiquote.org/wiki/Friedrich_Nietzsche&#34;&gt;Friedrich Nietzsche&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;If you&amp;rsquo;re a &lt;code&gt;vim&lt;/code&gt; poweruser, or even just a regular user, your first impulse towards solving this problem might be to execute commands using &lt;code&gt;:!phpunit @%&lt;/code&gt;.  In case you&amp;rsquo;re not familiar with this syntax, you just learned that you can preface commands with &lt;code&gt;!&lt;/code&gt; (bang) to run them in the shell and that &lt;code&gt;@%&lt;/code&gt; refers to the file opened in the current buffer.  This could work pretty well (and does) in a lot of cases, however it has a few disadvantages:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You have to type out the whole sequence every time, which is really annoying even if you are a fast typer and it adds a second or two onto your &amp;ldquo;writecode-runtest-repeat&amp;rdquo; cycle each time that really begins to add up quickly&lt;/li&gt;
-&lt;li&gt;You can&amp;rsquo;t see the results inside a &lt;code&gt;vim&lt;/code&gt; buffer and manipulate them side-by-side with the test and code under test.  You could theoretically use &lt;code&gt;screen&lt;/code&gt; for this, but I&amp;rsquo;ve always run into issues getting &lt;code&gt;screen&lt;/code&gt; to work perfectly with my &lt;code&gt;vim&lt;/code&gt; setup&lt;/li&gt;
-&lt;li&gt;In my use case (not sure if this is universal), PHPUnit is finnicky about &lt;em&gt;where&lt;/em&gt; you run the tests from, and for a variety of reasons I don&amp;rsquo;t like to &lt;code&gt;:cd&lt;/code&gt; away from the home directory of the project I&amp;rsquo;m working on very often (not to mention that&amp;rsquo;s an extra step in the cycle).  &lt;code&gt;:set autochdir&lt;/code&gt; would fix this, but for large projects I&amp;rsquo;m not often a fan of &lt;code&gt;autochdir&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wisercoder.com/drag-drop-image-upload-directive-angular-js/&#34;&gt;Drag and Drop File Upload with AngularJS&lt;/a&gt; from &lt;a href=&#34;http://onemightyroar.com/&#34;&gt;One Mighty Roar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://buildinternet.com/2013/08/drag-and-drop-file-upload-with-angularjs/&#34;&gt;Drag and drop image upload directive for Angular.js&lt;/a&gt; from &lt;a href=&#34;http://wisercoder.com&#34;&gt;Wiser Coder&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;You could also try to look for a plugin, but who wants yet &lt;em&gt;another&lt;/em&gt; &lt;code&gt;vim&lt;/code&gt; plugin / coloring theme / whatever to juggle?&lt;/p&gt;
+&lt;p&gt;But neither really gave me what I wanted, which was dragging and dropping from other tabs with the body-modal kind of effect that Imgur has.  So I set out to create my own.&lt;/p&gt;
 
-&lt;p&gt;So what&amp;rsquo;s a unit testing junkie to do?  We have to dig into VimScript to automate this.  Hoo boy.  But have no fear, thanks to &lt;a href=&#34;http://stevelosh.com/&#34;&gt;Steve Losh&lt;/a&gt;&amp;rsquo;s &lt;a href=&#34;http://learnvimscriptthehardway.stevelosh.com/&#34;&gt;Learn VimScript the Hard Way&lt;/a&gt; I&amp;rsquo;ve figured out a great solution for you.&lt;/p&gt;
+&lt;h1 id=&#34;toc_0&#34;&gt;Creating a &lt;code&gt;&amp;lt;char-flasher&amp;gt;&lt;/code&gt; directive&lt;/h1&gt;
 
-&lt;p&gt;Put this code inside of your &lt;code&gt;.vimrc&lt;/code&gt; file:&lt;/p&gt;
+&lt;iframe src=&#34;http://embed.plnkr.co/PmTUfAKXZQOc2dj01pcs/preview&#34;&gt;&lt;/iframe&gt;
 
-&lt;pre&gt;&lt;code&gt;function! RunPHPUnitTest()
-    cd %:p:h
-    let result = system(&amp;quot;phpunit &amp;quot; . bufname(&amp;quot;%&amp;quot;))
-    split __PHPUnit_Result__
-    normal! ggdG
-    setlocal buftype=nofile
-    call append(0, split(result, &#39;\v\n&#39;))
-    cd -
-endfunction
+&lt;p&gt;I wanted the ability to display some text on the screen with dots that blinked, as shown above, to display text such as &lt;code&gt;&amp;quot;Drop image to display in chat...&amp;quot;&lt;/code&gt; to make the process a bit more responsive and encouraging.  This kind of directive would also be reusable for creating fancy flashing text in the future as well (for example, if we wanted to display a &lt;code&gt;&amp;quot;{{user}} is typing...&amp;quot;&lt;/code&gt; message in chat like many chat clients do).  I quickly cooked up a directive that can be used like so:&lt;/p&gt;
 
-nnoremap &amp;lt;leader&amp;gt;u :call RunPHPUnitTest()&amp;lt;cr&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;char-flasher display-text=&amp;quot;Drop image here to display in chat...&amp;quot; flash-char=&amp;quot;.&amp;quot; flash-interval=&amp;quot;200&amp;quot;&amp;gt;&amp;lt;/char-flasher&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This will remap the keyboard shortcut &lt;code&gt;&amp;lt;leader&amp;gt;u&lt;/code&gt; (run in normal mode) to run &lt;code&gt;phpunit&lt;/code&gt; on the file you&amp;rsquo;re currently editing (hopefully a test, or else there will be no result) in the directory where it is based, and spit out the results into a new window.  In case you&amp;rsquo;re unfamiliar, the &lt;code&gt;&amp;lt;leader&amp;gt;&lt;/code&gt; key in &lt;code&gt;vim&lt;/code&gt; is &lt;code&gt;&#39;\&#39;&lt;/code&gt; by default, but frequently it gets remapped to other keys (mine is mapped to &lt;code&gt;&#39;,&#39;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;We pass in parameters here to have an eye towards reuse, although for now it is fairly geared towards the use case of a message with dots at the end (though you can use any character you want, not just &lt;code&gt;&#39;.&#39;&lt;/code&gt;).  &lt;code&gt;display-text&lt;/code&gt; is the message to display.  &lt;code&gt;flash-char&lt;/code&gt; is the character to flash (it&amp;rsquo;s assumed that this character is repeated at the end of the &lt;code&gt;display-text&lt;/code&gt; string).  We pass these attributes as &lt;code&gt;&#39;@&#39;&lt;/code&gt; parameters, so they will be interpreted literally.  We also set the directive to stop the &lt;code&gt;$interval&lt;/code&gt; call we are using the animate the dots in case the directive is destroyed (this prevents memory leaks / wasted resources).&lt;/p&gt;
 
-&lt;p&gt;I really like this shortcut since it allows me to look at the test results side by side with the files I&amp;rsquo;m working on.  This code generates a new test result window each time you run it, so you have to &lt;code&gt;:q&lt;/code&gt; out of old ones manually.  This has never bothered me &lt;em&gt;too&lt;/em&gt; much, but if you know of a way to change it so that it kills old windows automatically I&amp;rsquo;d love to hear from you.&lt;/p&gt;
+&lt;p&gt;The code for the directive:&lt;/p&gt;
 
-&lt;p&gt;If you have a file with a lot of test methods in it, &lt;code&gt;vim&lt;/code&gt; will be somewhat awkardly locked up for a minute waiting for the results, which it will spit out all at once when it is finished instead of in real-time like when you run &lt;code&gt;phpunit&lt;/code&gt; on the command line, but at this time &lt;code&gt;vim&lt;/code&gt; does not support streaming input buffers as far as I am aware.  So it&amp;rsquo;s something that has to be lived with if you want to use the functionality this way.  If you know of a workaround for this, you should &lt;a href=&#34;mailto:nathanleclaire@gmail.com&#34;&gt;let me know&lt;/a&gt;.  Or, you can use the next tip to execute just a few tests at a time.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;But Can We Do Better?&lt;/h1&gt;
-
-&lt;p&gt;Sure, we can always do better.  I really like using phpunit with the &lt;code&gt;--filter&lt;/code&gt; option, since it allows you to focus on only running the tests you are interested in, instead of the whole kit and kaboodle.  This speeds things up really significantly.  How can we include this in our little VimScript function?&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ll pass a parameter to our &lt;code&gt;RunPHPUnitTest()&lt;/code&gt; function to indicate whether we want to do a &lt;code&gt;--filter&lt;/code&gt; run or not, and if so we will yank the current word to use as the argument for the &lt;code&gt;--filter&lt;/code&gt; parameter.  So, in our use case, if our vim cursor is hovering over the name of the function we want to run in the test file (as in &lt;code&gt;function testWhatever()&lt;/code&gt;), and we press &lt;code&gt;&amp;lt;leader&amp;gt;f&lt;/code&gt;, it will run PHPUnit just for that test.  Revised, the code in our &lt;code&gt;.vimrc&lt;/code&gt; file looks like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function! RunPHPUnitTest(filter)
-    cd %:p:h
-    if a:filter
-        normal! T yw
-        let result = system(&amp;quot;phpunit --filter &amp;quot; . @&amp;quot; . &amp;quot; &amp;quot; . bufname(&amp;quot;%&amp;quot;))
-    else
-        let result = system(&amp;quot;phpunit &amp;quot; . bufname(&amp;quot;%&amp;quot;))
-    endif
-    split __PHPUnit_Result__
-    normal! ggdG
-    setlocal buftype=nofile
-    call append(0, split(result, &#39;\v\n&#39;))
-    cd -
-endfunction
-
-nnoremap &amp;lt;leader&amp;gt;u :call RunPHPUnitTest(0)&amp;lt;cr&amp;gt;
-nnoremap &amp;lt;leader&amp;gt;f :call RunPHPUnitTest(1)&amp;lt;cr&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.directive(&#39;charFlasher&#39;, function($interval) {
+  return {
+    restrict: &#39;E&#39;,
+    scope: {
+      displayText: &#39;@&#39;
+      flashChar: &#39;@&#39;,
+      flashInterval: &#39;@&#39;
+    },
+    template: &#39;{{ realContent }}{{ flashingChars }}&#39;,
+    link: function(scope, element, attrs) {
+      var splitMessage = attrs.displayText.split(attrs.flashChar);
+      var realContent = splitMessage.shift();
+      var numFlashingChars = splitMessage.length;
+      scope.flashingChars = attrs.flashChar;
+      scope.realContent = realContent;
+      var intervalId = $interval(function() {
+        if (scope.flashingChars.length &amp;gt;= numFlashingChars) {
+          scope.flashingChars = &#39;&#39;;
+        } else {
+          scope.flashingChars += attrs.flashChar;
+        }
+      }, attrs.flashInterval);
+      element.on(&#39;$destroy&#39;, function() {
+        $interval.cancel(intervalId);
+      });
+    }
+  };
+});
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In action:&lt;/p&gt;
+&lt;p&gt;Not perfect, but pretty fun, and useful for our purposes.&lt;/p&gt;
 
-&lt;p&gt;{%img /images/vim-phpunit/phpunitdemofilter.gif So much faster, especially in big files. %}&lt;/p&gt;
+&lt;h1 id=&#34;toc_1&#34;&gt;Creating the drag and drop directive&lt;/h1&gt;
+
+&lt;p&gt;So, when the user drags an image from another tab over our application, we want the screen to be blanketed with a semi-transparent dark overlay while our message displays, and then when they drop it we want to do something with that image&amp;rsquo;s &lt;code&gt;src&lt;/code&gt; attribute, like use it to upload the image to our server.&lt;/p&gt;
+
+&lt;p&gt;So we have to come up with a solution to this, and preferably do it in a manner that&amp;rsquo;s idiomatic to Angular.  I ended up using jQuery in my final solution to make some things a bit easier, but I&amp;rsquo;m sure there are some craft souls out there who could do everything with just the jQuery lite implementation Angular ships with.&lt;/p&gt;
+
+&lt;p&gt;I came across &lt;a href=&#34;http://css-tricks.com/snippets/jquery/append-site-overlay-div/&#34;&gt;this blog post&lt;/a&gt; by Chris Coyier that provided me information on how to create the &amp;ldquo;body-modal&amp;rdquo; effect.  It&amp;rsquo;s pretty good, but it could be a bit more Angular-ey if we&amp;rsquo;re going to use it in our app.  We&amp;rsquo;ll start by creating a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; right above the &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; tag that will serve as our dark overlay, and we&amp;rsquo;ll use &lt;code&gt;ng-show&lt;/code&gt; to decide if it should be showing or not:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;overlay&amp;quot; ng-show=&amp;quot;darkBody&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we can add to our CSS file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;css&#34;&gt;#overlay {
+    height: 100%;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    z-index: 5000;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On our main controller we&amp;rsquo;ll set some methods for manipulating this overlay:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;app.controller(&#39;MainCtrl&#39;, function($scope) {
+    $scope.darkBody = false;
+
+    $scope.darkenBody = function() {
+        console.log(&#39;darkening body...&#39;);
+        $scope.darkBody = true;
+    };
+
+    $scope.lightenBody = function() {
+        $scope.darkBody = false;
+    };
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;ll declare this controller on our &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; tag, which is also where we declare our &lt;code&gt;ng-app&lt;/code&gt; directive:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;html ng-app=&amp;quot;nateWerk&amp;quot; ng-controller=&amp;quot;MainCtrl&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sweet.  Now we will create the create the &lt;code&gt;imageDragDropUpload&lt;/code&gt; directive, which will be an attribute directive we place on &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;.  This is so the user can drag/drop the images anywhere on the page and everything will still work (note: the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; &lt;code&gt;height&lt;/code&gt; property must be set to 100% of the screen height for this all to work).&lt;/p&gt;
+
+&lt;p&gt;We define a function for darkening the body and bind it to the &lt;code&gt;dragenter&lt;/code&gt; and &lt;code&gt;dragover&lt;/code&gt; directives, so the first part of the link function for our directive looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var darkenBody = function(event) {
+    event.preventDefault();
+    scope.$apply(function() {
+        scope.darkenBody();
+    });
+};
+elm.bind(&#39;dragenter&#39;, darkenBody);
+elm.bind(&#39;dragover&#39;, darkenBody);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our directive doesn&amp;rsquo;t have an isolate scope, so we have access to the &lt;code&gt;darkenBody&lt;/code&gt; method from &lt;code&gt;MainCtrl&lt;/code&gt;&amp;rsquo;s scope (if you wanted multiple drag and drops into different areas of the page you should create one with isolate scope, but with this style there will only ever be one instance of the directive).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;drop&lt;/code&gt; binding is a little bit trickier, but not too bad.  We use jQuery to do a little bit of parsing of the content (HTML) that was handed to us, and get the &lt;code&gt;src&lt;/code&gt; attribute to do with it what we will (in this case, add to an imageService so the controller can follow along).  Specifically, we use &lt;code&gt;event.dataTransfer.getData&lt;/code&gt; to get the HTML that was dropped onto the page (see &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/DragDrop/Recommended_Drag_Types&#34;&gt;this MDN documentation&lt;/a&gt;), and create a new jQuery element out of it.  We filter this jQuery element for the &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; because sometimes multiple HTML elements are present in the dragged/dropped content.  Then we hide the body overlay:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;event.preventDefault();
+var imageSrc = $(event.originalEvent.dataTransfer.getData(&#39;text/html&#39;)).filter(function(i, elm) { 
+    return $(elm).is(&#39;img&#39;); 
+}).attr(&#39;src&#39;);
+imageService.pushImage(imageSrc);  // Will append to list of images dropped into app
+scope.lightenBody();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pretty cool and useful in my opinion.  Hopefully your imagination is going crazy with possibilities in all sorts of directions right now, since this could be expanded to different types of content, including files from the user&amp;rsquo;s computer and so on.  It&amp;rsquo;d benefit from a bit of animation and such as well.&lt;/p&gt;
+
+&lt;p&gt;I wasn&amp;rsquo;t sure how Plunker/iframes would handle this, so I made a demo viewable &lt;a href=&#34;http://nathanleclaire.github.io/angdragdropdemo&#34;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m hotlinking the images here, but please don&amp;rsquo;t do this in production, it&amp;rsquo;s rude (upload them to your own server instead).&lt;/p&gt;
 
 &lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
 
-&lt;p&gt;I&amp;rsquo;d rather script my editor in Python.  JUST KIDDING.  Kind of.&lt;/p&gt;
+&lt;p&gt;This was a fun thing to learn how to do in AngularJS.  Since this uses HTML5 APIs, it won&amp;rsquo;t work in older browsers, but I haven&amp;rsquo;t thoroughly tested it to see where it will work and where it will not (seems to go over well in Chrome, Safari, and Firefox on a variety of OSes).  Ultimately it makes me excited for the future of Angular, the browser, and the NateWerk.&lt;/p&gt;
 
-&lt;p&gt;Until next week, stay sassy Internet.  And keep that code coverage strong.&lt;/p&gt;
-
-&lt;p&gt;Cheers,&lt;/p&gt;
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;
@@ -391,10 +407,10 @@ nnoremap &amp;lt;leader&amp;gt;f :call RunPHPUnitTest(1)&amp;lt;cr&amp;gt;
     
     <item>
       <title>Three Elements That Sum To Zero</title>
-      <link>http://localhost:1313/_posts/2013-10-22-three-elements-that-sum-to-zero</link>
+      <link>http://localhost:1313/posts/2013-10-22-three-elements-that-sum-to-zero</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-10-22-three-elements-that-sum-to-zero</guid>
+      <guid>http://localhost:1313/posts/2013-10-22-three-elements-that-sum-to-zero</guid>
       <description>
 
 &lt;p&gt;There&amp;rsquo;s an interview question (for developers) that recently I&amp;rsquo;ve been asking (if they have already proven they can &lt;a href=&#34;http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html&#34;&gt;FizzBuzz&lt;/a&gt;) which goes a little something like this:&lt;/p&gt;
@@ -577,672 +593,11 @@ Suave : {78891, 33850, 54525}
     </item>
     
     <item>
-      <title>About</title>
-      <link>http://localhost:1313/about</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/about</guid>
-      <description>&lt;p&gt;{%img /images/naaaate.jpg %}&lt;/p&gt;
-
-&lt;p&gt;Hi there!&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m Nathan LeClaire and I &amp;lt;3 technology.  When I was 14 or so I started to learn programming on a TI-83+ calculator so I could do algebra problems more quickly.  This, coupled with a reading of Michael Crichton&amp;rsquo;s excellent book &lt;a href=&#34;http://www.amazon.com/gp/product/0061703087/ref=as_li_tf_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0061703087&amp;amp;linkCode=as2&amp;amp;tag=natlecwrionbu-20&#34;&gt;Prey&lt;/a&gt; that ignited an interest in studying computational systems which mimicked biology, led me on a path where I began to learn C++, Python, Linux and more.  To this day, the very notion of AI and systems such as artificial neural networks (especically given how much data is available in the modern age!) is fascinating to me.&lt;/p&gt;
-
-&lt;p&gt;I programmed on and off for a few years after taking in more in high school, mostly about Java, and eventually majored in Philosophy for college.  I love analyzing arguments and discussions of great philosophical thinkers all the way from Plato to Leibniz to Dennett.  Studying philosophy made me a better thinker and communciator as I realized that no line of argument was perfect.&lt;/p&gt;
-
-&lt;p&gt;When I graduated from college, began interning at &lt;a href=&#34;http://21cparks.org&#34;&gt;21st Century Parks&lt;/a&gt; and I stumbled across a rekindled enjoyment of programing and technology.  When I started maintaining their website and the website of my band &lt;a href=&#34;http://funnybonesbeats.org&#34;&gt;Funny Bones&lt;/a&gt;, I knew I was onto something.  Thus began my career in technology.&lt;/p&gt;
-
-&lt;p&gt;I continue to experiment with exciting new technologies like &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; and &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; in my free time, as well as writing about them, computer science, and some old favorites such as Python in my blog.&lt;/p&gt;
-
-&lt;p&gt;Areas of interest for me in computing include:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Scalability &amp;amp; Distributed Systems&lt;/li&gt;
-&lt;li&gt;Machine Learning, Artificial Neural Nets, Genetic Algorithms/Programming etc.&lt;/li&gt;
-&lt;li&gt;Security (reverse engineering exploits and network vulnerabilities)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Though I am currently employed I am always interested in talking about other opportunities, particularly involving the interests listed above and in the following cities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;New York, NY&lt;/li&gt;
-&lt;li&gt;San Francisco, CA&lt;/li&gt;
-&lt;li&gt;Portland, OR&lt;/li&gt;
-&lt;li&gt;Denver, CO&lt;/li&gt;
-&lt;li&gt;Austin, TX&lt;/li&gt;
-&lt;li&gt;Berlin, Germany&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I enjoy getting e-mail, you should &lt;a href=&#34;mailto:nathanleclaire@gmail.com&#34;&gt;send me one&lt;/a&gt;.  Thanks for visiting!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The Number One Dev Killer</title>
-      <link>http://localhost:1313/_posts/2014-02-08-the-number-one-dev-killer</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2014-02-08-the-number-one-dev-killer</guid>
-      <description>
-
-&lt;p&gt;{%img /images/dev-killer/rage.gif One of those days? %}&lt;/p&gt;
-
-&lt;p&gt;I frequently find myself fascinated by modern technology.  I mean, we went from computers that are the size of buildings to computers of equivalent power that fit in your pocket in ~50 years (I&amp;rsquo;ll leave you to decide if it&amp;rsquo;s sad or not that we use them mostly to look at pictures of cats and argue on the Internet).  A pretty impressive feat if you ask me, especially considering that 50 years is just about nothing in geographic terms.&lt;/p&gt;
-
-&lt;p&gt;What always fascinates me the most, however, is people and how they interact with (and create!!) new technology.  Especially being immersed in developer culture, I&amp;rsquo;ve start to see the same patterns over and over again and begun learning what makes some projects (especially when people are working in isolation) fail to get traction, and what makes some projects so wildly successful.  So today I&amp;rsquo;m going to write about a story to demonstrate a point about the thing which is, in my opinion, a huge killer of developer productivity.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;A Story About Mailing Lists&lt;/h1&gt;
-
-&lt;p&gt;Do you recognize this guy?&lt;/p&gt;
-
-&lt;p&gt;{%img /images/dev-killer/mailchimp.jpg %}&lt;/p&gt;
-
-&lt;p&gt;Probably at least looks familiar, right?  It&amp;rsquo;s the &lt;a href=&#34;http://mailchimp.com&#34;&gt;MailChimp&lt;/a&gt; monkey.  How about this guy?&lt;/p&gt;
-
-&lt;p&gt;{%img /images/dev-killer/hermes.jpg %}&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s &lt;a href=&#34;http://en.wikipedia.org/Hermes&#34;&gt;Hermes&lt;/a&gt;, the Greek god of communication.  But unless you&amp;rsquo;re a theology buff, Freddie the MailChimp mascot was probably a lot more meaningful to you in a modern context than Hermes.  So what?  Let me tell you a story to explain what I&amp;rsquo;ll be getting at.&lt;/p&gt;
-
-&lt;p&gt;Now that I&amp;rsquo;ve started getting some traffic to my blog, and received a variety of emails from readers, I wanted to get a mailing list up.  You know, nothing fancy, just an email that I send out every once in a while to give people a chance to catch up with what I&amp;rsquo;ve been writing about this week.  So what do I do?&lt;/p&gt;
-
-&lt;p&gt;I could use &lt;a href=&#34;http://mailchimp.com&#34;&gt;MailChimp&lt;/a&gt;, a rock-solid and proven standby that is good enough for people like &lt;a href=&#34;http://andrewchen.co&#34;&gt;Andrew Chen&lt;/a&gt; and &lt;a href=&#34;http://www.kalzumeus.com&#34;&gt;Patrick McKenzie&lt;/a&gt; and obviously should be good enough for me.  But what did I do?  Like a &amp;ldquo;good&amp;rdquo; hacker, I started writing my own (In addition to just wanting a cool project, for some reason I was embarassed about the possibility of people know that I use MailChimp.  I don&amp;rsquo;t know why, I guess I just have some kind of weird DIY fetish).  It was going to be called &lt;a href=&#34;http://github.com/nathanleclaire/hermes&#34;&gt;Hermes&lt;/a&gt;, written in Express/Node.js, and I was totally stoked.  Mostly because now I was going to attempt to re-invent MailChimp instead of doing more important, but less sexy, things with my time.&lt;/p&gt;
-
-&lt;p&gt;I got about this far (I&amp;rsquo;m skipping over some boilerplate):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;javascript&#34;&gt;function sendSingleMail(subject, to) {
-    getSignupEmailTemplate({
-        to: to
-    }, function(html) {
-        mailgun.sendRaw(&amp;quot;Nathan LeClaire &amp;lt;nathan.leclaire@gmail.com&amp;gt;&amp;quot;, [to.email],
-            &#39;From: nathan.leclaire@gmail.com&#39; +
-            &#39;\nTo: &#39; + to.email +
-            &#39;\nContent-Type: text/html; charset=utf-8&#39; +
-            &#39;\nSubject: &#39; + subject + &#39;\n\n&#39; +
-            html,
-            function(err) {
-                if (err) console.log(&amp;quot;there was an email error&amp;quot;, err);
-                else console.log(&amp;quot;successfully sent email to &amp;quot; + to.email);
-            }
-        );
-    });
-}
-
-function getSignupEmailTemplate(context, callback) {
-    var tmpl = jade.renderFile(&amp;quot;views/signup-email.jade&amp;quot;, context, function(err, html) {
-        if (err) {
-            console.log(&amp;quot;error rendering jade template&amp;quot;);
-        } else {
-            callback(html);
-        }
-    });
-}
-
-function main(conn) {
-    var subscribers = r.db(&amp;quot;hermes&amp;quot;).table(&amp;quot;subscriber&amp;quot;);
-    app.post(&amp;quot;/email_signup&amp;quot;, function(req, res) {
-        var email = req.body.email;
-        subscribers.insert({
-            email: email,
-            name: &amp;quot;&amp;quot;,
-            subscriptionConfirmed: false
-        }).run(conn, function(err, result) {
-            if (err) {
-                console.log(&amp;quot;[ERROR] failed to insert email from someone... &amp;quot;, err);
-                res.json({
-                    success: false
-                });
-            } else {
-                sendSingleMail(&amp;quot;Hi! I hear you&#39;d like to subscribe to my blog.&amp;quot;, {
-                    email: email
-                });
-                res.json({
-                    success: true
-                });
-            }
-        });
-    });
-
-    app.listen(3001);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Before I started to say to myself: &amp;ldquo;Nate, are you being reasonable or are you just being cheap?  And why are you doing this instead of working on other, more low-hanging fruit to make your blog and side-projects more successful?  &lt;a href=&#34;http://github.com/nathanleclaire/checkforbrokenlinks&#34;&gt;Check For Broken Links&lt;/a&gt; &lt;em&gt;still&lt;/em&gt; hasn&amp;rsquo;t ever been deployed!&amp;rdquo;&lt;sup id=&#34;foot1return&#34;&gt;&lt;a href=&#34;#foot1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.  Though the Check For Broken Links comment was a low blow, I knew I was right.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;Enlightenment&lt;/h1&gt;
-
-&lt;p&gt;So I bit the bullet and used MailChimp instead.  You can see the results of my &amp;ldquo;labor&amp;rdquo; in the left sidebar of my blog, and I&amp;rsquo;m actually ecstatic I decided to go with them instead of writing my own mail management system.&lt;/p&gt;
-
-&lt;p&gt;Why?  Because all of the time I saved by going the MailChimp route, instead of creating something original but inferior, allowed me to spend more time doing other, more valuable things.  For that matter, the influx of reader emails that I was anticipating and hoping for hasn&amp;rsquo;t really materialized, and at the time of writing I have all of two people on my mailing list :D (myself and my girlfriend- though I&amp;rsquo;m working on improving this).  I&amp;rsquo;m glad to have one less (giant) thing on my todo list, and I don&amp;rsquo;t feel like a failure since I didn&amp;rsquo;t waste a bunch of time on something that isn&amp;rsquo;t paying dividends right away (though I think it will in the future).  And I get all of the niceness, including analytics and a crazy awesome Web UI, for the small price of a MailChimp logo on my signup form.  Sign me up!&lt;/p&gt;
-
-&lt;p&gt;Coming back to the Freddie the Chimp vs. Hermes comparison- Why use an untrusted brand / sketchy open source product when you can use a battle-hardened old friend?&lt;/p&gt;
-
-&lt;p&gt;The point that I&amp;rsquo;m getting at, if you haven&amp;rsquo;t guessed it already, is that developers (as I did in this case) oftentimes get their potential productivity murdered, hard, by &lt;a href=&#34;http://en.wikipedia.org/wiki/Not_invented_here&#34;&gt;Not Invented Here Syndrome&lt;/a&gt;.  Who among us has met the stubbornly anti-framework programmers that always insist they could do a better job themselves, even with the absurd wealth of (oftentimes free) tools available for development nowadays?  How many client-side JavaScript MV* frameworks exist because their creators weren&amp;rsquo;t satisfied with simply improving existing solutions?  I know it&amp;rsquo;s an easy target, but allow me to list a few:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://angularjs.org&#34;&gt;Angular&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://backbonejs.org&#34;&gt;Backbone&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://meteor.com/&#34;&gt;Meteor&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://facebook.github.io/react/&#34;&gt;React&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://twitter.github.io/flight/&#34;&gt;Flight&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://fahad19.github.com/singool/&#34;&gt;Singool.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://knockoutjs.com/&#34;&gt;Knockout&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sammyjs.org/&#34;&gt;Sammy.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/petermichaux/maria&#34;&gt;Maria&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://terrifically.org/composer/&#34;&gt;Terrific Composer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rivetsjs.com/&#34;&gt;Rivets.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://bruth.github.com/synapse/docs/&#34;&gt;Synapse&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.ractivejs.org/&#34;&gt;Ractive&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;{%img /images/dev-killer/incredulous.gif %}&lt;/p&gt;
-
-&lt;p&gt;Yeah.&lt;/p&gt;
-
-&lt;p&gt;Though he is speaking to a slightly different context, I feel that Keith Perhac breaks the issue down nicely in this &lt;a href=&#34;http://www.kalzumeus.com/2012/05/18/kalzumeus-podcast-ep-2-with-amy-hoy-pricing-products-and-passion/&#34;&gt;Kalzumeus Software Podcast&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;And really, I think there’s also a… so, this is not just the Hacker News crowd, this is not just the Slashdot crowd, this is not just the techie crowd, there are a lot of people. I think the naysayers are the people who have more time than money, is honestly what it comes down to.&lt;/p&gt;
-
-&lt;p&gt;Because, honestly, if I had a ton of time, if I was working a nine-to-five job, had a set number of hours a day I worked at a fixed income, at that, and I needed time-tracking software, I would probably write my own on the weekend because I have more time than I have money at that point.&lt;/p&gt;
-
-&lt;p&gt;For someone who’s trying to run or start their own business, they suddenly have more money than they have time. Not that they’re making tons of money but because their time is much more valuable because there are so many other things they could be doing.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This seems to be the gospel truth right here.  People can and should be focusing less on reinventing the wheel, and more on their core value proposition.&lt;/p&gt;
-
-&lt;p&gt;Note that I&amp;rsquo;m mostly talking about things in the context of individual developers working by themselves, or in coordination with fairly small teams, not in large cutting-edge organizations such as the type discussed in &lt;a href=&#34;http://www.joelonsoftware.com/articles/fog0000000007.html&#34;&gt;this article by Joel Spolsky&lt;/a&gt;, where he makes an argument in favor of &amp;ldquo;Not Invented Here Syndrome&amp;rdquo;.  I agree with many of the points he makes here (no off-the-shelf web server will ever be as crazy fast as Google&amp;rsquo;s and that&amp;rsquo;s their business advantage), but I also feel like making an argument in favor of NIH is kind of dangerous.  Not that Joel has an obligation to look out for everyone&amp;rsquo;s best interests or anything, but I&amp;rsquo;d be shocked if he&amp;rsquo;d never come across a business situation where a company was investing waaaay too many resources into reinventing the wheel when they could have just bit the bullet.  This is, after all, the man who invented Wasabi, a specialized dialect of Visual Basic roasted hilariously in this post by his &lt;a href=&#34;http://www.codinghorror.com/blog/2006/09/has-joel-spolsky-jumped-the-shark.html&#34;&gt;future business partner Jeff Atwood&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;FogBugz is written in Wasabi, a very advanced, functional-programming dialect of Basic with closures and lambdas and Rails-like active records that can be compiled down to VBScript, JavaScript, PHP4 or PHP5. Wasabi is a private, in-house language written by one of our best developers that is optimized specifically for developing FogBugz; the Wasabi compiler itself is written in C#.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;It may have worked for Fog Creek, but a lot of weird technical decisions have ended up working out for people (like &lt;a href=&#34;http://www.hhvm.com/blog/&#34;&gt;transpiling PHP to C++&lt;/a&gt;).  Would you want to maintain &lt;em&gt;that&lt;/em&gt; codebase?&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;The Flipside&lt;/h1&gt;
-
-&lt;p&gt;The flipside of this, of course, is equally poisionous, and I am going to describe a type of person that you and I both know to illustrate this point.  I think if you are involved in the technology community pretty heavily you will perhaps find this person eerily familiar.&lt;/p&gt;
-
-&lt;p&gt;This type of person is passionate about technology.  In fact, they are so passionate about it that they become convinced that it is a panacea for every problem they might possibly encounter.  They put more importance on theoretical wanking and &amp;ldquo;purity&amp;rdquo; than on execution and delivery, and they jump from framework to framework without ever putting in any actual mental elbow grease.  They are a perennial &amp;ldquo;Hello Worlder&amp;rdquo;, always chasing after the hot new thing.&lt;/p&gt;
-
-&lt;p&gt;They probably mock the PHP or Rails programmers who are too busy getting stuff done to hear or care.  They may have a passion for exploration and learning, which is good, but they lack wisdom and insight.  Often this can be the same kind of person who may be interested in starting their own company, but lacks the practical depth to find something that has good product/market fit.  Instead they may try to solve problems that nobody has, or let the technology choice dictate the business direction instead of the other way around.&lt;/p&gt;
-
-&lt;p&gt;I have been this person on and off.  It&amp;rsquo;s no more fun them than it is to be around them.  I think one should shy away from being this guy, as much as one should shy away from being a NIHSer.  In my opinion, you should keep an open mind about things and not let your ego get in the way of being a developer who&amp;rsquo;s genuinely enjoyable to be on a team with.  Spoiler alert:  you are not right 100% of the time.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;Go forth and hack, sisters and brothers.  Just put some thought into using the right tool for the right job, and getting things done FAST instead of learning the newest hotness (which may cause you more headaches than it prevents).  There&amp;rsquo;s nothing wrong with a box running MySQL as its only database, or using just jQuery on your front end if that&amp;rsquo;s all you need, or developing an iOS app instead of an HTML5 one written with PhoneGap and AngularJS.  Let the tool fit the situation, and get things done (especially if you&amp;rsquo;re starting a company).&lt;/p&gt;
-
-&lt;p&gt;Until next week, stay sassy Internet!  Oh, and subscribe to my mailing list already.  You&amp;rsquo;re killing me over here.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Nathan&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;span id=&#34;foot1&#34;&gt;&lt;a href=&#34;#foot1return&#34;&gt;(1)&lt;/a&gt;&lt;/span&gt; : It&amp;rsquo;s kind of like my &amp;ldquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Chinese_Democracy&#34;&gt;Chinese Democracy&lt;/a&gt;&amp;rdquo;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Don&#39;t Fear Directives In AngularJS</title>
-      <link>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-12-07-dont-fear-directives-in-angular-js</guid>
-      <description>
-
-&lt;p&gt;{% img /images/directivefear/anghero.jpeg Superheroic. %}&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;Direct what?&lt;/h1&gt;
-
-&lt;p&gt;As I mentioned in &lt;a href=&#34;http://nathanleclaire.com/blog/2013/11/30/fear-and-loathing-with-golang-and-angular-dot-js/&#34;&gt;last week&amp;rsquo;s article&lt;/a&gt; I have been working with &lt;a href=&#34;http://angularjs.org/&#34;&gt;AngularJS&lt;/a&gt; for personal projects lately.  This was largely the result of me, approximately six or seven months ago, feeling like I was missing out on the new hotness by not knowing a client-side MV* framework.  I looked around at a lot of options, including:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://backbonejs.org/&#34;&gt;Backbone.js&lt;/a&gt; (A crowd favorite, with rock-solid online support/documentation/tutorials)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://emberjs.com/&#34;&gt;Ember.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://knockoutjs.com/&#34;&gt;Knockout.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ultimately I fell into learning Angular for a variety of reasons.  Partially it was because I went to a &amp;ldquo;Coffee Shop Coders&amp;rdquo; presentation where the presenter (&lt;a href=&#34;http://www.tauruscolvin.com/&#34;&gt;Taurus Colvin&lt;/a&gt; - a very friendly dude) explained the basics and impressed me with the possibilities the framework offers.  Maybe it was because I tried to bootstrap a simple Ember project and couldn&amp;rsquo;t get anything working.  I don&amp;rsquo;t know if it was the documentation, the learning curve, my own shortcomings, or all three, but something about Ember didn&amp;rsquo;t click with me.  My choice of Angular was also at least somewhat because I was seduced by &lt;a href=&#34;http://yeoman.io/&#34;&gt;Yeoman&lt;/a&gt; (which, at the time of writing, uses an Angular generator in its usage example) around the time I attempted my first Angular app.  It was a foray which went down in flames, largely because I was so hesitant to make my own directives and services.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;$scope Creep&lt;/h1&gt;
-
-&lt;p&gt;One day after I had started getting interested in Angular I mentioned to a coworker that I was developing an app with the framework.&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;Oh yeah,&amp;rdquo; he said, &amp;ldquo;I watched a presentation about making directives - seems to be where the real power of it is.&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;Since I knew that the funny attributes Angular introduces such as &lt;code&gt;ng-show&lt;/code&gt;, &lt;code&gt;ng-class&lt;/code&gt;, and &lt;code&gt;ng-repeat&lt;/code&gt; were directives, I had a feeling he was onto something.  However, I was a little bit too timid to actually tackle making my own.  After all, directives were something that smart people made, not me.  I&amp;rsquo;d have to understand that difficult link/compile stuff, right?  Remember, this was April of 2013 and, though it seems silly to say since at the time of writing only eight months have passed, the quality of documentation, tutorials, and examples for AngularJS was not as good as it is today.  I think &lt;a href=&#34;http://egghead.io&#34;&gt;egghead.io&lt;/a&gt; (an excellent Angular resource if you&amp;rsquo;re not aware) was just getting off the ground, but I certianly hadn&amp;rsquo;t heard of it.&lt;/p&gt;
-
-&lt;p&gt;Less so through concious decision and more so through my own hesitance to learn something I was irrationally afraid of, I began slipping into the trap of creating a tangled mess that stuffed everything possible into &lt;code&gt;$scope&lt;/code&gt;, used &lt;code&gt;ng-include&lt;/code&gt; when I could have used directives, and relied on &lt;code&gt;$broadcast&lt;/code&gt;ing down from &lt;code&gt;$rootScope&lt;/code&gt; when I could have used services.&lt;/p&gt;
-
-&lt;p&gt;I was a fool.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;How Not To Fear The Directive&lt;/h1&gt;
-
-&lt;p&gt;If I could go back and stop myself from making a whole bunch of mistakes in that app, I would have started with explaining that a directive is just a simple little reusable component for describing the way HTML should behave.  The Angular docs try to harp on this but inevitably they make it seem obtuse and complicated.  &lt;em&gt;Note:  Though they could be better I don&amp;rsquo;t think it&amp;rsquo;s cool to hate on the Angular docs.  They&amp;rsquo;ve gotten way better even in the short time I&amp;rsquo;ve been using the framework.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In my opinion it&amp;rsquo;s a very useful tool because it allows you to encapsulate functionality in a semantic way that will (hopefully) make sense to anyone looking at your markup, and keep your functionality well &amp;ldquo;chunked&amp;rdquo; so that you can keep track of what is happening where instead of dealing with things mutating globally (which most of us hopefully know by now is bad news).&lt;/p&gt;
-
-&lt;p&gt;Ever had this happen with jQuery? You need to do some JavaScript magic with a particular element on the page, and so you give it some arbitrary &lt;code&gt;id&lt;/code&gt; so you can access it with &lt;code&gt;$(&#39;element#id&#39;)&lt;/code&gt;.  Now you get to write a bunch of JavaScript that listens for the relevant events, checks the element&amp;rsquo;s state to see that it is congruent with our expectations, modify its class to change how it is displayed, and so on.  It starts out as a few simple functions using a very powerful tool that soon grows into a complicated mess of callbacks, weird looking selectors, and re-render functions.  It may be strewn across several files with no rhyme or reason.&lt;/p&gt;
-
-&lt;p&gt;Not only is it no fun, it makes it very hard for your designer friends to look at your markup and know what the expected behavior for that HTML is.  So, Angular provides us with directives, which are actually pretty simple to create.  So don&amp;rsquo;t be scared of them like I was.  You just have to create an Angular app:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;var myApp = angular.module(&#39;myApp&#39;, []);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then attach a simple directive:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;myApp.directive(&#39;myDirective&#39;, function() {
-    return {
-        restrict: &#39;E&#39;,
-        template: &#39;&amp;lt;h1&amp;gt;I made a directive!&amp;lt;/h1&amp;gt;&#39;
-    };
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That&amp;rsquo;s all, you just created a directive!  Now, when you go looking around for some examples of directives online, it&amp;rsquo;s easy to get lost in all of the Angular-specific jargon like linking functions, the &amp;ldquo;restrict&amp;rdquo; property, scope hierarchies and so on.  But I highly recommend that you try not to panic, and realize that there is meaning behind all of the weird symbols and abbreviations you see.  For instance, in the definition for the directive above, I define a &lt;code&gt;restrict: &#39;E&#39;&lt;/code&gt; setting.  What the heck does that mean?&lt;/p&gt;
-
-&lt;p&gt;Well, what it means is, &amp;ldquo;restrict the usage of this directive to only Elements&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;So, you can use it in HTML like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot;&amp;gt;
-    &amp;lt;myDirective&amp;gt;&amp;lt;/myDirective&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But not like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot;&amp;gt;
-    &amp;lt;span my-directive&amp;gt;&amp;lt;/span&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(Angular &amp;ldquo;normalizes&amp;rdquo; the &lt;code&gt;hyphen-usage-attribute&lt;/code&gt; to &lt;code&gt;camelCase&lt;/code&gt; as part of their normalization process for directives - see the &lt;a href=&#34;http://docs.angularjs.org/guide/directive&#34;&gt;documentation&lt;/a&gt;).&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;Why is it useful?&lt;/h1&gt;
-
-&lt;p&gt;So, other than providing a convenient way to make little repeatable bits of HTML that have their own names, why is this useful?&lt;/p&gt;
-
-&lt;p&gt;Well, by default every directive inherits the parent scope but it is also possible for a directive to have its own &lt;a href=&#34;http://www.thinkster.io/pick/KnxWvHUW64/angularjs-understanding-isolate-scope&#34;&gt;isolate scope&lt;/a&gt;.  What this means is, it can have its own little properties that it sets on its own unique &lt;code&gt;$scope&lt;/code&gt; that won&amp;rsquo;t mess around with any of the other properties that you are setting in the rest of your app.  Especially if you are going to use the component in multiple places, or have it in a &lt;code&gt;ng-repeat&lt;/code&gt;, this is incredibly useful.  It allows you to break things down into much more modular components than using some giant &lt;code&gt;BigBallOfMudController&lt;/code&gt; (or several &lt;code&gt;BigBallOfMudController&lt;/code&gt;s) to control the state of your app (which is usually the essence of what ends up happening in the &amp;ldquo;traditional jQuery&amp;rdquo; mess described above).  Instead, each directive is responsible for its own data and it works on it in isolation from the other directives.  In Angular this antipattern would look something like having a big array of objects in a central Controller, and updating individual properties of those objects in that controller instead of having a directive to modularize that kind of operation.&lt;/p&gt;
-
-&lt;p&gt;Check out this example, where I created a &lt;code&gt;gear&lt;/code&gt; directive using &lt;a href=&#34;http://fontawesome.io/&#34;&gt;Font Awesome&lt;/a&gt;&amp;rsquo;s spinning gear icon.  The end result is a lot more flexible than an attempt at creating this using jQuery, or vanilla JavaScript.  Each gear keeps track of whether it is currently spinning or not in the new shared scope automagically created by the ngRepeat directive, so they spin or remain stationary indepent of each other.  However, they are all influenced equally by the &lt;code&gt;ng-model&lt;/code&gt; properties of the parent scope.&lt;/p&gt;
-
-&lt;p&gt;Writing a &lt;code&gt;link&lt;/code&gt; function provides even more power and flexibility, but that&amp;rsquo;s a little outside the scope of this article.  Perhaps another time.&lt;/p&gt;
-
-&lt;iframe src=&#34;http://embed.plnkr.co/i2StmWcxKNZCQb0YtYp0/preview&#34;&gt;&lt;/iframe&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;Enjoy your directives, kids, and never ever be scared of them.  &lt;a href=&#34;http://misko.hevery.com/&#34;&gt;Miško&lt;/a&gt;&amp;rsquo;s been up late at night so you can experience HTML as it could have been.&lt;/p&gt;
-
-&lt;p&gt;On a more serious/philosophical note, I wanted to close with a thought that I have that creating your own directives reminds me a bit of &lt;a href=&#34;http://en.wikipedia.org/wiki/Metcalfe&#39;s_law&#34;&gt;Metcalfe&amp;rsquo;s Law&lt;/a&gt; (by analogy of course).  Each directive that gets created increases the power and usefulness of all the other directives.  An Angular in which &lt;code&gt;ng-repeat&lt;/code&gt; exists, for instance, is so much more powerful than one in which it doesn&amp;rsquo;t.  So, remember that they can be stacked and it makes your webapp that much better.&lt;/p&gt;
-
-&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
-
-&lt;p&gt;Cheers,&lt;/p&gt;
-
-&lt;p&gt;Nathan&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The (JavaScript) Question I Bombed In An Interview With a Y Combinator Startup</title>
-      <link>http://localhost:1313/_posts/2013-11-16-the-javascript-question-i-bombed-in-an-interview-with-a-y-combinator-startup</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-11-16-the-javascript-question-i-bombed-in-an-interview-with-a-y-combinator-startup</guid>
-      <description>
-
-&lt;p&gt;About a year and a half ago, I was on the hunt for my first &amp;ldquo;real&amp;rdquo; job.  I knew that I wanted to be a &amp;ldquo;web developer&amp;rdquo; (whatever &lt;em&gt;that&lt;/em&gt; entails) but I had no idea where to begin.  I knew just a smidge of PHP.  I was developing websites in Classic ASP at my current internship, but I knew that was an antiquidated technology which was unlikely to help me in the modern job market.  As I had recently begun stomping around &lt;a href=&#34;https://news.ycombinator.com&#34;&gt;Hacker News&lt;/a&gt;, I noticed that they had a &amp;ldquo;jobs&amp;rdquo; section in their header.  So I looked into things, saw that a few companies were hiring, and sent a few e-mails to companies that looked nice.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/y-comb/y-combinator-logo.gif To hack and start things up. %}&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;The Hunt&lt;/h1&gt;
-
-&lt;p&gt;A few e-mailed me back and I managed to set up a phone screen with a company that does next-level web analytics.  Going into the interview I was filled with a mixture of apprehension and excitement.  After all, I knew that Silicon Valley was where the action was at, and I had no idea what kind of intricate or crazy questions they might ask me.  They had listed in their description a desire for strong JavaScript skills, which was appealing to me as I was rapidly learning to enjoy developing in this weird little language created by Brendan Eich.  &lt;em&gt;&amp;ldquo;I know jQuery pretty well,&amp;rdquo;&lt;/em&gt;, I thought- &lt;em&gt;&amp;ldquo;What could possibly go wrong?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;The developer who did my screen was pretty courteous and eased me into things a bit by talking about my background and experience.  I sheepishly admitted that I had studied philosophy in college, not computer science, and he put my concerns at ease by telling me that their founder had never finished college.  That made me feel better about things, since part of the reason I love technology so much is that it is so meritocratic.&lt;/p&gt;
-
-&lt;p&gt;So, without further ado, we began to investigate a coding problem.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;The Problem&lt;/h1&gt;
-
-&lt;p&gt;INTERVIEWER: You&amp;rsquo;re familiar with jQuery, right?&lt;/p&gt;
-
-&lt;p&gt;ME:  Yes, I&amp;rsquo;ve used it at work.  I like JavaScript.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER: Great.  So, you&amp;rsquo;re familiar with something like this, right?  Let&amp;rsquo;s say you have a textbox and you want to make a call to the server to get some data every time the user does some typing, if you wanted to make autocomplete suggestions, for example&amp;hellip; &lt;em&gt;(begins typing into a shared/remote codepad)&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;$(document).ready(function() {
-    $(&#39;input&#39;).keypress(function() {
-        $.ajax({
-            // Call the server for some goodness...
-        });
-    });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ME: Oh yes, I see.  When the user presses down a key on the element, we will make a call.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER: So, you may be able to guess, that there is a problem with this code.  It is very inefficient.  If you type a string with 30 characters into the text box, the server gets called 30 times.  Not good, we are having all kinds of issues with scalability so we can&amp;rsquo;t afford to be writing code like this.&lt;/p&gt;
-
-&lt;p&gt;DEMO:&lt;/p&gt;
-
-&lt;p&gt;&lt;input id=&#34;myBox1&#34; type=&#34;text&#34; placeholder=&#34;Type some stuff in me!&#34; style=&#34;width: 30%;&#34; /&gt; &lt;strong&gt;Called Server &lt;span id=&#34;called_times1&#34;&gt;0&lt;/span&gt; times&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;
-$(document).ready(function() {
-    $(&#39;#myBox1&#39;).keypress(function() {
-        if (!this.count)
-            this.count = 0;
-        this.count++;
-        $(&#39;#called_times1&#39;).html(this.count);
-    });
-});
-&lt;/p&gt;
-
-&lt;p&gt;ME: I see.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER: So we only want to call the server after the user has been typing, then stops typing for 200 milliseconds.  That will give it the illusion of being instantaneous while saving a lot of load on our servers and a lot of ajax handling in the JavaScript.  How would we do that?&lt;/p&gt;
-
-&lt;p&gt;ME:  Uh&amp;hellip;&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;What Really Happened&lt;/h1&gt;
-
-&lt;p&gt;ME:  I think I would use&amp;hellip; Um&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Well, do you know what a closure is?&lt;/p&gt;
-
-&lt;p&gt;ME:  Yeah!  Closures.  I&amp;rsquo;ve heard of those.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER: What about &lt;code&gt;window.setTimeout&lt;/code&gt; ?  Do you know about that?&lt;/p&gt;
-
-&lt;p&gt;ME:  I think that&amp;rsquo;s JavaScript&amp;rsquo;s version of a &lt;code&gt;sleep&lt;/code&gt; function?&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Kind of&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;ME:  I think I would&amp;hellip; &lt;em&gt;typing awkwardly and struggling for 30 seconds&lt;/em&gt;  I guess I&amp;rsquo;m not sure.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  I appreciate your time but perhaps this isn&amp;rsquo;t a good fit.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;What Should Have Happened&lt;/h1&gt;
-
-&lt;p&gt;ME:  Hm, that&amp;rsquo;s an interesting problem.  So, if we use &lt;code&gt;window.setTimeout&lt;/code&gt; we can delay the call for 200 milliseconds.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Right.&lt;/p&gt;
-
-&lt;p&gt;ME:  But that&amp;rsquo;s not going to help us in the case where the user is typing fast, or even just normal speed.  So we need a way to interrupt the timeout if the user keeps typing.&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Exactly.&lt;/p&gt;
-
-&lt;p&gt;ME:  So, I know that when you call &lt;code&gt;window.setTimeout&lt;/code&gt;, you get back an ID that uniquely references the timeout.  And you can use it to cancel the timeout if need be!  So we should just store the timeout ID in the &lt;code&gt;keypress&lt;/code&gt; function closure, and if the user triggers a keypress event again before the timeout function triggers, we&amp;rsquo;ll just cancel it and set a new one!&lt;/p&gt;
-
-&lt;p&gt;(&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that due to the fact that &lt;code&gt;this&lt;/code&gt; in jQuery callbacks refers to the DOM node in question, not the function closure, the ID is actually being stored as a property of the DOM node.  They are correct.)&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Sounds great!  What would that look like in code?&lt;/p&gt;
-
-&lt;p&gt;ME:  It&amp;rsquo;d look a little something like this&amp;hellip;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;$(document).ready(function() {
-    $(&#39;input&#39;).keypress(function() {
-        if (this.timeoutId) 
-            window.clearTimeout(this.timeoutId);
-        this.timeoutId = window.setTimeout(function () {
-            $.ajax({
-                // do some stuff
-            });
-        }, 200);
-    });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;INTERVIEWER:  Clever.&lt;/p&gt;
-
-&lt;p&gt;ME:  I try.&lt;/p&gt;
-
-&lt;p&gt;DEMO:&lt;/p&gt;
-
-&lt;p&gt;&lt;input id=&#34;myBox2&#34; type=&#34;text&#34; placeholder=&#34;Type some stuff in me!&#34; style=&#34;width: 30%;&#34; /&gt; &lt;strong&gt;Called Server &lt;span id=&#34;called_times2&#34;&gt;0&lt;/span&gt; times&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;
-$(document).ready(function() {
-    $(&#39;#myBox2&#39;).keypress(function() {
-        if (!this.count)
-            this.count = 0;
-        if (this.timeoutId)
-            window.clearTimeout(this.timeoutId);
-        var that = this;
-        this.timeoutId = window.setTimeout(function() {
-            that.count++;
-            $(&#39;#called_times2&#39;).html(that.count);
-        }, 200);
-    });
-});
-&lt;/p&gt;
-
-&lt;p&gt;INTERVIEWER:  Now on to the next question&amp;hellip;&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;I bombed this interview but I learned something from it.  I know I could go in more confident and capable today.  It just goes to show you that not every setback in life has to be a bad thing.  Someday in the future I would like to work with Y Combinator or a Y Combinator-based startup, largely because I think there&amp;rsquo;s so much opportunity for learning and growth.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading and I&amp;rsquo;ll catch you next week,&lt;/p&gt;
-
-&lt;p&gt;Nathan&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;EDIT&lt;/em&gt;: Some commenters have pointed out my misuse of &lt;code&gt;clearInterval&lt;/code&gt; as opposed to &lt;code&gt;clearTimeout&lt;/code&gt;.  It turns out that this (mostly) works to clear timeouts, but is clearly not correct (it&amp;rsquo;s meant to be used with &lt;code&gt;window.setInterval&lt;/code&gt;).  I have fixed this now.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>5 AngularJS Antipatterns &amp; Pitfalls</title>
-      <link>http://localhost:1313/_posts/2014-04-19-5-angularjs-antipatterns-and-pitfalls</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2014-04-19-5-angularjs-antipatterns-and-pitfalls</guid>
-      <description>
-
-&lt;h1 id=&#34;toc_0&#34;&gt;The Angular Jungle&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/angular-antipatterns/jungle.jpg %}&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; is a big JavaScript framework and it gives you just enough rope to hang yourself with.  I&amp;rsquo;ve written a lot about it in this blog and really hope that I have made a noteworthy impact on improving the general availability of resources.  I&amp;rsquo;ve been working on a project using AngularJS at my dayjob lately and noticed some antipatterns and pitfalls that people fall into when they are new to Angular (myself included, so they&amp;rsquo;re based on my own sweat and blood learning the framework) and I&amp;rsquo;ve consolidated some of them here for you to peruse.  Hopefully I&amp;rsquo;ll save you some pain.&lt;/p&gt;
-
-&lt;p&gt;They are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Not having a dot in your &lt;code&gt;ng-model&lt;/code&gt; (or other places you need it!)&lt;/li&gt;
-&lt;li&gt;Extreme overuse of event broadcasting and listening (&lt;code&gt;$emit&lt;/code&gt;, &lt;code&gt;$broadcast&lt;/code&gt;, &lt;code&gt;$on&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Too much stuff in controllers&lt;/li&gt;
-&lt;li&gt;Misunderstanding or misusing isolate scope&lt;/li&gt;
-&lt;li&gt;Using the outside world instead of doing things the Angular way&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;1. Not having a dot in your &lt;code&gt;ng-model&lt;/code&gt; (or other places you need it!)&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/angular-antipatterns/george.jpg %}&lt;/p&gt;
-
-&lt;p&gt;Angular&amp;rsquo;s &lt;a href=&#34;https://docs.angularjs.org/guide/directive&#34;&gt;directives&lt;/a&gt; provide fantastic flexibility and an amazing way to write HTML that describes its interactive behavior in a clean and clear fashion.  They provide a way to create &lt;a href=&#34;https://egghead.io/lessons/angularjs-understanding-isolate-scope&#34;&gt;isolate scope&lt;/a&gt; to promote reusability and creating a directive that uses this looks something like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;angular.module(&#39;myApp&#39;).directive(&#39;myDir&#39;, function () {
-  return  {
-    restrict: &#39;E&#39;,
-    scope: {
-      aProperty: &#39;=&#39;,
-      bProperty: &#39;&amp;amp;&#39;
-    },
-    // and so on...
-  };
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the above definition &lt;code&gt;aProperty&lt;/code&gt; gets passed in through an attribute (normalized to &lt;code&gt;a-property&lt;/code&gt;) and creates a two-way data binding between the parent scope and the child scope.  That means if you change one, the other will be updated to match it and vice versa.  However, because of the way that JavaScript&amp;rsquo;s prototypal inheritance works, sometimes this may not work &amp;ldquo;magically&amp;rdquo; as you would expect.  I will dicuss a particular situation with &lt;code&gt;ng-model&lt;/code&gt; here but know that understanding how this all ties together will save you lots of tears due to &lt;code&gt;ng-switch&lt;/code&gt;, &lt;code&gt;ng-repeat&lt;/code&gt;, etc. creating their own scopes (and &amp;ldquo;shadow&amp;rdquo; properties in the prototype chain) that throw off the way you might be expecting things to work.&lt;/p&gt;
-
-&lt;p&gt;In particular, when you have an &lt;code&gt;ng-model&lt;/code&gt; bound to a property on &lt;code&gt;$scope&lt;/code&gt; which was originally passed in using &lt;code&gt;=&lt;/code&gt; in your child directive:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;“Whenever you have ng-model there’s gotta be a dot in there somewhere. If you don’t have a dot, you’re doing it wrong.”&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Words from the mouth of Miško himself.&lt;/p&gt;
-
-&lt;p&gt;This is because &lt;em&gt;primitives&lt;/em&gt; (String, Number, etc.) passed in to a child scope create their own &amp;ldquo;shadow&amp;rdquo; property in the child scope, which hides the original property on the parent scope due to the way that JavaScript prototypes work (the prototype chain will not need to be consulted to determine the value of &lt;code&gt;foo&lt;/code&gt; if &lt;code&gt;foo&lt;/code&gt; is not an &lt;code&gt;Object&lt;/code&gt; or &lt;code&gt;Array&lt;/code&gt;).  If they are bound using &lt;code&gt;=&lt;/code&gt; and they are objects, however, &lt;code&gt;foo.bar&lt;/code&gt; &lt;em&gt;will&lt;/em&gt; be bound correctly to the original property in the parent scope.&lt;/p&gt;
-
-&lt;p&gt;Understanding this will save you soooo much pain.  Seriously, if you&amp;rsquo;re serious about Angular at all, take the time to read the offical article I link at the end of this section.  Then read it again.&lt;/p&gt;
-
-&lt;p&gt;I suspect that a misunderstanding of this (communicating effectively from scope to scope up and down the prototype chain) is at least partially what contributes to people digging themselves further and further into a hole by misusing event broadcasting/emitting/listening and isoalte scope, as detailed later on in this article.  When things spiral out of control in this manner, it can really be pure torture.  You&amp;rsquo;re fighting against the framework, and nobody wins in that battle, least of all the people who have to maintain your code.&lt;/p&gt;
-
-&lt;p&gt;The point is, most people new to Angular (and even people who have been doing it for a while) expect this to work :&lt;/p&gt;
-
-&lt;p&gt;{% raw %}
-```
-&lt;p&gt; You have {{dollars}} dollars &lt;/p&gt;
-&lt;crazy-awesome-widget ng-repeat=&#34;account in accounts&#34; info=&#34;dollars&#34;&gt;
-&lt;/crazy-awesome-widget&gt;&lt;/p&gt;
-
-&lt;p&gt;
-angular.module(&amp;lsquo;dotDemo&amp;rsquo;).controller(&amp;lsquo;OuterCtrl&amp;rsquo;, function($scope) {
-  $scope.dollars = 5;
-  $scope.accounts = [&amp;ldquo;Tom&amp;rdquo;, &amp;ldquo;Bobby&amp;rdquo;, &amp;ldquo;Sally&amp;rdquo;];
-});
-angular.module(&amp;lsquo;dotDemo&amp;rsquo;).directive(&amp;lsquo;crazyAwesomeWidget&amp;rsquo;, function() {
-  return {
-    restrict: &amp;lsquo;E&amp;rsquo;,
-    template: &amp;lsquo;&lt;input type=&#34;text&#34; ng-model=&#34;info&#34; /&gt;&amp;rsquo;,
-    scope: {
-      info: &amp;lsquo;=&amp;rsquo;
-    }
-  };
-});
-
-```
-{% endraw %}&lt;/p&gt;
-
-&lt;p&gt;Can you spot the bug?  If you&amp;rsquo;ve been paying attention, you should be able to pick it out easily.&lt;/p&gt;
-
-&lt;iframe src=&#34;http://embed.plnkr.co/ii8xZoOIRcWw4LlNMayf/preview&#34;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Come on, intone it with me.  &lt;em&gt;I need a dot. I need a dot. I need a dot.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In the above code the input boxes won&amp;rsquo;t update the property in the parent scope.  The prototype chain creates a new property &lt;code&gt;info&lt;/code&gt; which is unique to the child scope instead of bound to the parent scope.  It won&amp;rsquo;t work this way.  You need an object.  The code should look like this instead:&lt;/p&gt;
-
-&lt;p&gt;{% raw %}
-```
-&lt;p&gt; You have {{customerData.dollars}} dollars &lt;/p&gt;
-&lt;crazy-awesome-widget ng-repeat=&#34;account in accounts&#34; info=&#34;customerData&#34;&gt;
-&lt;/crazy-awesome-widget&gt;&lt;/p&gt;
-
-&lt;p&gt;
-angular.module(&amp;lsquo;dotDemo&amp;rsquo;).controller(&amp;lsquo;OuterCtrl&amp;rsquo;, function($scope) {
-  $scope.customerData = {
-    dollars: 5
-  };
-  $scope.accounts = [&amp;ldquo;Tom&amp;rdquo;, &amp;ldquo;Bobby&amp;rdquo;, &amp;ldquo;Sally&amp;rdquo;];
-});
-angular.module(&amp;lsquo;dotDemo&amp;rsquo;).directive(&amp;lsquo;crazyAwesomeWidget&amp;rsquo;, function() {
-  return {
-    restrict: &amp;lsquo;E&amp;rsquo;,
-    template: &amp;lsquo;&lt;input type=&#34;text&#34; ng-model=&#34;info.dollars&#34; /&gt;&amp;rsquo;,
-    scope: {
-      info: &amp;lsquo;=&amp;rsquo;
-    }
-  };
-});
-
-```
-{% endraw %}&lt;/p&gt;
-
-&lt;iframe src=&#34;http://embed.plnkr.co/IVkqcNVhwQXd1zQ9nZQ2/preview&#34;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Boom, synchronization from parent scope =&amp;gt; isolated child scopes and back again.&lt;/p&gt;
-
-&lt;p&gt;Big shout out to Reddit user &lt;a href=&#34;http://www.reddit.com/user/Commentares&#34;&gt;Commentares&lt;/a&gt; who caught a flaw in the original implementation of my first example in the first draft of this article.&lt;/p&gt;
-
-&lt;p&gt;See for reference:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://jimhoskins.com/2012/12/14/nested-scopes-in-angularjs.html&#34;&gt;This excellent article by Jim Hoskins&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/angular/angular.js/wiki/Understanding-Scopes&#34;&gt;This aforementioned Angular documentation gettin&amp;rsquo; mad deep about scopes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;2. Extreme overuse of event broadcasting and listening (&lt;code&gt;$emit&lt;/code&gt;, &lt;code&gt;$broadcast&lt;/code&gt;, &lt;code&gt;$on&lt;/code&gt;)&lt;/h1&gt;
-
-&lt;p&gt;Everybody loves to hate on GOTOs.  Poor little GOTOs.  All they ever wanted to do was help control program execution flow and branching, and they get the Rodney Dangerfield treatment.  They&amp;rsquo;re reviled with that sort of knee-jerk reaction that only programmers can revile something with.  You know the type.  They&amp;rsquo;re the ones who got burned by &lt;code&gt;git rebase&lt;/code&gt; one time (it was their own fault) and spend way too much effort and energy spreading FUD about rebases.  But I digress.  My point is, there&amp;rsquo;s this Angular antipattern I&amp;rsquo;ve seen and fallen into, where &lt;code&gt;$scope.$emit&lt;/code&gt; and &lt;code&gt;$scope.$broadcast&lt;/code&gt; have become the new GOTO.  Except that it&amp;rsquo;s shiny and new and Angular-ey, so everybody gives it a pass.  &lt;code&gt;$scope.$watch&lt;/code&gt; can kind of be abused in the same way, but the others are slightly easier to pick on.&lt;/p&gt;
-
-&lt;p&gt;I really feel that you should keep manual event broadcasting and catching out of your code if possible.  It doesn&amp;rsquo;t usually do a whole lot of good and confuses the hell out of the people who have to maintain your code (including you!).  The problem is thus:  Let&amp;rsquo;s say you have something going wacky in a &lt;code&gt;$scope.$on&lt;/code&gt;.  You set a breakpoint in the defined callback function that runs when that &lt;code&gt;$scope.$on&lt;/code&gt; catches its defined event.  OK, now what?  You have no idea where that event came from or what its intended purpose is, and if it&amp;rsquo;s wreaking all sorts of unintended havoc you&amp;rsquo;re in big trouble.  Usually this can be avoided by careful use of services and proper scope inheritance.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;3. Too much stuff in controllers&lt;/h1&gt;
-
-&lt;p&gt;It&amp;rsquo;s unfortunate that I have to point this one out, but as I&amp;rsquo;ve personally fallen into this pitfall especially when first getting started with Angular, I suppose I can give people a free pass on making this mistake once or twice.  After that, however, they should definitely learn.&lt;/p&gt;
-
-&lt;p&gt;Your controllers should be lean.  Say it with me.&lt;/p&gt;
-
-&lt;p&gt;My controllers should be lean.&lt;/p&gt;
-
-&lt;p&gt;My controllers should be lean.&lt;/p&gt;
-
-&lt;p&gt;My controllers &lt;em&gt;are&lt;/em&gt; lean.&lt;/p&gt;
-
-&lt;p&gt;This means that absolutely everything which can be stripped out of them, should be.  They exist to coordinate the delicate dance between your other resources (services and directives).&lt;/p&gt;
-
-&lt;p&gt;For instance, I came across a line introduced in one of our controllers that looked like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$(&#39;body&#39;).attr(&#39;data-state&#39;, &#39;someNewState&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This was my reaction upon finding this code in this controller:&lt;/p&gt;
-
-&lt;p&gt;{%img /images/angular-antipatterns/hulk.gif %}&lt;/p&gt;
-
-&lt;p&gt;Note:  My actual reaction was way more passive aggressive (wrote about it in my &lt;em&gt;blog&lt;/em&gt;!  Showed that guy).&lt;/p&gt;
-
-&lt;p&gt;In Angular, DOM manipulation is done inside directives.  NOT controllers.  DOM manipulation is done inside directives.  Every aspiring Angular programmer should have this branded into his or her brain.&lt;/p&gt;
-
-&lt;p&gt;Other common things that slip into controllers:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Ajax (sometimes disguised in a half-baked abstraction) - this should be done in services&lt;/li&gt;
-&lt;li&gt;Tangled mess of event handling as discussed in last section&lt;/li&gt;
-&lt;li&gt;Things that are basically service or factory logic, but eh I&amp;rsquo;m too lazy to move this code&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Don&amp;rsquo;t do it.  If you keep your controllers lean and small they will reward you with readability and ease of debugging.  If you let them spiral out of control you will be punished unceremoniously.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;4. Misunderstanding or misusing isolate scope&lt;/h1&gt;
-
-&lt;p&gt;Isolate scope is really nice.  It prevents directives from just accessing / modifying the parent scope willy-nilly, opening the door to all kinds of bugs associated with global-ish scope, and promotes reusability.  But it&amp;rsquo;s important to realize that this is the point of isolate scope.  Consequently, if you&amp;rsquo;re passing a bunch of properties into your directive&amp;rsquo;s &lt;code&gt;$scope&lt;/code&gt;, and then cascading them downwards through a variety of child scopes, you are probably doing something wrong.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve seen this a bit.  If you are passing a bunch of information down to your directive&amp;rsquo;s scope, either it should be inheriting by default (in which case you don&amp;rsquo;t want isolate scope), or you should bundle the properties that you can together in an object or two to keep the &lt;code&gt;scope&lt;/code&gt; definition nice and clean and promote readability of the HTML.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_5&#34;&gt;5. Using the outside world instead of doing things the Angular way&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/angular-antipatterns/but-computers.png Aren&amp;rsquo;t we all nowadays? %}&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s really tempting, especially when first learning Angular, and directives in particular, to just write jQuery code like we always have that happens to be wrapped in an Angular directive.  While this is still probably better than rolling with no framework at all and creating a tangled mess, it indicates a basic ungrok of the Angular way.&lt;/p&gt;
-
-&lt;p&gt;Things should be done in Angular, when they can.  Angular provides so much niceness in the form of built-in directives, services (&lt;code&gt;$window&lt;/code&gt;, &lt;code&gt;$timeout&lt;/code&gt;, &lt;code&gt;$http&lt;/code&gt; et al. wrap these things for you so you don&amp;rsquo;t have to worry about accidentally interfering with Angular&amp;rsquo;s internals!) that we should only reach for custom solutions when we have to (and believe me, you will - just think carefully before doing so).  Just wrapping jQuery code in a directive doesn&amp;rsquo;t do us any good, and creates complications when we need to start doing stuff like chucking &lt;code&gt;$scope.$apply&lt;/code&gt; into things.  So think things through, and do them the Angular way.&lt;/p&gt;
-
-&lt;p&gt;Likewise dependencies that you had before (modules you are relying on etc.) should be refactored into e.g. factories for increased ease of use and testability.  If you have the time to use Angular into your project, you have the time to do this too.  Angular will reward you with layers of increased richness.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_6&#34;&gt;Fin&lt;/h1&gt;
-
-&lt;p&gt;I really hope that this article helps people avoid these bad behaviors, or at least see them when they come across them and refactor them into something better.&lt;/p&gt;
-
-&lt;p&gt;Until next time, stay sassy Internet.  And &lt;a href=&#34;http://nathanleclaire.com&#34;&gt;consider subscribing to my mailing list&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Nate&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Want to Work With Databases In Golang?  Let&#39;s Try Some gorp.</title>
-      <link>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</link>
+      <link>http://localhost:1313/posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</guid>
+      <guid>http://localhost:1313/posts/2013-11-04-want-to-work-with-databases-in-golang-lets-try-some-gorp</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;Google&amp;rsquo;s Go&lt;/h1&gt;
@@ -1465,162 +820,390 @@ func (m *DbMap) AddTableWithName(i interface{}, name string) *TableMap {
     </item>
     
     <item>
-      <title>Learn Node.js The Troll Way</title>
-      <link>http://localhost:1313/_posts/2013-02-06-learn-node-dot-js-the-troll-way</link>
+      <title>Implementing a Concurrent Floodfill with Golang</title>
+      <link>http://localhost:1313/posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2013-02-06-learn-node-dot-js-the-troll-way</guid>
+      <guid>http://localhost:1313/posts/2014-04-05-implementing-a-concurrent-floodfill-with-golang</guid>
       <description>
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Server Side JavaScript&lt;/h2&gt;
+&lt;h1 id=&#34;toc_0&#34;&gt;The setup&lt;/h1&gt;
 
-&lt;p&gt;As many of you are probably aware, &lt;a href=&#34;http://nodejs.org/&#34;&gt;Node.js&lt;/a&gt; is all the rage with the kids these days.  It&amp;rsquo;s so popular that users even have the nerve to &lt;a href=&#34;http://code.google.com/p/v8/issues/detail?id=847#c15&#34;&gt;gall Google developers&lt;/a&gt;, insisting that the V8 JavaScript engine is important for things outside of mere Chrome.  Node has rapidly been evolving and maturing into the new hotness of the web development community.  Its core is driven by the idea of asynchronous input and output,
-a way to manage the latency inherent in developing applications for the web.  With Node, you gain the ability to write JavaScript which runs on the server-side of an application- and the somewhat eyebrow-raising ability to create a server within JavaScript itself.&lt;/p&gt;
+&lt;p&gt;Lately as part of a coding exercise I found myself implementing a &lt;a href=&#34;http://en.wikipedia.org/wiki/Flood_fill&#34;&gt;Flood Fill&lt;/a&gt; for &amp;ldquo;painting&amp;rdquo; an ASCII canvas.  For those of you unfamiliar with what that is, think back to MSPaint - remember that little paint bucket that would fill a region with your color of choice?  That paint bucket implements a flood fill algorithm, although I didn&amp;rsquo;t know that&amp;rsquo;s what it was called until I started working on implementing one myself.&lt;/p&gt;
 
-&lt;p&gt;Throw in a sweet package manager for every sort of JS voodoo you can imagine (&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;), and you&amp;rsquo;ve suddenly opened up the door to a whole new world of handy tools and tricks, accessible to many developers due to the ubiquitous nature of JavaScript on the modern web.  The V8 JavaScript engine on which it is based is has performed pretty well for a web-based language in &lt;a href=&#34;http://shootout.alioth.debian.org/u32/which-programming-languages-are-fastest.php&#34;&gt;benchmarks&lt;/a&gt;.  We all know that benchmarks are even worse dirty lies than statistics, so what I personally think is really cool about Node is that it mandates one to approach concurrency with a direct focus from the start of application development.  Surely there&amp;rsquo;s a lot to be said for not having to rip off and reinvent the wheel of horizontal scalability.  But I digress.&lt;/p&gt;
+&lt;p&gt;{%img /images/flood-fill/flood-fill-basic.gif %}&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_1&#34;&gt;Screen Scraping With Node.js&lt;/h2&gt;
+&lt;p&gt;My original implementation was in PHP and I had to go through a few iterations before I got to an implementation I was satisfied with.  It was surprisingly tricky to get correct as my depth-first implementation kept blowing the stack through excessive use of recursion.  A naive flood fill algorithm (depth first) looks like this:&lt;/p&gt;
 
-&lt;p&gt;{% img /images/skyrim-guard.jpeg Go cast your fancy JavaScript somewhere else! %}&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Store the color of the pixel where you are starting, then color it the new color.&lt;/li&gt;
+&lt;li&gt;For every adjacent pixel, if it is the same as the original color and you have never visited that pixel before, perform a flood fill on it.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;The purpose of this article is to give a quick flyby example, in which I will be demonstrating Node.js by constructing a screen-scraping bot to troll my brother on Reddit.  I had an idea to build an application which uses the Reddit API, to spam my brother&amp;rsquo;s account with Skyrim quotes/dialogue in comments for entertainment purposes.  If he ever were to reply, bewildered, my bot would ping back: &lt;em&gt;&amp;ldquo;Problem, theonewhoquestions?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;There are a lot of issues with this algorithm.  It takes a long time and it will quickly blow the stack if the canvas size contains more than a trivial number of pixels.&lt;/p&gt;
 
-&lt;p&gt;Naturally, in order to do this, I needed to gather the Skyrim intel (quotes) first.  Originally I set out to write the crawler in Python as I have some experience with the venerable &lt;a href=&#34;http://www.crummy.com/software/BeautifulSoup/&#34;&gt;BeautifulSoup&lt;/a&gt; Module.  But I was already using Node a bit as a result of Twitter&amp;rsquo;s Bootstrap framework, and I was curious to challenge myself to actually build something with it for fun and comprehensive learning.  So, I decided to investigate.&lt;/p&gt;
+&lt;p&gt;So I started thinking about ways to improve it, and it occurred to me to use a &lt;em&gt;breadth&lt;/em&gt;-first solution instead (this is actually the kind of solution that&amp;rsquo;s visualized in the GIF above).  That way, we could store the pixels that we want to visit / fill in a queue, and visit them one at a time without blowing the stack.  It worked pretty well.&lt;/p&gt;
 
-&lt;p&gt;Turns out there are a few modules that come in handy for a task like this in Node.
-&lt;code&gt;javascript
-    var jsdom = require(&#39;jsdom&#39;);
-&lt;/code&gt;
-This is the idiomatic way to import modules in Node.  The jsdom module for Node enables us to simulate a DOM environment which many of us familiar with (working with client side code) for use in our Node script.  And naturally, it&amp;rsquo;s as easy as one, two, callback!&lt;/p&gt;
+&lt;p&gt;Just one problem, though:  It was written in PHP, and PHP is dog slow.  It&amp;rsquo;s also painfully single-threaded to boot.&lt;/p&gt;
 
-&lt;p&gt;Since I am familiar with using jQuery to parse the DOM, I opted to use it to extract the quotes from &lt;a href=&#34;http://www.uesp.net/wiki/Skyrim:Guard&#34;&gt;this website&lt;/a&gt;, where they are contained within table cells ripe for the picking.  To do this with the jsdom module, you call the &lt;code&gt;jsdom.env&lt;/code&gt; method.  As arguments we pass in the address of the HTML we wish to parse.
-``` javascript
-    jsdom.env(&amp;lsquo;&lt;a href=&#34;http://www.uesp.net/wiki/Skyrim:Guard&#39;&#34;&gt;http://www.uesp.net/wiki/Skyrim:Guard&#39;&lt;/a&gt;,
-      [ &amp;lsquo;&lt;a href=&#34;http://code.jquery.com/jquery.min.js&#39;&#34;&gt;http://code.jquery.com/jquery.min.js&#39;&lt;/a&gt; ],
-      function(errors, window) {
-        var $ = window.$;
-        $ = stripTags($);&lt;/p&gt;
+&lt;h1 id=&#34;toc_1&#34;&gt;Go!&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code&gt;    var $skyrim_quotes = $(&#39;tr td&#39;).filter( function(element, index, array) {
-        if ( $(index).html().match(/^&amp;quot;.*&amp;quot;$/) ) {
-          return true;
-        } else {
-          return false;
-        }
-    });
+&lt;p&gt;&lt;code&gt;&amp;lt;s&amp;gt;&lt;/code&gt; Since we all know that all the cool kids use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt; nowadays &lt;code&gt;&amp;lt;/s&amp;gt;&lt;/code&gt;, I decided to take a crack at implementing a solution for this in Go, taking advantage of Go&amp;rsquo;s high performance and concurrency patterns.  Also, I just really like coding stuff in Go.&lt;/p&gt;
 
-    $skyrim_quotes.each( function() {
-      var $scopedElem = $(this);
-      var content = $scopedElem.html().stripHTMLSpecialChars().stripDoubleQuotes();
+&lt;h2 id=&#34;toc_2&#34;&gt;&amp;ldquo;Canvas&amp;rdquo; abstraction&lt;/h2&gt;
 
-      console.log( content );
+&lt;p&gt;The &amp;ldquo;canvas&amp;rdquo; I modeled as an two-dimensional array of byte arrays (which are chars for our purposes).  There&amp;rsquo;s another matrix that we use to keep track of which pixels we have visited before.  For convenient passing, we also have a struct &lt;code&gt;Node&lt;/code&gt; that contains data about a given pixel.  We will use this later on to make our helper functions a little bit more clean looking.&lt;/p&gt;
 
-    }); 
-  });
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;go&#34;&gt;type Canvas struct {
+    contents [][]byte
+    visited  [][]bool
+}
 
-&lt;pre&gt;&lt;code&gt;There&#39;s a lot going on here that merits explanation, so I will take a second to break down in more detail what is going on in this chunk of code.  We have an instance of the `jsdom` object so we can call the `env` method to bootstrap up a DOM to parse.  The first argument to this method (`&#39;http://www.uesp.net/wiki/Skyrim:Guard&#39;`) is the URL to query for the HTML to instantiate this DOM with.  You can also just pass in plain old HTML as a string if you happen to have some of that laying around in dire need of parsing.
-
-The second argument to the `env` method is a list of scripts to be included in the virtual window (DOM).
-``` javascript
-    [ &#39;http://code.jquery.com/jquery.min.js&#39; ],
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In this instance and many of the examples given on the &lt;code&gt;jsdom&lt;/code&gt; &lt;a href=&#34;https://github.com/tmpvar/jsdom&#34;&gt;Github page&lt;/a&gt;, we include the jQuery library.  If one wanted to use Mootools or Underscore.js, I imagine that is also totally doable, although I have no anecdotal evidence to support this hypothesis.  For my purposes, jQuery was a comfortable and effective fit.&lt;/p&gt;
-
-&lt;p&gt;The &lt;em&gt;third&lt;/em&gt; argument to the &lt;code&gt;jsdom.env&lt;/code&gt; method, and arguably the most critical, is a callback function to be executed once the response has been received from the server (or immediately, in the case of passing in your own HTML).&lt;br /&gt;
-&lt;code&gt;javascript
-      function(errors, window) {
-        // ...
-      }
-&lt;/code&gt;
-It takes two arguments:  The first is called &lt;code&gt;errors&lt;/code&gt; and is an list of errors which you can inspect if something in the &lt;code&gt;env&lt;/code&gt; method goes wonky (in the code I&amp;rsquo;ve presented here &lt;code&gt;errors&lt;/code&gt; is ignored, although you still need to have it in the definition of your callback function).  The second is called &lt;code&gt;window&lt;/code&gt; and it is the coup de grâce of what we are seeking: a bootstrapped, &amp;ldquo;invisible&amp;rdquo; DOM that our script can parse.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s worth pausing for a second here to think about why the &amp;ldquo;Node way&amp;rdquo; results in what may seem to some people to result in an expansive sea of callback spaghetti (if JavaScript didn&amp;rsquo;t already appear to you to be an expansive sea of said callback spaghetti).  Any time that Node encounters a situation which otherwise might block the execution of code (such as an HTTP GET request to an external service), it simply defines a callback function to be executed when that &lt;em&gt;event&lt;/em&gt; occurs (i.e. when your GET request is finished).&lt;/p&gt;
-
-&lt;p&gt;But onward to the trolling we must progress!  The very first thing I do in this brave new callback where we will be doing our DOM parsing is define a few variables.
-&lt;code&gt;javascript
-    var $ = window.$;
-    $ = stripTags($);
-&lt;/code&gt;
-&lt;code&gt;jsdom&lt;/code&gt; allows access to the jQuery object through the &lt;code&gt;window&lt;/code&gt; object, and as I would be accessing it often enough to justify a shorthand method of access, that is what &lt;code&gt;var $ = window.$;&lt;/code&gt; is all about.  So what&amp;rsquo;s with that &lt;code&gt;stripTags&lt;/code&gt; call?  Well, the values that I was after were plain text without any HTML inside, as said HTML in a Reddit comment might shatter the illusion that it could be a person typing said Skyrim quotes instead of a robot.  So, for example, some of the entries in the table cells have words &lt;em&gt;in italics&lt;/em&gt; and I needed to get rid of these tags.  Ergo, my &lt;code&gt;stripTags&lt;/code&gt; function.
-``` javascript
-    /* consumes jQuery object
-       returns jQuery object */&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function stripTags($) {
-
-  // Cleaning out anchor tags, italics, and one span which is a warning not
-  // to edit for nice, readable quotes
-
-  $(&#39;tr td a&#39;).contents().unwrap();
-  $(&#39;tr td i&#39;).contents().unwrap();
-  $(&#39;span&#39;).contents().unwrap();
-  $(&#39;small&#39;).contents().unwrap();
-
-  return $;
+type Node struct {
+    X     int
+    Y     int
+    Color byte
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;Using `unwrap()` on client-side code willy-nilly like this would more likely than not b0rk some critical piece of functionality in your app, but I only care about the data that I am scraping so it&#39;s not really relevant here.  It gets the job done, which is to turn quotes which in their raw form look like
+&lt;p&gt;The function to initialize the &amp;ldquo;canvas&amp;rdquo; is pretty straightforward.  We also have an analagous method, &lt;code&gt;setVisitedMatrixToFalse&lt;/code&gt;, that we call before performing a flood fill operation to indicate we haven&amp;rsquo;t visited anywhere yet.&lt;/p&gt;
 
-&amp;lt;blockquote&amp;gt;&amp;quot;You here to see the &amp;amp;lt;a href=&amp;quot;/wiki/Skyrim:Igmund&amp;quot; title=&amp;quot;Skyrim:Igmund&amp;quot;&amp;amp;gt;Jarl&amp;amp;lt;/a&amp;amp;gt;? No sudden moves, understand?&amp;quot;&amp;lt;/blockquote&amp;gt;
-
-into a nice clean version that looks like this:
-
-&amp;lt;blockquote&amp;gt;&amp;quot;You here to see the Jarl? No sudden moves, understand?&amp;quot;&amp;lt;/blockquote&amp;gt;
-
-Thanks to that `$(&#39;tr td a&#39;).contents().unwrap();` statement.  It&#39;s a little bit of extra work, but trolling is serious business, and well worth the investment.  And as I said before, applying these operations globally to the DOM on a large-scale project would be overkill, but for my purposes here it was grand.
-
-The next step was the find the quotes themselves.  A simple little `$(&#39;tr td&#39;)` yielded very good results, mostly what I was looking for, but there happened to be a bit of extra flotsam and jetsam table cells which contained content I was not after at all.  So I needed some way to differentiate the Skyrim quotes from anything else that happened to be in a table cell which was not relevant to the task at hand.  Hm, surely I can come up with a regular expression to help with that?
-``` javascript
-    var $skyrim_quotes = $(&#39;tr td&#39;).filter( function(element, index, array) {
-        if ( $(index).html().match(/^&amp;quot;.*&amp;quot;$/) ) {
-          return true;
-        } else {
-          return false;
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Init(width int, height int, blankChar byte) {
+    c.contents = make([][]byte, width)
+    for i := 0; i &amp;lt; width; i++ {
+        c.contents[i] = make([]byte, height)
+        for j := 0; j &amp;lt; height; j++ {
+            c.contents[i][j] = blankChar
         }
-    });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we have the lovely jQuery method &lt;code&gt;filter&lt;/code&gt; being used to apply the simple regexp pattern &lt;code&gt;/^&amp;quot;.*&amp;quot;$/&lt;/code&gt; to our selection and returning only the elements that match.  This knocks out everything which does not adhere strictly to the &amp;ldquo;quote&amp;rdquo; pattern (string&amp;rsquo;s first and last character are a double quote - &lt;code&gt;&amp;quot;&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;Almost there now- still I needed to strip some HTML special characters such as &lt;code&gt;&amp;amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;amp;gt;&lt;/code&gt; to get them especially clean.  And, of course, to strip the double quotes for aesthetic purposes.  I decided to bring a gun to a knife fight and add methods to &lt;code&gt;String&lt;/code&gt;&amp;rsquo;s prototype.
-``` javascript
-    String.prototype.stripHTMLSpecialChars = function () {
-      // There&amp;rsquo;s a few quirks in the soup
-      var str = this.replace(/&amp;lt;/, &amp;ldquo;);
-      str = str.replace(/&amp;gt;/, &amp;ldquo;);
-      str = str.replace(/&amp;nbsp;[sic]/, &amp;lsquo;y&amp;rsquo;);
-      return str;
-    };&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;String.prototype.stripDoubleQuotes = function() {
-  return this.slice(1, this.length - 1);
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;The solution for `stripDoubleQuotes()` feels a little bit kludgey, so I&#39;d be curious to hear if anyone else has a better idea (I&#39;m sure JavaScript is capable of sed-like string manipulation antics but this was this quickest way I could think of accomplishing the goal).  `stripHTMLSpecialChars()`&#39;s removal of these &amp;quot;quirks&amp;quot; was based on a quick grepping of the results I was getting back to see what HTML special characters were being returned.  Used in the `jsdom` callback, our &amp;quot;sanitizing&amp;quot; and printing to the console of these quotes looks like this:
-``` javascript
-    $skyrim_quotes.each( function() {
-      var $scopedElem = $(this);
-      var content = $scopedElem.html().stripHTMLSpecialChars().stripDoubleQuotes();
-      console.log(content);
     }
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Bravo!  Now we have our hot, fresh, Skyrim quotes, eager to troll unsuspecting brothers with.  I opted to stash these quotes in a database (sqlite3) so I didn&amp;rsquo;t have to ping the Skyrim wiki&amp;rsquo;s servers every time they were needed (and also to keep track of which ones had been used already).  I won&amp;rsquo;t go into a lot of gory details here about how working with a database in Node.js is, but suffice it to say for my purposes it was actually fairly straightforward.  Node has a handy &lt;code&gt;sqlite3&lt;/code&gt; module that made working with the database fairly simple.  As it turns out, JavaScript being single-threaded-async is quite handy for tasks like this because the thread isn&amp;rsquo;t going to block on the expensive IO operations.  If you want to pick on PHP, for instance, just note how long it takes a PHP application to make, say, 25 requests to external servers versus Node&amp;rsquo;s same attempt with concurrency.&lt;/p&gt;
+&lt;p&gt;Called like:&lt;/p&gt;
 
-&lt;p&gt;Stay tuned for the followup where I create the actual robot to talk to my brother, and if you&amp;rsquo;re keen feel free to &lt;a href=&#34;https://github.com/nathanleclaire/learnnodethetrollway&#34;&gt;check out the source&lt;/a&gt; on Github.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;canvas := Canvas{}
+canvas.Init(120, 120, &#39;_&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We take advantage of easy casting from &lt;code&gt;[]byte&lt;/code&gt; type to &lt;code&gt;string&lt;/code&gt; for our function to print the contents of the canvas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) Print() {
+    for _, row := range c.contents {
+        fmt.Println(string(row))
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this code set up, we can get into the &amp;ldquo;meat&amp;rdquo; of the flood fill algorithm.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;Flood Fill&lt;/h2&gt;
+
+&lt;p&gt;Instead of using pure recursion, we will instead have a &amp;ldquo;master&amp;rdquo; goroutine that forks off visits to other pixels/nodes in their own goroutines.  The child goroutines will report back their &amp;ldquo;findings&amp;rdquo; to the main goroutine, including what pixels to visit next if any.  Through the use of buffered and unbuffered goroutines, we will prevent too many visits from firing off at once, and the Go runtime scheduler will take care of juggling these activities which are running concurrently.&lt;/p&gt;
+
+&lt;p&gt;The main goroutine looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) FloodFill(x int, y int, color byte) {
+    // If unbuffered, this channel will block when we go to send the
+    // initial nodes to visit (at most 4).  Not cool man.
+    toVisit := make(chan Node, 4)
+    visitDone := make(chan bool)
+
+    originalColor := c.contents[x][y]
+
+    c.setVisitedMatrixToFalse()
+
+    go c.floodFill(x, y, color, originalColor, toVisit, visitDone)
+    remainingVisits := 1
+
+    for {
+        select {
+        case nextVisit := &amp;lt;-toVisit:
+            if !c.visited[nextVisit.X][nextVisit.Y] {
+                c.visited[nextVisit.X][nextVisit.Y] = true
+                remainingVisits++
+                go c.floodFill(nextVisit.X, nextVisit.Y, color, originalColor, toVisit, visitDone)
+            }
+        case &amp;lt;-visitDone:
+            remainingVisits--
+        default:
+            if remainingVisits == 0 {
+                return
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To start, we create two channels.  One is called &lt;code&gt;toVisit&lt;/code&gt; and is the channel through which we send Nodes that we still want to visit (color, then check if they have neighbors we should color).  You may notice that this channel is buffered.  This is because if it is not buffered, then when we attempt to send &lt;code&gt;Node&lt;/code&gt;s to visit over it, it will block and the whole program will deadlock.  Since we know that we will &amp;ldquo;queue up&amp;rdquo; at most four &lt;code&gt;Node&lt;/code&gt;s into the channel (for this exercise we don&amp;rsquo;t fill pixels which are diagonally adjacent), that&amp;rsquo;s why we set our buffer size to that.  Theoretically however it will work with any buffer value greater than or equal to one.&lt;/p&gt;
+
+&lt;p&gt;The other channel is called &lt;code&gt;visitDone&lt;/code&gt; and is used to indicate when a visit for a given node is finished.  We don&amp;rsquo;t care which one, since we just maintain a &amp;ldquo;one true counter&amp;rdquo; in our main routine (&lt;code&gt;remainingVisits&lt;/code&gt;) that tracks how many outstanding visits we have, and ensures that the function doesn&amp;rsquo;t return as long as there are visits outstanding.  Before I implemented this solution I was getting all kinds of frustrating race conditions where the &lt;code&gt;default&lt;/code&gt; block would sometimes get hit before any additional visits would get added, and so the program would exit prematurely.  If you have a better idea/solution to manage this, I&amp;rsquo;d love to hear!&lt;/p&gt;
+
+&lt;p&gt;We also keep track of the color of the original pixel, since that&amp;rsquo;s a condition of coloring (the pixels should be adjacent and the same color as the original pixel).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;floodFill&lt;/code&gt; method that we spin off into auxilliary goroutines looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) floodFill(x int, y int, color byte, originalColor byte, toVisit chan Node, visitDone chan bool) {
+    c.contents[x][y] = color
+    neighbors := c.getNeighbors(x, y)
+    for _, neighbor := range neighbors {
+        if neighbor.Color == originalColor {
+            toVisit &amp;lt;- neighbor
+        }
+    }
+    visitDone &amp;lt;- true
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I don&amp;rsquo;t know that I&amp;rsquo;m crazy about having the actual pixel coloring in this method, since it involves mutable data that&amp;rsquo;s shared between threads, so I might move it into the main method eventually, but for example purposes it works okay.  This method is fairly terse and simply colors the pixel, then calls this method to get the neighbors of the current pixel (ensuring that we don&amp;rsquo;t run over the bounds of the slice):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func (c *Canvas) getNeighbors(x int, y int) []Node {
+    var (
+        neighbors []Node
+        color     byte
+    )
+    if x+1 &amp;lt; len(c.contents) {
+        color = c.contents[x+1][y]
+        neighbors = append(neighbors, Node{x + 1, y, color})
+    }
+    if x-1 &amp;gt;= 0 {
+        color = c.contents[x-1][y]
+        neighbors = append(neighbors, Node{x - 1, y, color})
+    }
+    if y+1 &amp;lt; len(c.contents[0]) {
+        color = c.contents[x][y+1]
+        neighbors = append(neighbors, Node{x, y + 1, color})
+    }
+    if y-1 &amp;gt;= 0 {
+        color = c.contents[x][y-1]
+        neighbors = append(neighbors, Node{x, y - 1, color})
+    }
+    return neighbors
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, we send the returned nodes over the &lt;code&gt;toVisit&lt;/code&gt; channel if their color matches the original pixel&amp;rsquo;s color, and we send &lt;code&gt;true&lt;/code&gt; across &lt;code&gt;visitDone&lt;/code&gt; channel to indicate we are done when that is all through (this decrements our counter in the main goroutine).&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s all!&lt;/p&gt;
+
+&lt;p&gt;Check the sample output.&lt;/p&gt;
+
+&lt;p&gt;Before:&lt;/p&gt;
+
+&lt;pre&gt;
+____________________
+________//__________
+________//_______---
+__\\\\\\\\\\\\\\_---
+________//_______---
+________//_______---
+________//_______---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+_________________---
+&lt;/pre&gt;
+
+&lt;p&gt;After: (filled with &lt;code&gt;&#39;G&#39;&lt;/code&gt; char)&lt;/p&gt;
+
+&lt;pre&gt;
+GGGGGGGGGGGGGGGGGGGG
+GGGGGGGG//GGGGGGGGGG
+GGGGGGGG//GGGGGGG---
+GG\\\\\\\\\\\\\\G---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGG//GGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+GGGGGGGGGGGGGGGGG---
+&lt;/pre&gt;
+
+&lt;p&gt;It runs pretty satisfyingly quickly.  Wiki mentions a few alternative approaches that might work a little better (EDIT: it says that going line-by-line instead of pixel by pixel is an order of magnitude faster), but I like this one for its simplicity.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Conclude&lt;/h1&gt;
+
+&lt;p&gt;The code is &lt;a href=&#34;https://github.com/nathanleclaire/golangfloodfill&#34;&gt;up on Github&lt;/a&gt; if you&amp;rsquo;re curious.  I&amp;rsquo;d love to hear about other possible approaches, especially ones that are better at taking advtange of Go&amp;rsquo;s concurrency features.  I considered using &lt;code&gt;sync.WaitGroup&lt;/code&gt; but this didn&amp;rsquo;t really seem like a good case to do so.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Banging Your Head Against an AngularJS Issue?  Try This</title>
+      <link>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</guid>
+      <description>
+
+&lt;p&gt;{%img /images/scope-apply/frustration.jpg Have you been debugging something that seems trivial in Angular for so long that your face looks like this? %}&lt;/p&gt;
+
+&lt;p&gt;As I&amp;rsquo;ve gotten a &lt;a href=&#34;http://nathanleclaire.com/blog/2014/01/04/5-smooth-angularjs-application-tips/&#34;&gt;little&lt;/a&gt; &lt;a href=&#34;http://nathanleclaire.com/blog/2014/01/11/dragging-and-dropping-images-from-one-browser-tab-to-another-in-angularjs/&#34;&gt;into&lt;/a&gt; &lt;a href=&#34;http://angularjs.org&#34;&gt;AngularJS&lt;/a&gt; I&amp;rsquo;ve been surprised by how often my assumptions about how things will work have turned out to be wrong.  When you start to form a basic mental model of how Angular works and you hit your first stumbling block where your model turns out to be incorrect it can be really, really, frustrating.  In particular I had one issue that kept cropping up so often I began trying it before running to Google for help if something wasn&amp;rsquo;t working the way I would have expected (all my views should just magically sync up with what&amp;rsquo;s on &lt;code&gt;$scope&lt;/code&gt;, right?).  This solution is to make sure &lt;code&gt;$scope.$apply&lt;/code&gt; is getting used in the proper manner when updates to &lt;code&gt;$scope&lt;/code&gt; are happening, especially if they are happening in unusual places e.g. inside of directives.  Since I don&amp;rsquo;t really like &amp;ldquo;magical&amp;rdquo; or knee-jerk fixes to problems I highly recommend Jim Hoskins&amp;rsquo;s article on &lt;code&gt;$scope.$apply&lt;/code&gt; which you can find &lt;a href=&#34;http://jimhoskins.com/2012/12/17/angularjs-and-apply.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Use &lt;code&gt;$scope.$apply&lt;/code&gt;&lt;/h1&gt;
+
+&lt;p&gt;During your first foray into Angular you will probably not come across this as it is one of those hidden, quasi-leaky-abstraction sort of things that only becomes well known to you as you work on getting a non-trivial app off the ground.  After all, it&amp;rsquo;s not really needed for the &lt;a href=&#34;http://todomvc.com/architecture-examples/angularjs/#/&#34;&gt;todo-list app&lt;/a&gt; of yore but it becomes much more important when you are doing funny things like manipulating scope deep inside of directives and so on.  So, having been bit by the issue multiple times, I recommend trying a call to &lt;code&gt;$scope.$apply&lt;/code&gt; (either wrap the changes to &lt;code&gt;$scope&lt;/code&gt; properties inside a &lt;code&gt;$scope.apply&lt;/code&gt; callback, or call &lt;code&gt;$scope.$apply&lt;/code&gt; on its own after &lt;code&gt;$scope&lt;/code&gt; properties have been updated)  See the documentation &lt;a href=&#34;http://nathanleclaire.com/blog/2014/01/04/5-smooth-angularjs-application-tips/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The issue is around updating properties on &lt;code&gt;$scope&lt;/code&gt;, either in directives or in controllers, and not having the updated changes be reflected on the front-end in the manner which you expect (either they will not show up at all, or they will happen in an order which you do not anticipate, which will cause bugs).  This is because Angular has what is known as a digest-watch cycle where all of this gets figured out:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/scope-apply/digest-cycle.png %}&lt;/p&gt;
+
+&lt;p&gt;As automagical as Angular is in some ways, it has no way of knowing when your property has been updated outside of Angular-land (and sometimes doesn&amp;rsquo;t even bother when it is updated &lt;em&gt;in&lt;/em&gt; Angular-land, as per the example that follows).  So it requires a call to &lt;code&gt;$scope.$apply&lt;/code&gt; to stay in sync.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you have a list of numbers displayed with &lt;code&gt;ng-repeat&lt;/code&gt; and you want to &lt;code&gt;shift&lt;/code&gt; one off the list when the user presses the right arrow key, and redisplay them one at a time if the user presses the left arrow key.  Our controller code (on first attempt) would look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;.controller(&#39;NumCtrl&#39;, function($scope) {
+    var history = [];
+    $scope.numbersDisplayed = [0,1,2,3,4,5];
+
+    $scope.moveRight = function() {
+        history.unshift($scope.numbersDisplayed.shift());
+    };
+
+    $scope.moveLeft = function() {
+        $scope.numbersDisplayed.unshift(history.shift());
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;re ignoring bounds-checking for the sake of simplicity in this demonstation.  Our directive, designated to watch for user input on the element where this is happening (will be &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; in our case since it is a simple little example), will look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;.directive(&#39;arrowListener&#39;, function() {
+    return {
+        restrict: &#39;A&#39;, // attribute
+        scope: {
+            moveRight: &#39;&amp;amp;&#39;, // bind to parent method
+            moveLeft: &#39;&amp;amp;&#39;
+        },
+        link: function(scope, elm, attrs) {
+            elm.bind(&#39;keydown&#39;, function(e) {
+                if (e.keyCode === 39) {
+                    scope.moveRight();
+                }
+                if (e.keyCode === 37) {
+                    scope.moveLeft();
+                }
+            })
+        }
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you try the above code, you&amp;rsquo;ll notice that it doesn&amp;rsquo;t work.  The variable on &lt;code&gt;$scope&lt;/code&gt; gets changed correctly, but this change is not reflected in the view.  In order to make it work you have to change the controller code to :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;.controller(&#39;NumCtrl&#39;, function($scope) {
+    var history = [];
+    $scope.numbersDisplayed = [0,1,2,3,4,5];
+
+    $scope.moveRight = function() {
+        history.unshift($scope.numbersDisplayed.shift());
+        $scope.$apply();
+    };
+
+    $scope.moveLeft = function() {
+        $scope.numbersDisplayed.unshift(history.shift());
+        $scope.$apply();
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also invoke &lt;code&gt;scope.$apply&lt;/code&gt; in the directive itself.  To be honest, I&amp;rsquo;m not sure what the Angular gurus would consider best practice.  Perhaps the latter since it is more DRY.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;EDIT&lt;/em&gt;: I have received an email from a reader, Andrew Greenberg, that indicates the latter is indeed the way to go.  In fact, he points out a deeper flaw in my reasoning/approach:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;[There&amp;rsquo;s a problem with your code] &amp;hellip; that can be the cause of significant bugs down the road, because it calls &lt;code&gt;$apply&lt;/code&gt; from a scope inside the controller.  This will fail when that function is called from inside an AngularJS &lt;code&gt;$digest&lt;/code&gt; cycle, for example, when the functions are called in any expression in the HTML (unless the directive is created in an isolate scope).&lt;/p&gt;
+
+&lt;p&gt;As you know, Angular whines hard when &lt;code&gt;$apply&lt;/code&gt; is called inside an &lt;code&gt;$apply&lt;/code&gt; or &lt;code&gt;$digest&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The better practice is to call &lt;code&gt;$apply&lt;/code&gt; only when you know you are outside of a &lt;code&gt;$digest&lt;/code&gt; loop, such as inside the directive link function.  That is, keep the &lt;code&gt;$apply&lt;/code&gt; out of a &lt;code&gt;$controller&lt;/code&gt;, which is accessible to the declarative code in HTML or in another controller — and do the &lt;code&gt;$apply&lt;/code&gt; in the directive link function, when you know you are outside of the &lt;code&gt;$digest&lt;/code&gt; loop (I think).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So there you have it- reasoning why you should call &lt;code&gt;$scope.$apply&lt;/code&gt; or &lt;code&gt;$scope.$digest&lt;/code&gt; in the link function of your directives, not in your controllers.  My code revised to meet these requirements would look like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;.directive(&#39;arrowListener&#39;, function() {
+    return {
+        restrict: &#39;A&#39;, // attribute
+        scope: {
+            moveRight: &#39;&amp;amp;&#39;, // bind to parent method
+            moveLeft: &#39;&amp;amp;&#39;
+        },
+        link: function(scope, elm, attrs) {
+            elm.bind(&#39;keydown&#39;, function(e) {
+                if (e.keyCode === 39) {
+                    scope.moveRight();
+                }
+                if (e.keyCode === 37) {
+                    scope.moveLeft();
+                }
+                scope.$apply();
+            })
+        }
+    };
+})
+.controller(&#39;NumCtrl&#39;, function($scope) {
+    var history = [];
+    $scope.numbersDisplayed = [0,1,2,3,4,5];
+
+    $scope.moveRight = function() {
+        history.unshift($scope.numbersDisplayed.shift());
+    };
+
+    $scope.moveLeft = function() {
+        $scope.numbersDisplayed.unshift(history.shift());
+    };
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Writing it out, this way looks a bit cleaner to me as well.&lt;/p&gt;
+
+&lt;p&gt;A Plunker demo of these concepts in action:&lt;/p&gt;
+
+&lt;iframe src=&#34;http://embed.plnkr.co/agbSSuA2Mwx5pAd8kZSw/preview&#34;&gt;&lt;/iframe&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;This is one of those nasty issues I wish someone would have pointed out to me from the start.  So here you go, guys, hopefully you can get something out of the suffering I&amp;rsquo;ve gone through to develop an almost sixth-sense like awareness of when a &lt;code&gt;$scope.$apply&lt;/code&gt; will be needed.&lt;/p&gt;
+
+&lt;p&gt;Until next week, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Double Your Talent Acquisition: Five Do&#39;s and Don&#39;ts For Technical Recruiters</title>
-      <link>http://localhost:1313/_posts/2014-03-08-five-dos-and-donts-for-technical-recruiters</link>
+      <link>http://localhost:1313/posts/2014-03-08-five-dos-and-donts-for-technical-recruiters</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-08-five-dos-and-donts-for-technical-recruiters</guid>
+      <guid>http://localhost:1313/posts/2014-03-08-five-dos-and-donts-for-technical-recruiters</guid>
       <description>
 
 &lt;p&gt;{%img /images/recruiter/super-recruiter.jpeg %}&lt;/p&gt;
@@ -1880,6 +1463,417 @@ The next step was the find the quotes themselves.  A simple little `$(&#39;tr td
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fixing Cygwin&#39;s SSL issues with git clone / c_rehash bug</title>
+      <link>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-03-23-cygwin-git-clone-ssl-issue-c_rehash-openssl-not-found</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Cygwin&amp;rsquo;s git clone drama&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/cygwin-ssl/cygwin.png %}&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;Oh, you.&lt;/h2&gt;
+
+&lt;p&gt;When I am working on Windows for the various reasons which compel one to work on Windows I often use &lt;a href=&#34;http://www.cygwin.com&#34;&gt;Cygwin&lt;/a&gt; to provide UNIX-like functionality on the command line (cmd.exe leaves a lot to be desired).  Since a vital part of my workflow on any OS is &lt;a href=&#34;http://git-scm.com&#34;&gt;git&lt;/a&gt; I happily installed git using the Install.exe workflow that Cygwin provides.&lt;/p&gt;
+
+&lt;p&gt;To my surprise (and, I&amp;rsquo;m not going to deny it, slight nerd-rage) when I attempted to &lt;code&gt;git clone&lt;/code&gt; a repository from Github I was greeted by an error message like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/foo/bar
+error: SSL certificate problem, verify that the CA cert is OK. Details:
+error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK, so I have an SSL issue.  Running through the Setup.exe with Cygwin again and installing &lt;code&gt;ca-certificates&lt;/code&gt; and &lt;code&gt;openssl&lt;/code&gt; didn&amp;rsquo;t fix it, and eventually I came across &lt;a href=&#34;http://stackoverflow.com/questions/3777075/ssl-certificate-rejected-trying-to-access-github-over-https-behind-firewall&#34;&gt;this Stack Overflow post&lt;/a&gt; which described my exact issue.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;On the hunt for solutions&lt;/h1&gt;
+
+&lt;h2 id=&#34;toc_3&#34;&gt;One proposed solution&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git config --global http.sslVerify false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SERIOUSLY!?!?&lt;/p&gt;
+
+&lt;p&gt;No way I&amp;rsquo;m going to turn off SSL just to try and workaround this issue.  I don&amp;rsquo;t like getting MITMed.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_4&#34;&gt;A much better proposed solution&lt;/h2&gt;
+
+&lt;p&gt;Also from Stack Overflow:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /usr/ssl/certs
+$  curl http://curl.haxx.se/ca/cacert.pem | awk &#39;split_after==1{n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1} {print &amp;gt; &amp;quot;cert&amp;quot; n &amp;quot;.pem&amp;quot;}&#39;
+$ c_rehash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;OK, this is headed in the right direction, I can tell.  I had to manually create the &lt;code&gt;/usr/ssl/certs&lt;/code&gt; directory (probably because I hadn&amp;rsquo;t installed OpenSSL yet when I tried this), but even after getting OpenSSL &lt;code&gt;c_rehash&lt;/code&gt; was giving me an error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ c_rehash
+c_rehash: rehashing skipped (&#39;openssl&#39; program not available)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pretty odd, since just typing &lt;code&gt;openssl&lt;/code&gt; on the CLI clearly indicated that it was present.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_5&#34;&gt;Debuggin&amp;rsquo; some Perl code&lt;/h2&gt;
+
+&lt;p&gt;Nothing too fruitful was turning up on Google for this (the &lt;a href=&#34;http://koti.kapsi.fi/ptk/postfix/c_rehash.txt&#34;&gt;original program source&lt;/a&gt; was, though :P) so I dug into the program source (Perl) and found this bit at the top:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;my $openssl;
+
+my $dir = &amp;quot;/usr/lib/ssl&amp;quot;;
+
+if(defined $ENV{OPENSSL}) {
+    $openssl = $ENV{OPENSSL};
+} else {
+    $openssl = &amp;quot;openssl&amp;quot;;
+    $ENV{OPENSSL} = $openssl;
+}
+
+$ENV{PATH} .= &amp;quot;:$dir/bin&amp;quot;;
+
+if(! -x $openssl) {
+    my $found = 0;
+    foreach (split /:/, $ENV{PATH}) {
+        if(-x &amp;quot;$_/$openssl&amp;quot;) {
+            $found = 1;
+            last;
+        }   
+    }
+    if($found == 0) {
+        print STDERR &amp;quot;c_rehash: rehashing skipped (&#39;openssl&#39; program not available)\n&amp;quot;;
+        exit 0;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sprinkling some liberal debugging statements into that yielded me the information that &lt;code&gt;c_rehash&lt;/code&gt; was finding the relevant directories (and consequently the &lt;code&gt;openssl&lt;/code&gt; binary) but the file wasn&amp;rsquo;t showing up as executable.  Some Googling turned up stuff like &lt;a href=&#34;http://cygwin.com/ml/cygwin/2007-05/msg00681.html&#34;&gt;this&lt;/a&gt;, which made me wonder&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_6&#34;&gt;If &lt;em&gt;this&lt;/em&gt; solution would work&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ which openssl
+/cygdrive/c/Program Files (x86)/Git/bin/openssl
+$ chmod +x /cygdrive/c/Program\ Files\ \(x86\)/Git/bin/openssl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It did!  You have to run Cygwin as administrator to have the proper permissions though to change those file permissions though.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;c_rehash&lt;/code&gt; then went through without a hitch, Which finally allowed &lt;code&gt;git clone&lt;/code&gt; to work.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_7&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Whew!  That was exhausting.  Time to do some programming to unwind :)&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Learn Node.js The Troll Way</title>
+      <link>http://localhost:1313/posts/2013-02-06-learn-node-dot-js-the-troll-way</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2013-02-06-learn-node-dot-js-the-troll-way</guid>
+      <description>
+
+&lt;h2 id=&#34;toc_0&#34;&gt;Server Side JavaScript&lt;/h2&gt;
+
+&lt;p&gt;As many of you are probably aware, &lt;a href=&#34;http://nodejs.org/&#34;&gt;Node.js&lt;/a&gt; is all the rage with the kids these days.  It&amp;rsquo;s so popular that users even have the nerve to &lt;a href=&#34;http://code.google.com/p/v8/issues/detail?id=847#c15&#34;&gt;gall Google developers&lt;/a&gt;, insisting that the V8 JavaScript engine is important for things outside of mere Chrome.  Node has rapidly been evolving and maturing into the new hotness of the web development community.  Its core is driven by the idea of asynchronous input and output,
+a way to manage the latency inherent in developing applications for the web.  With Node, you gain the ability to write JavaScript which runs on the server-side of an application- and the somewhat eyebrow-raising ability to create a server within JavaScript itself.&lt;/p&gt;
+
+&lt;p&gt;Throw in a sweet package manager for every sort of JS voodoo you can imagine (&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;), and you&amp;rsquo;ve suddenly opened up the door to a whole new world of handy tools and tricks, accessible to many developers due to the ubiquitous nature of JavaScript on the modern web.  The V8 JavaScript engine on which it is based is has performed pretty well for a web-based language in &lt;a href=&#34;http://shootout.alioth.debian.org/u32/which-programming-languages-are-fastest.php&#34;&gt;benchmarks&lt;/a&gt;.  We all know that benchmarks are even worse dirty lies than statistics, so what I personally think is really cool about Node is that it mandates one to approach concurrency with a direct focus from the start of application development.  Surely there&amp;rsquo;s a lot to be said for not having to rip off and reinvent the wheel of horizontal scalability.  But I digress.&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;Screen Scraping With Node.js&lt;/h2&gt;
+
+&lt;p&gt;{% img /images/skyrim-guard.jpeg Go cast your fancy JavaScript somewhere else! %}&lt;/p&gt;
+
+&lt;p&gt;The purpose of this article is to give a quick flyby example, in which I will be demonstrating Node.js by constructing a screen-scraping bot to troll my brother on Reddit.  I had an idea to build an application which uses the Reddit API, to spam my brother&amp;rsquo;s account with Skyrim quotes/dialogue in comments for entertainment purposes.  If he ever were to reply, bewildered, my bot would ping back: &lt;em&gt;&amp;ldquo;Problem, theonewhoquestions?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Naturally, in order to do this, I needed to gather the Skyrim intel (quotes) first.  Originally I set out to write the crawler in Python as I have some experience with the venerable &lt;a href=&#34;http://www.crummy.com/software/BeautifulSoup/&#34;&gt;BeautifulSoup&lt;/a&gt; Module.  But I was already using Node a bit as a result of Twitter&amp;rsquo;s Bootstrap framework, and I was curious to challenge myself to actually build something with it for fun and comprehensive learning.  So, I decided to investigate.&lt;/p&gt;
+
+&lt;p&gt;Turns out there are a few modules that come in handy for a task like this in Node.
+&lt;code&gt;javascript
+    var jsdom = require(&#39;jsdom&#39;);
+&lt;/code&gt;
+This is the idiomatic way to import modules in Node.  The jsdom module for Node enables us to simulate a DOM environment which many of us familiar with (working with client side code) for use in our Node script.  And naturally, it&amp;rsquo;s as easy as one, two, callback!&lt;/p&gt;
+
+&lt;p&gt;Since I am familiar with using jQuery to parse the DOM, I opted to use it to extract the quotes from &lt;a href=&#34;http://www.uesp.net/wiki/Skyrim:Guard&#34;&gt;this website&lt;/a&gt;, where they are contained within table cells ripe for the picking.  To do this with the jsdom module, you call the &lt;code&gt;jsdom.env&lt;/code&gt; method.  As arguments we pass in the address of the HTML we wish to parse.
+``` javascript
+    jsdom.env(&amp;lsquo;&lt;a href=&#34;http://www.uesp.net/wiki/Skyrim:Guard&#39;&#34;&gt;http://www.uesp.net/wiki/Skyrim:Guard&#39;&lt;/a&gt;,
+      [ &amp;lsquo;&lt;a href=&#34;http://code.jquery.com/jquery.min.js&#39;&#34;&gt;http://code.jquery.com/jquery.min.js&#39;&lt;/a&gt; ],
+      function(errors, window) {
+        var $ = window.$;
+        $ = stripTags($);&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    var $skyrim_quotes = $(&#39;tr td&#39;).filter( function(element, index, array) {
+        if ( $(index).html().match(/^&amp;quot;.*&amp;quot;$/) ) {
+          return true;
+        } else {
+          return false;
+        }
+    });
+
+    $skyrim_quotes.each( function() {
+      var $scopedElem = $(this);
+      var content = $scopedElem.html().stripHTMLSpecialChars().stripDoubleQuotes();
+
+      console.log( content );
+
+    }); 
+  });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;There&#39;s a lot going on here that merits explanation, so I will take a second to break down in more detail what is going on in this chunk of code.  We have an instance of the `jsdom` object so we can call the `env` method to bootstrap up a DOM to parse.  The first argument to this method (`&#39;http://www.uesp.net/wiki/Skyrim:Guard&#39;`) is the URL to query for the HTML to instantiate this DOM with.  You can also just pass in plain old HTML as a string if you happen to have some of that laying around in dire need of parsing.
+
+The second argument to the `env` method is a list of scripts to be included in the virtual window (DOM).
+``` javascript
+    [ &#39;http://code.jquery.com/jquery.min.js&#39; ],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this instance and many of the examples given on the &lt;code&gt;jsdom&lt;/code&gt; &lt;a href=&#34;https://github.com/tmpvar/jsdom&#34;&gt;Github page&lt;/a&gt;, we include the jQuery library.  If one wanted to use Mootools or Underscore.js, I imagine that is also totally doable, although I have no anecdotal evidence to support this hypothesis.  For my purposes, jQuery was a comfortable and effective fit.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;third&lt;/em&gt; argument to the &lt;code&gt;jsdom.env&lt;/code&gt; method, and arguably the most critical, is a callback function to be executed once the response has been received from the server (or immediately, in the case of passing in your own HTML).&lt;br /&gt;
+&lt;code&gt;javascript
+      function(errors, window) {
+        // ...
+      }
+&lt;/code&gt;
+It takes two arguments:  The first is called &lt;code&gt;errors&lt;/code&gt; and is an list of errors which you can inspect if something in the &lt;code&gt;env&lt;/code&gt; method goes wonky (in the code I&amp;rsquo;ve presented here &lt;code&gt;errors&lt;/code&gt; is ignored, although you still need to have it in the definition of your callback function).  The second is called &lt;code&gt;window&lt;/code&gt; and it is the coup de grâce of what we are seeking: a bootstrapped, &amp;ldquo;invisible&amp;rdquo; DOM that our script can parse.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s worth pausing for a second here to think about why the &amp;ldquo;Node way&amp;rdquo; results in what may seem to some people to result in an expansive sea of callback spaghetti (if JavaScript didn&amp;rsquo;t already appear to you to be an expansive sea of said callback spaghetti).  Any time that Node encounters a situation which otherwise might block the execution of code (such as an HTTP GET request to an external service), it simply defines a callback function to be executed when that &lt;em&gt;event&lt;/em&gt; occurs (i.e. when your GET request is finished).&lt;/p&gt;
+
+&lt;p&gt;But onward to the trolling we must progress!  The very first thing I do in this brave new callback where we will be doing our DOM parsing is define a few variables.
+&lt;code&gt;javascript
+    var $ = window.$;
+    $ = stripTags($);
+&lt;/code&gt;
+&lt;code&gt;jsdom&lt;/code&gt; allows access to the jQuery object through the &lt;code&gt;window&lt;/code&gt; object, and as I would be accessing it often enough to justify a shorthand method of access, that is what &lt;code&gt;var $ = window.$;&lt;/code&gt; is all about.  So what&amp;rsquo;s with that &lt;code&gt;stripTags&lt;/code&gt; call?  Well, the values that I was after were plain text without any HTML inside, as said HTML in a Reddit comment might shatter the illusion that it could be a person typing said Skyrim quotes instead of a robot.  So, for example, some of the entries in the table cells have words &lt;em&gt;in italics&lt;/em&gt; and I needed to get rid of these tags.  Ergo, my &lt;code&gt;stripTags&lt;/code&gt; function.
+``` javascript
+    /* consumes jQuery object
+       returns jQuery object */&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function stripTags($) {
+
+  // Cleaning out anchor tags, italics, and one span which is a warning not
+  // to edit for nice, readable quotes
+
+  $(&#39;tr td a&#39;).contents().unwrap();
+  $(&#39;tr td i&#39;).contents().unwrap();
+  $(&#39;span&#39;).contents().unwrap();
+  $(&#39;small&#39;).contents().unwrap();
+
+  return $;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Using `unwrap()` on client-side code willy-nilly like this would more likely than not b0rk some critical piece of functionality in your app, but I only care about the data that I am scraping so it&#39;s not really relevant here.  It gets the job done, which is to turn quotes which in their raw form look like
+
+&amp;lt;blockquote&amp;gt;&amp;quot;You here to see the &amp;amp;lt;a href=&amp;quot;/wiki/Skyrim:Igmund&amp;quot; title=&amp;quot;Skyrim:Igmund&amp;quot;&amp;amp;gt;Jarl&amp;amp;lt;/a&amp;amp;gt;? No sudden moves, understand?&amp;quot;&amp;lt;/blockquote&amp;gt;
+
+into a nice clean version that looks like this:
+
+&amp;lt;blockquote&amp;gt;&amp;quot;You here to see the Jarl? No sudden moves, understand?&amp;quot;&amp;lt;/blockquote&amp;gt;
+
+Thanks to that `$(&#39;tr td a&#39;).contents().unwrap();` statement.  It&#39;s a little bit of extra work, but trolling is serious business, and well worth the investment.  And as I said before, applying these operations globally to the DOM on a large-scale project would be overkill, but for my purposes here it was grand.
+
+The next step was the find the quotes themselves.  A simple little `$(&#39;tr td&#39;)` yielded very good results, mostly what I was looking for, but there happened to be a bit of extra flotsam and jetsam table cells which contained content I was not after at all.  So I needed some way to differentiate the Skyrim quotes from anything else that happened to be in a table cell which was not relevant to the task at hand.  Hm, surely I can come up with a regular expression to help with that?
+``` javascript
+    var $skyrim_quotes = $(&#39;tr td&#39;).filter( function(element, index, array) {
+        if ( $(index).html().match(/^&amp;quot;.*&amp;quot;$/) ) {
+          return true;
+        } else {
+          return false;
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have the lovely jQuery method &lt;code&gt;filter&lt;/code&gt; being used to apply the simple regexp pattern &lt;code&gt;/^&amp;quot;.*&amp;quot;$/&lt;/code&gt; to our selection and returning only the elements that match.  This knocks out everything which does not adhere strictly to the &amp;ldquo;quote&amp;rdquo; pattern (string&amp;rsquo;s first and last character are a double quote - &lt;code&gt;&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Almost there now- still I needed to strip some HTML special characters such as &lt;code&gt;&amp;amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;amp;gt;&lt;/code&gt; to get them especially clean.  And, of course, to strip the double quotes for aesthetic purposes.  I decided to bring a gun to a knife fight and add methods to &lt;code&gt;String&lt;/code&gt;&amp;rsquo;s prototype.
+``` javascript
+    String.prototype.stripHTMLSpecialChars = function () {
+      // There&amp;rsquo;s a few quirks in the soup
+      var str = this.replace(/&amp;lt;/, &amp;ldquo;);
+      str = str.replace(/&amp;gt;/, &amp;ldquo;);
+      str = str.replace(/&amp;nbsp;[sic]/, &amp;lsquo;y&amp;rsquo;);
+      return str;
+    };&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;String.prototype.stripDoubleQuotes = function() {
+  return this.slice(1, this.length - 1);
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;The solution for `stripDoubleQuotes()` feels a little bit kludgey, so I&#39;d be curious to hear if anyone else has a better idea (I&#39;m sure JavaScript is capable of sed-like string manipulation antics but this was this quickest way I could think of accomplishing the goal).  `stripHTMLSpecialChars()`&#39;s removal of these &amp;quot;quirks&amp;quot; was based on a quick grepping of the results I was getting back to see what HTML special characters were being returned.  Used in the `jsdom` callback, our &amp;quot;sanitizing&amp;quot; and printing to the console of these quotes looks like this:
+``` javascript
+    $skyrim_quotes.each( function() {
+      var $scopedElem = $(this);
+      var content = $scopedElem.html().stripHTMLSpecialChars().stripDoubleQuotes();
+      console.log(content);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bravo!  Now we have our hot, fresh, Skyrim quotes, eager to troll unsuspecting brothers with.  I opted to stash these quotes in a database (sqlite3) so I didn&amp;rsquo;t have to ping the Skyrim wiki&amp;rsquo;s servers every time they were needed (and also to keep track of which ones had been used already).  I won&amp;rsquo;t go into a lot of gory details here about how working with a database in Node.js is, but suffice it to say for my purposes it was actually fairly straightforward.  Node has a handy &lt;code&gt;sqlite3&lt;/code&gt; module that made working with the database fairly simple.  As it turns out, JavaScript being single-threaded-async is quite handy for tasks like this because the thread isn&amp;rsquo;t going to block on the expensive IO operations.  If you want to pick on PHP, for instance, just note how long it takes a PHP application to make, say, 25 requests to external servers versus Node&amp;rsquo;s same attempt with concurrency.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for the followup where I create the actual robot to talk to my brother, and if you&amp;rsquo;re keen feel free to &lt;a href=&#34;https://github.com/nathanleclaire/learnnodethetrollway&#34;&gt;check out the source&lt;/a&gt; on Github.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How To Get Banned From /r/javascript - Promote Original Content</title>
+      <link>http://localhost:1313/posts/2014-01-31-how-to-get-banned-from-slash-r-slash-javascript-promote-original-content</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-01-31-how-to-get-banned-from-slash-r-slash-javascript-promote-original-content</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Good, The Bad, and The Ugly of Sails.js, Realtime JavaScript MVC Framework</title>
+      <link>http://localhost:1313/posts/2013-12-28-the-good-the-bad-and-the-ugly-of-sails-dot-js-realtime-javascript-mvc-framework</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2013-12-28-the-good-the-bad-and-the-ugly-of-sails-dot-js-realtime-javascript-mvc-framework</guid>
+      <description>
+
+&lt;p&gt;Over the Christmas vacation time that I&amp;rsquo;ve been taking I&amp;rsquo;ve been finding myself drawn back to &lt;a href=&#34;http://nodejs.org/&#34;&gt;Node.js&lt;/a&gt;, mostly for the promise of rapid web application development and not having to switch languages when changing from working on the server-side and the client-side.  As part of my interest in developing applications using &lt;a href=&#34;http://www.html5rocks.com/en/tutorials/websockets/basics/&#34;&gt;WebSockets&lt;/a&gt; for their real-time capabilities, I looked into &lt;a href=&#34;http://derbyjs.com/&#34;&gt;Derby&lt;/a&gt; and &lt;a href=&#34;https://www.meteor.com/&#34;&gt;Meteor&lt;/a&gt; and eventually I stumbled across &lt;a href=&#34;http://sailsjs.org/&#34;&gt;Sails.js&lt;/a&gt;, the new kid on the block.  It seemed very promising and addressed some issues that I had with Derby and with Meteor.  Namely, both of those frameworks seem very tightly coupled from the client to the server and I wanted something that would provide more flexibility while still allowing me to develop rapidly.  So, I decided to begin prototyping out my new side project in Sails and naturally I developed a variety of opinions to rant about.  Enjoy.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/sails/clint-eastwood.jpeg My face when developing. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;The Good&lt;/h1&gt;
+
+&lt;p&gt;{% img /images/sails/thegood.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sailsjs.org/#!&#34;&gt;Sails.js&lt;/a&gt; makes getting things started ridiculously quick.  You run &lt;code&gt;sails new myApp&lt;/code&gt; to create the application skeleton.  Then, to create a Controller and Model for some data that you&amp;rsquo;re going to be working with, you run &lt;code&gt;sails generate foo&lt;/code&gt; (&lt;code&gt;foo&lt;/code&gt; being the name of your model).  You configure the model really simply:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;js&#34;&gt;module.exports = {
+    adapter: &#39;sails-redis&#39;,
+    attributes: {
+        content: &#39;string&#39;,
+        userName: &#39;string&#39;,
+        userId: &#39;int&#39;,    // &amp;quot;foreign key&amp;quot;
+        chatroomId: &#39;int&#39; // &amp;quot;foreign key&amp;quot;
+    }
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sails uses &lt;a href=&#34;https://npmjs.org/package/waterline&#34;&gt;Waterline&lt;/a&gt; as its ORM, and it provides a lot of power for developing rapidly.  The &lt;code&gt;adapter&lt;/code&gt; field dictates where the data will be stored, and you can mix and match, so you can have some models stored in MySQL and others in Redis, for instance.  I think this is a really cool feature.  You can set validation, etc. on them.  You can write custom methods on your models to extract &amp;ldquo;higher-order&amp;rdquo; data from them.  Best of all, just having a model gets you a ton of routes (CRUD blueprints and REST endpionts) out of the box (and they &lt;a href=&#34;http://sailsjs.org/#!documentation/sockets&#34;&gt;all work with Websockets&lt;/a&gt;!):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Backbone Conventions
+GET   :    /:controller                 =&amp;gt; findAll()
+GET   :    /:controller/read/:id        =&amp;gt; find(id)
+POST  :    /:controller/create          =&amp;gt; create()
+POST  :    /:controller/create/:id      =&amp;gt; create(id)
+PUT   :    /:controller/update/:id      =&amp;gt; update(id)
+DELETE:    /:controller/destroy/:id     =&amp;gt; destroy(id)
+
+# You can also explicitly state the action
+GET   :    /:controller/find            =&amp;gt; findAll()
+GET   :    /:controller/find/:id        =&amp;gt; find(id)
+POST  :    /:controller/create          =&amp;gt; create(id)
+PUT   :    /:controller/update/:id      =&amp;gt; update(id)
+DELETE:    /:controller/destroy/:id     =&amp;gt; destroy(id)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, for instance, if you run &lt;code&gt;sails lift&lt;/code&gt; to start your app, hitting&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://localhost:1337/something/create?content=hello&amp;amp;userName=Nate&amp;amp;userId=1&amp;amp;chatroomId=1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will add a new instance of the model to your datastore.  We did nothing manually to address this (so long &lt;code&gt;$_GET&lt;/code&gt; and &lt;code&gt;$_POST&lt;/code&gt;, it&amp;rsquo;s been&amp;hellip; okay).  And you can see everything that&amp;rsquo;s been added at &lt;code&gt;localhost:1337/something/&lt;/code&gt; without having to configure anything, althogh Sails makes it easy to change things around to your heart&amp;rsquo;s content by setting properties in the Controller and &lt;code&gt;config/routes.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Underneath the slick outer layer, Sails uses a lot of well-known and proven modules, most notably &lt;a href=&#34;http://expressjs.com/&#34;&gt;Express&lt;/a&gt;, and it makes it easy to reach to the underlying layer to configure things / do something specific/different (but does not awkwardly leak abstractions).  Additionally, serving of static assets never gave me any trouble and I just added new folders when I needed them.  Not having to worry about this was really nice when developing with &lt;a href=&#34;http://angularjs.org/&#34;&gt;Angular&lt;/a&gt;, which mandates a lot of client-side includes.&lt;/p&gt;
+
+&lt;p&gt;In summary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Database-agnostic ORM that is simple, but powerful and flexible as well&lt;/li&gt;
+&lt;li&gt;Developing routes / REST APIs is ridiculously fast - writing tiny amounts of code gets you a ton! (including WebSockets support)&lt;/li&gt;
+&lt;li&gt;Lots of stuff &amp;ldquo;just works&amp;rdquo; without making you think about things too much, but Sails does not try to conceal with &amp;ldquo;magic&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;The Sails.js team has done a really good job of laying things out well to be extensible- and they have well-thought-out solutions that address many common issues e.g. &lt;a href=&#34;http://sailsjs.org/#!documentation/policies&#34;&gt;policies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;The Bad&lt;/h1&gt;
+
+&lt;p&gt;{% img /images/sails/thebad.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;Sails is a young framework so sometimes issues come up that can be frustrating to address (since there are not that many users yet, therefore there are not that many resources on StackOverflow etc.).  For instace, when I wanted to start using Redis as a datastore for chat room comments, I tried running &lt;code&gt;npm install sails-redis&lt;/code&gt;.  This seemed to go off without a hitch but when I ran &lt;code&gt;sails lift&lt;/code&gt; I got an error indicating that the &lt;code&gt;sails-redis&lt;/code&gt; module could not be found.  It was very bizarre but then I tracked down &lt;a href=&#34;https://github.com/balderdashy/sails-redis/issues/3&#34;&gt;this Github issue&lt;/a&gt; which pointed out there was no source code in the npm package!!  I was able to install the package from GitHub but it was very frustrating to blow time on something like that when ostensibly the framework allows you to develop rapidly.&lt;/p&gt;
+
+&lt;p&gt;For me personally (and I think &lt;a href=&#34;https://github.com/balderdashy/sails/issues/1239&#34;&gt;others share the sentiment&lt;/a&gt;) I think that generators should also provide you with unit test skeletons, and that Sails should address this concern a lot better.  If it&amp;rsquo;s going to be production-ready top-notch support for testing will be pretty critical.  I wouldn&amp;rsquo;t want to deploy an application that didn&amp;rsquo;t have at least some unit tests, especially for mission-critical parts of the app.  As it stands right now it&amp;rsquo;s not really clear how to test your Sails application.  We need a &lt;code&gt;sails test&lt;/code&gt; command and documentation in this regard!&lt;/p&gt;
+
+&lt;p&gt;For a framework that touts performance as a major benefit, I find that &lt;code&gt;sails lift&lt;/code&gt; takes a pretty long time to start up (granted, it is doing a lot - if you run it with &lt;code&gt;--verbose&lt;/code&gt; option you can see all of the route binding etc. it is doing).  This would be okay if you only had to do it once, but every time you change things (models, controllers, routes, etc.) you have to stop and start &lt;code&gt;sails lift&lt;/code&gt;.  So, to have either code hot-swapping or a &lt;code&gt;sails lift&lt;/code&gt; that starts up lightning-fast would make Sails much more pleasant to use.  I&amp;rsquo;m curious if performance can be improved in this regard.&lt;/p&gt;
+
+&lt;p&gt;The documentation, particularly when it came to using &lt;a href=&#34;http://sailsjs.org/#!documentation/sockets&#34;&gt;Sockets&lt;/a&gt;, was hard to understand as someone who is a newcomer to &lt;a href=&#34;http://socket.io&#34;&gt;socket.io&lt;/a&gt;.  Their included &lt;code&gt;app.js&lt;/code&gt; didn&amp;rsquo;t really clarify things too well, and so I had to rely on &lt;a href=&#34;http://net.tutsplus.com/tutorials/javascript-ajax/working-with-data-in-sails-js/&#34;&gt;this example from NetTuts&lt;/a&gt; to make sense of how to accomplish what I was trying to do.  So I think you could say that the documentation, though absolutely stellar in some areas, could use some bit of work.&lt;/p&gt;
+
+&lt;p&gt;In summary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Since it is new, it can cause frustrating problems you will likely never run into with Django etc.&lt;/li&gt;
+&lt;li&gt;In my opinion generators should also include tests (at least make it optional)&lt;/li&gt;
+&lt;li&gt;Documentation is lacking in some ways&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sails lift&lt;/code&gt; takes longer than I&amp;rsquo;d like to start up and has to be restarted frequently&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;The Ugly&lt;/h1&gt;
+
+&lt;p&gt;{% img /images/sails/theugly.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;At the time of writing, &lt;a href=&#34;https://travis-ci.org/balderdashy/sails&#34;&gt;their build is listed as not passing on TravisCI&lt;/a&gt;, and the sticker on their Github page says so.  That doesn&amp;rsquo;t exactly send the right kind of message you want to send with your project.  Now, be aware that I cloned the repository and ran all of the tests locally, and they all passed with Node &lt;code&gt;v0.10.24&lt;/code&gt; and &lt;code&gt;v0.11.9&lt;/code&gt;, but not with a previous version of &lt;code&gt;v0.10.*&lt;/code&gt; that I had (can&amp;rsquo;t remember which unfortunately).  So, perhaps it&amp;rsquo;s more of a TravisCI / versioning issue than a Sails issue, but I think that&amp;rsquo;s a big public-facing thing to overlook.&lt;/p&gt;
+
+&lt;p&gt;Something that&amp;rsquo;s really unfortunate about &lt;a href=&#34;https://github.com/balderdashy/waterline&#34;&gt;Waterline&lt;/a&gt;, the aforementioned ORM that Sails uses, is that it does not support associations (relational data) at the moment.  This seems like a really huge issue / something that I would expect to be a huge cornerstone of any ORM to not have support for right away, and it was really frustrating to find out midway through starting to put together an app that has a lot of relational data.  That being said, they are &lt;a href=&#34;https://github.com/balderdashy/sails/issues/124&#34;&gt;aware of the issue&lt;/a&gt; and are working to fix it, but I really want my &lt;code&gt;JOIN&lt;/code&gt;s available for working with in the framework I&amp;rsquo;m using &lt;em&gt;now&lt;/em&gt;, without having to use an unstable/bleeding-edge pre-release version of Waterline.  In order to do so right now in Sails I have to use &lt;code&gt;Model.query&lt;/code&gt;, which is kind of awkward (plugging in raw SQL).  Having to code up things one way as a workaround and then go back and rip them out for official associations when they&amp;rsquo;re supported is really a turn off.    I kind of wonder if it&amp;rsquo;s not partially a result of NoSQL/MongoDB being very hot right now and developers not giving as much love to traditional relational things as they might have in the past.  Since it&amp;rsquo;s an area of interest for me I&amp;rsquo;d like to contribute but other than a few guidelines in &lt;code&gt;CONTRIBUTING.md&lt;/code&gt; there&amp;rsquo;s not much communication from the core devs on this front.&lt;/p&gt;
+
+&lt;p&gt;A lot of what is rough around the edges about Sails right now is summed up really well in this &lt;a href=&#34;https://github.com/balderdashy/sails/pull/1058#issuecomment-30498745&#34;&gt;Github pull request comment&lt;/a&gt; by &lt;a href=&#34;https://github.com/yoshuawuyts&#34;&gt;yoshuawuyts&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I know you&amp;rsquo;ve been very busy, but I feel I need to share this. As much as I&amp;rsquo;ve enjoyed Sails in the past, right now I feel very disconnected from it. For me the amount of outdated documentation, piling issues on the tracker and unclear direction make it hard to keep investing into Sails. The prolonged absence of core members like yourself and delayed responses on most issues make it hard to keep investing. If you want to lead Sails forward, I urge you to invest in clarity.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;His suggestions for improvement:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rigorous issue smackdown; close everything that isn&amp;rsquo;t relevant, combine duplicates into new issues.&lt;/li&gt;
+&lt;li&gt;Create a roadmap; add all feature suggestions to the roadmap and close corresponding issues.&lt;/li&gt;
+&lt;li&gt;Add code coverage via coveralls; it entices users to write more tests and fill up the bar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And a very good point:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I don&amp;rsquo;t think you should prioritize getting new contributors in, I think they&amp;rsquo;ll come naturally once the points above have been addressed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After working with Sails for a week or so, I agree heartily with his take.&lt;/p&gt;
+
+&lt;p&gt;In summary:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build is broken on TravisCI at the time of writing&lt;/li&gt;
+&lt;li&gt;No support for associations (though they are coming)&lt;/li&gt;
+&lt;li&gt;Issues on Github are piling up without being addressed&lt;/li&gt;
+&lt;li&gt;Devs have not been very responsive lately (ever?)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want the Sails team to feel like I&amp;rsquo;m ragging on them, they&amp;rsquo;ve done awesome work and I really feel like Sails has a great future if it can take care of some of the things I&amp;rsquo;ve brought up in the past two sections.  I know that when everything was running smoothly developing with Sails it was pure bliss on my end.&lt;/p&gt;
+
+&lt;p&gt;For those readers interested or with a bunch of time on thier hands, it would be great to have people throw a bunch of pull requests Sails&amp;rsquo; way, since I sort of have a feeling that they are overwhelmed by the sheer scope of the project.  However, if the core developers don&amp;rsquo;t start piping up soon, it&amp;rsquo;s going to be hard to maintain interest / continue to invest my own valuable time and willpower into the project.  It has a ton of potential and in my opinion the vision, fully implemented and fleshed out, would be truly amazing.&lt;/p&gt;
+
+&lt;p&gt;So that&amp;rsquo;s my take on Sails.js.  Happy New Year, I hope you enjoyed.  Until next time, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; I absentmindedly pushed with a bunch of broken links.  Fixed now, sorry guys.&lt;/p&gt;
 </description>
     </item>
     

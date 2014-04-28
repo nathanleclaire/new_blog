@@ -10,121 +10,107 @@
     <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
     
     <item>
-      <title>5 Reasons We Won Startup Weekend</title>
-      <link>http://localhost:1313/_posts/2014-02-10-5-reasons-we-won-startup-weekend</link>
+      <title>5 Cool Unix Hacks For Fun and Productivity</title>
+      <link>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-02-10-5-reasons-we-won-startup-weekend</guid>
+      <guid>http://localhost:1313/posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
       <description>
 
-&lt;p&gt;This previous weekend I participated in &lt;a href=&#34;http://annarbor.startupweekend.org/&#34;&gt;Ann Arbor Startup Weekend&lt;/a&gt; and had a blast.  Our company&amp;rsquo;s name is &lt;a href=&#34;http://fixworthy.co&#34;&gt;Fixworthy&lt;/a&gt; and we built a photo-based bug tracking app for real life (think Github Issues meets Instagram).&lt;/p&gt;
-
-&lt;p&gt;{%img /images/swaa/fixworthy.jpeg Hail to the victors. %}&lt;/p&gt;
-
-&lt;p&gt;Of course we worked hard on it, lost some sleep etc. but everyone does that.  There were some special factors at play in our case that helped us win such as:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.vagrantup.com/&#34;&gt;Vagrant&lt;/a&gt; and Frequent Deploying&lt;/li&gt;
-&lt;li&gt;Emphasizing &amp;ldquo;Done Is Better Than Perfect&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Good Design and Aesthetics&lt;/li&gt;
-&lt;li&gt;Finding a Use For Everybody (especially developers)&lt;/li&gt;
-&lt;li&gt;Following the Pain and the Money&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Of course, all of these are forces stem from having a smart, talented, and easy-to-work-with team as well.  Let&amp;rsquo;s get into some specifics, shall we?&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;Vagrant and Frequent Deploying&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/swaa/vagrant.png Up up and away. %}&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to start off with a technical point to hook in my fellow nerds here.&lt;/p&gt;
-
-&lt;p&gt;The very first technical thing that we (the developers) did, on Friday night after working our way through the vision of the product and what we thought its most important features should be, was to get started hacking.  We knew that to ship a working product quickly it would be an enourmous boon to be:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Working on the same platform so that any issues which came up would have ubiquitous solutions, &lt;em&gt;and&lt;/em&gt;:&lt;/li&gt;
-&lt;li&gt;Working in an environment that was extremely close to the environment we would be deploying our production solution to (ever have those awkward it-worked-on-my-machine production bugs?)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Most companies account for this by having everyone work in the cloud on EC2 instances or what have you, or simply by forcing their developers to all use the same operating system (which we kind of did a variant of).  In our case there was no way developing in the cloud was going to work (we had too little time or money) and our dev team was split about 50/50 between OSX and Windows so we decided to use &lt;a href=&#34;http://www.vagrantup.com/&#34;&gt;Vagrant&lt;/a&gt;, a &amp;ldquo;free and open-source software for creating and configuring virtual development environments&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;Vagrant is awesome, although I&amp;rsquo;m a little disappointed they have moved away from their original logo which features this scrappy dude:&lt;/p&gt;
-
-&lt;p&gt;{%img /images/swaa/vagrant_chilling.png %}&lt;/p&gt;
-
-&lt;p&gt;We made everyone download and install Vagrant / VirtualBox (which Vagrant depends on) and use &lt;a href=&#34;https://github.com/bryannielsen/Laravel4-Vagrant&#34;&gt;this configuration&lt;/a&gt;, which orchestrates the installation of a LAMP stack and the &lt;a href=&#34;http://laravel.com/&#34;&gt;Laravel framework&lt;/a&gt; using Puppet.  It took a little while for all of the dependencies to install on everyone&amp;rsquo;s computer but we were able to sit back and sip a little beer while Puppet did most of the heavy lifting.  Once Puppet was all done, everyone could point their host OS&amp;rsquo;s browser to &lt;code&gt;http://localhost:8888&lt;/code&gt; and be greeted by a freshly minted Laravel install.  Shared folders allowed us all to get started hacking right away, which was seriously awesome for productivity.&lt;/p&gt;
-
-&lt;p&gt;This system also made it super easy to deploy frequently, since we just pulled in our changes to a git repo hosted on the prod server, ran the migrations and database seeds and &lt;em&gt;voila&lt;/em&gt;, we were done deploying.  No nasty production surprises.&lt;/p&gt;
-
-&lt;p&gt;One last point here, on the geeky technical side of things:  There was no squabbling over PHP vs. Rails or CodeIgniter vs. CakePHP or any of that kind of stuff that you are surely familiar with, we simply all worked towards the common good however we could.  We had a couple of guys who traditionally stuck to Ruby or .NET, for instance, that picked up front-end work since it was where the could be the most productive, the quickest.  This kind of put-the-team-first mentality is priceless for getting things done quickly.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;Emphasizing &amp;ldquo;Done Is Better Than Perfect&amp;rdquo;&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/swaa/done_is_better.png Lookin&amp;rsquo; good. %}&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ve all probably heard this one &lt;a href=&#34;http://www.etsy.com/blog/en/2013/why-done-is-better-than-perfect/&#34;&gt;a ton of times&lt;/a&gt;, so I won&amp;rsquo;t spend &lt;em&gt;too&lt;/em&gt; much time on it, but I do believe it played a huge role in our ability to push forward as a team and succeed.  Especially on front-end stuff I have way too much of a tendency towards &amp;ldquo;perfectionism&amp;rdquo; that can be counterproductive at best and harmful at worst as I am stricken by analysis paralysis and self-doubt.&lt;/p&gt;
-
-&lt;p&gt;Whenever we had moments of self-doubt about the product, or our implementation (though these were surprisingly rare on the tech side) we asked ourselves: &amp;ldquo;Is this helping us to deliver a quality product that is aligned with our vision for what this should be?&amp;rdquo; and if the answer was no, we stoically carried onward.  There were definitely parts of the app that left something to be desired (security concerns are a notable one on the backend side- though hopefully the framework helps a bit with that), but there always are, and for a weekend project I was ecstatically happy with the end result.&lt;/p&gt;
-
-&lt;p&gt;I was shocked how quickly we could ship something that was working, if not ideal, and begin validating it with users and prospective clients.  That creates a tight feedback loop and gets the commits a-flyin&amp;rsquo;.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;Good Design and Aesthetics&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/swaa/fw_logo.png Lookin&amp;rsquo; good. %}&lt;/p&gt;
-
-&lt;p&gt;Did you know that users begin forming impressions of a website&amp;rsquo;s &amp;ldquo;visual appeal&amp;rdquo; in &lt;a href=&#34;http://www.websiteoptimization.com/speed/tweak/blink/&#34;&gt;as little as 50 milliseconds&lt;/a&gt;?  That&amp;rsquo;s 50 milliseconds quicker than the &lt;a href=&#34;http://stackoverflow.com/questions/536300/what-is-the-shortest-perceivable-application-response-delay&#34;&gt;minimum application response delay humans are able to perceive&lt;/a&gt;.  In other words, users decide if your website is beautiful or if it is garbage very, &lt;em&gt;very&lt;/em&gt;, quickly.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.klsy.co/&#34;&gt;Kelsey&lt;/a&gt; was our design ringer and boy am I ever glad she was on our team.  There&amp;rsquo;s no doubt that &lt;a href=&#34;http://en.wikipedia.org/wiki/A_picture_is_worth_a_thousand_words&#34;&gt;a picture is worth a thousand words&lt;/a&gt; and having a designer allowed us to take our website from &amp;ldquo;awkward-Bootstrap-import-and-fuhgettaboutit&amp;rdquo; to &amp;ldquo;clean, lean, eye-candy &lt;em&gt;machine&lt;/em&gt;&amp;rdquo;.  A logo is a condensed visual statement-of-purpose-of-sorts and I was super happy with the logo designed for Fixworthy, which you can see above (I&amp;rsquo;m a little biased because my favorite color is orange).&lt;/p&gt;
-
-&lt;p&gt;Having good design instantly improves your social media presence (check that backdrop on our &lt;a href=&#34;twitter.com/fixworthy&#34;&gt;Twitter page&lt;/a&gt;!), the initial reaction that your users have as they begin forming a relationship with your product, and more.  It&amp;rsquo;s well known that &lt;a href=&#34;http://econsultancy.com/blog/62391-do-bigger-images-mean-improved-conversion-rates-three-case-studies&#34;&gt;big images increase conversion rates&lt;/a&gt;, and having those design chops on our side really gave us some serious momentum on our side towards converting the people who really needed to be swayed in this case- the judges.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;Finding a Use For Everybody (especially developers)&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/swaa/steve_ballmer_is_awesome.gif This man knows. %}&lt;/p&gt;
-
-&lt;p&gt;When some of the hopefuls pitched their ideas or were trying to sell them to get people to join their team, there were a few who stood on stage and said in all honesty &amp;ldquo;I&amp;rsquo;m not looking for any other developers to join&amp;rdquo; while all the devs in the room&amp;rsquo;s collective jaws dropped.  Our feelings of surprise were validated late on Saturday when about three or four companies went up to the mic again to try and persuade developers already engaged with one team to switch to their own.&lt;/p&gt;
-
-&lt;p&gt;In a sense I can see how a technical founder might not want to run the risk of having a bunch of newbies or bad programmers stomping around in their precious self-written code, but at the same time it stunned me that anyone would turn away someone willing to help with such a short deadline in tow (especially with how tight the demand is for technical talent).  The odds of getting a real stinker in your group were pretty low, considering that it was a University of Michigan-centric event, and it struck me more as vanity than anything else that people were willing to turn away perfectly good (free!) talent.&lt;/p&gt;
-
-&lt;p&gt;Our company didn&amp;rsquo;t turn anyone away and tried to find a use for everyone.  As mentioned, some of the developers were a little more comfortable with back-end stacks other than LAMP, and so they cordially agreed to work on the front-end.  Our team member &lt;a href=&#34;http://wilsonproductive.com/&#34;&gt;Greg&lt;/a&gt; felt that he was best at social media / marketing stuff, so he whipped up an Instagram and Twitter presence at lightning speed.  Our business team began pounding the pavement by doing market research, performing user testing, and getting in touch with potential customers (organizations for whom this technology would be useful, perhaps if they wanted private issue tracking).&lt;/p&gt;
-
-&lt;p&gt;All in all, we made a hugely concentrated effort to rake in as much value as possible from every single person who wanted to help.  This helped bolster everyone&amp;rsquo;s moral and enthusiasm, let them play to their strengths, and paid off for us as a team.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;Following the Pain and the Money&lt;/h1&gt;
-
-&lt;p&gt;{%img /images/swaa/mo_money_mo_problems.jpeg %}&lt;/p&gt;
-
-&lt;p&gt;This is still a major pivot/focus point for the startup if we continue going (and there&amp;rsquo;s a lot of wind in our sails right now), but I think that a large part of why the group was able to be successful was that we didn&amp;rsquo;t kid ourselves about the fact that we were building something to create wealth by:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Easing pain points for people, especially those with cash to throw at the problem e.g. businesses and universities&lt;/li&gt;
-&lt;li&gt;Making money.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Granted, there was a lot of hand-wringing about &lt;em&gt;how&lt;/em&gt; we were going to accomplish this, but I think several of the core engineers (particularly &lt;a href=&#34;http://scottdlowe.com/&#34;&gt;Scott&lt;/a&gt;) had a vision about this product was going to fly, and didn&amp;rsquo;t let a relentless enthusiasm for making a fantastically great product interfere with the reality that we needed to make money from this somehow.  A favorite line to throw at our business team, when they would try to persuade us to take the product in a different direction, was &amp;ldquo;get us someone who will write us a check for the V1 of this app when it is finished&amp;rdquo;.  That really put things into perspective.  Shouldn&amp;rsquo;t every aspiring entrepreneur hear, &amp;ldquo;Yeah, but who&amp;rsquo;s going to use (and pay for) that?&amp;rdquo; in response to one of their ideas?&lt;/p&gt;
-
-&lt;p&gt;This kind of zeal prevented us from making yet another recipe app or a product with questionable monetization potential.  I feel confident that at the very least the core Fixworthy product could make moves into a space where they were making life easier for powerful (read: those with budgets to spend on sotware) people&amp;rsquo;s lifes a bit easier, and especially given the generally low standard for UI on enterprise software I&amp;rsquo;m optimistic about the opportunities in that market for easy-to-use products that are marketed well.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_5&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;I had a blast and learned a ton about technology and leading / working with a decent sized team.  We started the weekend with nothing and ended up with a company, however small and scrappy it was.  Best of all, we won.  &lt;a href=&#34;http://www.youtube.com/watch?v=GGXzlRoNtHU&amp;amp;feature=kp&#34;&gt;Who doesn&amp;rsquo;t like to win&lt;/a&gt;?&lt;/p&gt;
-
-&lt;p&gt;I had an inkling that it might be so when we were some of the last participants to get shooed out of the common space on Saturday night, but I didn&amp;rsquo;t want to jinx us by bringing it up.  Besides, as all pseudo-mystics and hippies are so fond of pointing out, the journey is the destination.  Given that my last Startup Weekend company was less than satisfactory (though it was a long time ago), I couldn&amp;rsquo;t be any happier.&lt;/p&gt;
-
-&lt;p&gt;Until next time, stay sassy Internet.  And don&amp;rsquo;t forget to keep hustlin&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Nathan&lt;/li&gt;
+&lt;li&gt;Raged silently at a coworker for spamming the left arrow key to get to the beginning of their terminal prompt when they could have just pressed CTRL + A ?&lt;/li&gt;
+&lt;li&gt;Watched someone as they enter the same command over and over when they could have just prefaced it with &lt;code&gt;!&lt;/code&gt; ?&lt;/li&gt;
+&lt;li&gt;Rolled your eyes as your buddy expounds at length on the virtues of IDEs when you know that you could &amp;ldquo;roflstomp&amp;rdquo; him or her using &lt;code&gt;vim&lt;/code&gt; ?&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;If so, then these tips might be for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;DISCLAIMER:&lt;/em&gt; There&amp;rsquo;s an admitted bias towards &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;git&lt;/code&gt;, and the terminal here.  I don&amp;rsquo;t intend to start a holy war about terminal vs. IDEs, just have some fun and point out these fun tricks that work well for me.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;git add -p&lt;/h1&gt;
+
+&lt;p&gt;If you&amp;rsquo;ve worked with &lt;code&gt;git&lt;/code&gt; for any non-trivial amount of time you hopefully have come across the notion of making &lt;a href=&#34;http://stackoverflow.com/questions/6543913/git-commit-best-practices&#34;&gt;atomic commits&lt;/a&gt;.  Essentially, the notion is that a commit should contain only interrelated details, and not anything that&amp;rsquo;s logically unrelated to the things you are committing.  For example, it makes sense to commit changes to a class and its corresponding unit test in one commit, but if you&amp;rsquo;ve made changes to another class that deal with completely different business logic then those should be in another commit.&lt;/p&gt;
+
+&lt;p&gt;However, what happens when you are working within one file that contains multiple unrelated changes, or changes that you&amp;rsquo;d like to split up into more than one commit in case you need to revert them separately?  Or you have sprinkled logging statements all over the file that you don&amp;rsquo;t want to commit to the repo?  The normal sequence of git commands that people use fails us here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git diff
+diff --git a/some-file.c b/some-file.c
+index f383179..09e4e35 100644
+--- a/some-file.c
++++ b/some-file.c
+@@ -2,6 +2,8 @@
+
+ int main(void) {
+        printf(&amp;quot;doing some stuff\n&amp;quot;);
+-       printf(&amp;quot;doing some more stuff\n&amp;quot;);
++       do_some_stuff();
++       printf(&amp;quot;doing some unrelated stuff\n&amp;quot;);
++       do_some_unrelated_stuff();
+        return 0;
+ }
+$ git add some-file.c
+$ git commit
+[master 1938906] some unrelated stuff, cramming it all in one commit &#39;cause I&#39;m lazy
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+$ echo &amp;quot;Whoops we just committed unrelated stuff.  Not very modular of us.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;-p&lt;/code&gt; (standing for patch) flag for &lt;code&gt;git add&lt;/code&gt; is ridiculously useful for these kinds of cases.  This tells &lt;code&gt;git add&lt;/code&gt; that we want to do a &lt;em&gt;partial&lt;/em&gt; add of the file, and we&amp;rsquo;re presented with a nice interative menu which allows us to specify with a lovely amount of detail exactly which parts of the file we want to stage.  &lt;code&gt;git&lt;/code&gt; splits the changes into hunks automatically, which you can approve or reject with &lt;code&gt;y&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt; respectively, or use &lt;code&gt;s&lt;/code&gt; to split up into finer grained hunks.  If &lt;code&gt;git&lt;/code&gt; can&amp;rsquo;t split the hunks up the way you want automatically, you can specify as much detail as you want with the &lt;code&gt;e&lt;/code&gt; (edit) option.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/git-add-minus-p.jpeg And now our commits are nice and tidy. %}&lt;/p&gt;
+
+&lt;p&gt;See here for more details on &lt;code&gt;git add -p&lt;/code&gt;: &lt;a href=&#34;http://stackoverflow.com/questions/1085162/how-can-i-commit-only-part-of-a-file-in-git&#34;&gt;How can I commit only part of a file in git?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that this usage of &lt;code&gt;-p&lt;/code&gt; flag also works for commands such as &lt;code&gt;git checkout --&lt;/code&gt;.  Therefore you could hypothetically send only part of a file back to the way it was at HEAD, and keep your other changes.  Handy!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;vim&amp;rsquo;s CTRL-P / CTRL-N autocomplete feature&lt;/h1&gt;
+
+&lt;p&gt;This is one of those killer features of &lt;code&gt;vim&lt;/code&gt; that I am surprised to find out people (even experienced &lt;code&gt;vim&lt;/code&gt; gurus) don&amp;rsquo;t use more frequently.  Even if you are a casual user (hop into &lt;code&gt;vim&lt;/code&gt; to edit some config files while &lt;code&gt;ssh&lt;/code&gt;ed into a box) it has the potential to help you out quite a bit.  One of the reasons people claim they couldn&amp;rsquo;t live without IDEs is the existence of features such as Intellisense that provide autocompletion of variable/function names.  These features are very nice since they cut down on mistakes due to misspelling properties and thereby speed up the compile/run/debug cycle a fair bit.  Many people don&amp;rsquo;t seem to realize that there is an analog which comes straight out of the box in &lt;code&gt;vim&lt;/code&gt;, no plugins needed.&lt;/p&gt;
+
+&lt;p&gt;You can press CTRL-N to move down the list of suggested completions when typing in INSERT mode (which vim draws from the current buffers, and from the &lt;code&gt;tags&lt;/code&gt; file if you have one), or CTRL-P to move back up (representing &amp;ldquo;NEXT&amp;rdquo; and &amp;ldquo;PREVIOUS&amp;rdquo; if you didn&amp;rsquo;t catch the mnemonic).  If there is only one possible completion, &lt;code&gt;vim&lt;/code&gt; will just go ahead and insert it.  Very handy and speedy, especially in codebases with a lot of long variable / method / constant names.&lt;/p&gt;
+
+&lt;p&gt;CTRL-P/CTRL-N have a lot of synergy with the next tip as well, as touched upon briefly in the above paragraph.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-n-vim.jpeg And you barely need to leave the home row. %}&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;exuberant ctags&lt;/h1&gt;
+
+&lt;p&gt;Everyone who uses &lt;code&gt;vim&lt;/code&gt; knows that it can be a bit of a kerfluffle sometimes to open a file in a distant directory (tab completion helps ease this with &lt;code&gt;:e&lt;/code&gt;, but it&amp;rsquo;s still not usually instantaneous).  If you happen to be working on a team, or a very large project, the ability to do this quickly will likely be a vital part of your workflow.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ctags.sourceforge.net/&#34;&gt;Exuberant Ctags&lt;/a&gt; is a tool that makes this worlds easier than it would be without.  With ctags, you can  you just run a command in the top directory of the project you&amp;rsquo;re working on to generate a &amp;ldquo;tags&amp;rdquo; file, then you can use CTRL-] to &amp;ldquo;pop into&amp;rdquo; the definition of whatever it is your cursor is over (say, a class name).  Press CTRL+T to get back to where you were before.&lt;/p&gt;
+
+&lt;p&gt;You can even set up a &lt;a href=&#34;http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html&#34;&gt;post-commit hook in git&lt;/a&gt; to generate your ctags file automatically when you make a commit!  Nice.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;CTRL-R in bash and zsh&lt;/h1&gt;
+
+&lt;p&gt;Ever been typing in a command at the terminal, when you suddenly find yourself wishing that there was an easy way to just autofill the prompt with something that you&amp;rsquo;d entered previously so you can edit it or just run it again?  If so, then I&amp;rsquo;ve got good news for you:  You can!  Just press CTRL+R and start typing the thing that you are looking for.  The terminal will fill in what it thinks you are looking for, and if there is more than one option you can cycle through them by pressing CTRL+R repeatedly.  When you&amp;rsquo;ve found the thing you&amp;rsquo;re after, you can break out of the prompt with any of the usual movement commands (CTRL+A, CTRL+E, arrow keys, etc. if you have standard &lt;code&gt;bash&lt;/code&gt; keybindings).  Try it out!  Very handy if you can&amp;rsquo;t remember the name of the box you want to &lt;code&gt;ssh&lt;/code&gt; into.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/ctrl-r.jpeg What was that IP address again? %}&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;history | grep $COMMAND&lt;/code&gt; will treat you well too, if you just want to review all of the times you&amp;rsquo;ve run that command in recent times.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;vim macros&lt;/h1&gt;
+
+&lt;p&gt;A lot of the time when you&amp;rsquo;re writing code, or doing related tasks, you find yourself in need of a way to repeat the same editor commands over and over, perhaps with a slight variation.  Different editors provide slightly different ways of addressing this.  &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;, for example, has a &amp;ldquo;killer feature&amp;rdquo; where you are able to place multiple cursors in various locations and edit away.  In &lt;code&gt;vim&lt;/code&gt; (and in &lt;code&gt;emacs&lt;/code&gt; too, but here we&amp;rsquo;ll be covering the &lt;code&gt;vim&lt;/code&gt; method) you record and playback keyboard macros to accomplish this.  It is a tool with an absurd amount of power and flexibility, and offers the chance to speed up productivity on repetitive editing tasks by an order of magnitude.&lt;/p&gt;
+
+&lt;p&gt;To make a macro, press &lt;code&gt;q&lt;/code&gt; in normal mode, then press another key to &amp;ldquo;name&amp;rdquo; the macro (usually I use &lt;code&gt;q&lt;/code&gt; again).  &lt;code&gt;vim&lt;/code&gt; will start recording your keystrokes.  &lt;code&gt;vim&lt;/code&gt; will remember which keystrokes you make until you press &lt;code&gt;q&lt;/code&gt; again to save the macro.  You can replay with &lt;code&gt;@&lt;/code&gt;-letter in normal mode, so I am usually pressing &lt;code&gt;@q&lt;/code&gt;.  You can also preface the &lt;code&gt;@&lt;/code&gt;/replay command with a number so that you can rapidly execute your macro over and over (like much in &lt;code&gt;vim&lt;/code&gt;-land, the &amp;ldquo;grammar&amp;rdquo; behaves as you would be accustomed to).  If you&amp;rsquo;re accustomed to using &lt;code&gt;vim&lt;/code&gt;&amp;rsquo;s fancy movement commands (for instance, using &lt;code&gt;/&lt;/code&gt; search to navigate), and practice a little bit, you will soon be able to whip up thunderous macros that will leave your mouse-dependent colleagues in the dust.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/five-tips/vim-macros.gif Who needs multiple cursors? %}&lt;/p&gt;
+
+&lt;p&gt;For more info on &lt;code&gt;vim&lt;/code&gt; macros, see here: &lt;a href=&#34;http://vim.wikia.com/wiki/Macros&#34;&gt;Vim Wiki (Macros)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you enjoyed and I&amp;rsquo;ll see you next week!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Banging Your Head Against an AngularJS Issue?  Try This</title>
-      <link>http://localhost:1313/_posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</link>
+      <link>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</guid>
+      <guid>http://localhost:1313/posts/2014-01-31-banging-your-head-against-an-angularjs-issue-try-this</guid>
       <description>
 
 &lt;p&gt;{%img /images/scope-apply/frustration.jpg Have you been debugging something that seems trivial in Angular for so long that your face looks like this? %}&lt;/p&gt;
@@ -267,107 +253,11 @@
     </item>
     
     <item>
-      <title>5 Cool Unix Hacks For Fun and Productivity</title>
-      <link>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://localhost:1313/_posts/2013-10-27-5-cool-unix-hacks-for-fun-and-productivity</guid>
-      <description>
-
-&lt;p&gt;In my workflow I am always looking for ways to be more productive, and to have more fun while developing.  There&amp;rsquo;s nothing quite like the feeling of flying through a sequence of commands in &lt;code&gt;bash&lt;/code&gt; that you know would take your peers twice as long to execute.  Have you ever :&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Raged silently at a coworker for spamming the left arrow key to get to the beginning of their terminal prompt when they could have just pressed CTRL + A ?&lt;/li&gt;
-&lt;li&gt;Watched someone as they enter the same command over and over when they could have just prefaced it with &lt;code&gt;!&lt;/code&gt; ?&lt;/li&gt;
-&lt;li&gt;Rolled your eyes as your buddy expounds at length on the virtues of IDEs when you know that you could &amp;ldquo;roflstomp&amp;rdquo; him or her using &lt;code&gt;vim&lt;/code&gt; ?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If so, then these tips might be for you.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;DISCLAIMER:&lt;/em&gt; There&amp;rsquo;s an admitted bias towards &lt;code&gt;vim&lt;/code&gt;, &lt;code&gt;git&lt;/code&gt;, and the terminal here.  I don&amp;rsquo;t intend to start a holy war about terminal vs. IDEs, just have some fun and point out these fun tricks that work well for me.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_0&#34;&gt;git add -p&lt;/h1&gt;
-
-&lt;p&gt;If you&amp;rsquo;ve worked with &lt;code&gt;git&lt;/code&gt; for any non-trivial amount of time you hopefully have come across the notion of making &lt;a href=&#34;http://stackoverflow.com/questions/6543913/git-commit-best-practices&#34;&gt;atomic commits&lt;/a&gt;.  Essentially, the notion is that a commit should contain only interrelated details, and not anything that&amp;rsquo;s logically unrelated to the things you are committing.  For example, it makes sense to commit changes to a class and its corresponding unit test in one commit, but if you&amp;rsquo;ve made changes to another class that deal with completely different business logic then those should be in another commit.&lt;/p&gt;
-
-&lt;p&gt;However, what happens when you are working within one file that contains multiple unrelated changes, or changes that you&amp;rsquo;d like to split up into more than one commit in case you need to revert them separately?  Or you have sprinkled logging statements all over the file that you don&amp;rsquo;t want to commit to the repo?  The normal sequence of git commands that people use fails us here:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git diff
-diff --git a/some-file.c b/some-file.c
-index f383179..09e4e35 100644
---- a/some-file.c
-+++ b/some-file.c
-@@ -2,6 +2,8 @@
-
- int main(void) {
-        printf(&amp;quot;doing some stuff\n&amp;quot;);
--       printf(&amp;quot;doing some more stuff\n&amp;quot;);
-+       do_some_stuff();
-+       printf(&amp;quot;doing some unrelated stuff\n&amp;quot;);
-+       do_some_unrelated_stuff();
-        return 0;
- }
-$ git add some-file.c
-$ git commit
-[master 1938906] some unrelated stuff, cramming it all in one commit &#39;cause I&#39;m lazy
- 1 file changed, 3 insertions(+), 1 deletion(-)
-$ echo &amp;quot;Whoops we just committed unrelated stuff.  Not very modular of us.&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;-p&lt;/code&gt; (standing for patch) flag for &lt;code&gt;git add&lt;/code&gt; is ridiculously useful for these kinds of cases.  This tells &lt;code&gt;git add&lt;/code&gt; that we want to do a &lt;em&gt;partial&lt;/em&gt; add of the file, and we&amp;rsquo;re presented with a nice interative menu which allows us to specify with a lovely amount of detail exactly which parts of the file we want to stage.  &lt;code&gt;git&lt;/code&gt; splits the changes into hunks automatically, which you can approve or reject with &lt;code&gt;y&lt;/code&gt; or &lt;code&gt;n&lt;/code&gt; respectively, or use &lt;code&gt;s&lt;/code&gt; to split up into finer grained hunks.  If &lt;code&gt;git&lt;/code&gt; can&amp;rsquo;t split the hunks up the way you want automatically, you can specify as much detail as you want with the &lt;code&gt;e&lt;/code&gt; (edit) option.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/git-add-minus-p.jpeg And now our commits are nice and tidy. %}&lt;/p&gt;
-
-&lt;p&gt;See here for more details on &lt;code&gt;git add -p&lt;/code&gt;: &lt;a href=&#34;http://stackoverflow.com/questions/1085162/how-can-i-commit-only-part-of-a-file-in-git&#34;&gt;How can I commit only part of a file in git?&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;EDIT:&lt;/em&gt; Some commenters have pointed out that this usage of &lt;code&gt;-p&lt;/code&gt; flag also works for commands such as &lt;code&gt;git checkout --&lt;/code&gt;.  Therefore you could hypothetically send only part of a file back to the way it was at HEAD, and keep your other changes.  Handy!&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_1&#34;&gt;vim&amp;rsquo;s CTRL-P / CTRL-N autocomplete feature&lt;/h1&gt;
-
-&lt;p&gt;This is one of those killer features of &lt;code&gt;vim&lt;/code&gt; that I am surprised to find out people (even experienced &lt;code&gt;vim&lt;/code&gt; gurus) don&amp;rsquo;t use more frequently.  Even if you are a casual user (hop into &lt;code&gt;vim&lt;/code&gt; to edit some config files while &lt;code&gt;ssh&lt;/code&gt;ed into a box) it has the potential to help you out quite a bit.  One of the reasons people claim they couldn&amp;rsquo;t live without IDEs is the existence of features such as Intellisense that provide autocompletion of variable/function names.  These features are very nice since they cut down on mistakes due to misspelling properties and thereby speed up the compile/run/debug cycle a fair bit.  Many people don&amp;rsquo;t seem to realize that there is an analog which comes straight out of the box in &lt;code&gt;vim&lt;/code&gt;, no plugins needed.&lt;/p&gt;
-
-&lt;p&gt;You can press CTRL-N to move down the list of suggested completions when typing in INSERT mode (which vim draws from the current buffers, and from the &lt;code&gt;tags&lt;/code&gt; file if you have one), or CTRL-P to move back up (representing &amp;ldquo;NEXT&amp;rdquo; and &amp;ldquo;PREVIOUS&amp;rdquo; if you didn&amp;rsquo;t catch the mnemonic).  If there is only one possible completion, &lt;code&gt;vim&lt;/code&gt; will just go ahead and insert it.  Very handy and speedy, especially in codebases with a lot of long variable / method / constant names.&lt;/p&gt;
-
-&lt;p&gt;CTRL-P/CTRL-N have a lot of synergy with the next tip as well, as touched upon briefly in the above paragraph.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/ctrl-n-vim.jpeg And you barely need to leave the home row. %}&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_2&#34;&gt;exuberant ctags&lt;/h1&gt;
-
-&lt;p&gt;Everyone who uses &lt;code&gt;vim&lt;/code&gt; knows that it can be a bit of a kerfluffle sometimes to open a file in a distant directory (tab completion helps ease this with &lt;code&gt;:e&lt;/code&gt;, but it&amp;rsquo;s still not usually instantaneous).  If you happen to be working on a team, or a very large project, the ability to do this quickly will likely be a vital part of your workflow.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://ctags.sourceforge.net/&#34;&gt;Exuberant Ctags&lt;/a&gt; is a tool that makes this worlds easier than it would be without.  With ctags, you can  you just run a command in the top directory of the project you&amp;rsquo;re working on to generate a &amp;ldquo;tags&amp;rdquo; file, then you can use CTRL-] to &amp;ldquo;pop into&amp;rdquo; the definition of whatever it is your cursor is over (say, a class name).  Press CTRL+T to get back to where you were before.&lt;/p&gt;
-
-&lt;p&gt;You can even set up a &lt;a href=&#34;http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html&#34;&gt;post-commit hook in git&lt;/a&gt; to generate your ctags file automatically when you make a commit!  Nice.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_3&#34;&gt;CTRL-R in bash and zsh&lt;/h1&gt;
-
-&lt;p&gt;Ever been typing in a command at the terminal, when you suddenly find yourself wishing that there was an easy way to just autofill the prompt with something that you&amp;rsquo;d entered previously so you can edit it or just run it again?  If so, then I&amp;rsquo;ve got good news for you:  You can!  Just press CTRL+R and start typing the thing that you are looking for.  The terminal will fill in what it thinks you are looking for, and if there is more than one option you can cycle through them by pressing CTRL+R repeatedly.  When you&amp;rsquo;ve found the thing you&amp;rsquo;re after, you can break out of the prompt with any of the usual movement commands (CTRL+A, CTRL+E, arrow keys, etc. if you have standard &lt;code&gt;bash&lt;/code&gt; keybindings).  Try it out!  Very handy if you can&amp;rsquo;t remember the name of the box you want to &lt;code&gt;ssh&lt;/code&gt; into.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/ctrl-r.jpeg What was that IP address again? %}&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;history | grep $COMMAND&lt;/code&gt; will treat you well too, if you just want to review all of the times you&amp;rsquo;ve run that command in recent times.&lt;/p&gt;
-
-&lt;h1 id=&#34;toc_4&#34;&gt;vim macros&lt;/h1&gt;
-
-&lt;p&gt;A lot of the time when you&amp;rsquo;re writing code, or doing related tasks, you find yourself in need of a way to repeat the same editor commands over and over, perhaps with a slight variation.  Different editors provide slightly different ways of addressing this.  &lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt;, for example, has a &amp;ldquo;killer feature&amp;rdquo; where you are able to place multiple cursors in various locations and edit away.  In &lt;code&gt;vim&lt;/code&gt; (and in &lt;code&gt;emacs&lt;/code&gt; too, but here we&amp;rsquo;ll be covering the &lt;code&gt;vim&lt;/code&gt; method) you record and playback keyboard macros to accomplish this.  It is a tool with an absurd amount of power and flexibility, and offers the chance to speed up productivity on repetitive editing tasks by an order of magnitude.&lt;/p&gt;
-
-&lt;p&gt;To make a macro, press &lt;code&gt;q&lt;/code&gt; in normal mode, then press another key to &amp;ldquo;name&amp;rdquo; the macro (usually I use &lt;code&gt;q&lt;/code&gt; again).  &lt;code&gt;vim&lt;/code&gt; will start recording your keystrokes.  &lt;code&gt;vim&lt;/code&gt; will remember which keystrokes you make until you press &lt;code&gt;q&lt;/code&gt; again to save the macro.  You can replay with &lt;code&gt;@&lt;/code&gt;-letter in normal mode, so I am usually pressing &lt;code&gt;@q&lt;/code&gt;.  You can also preface the &lt;code&gt;@&lt;/code&gt;/replay command with a number so that you can rapidly execute your macro over and over (like much in &lt;code&gt;vim&lt;/code&gt;-land, the &amp;ldquo;grammar&amp;rdquo; behaves as you would be accustomed to).  If you&amp;rsquo;re accustomed to using &lt;code&gt;vim&lt;/code&gt;&amp;rsquo;s fancy movement commands (for instance, using &lt;code&gt;/&lt;/code&gt; search to navigate), and practice a little bit, you will soon be able to whip up thunderous macros that will leave your mouse-dependent colleagues in the dust.&lt;/p&gt;
-
-&lt;p&gt;{% img /images/five-tips/vim-macros.gif Who needs multiple cursors? %}&lt;/p&gt;
-
-&lt;p&gt;For more info on &lt;code&gt;vim&lt;/code&gt; macros, see here: &lt;a href=&#34;http://vim.wikia.com/wiki/Macros&#34;&gt;Vim Wiki (Macros)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you enjoyed and I&amp;rsquo;ll see you next week!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>4 Smooth AngularJS Application Tips</title>
-      <link>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</link>
+      <link>http://localhost:1313/posts/2014-01-04-5-smooth-angularjs-application-tips</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-01-04-5-smooth-angularjs-application-tips</guid>
+      <guid>http://localhost:1313/posts/2014-01-04-5-smooth-angularjs-application-tips</guid>
       <description>
 
 &lt;p&gt;Anyone who follows my blog even a little closely can probably see that I &amp;lt;3 AngularJS:&lt;/p&gt;
@@ -596,6 +486,116 @@ app.controller(&#39;MainCtrl&#39;, function($scope, githubService) {
 &lt;h1 id=&#34;toc_4&#34;&gt;Conclusion&lt;/h1&gt;
 
 &lt;p&gt;That&amp;rsquo;s all for now, folks.  Hope you&amp;rsquo;ve picked up some useful stuff along the way.  And as always, stay sassy Internet.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nathan&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>5 Reasons We Won Startup Weekend</title>
+      <link>http://localhost:1313/posts/2014-02-10-5-reasons-we-won-startup-weekend</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/2014-02-10-5-reasons-we-won-startup-weekend</guid>
+      <description>
+
+&lt;p&gt;This previous weekend I participated in &lt;a href=&#34;http://annarbor.startupweekend.org/&#34;&gt;Ann Arbor Startup Weekend&lt;/a&gt; and had a blast.  Our company&amp;rsquo;s name is &lt;a href=&#34;http://fixworthy.co&#34;&gt;Fixworthy&lt;/a&gt; and we built a photo-based bug tracking app for real life (think Github Issues meets Instagram).&lt;/p&gt;
+
+&lt;p&gt;{%img /images/swaa/fixworthy.jpeg Hail to the victors. %}&lt;/p&gt;
+
+&lt;p&gt;Of course we worked hard on it, lost some sleep etc. but everyone does that.  There were some special factors at play in our case that helped us win such as:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.vagrantup.com/&#34;&gt;Vagrant&lt;/a&gt; and Frequent Deploying&lt;/li&gt;
+&lt;li&gt;Emphasizing &amp;ldquo;Done Is Better Than Perfect&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Good Design and Aesthetics&lt;/li&gt;
+&lt;li&gt;Finding a Use For Everybody (especially developers)&lt;/li&gt;
+&lt;li&gt;Following the Pain and the Money&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Of course, all of these are forces stem from having a smart, talented, and easy-to-work-with team as well.  Let&amp;rsquo;s get into some specifics, shall we?&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Vagrant and Frequent Deploying&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/swaa/vagrant.png Up up and away. %}&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to start off with a technical point to hook in my fellow nerds here.&lt;/p&gt;
+
+&lt;p&gt;The very first technical thing that we (the developers) did, on Friday night after working our way through the vision of the product and what we thought its most important features should be, was to get started hacking.  We knew that to ship a working product quickly it would be an enourmous boon to be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Working on the same platform so that any issues which came up would have ubiquitous solutions, &lt;em&gt;and&lt;/em&gt;:&lt;/li&gt;
+&lt;li&gt;Working in an environment that was extremely close to the environment we would be deploying our production solution to (ever have those awkward it-worked-on-my-machine production bugs?)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Most companies account for this by having everyone work in the cloud on EC2 instances or what have you, or simply by forcing their developers to all use the same operating system (which we kind of did a variant of).  In our case there was no way developing in the cloud was going to work (we had too little time or money) and our dev team was split about 50/50 between OSX and Windows so we decided to use &lt;a href=&#34;http://www.vagrantup.com/&#34;&gt;Vagrant&lt;/a&gt;, a &amp;ldquo;free and open-source software for creating and configuring virtual development environments&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Vagrant is awesome, although I&amp;rsquo;m a little disappointed they have moved away from their original logo which features this scrappy dude:&lt;/p&gt;
+
+&lt;p&gt;{%img /images/swaa/vagrant_chilling.png %}&lt;/p&gt;
+
+&lt;p&gt;We made everyone download and install Vagrant / VirtualBox (which Vagrant depends on) and use &lt;a href=&#34;https://github.com/bryannielsen/Laravel4-Vagrant&#34;&gt;this configuration&lt;/a&gt;, which orchestrates the installation of a LAMP stack and the &lt;a href=&#34;http://laravel.com/&#34;&gt;Laravel framework&lt;/a&gt; using Puppet.  It took a little while for all of the dependencies to install on everyone&amp;rsquo;s computer but we were able to sit back and sip a little beer while Puppet did most of the heavy lifting.  Once Puppet was all done, everyone could point their host OS&amp;rsquo;s browser to &lt;code&gt;http://localhost:8888&lt;/code&gt; and be greeted by a freshly minted Laravel install.  Shared folders allowed us all to get started hacking right away, which was seriously awesome for productivity.&lt;/p&gt;
+
+&lt;p&gt;This system also made it super easy to deploy frequently, since we just pulled in our changes to a git repo hosted on the prod server, ran the migrations and database seeds and &lt;em&gt;voila&lt;/em&gt;, we were done deploying.  No nasty production surprises.&lt;/p&gt;
+
+&lt;p&gt;One last point here, on the geeky technical side of things:  There was no squabbling over PHP vs. Rails or CodeIgniter vs. CakePHP or any of that kind of stuff that you are surely familiar with, we simply all worked towards the common good however we could.  We had a couple of guys who traditionally stuck to Ruby or .NET, for instance, that picked up front-end work since it was where the could be the most productive, the quickest.  This kind of put-the-team-first mentality is priceless for getting things done quickly.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Emphasizing &amp;ldquo;Done Is Better Than Perfect&amp;rdquo;&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/swaa/done_is_better.png Lookin&amp;rsquo; good. %}&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve all probably heard this one &lt;a href=&#34;http://www.etsy.com/blog/en/2013/why-done-is-better-than-perfect/&#34;&gt;a ton of times&lt;/a&gt;, so I won&amp;rsquo;t spend &lt;em&gt;too&lt;/em&gt; much time on it, but I do believe it played a huge role in our ability to push forward as a team and succeed.  Especially on front-end stuff I have way too much of a tendency towards &amp;ldquo;perfectionism&amp;rdquo; that can be counterproductive at best and harmful at worst as I am stricken by analysis paralysis and self-doubt.&lt;/p&gt;
+
+&lt;p&gt;Whenever we had moments of self-doubt about the product, or our implementation (though these were surprisingly rare on the tech side) we asked ourselves: &amp;ldquo;Is this helping us to deliver a quality product that is aligned with our vision for what this should be?&amp;rdquo; and if the answer was no, we stoically carried onward.  There were definitely parts of the app that left something to be desired (security concerns are a notable one on the backend side- though hopefully the framework helps a bit with that), but there always are, and for a weekend project I was ecstatically happy with the end result.&lt;/p&gt;
+
+&lt;p&gt;I was shocked how quickly we could ship something that was working, if not ideal, and begin validating it with users and prospective clients.  That creates a tight feedback loop and gets the commits a-flyin&amp;rsquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Good Design and Aesthetics&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/swaa/fw_logo.png Lookin&amp;rsquo; good. %}&lt;/p&gt;
+
+&lt;p&gt;Did you know that users begin forming impressions of a website&amp;rsquo;s &amp;ldquo;visual appeal&amp;rdquo; in &lt;a href=&#34;http://www.websiteoptimization.com/speed/tweak/blink/&#34;&gt;as little as 50 milliseconds&lt;/a&gt;?  That&amp;rsquo;s 50 milliseconds quicker than the &lt;a href=&#34;http://stackoverflow.com/questions/536300/what-is-the-shortest-perceivable-application-response-delay&#34;&gt;minimum application response delay humans are able to perceive&lt;/a&gt;.  In other words, users decide if your website is beautiful or if it is garbage very, &lt;em&gt;very&lt;/em&gt;, quickly.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.klsy.co/&#34;&gt;Kelsey&lt;/a&gt; was our design ringer and boy am I ever glad she was on our team.  There&amp;rsquo;s no doubt that &lt;a href=&#34;http://en.wikipedia.org/wiki/A_picture_is_worth_a_thousand_words&#34;&gt;a picture is worth a thousand words&lt;/a&gt; and having a designer allowed us to take our website from &amp;ldquo;awkward-Bootstrap-import-and-fuhgettaboutit&amp;rdquo; to &amp;ldquo;clean, lean, eye-candy &lt;em&gt;machine&lt;/em&gt;&amp;rdquo;.  A logo is a condensed visual statement-of-purpose-of-sorts and I was super happy with the logo designed for Fixworthy, which you can see above (I&amp;rsquo;m a little biased because my favorite color is orange).&lt;/p&gt;
+
+&lt;p&gt;Having good design instantly improves your social media presence (check that backdrop on our &lt;a href=&#34;twitter.com/fixworthy&#34;&gt;Twitter page&lt;/a&gt;!), the initial reaction that your users have as they begin forming a relationship with your product, and more.  It&amp;rsquo;s well known that &lt;a href=&#34;http://econsultancy.com/blog/62391-do-bigger-images-mean-improved-conversion-rates-three-case-studies&#34;&gt;big images increase conversion rates&lt;/a&gt;, and having those design chops on our side really gave us some serious momentum on our side towards converting the people who really needed to be swayed in this case- the judges.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_3&#34;&gt;Finding a Use For Everybody (especially developers)&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/swaa/steve_ballmer_is_awesome.gif This man knows. %}&lt;/p&gt;
+
+&lt;p&gt;When some of the hopefuls pitched their ideas or were trying to sell them to get people to join their team, there were a few who stood on stage and said in all honesty &amp;ldquo;I&amp;rsquo;m not looking for any other developers to join&amp;rdquo; while all the devs in the room&amp;rsquo;s collective jaws dropped.  Our feelings of surprise were validated late on Saturday when about three or four companies went up to the mic again to try and persuade developers already engaged with one team to switch to their own.&lt;/p&gt;
+
+&lt;p&gt;In a sense I can see how a technical founder might not want to run the risk of having a bunch of newbies or bad programmers stomping around in their precious self-written code, but at the same time it stunned me that anyone would turn away someone willing to help with such a short deadline in tow (especially with how tight the demand is for technical talent).  The odds of getting a real stinker in your group were pretty low, considering that it was a University of Michigan-centric event, and it struck me more as vanity than anything else that people were willing to turn away perfectly good (free!) talent.&lt;/p&gt;
+
+&lt;p&gt;Our company didn&amp;rsquo;t turn anyone away and tried to find a use for everyone.  As mentioned, some of the developers were a little more comfortable with back-end stacks other than LAMP, and so they cordially agreed to work on the front-end.  Our team member &lt;a href=&#34;http://wilsonproductive.com/&#34;&gt;Greg&lt;/a&gt; felt that he was best at social media / marketing stuff, so he whipped up an Instagram and Twitter presence at lightning speed.  Our business team began pounding the pavement by doing market research, performing user testing, and getting in touch with potential customers (organizations for whom this technology would be useful, perhaps if they wanted private issue tracking).&lt;/p&gt;
+
+&lt;p&gt;All in all, we made a hugely concentrated effort to rake in as much value as possible from every single person who wanted to help.  This helped bolster everyone&amp;rsquo;s moral and enthusiasm, let them play to their strengths, and paid off for us as a team.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Following the Pain and the Money&lt;/h1&gt;
+
+&lt;p&gt;{%img /images/swaa/mo_money_mo_problems.jpeg %}&lt;/p&gt;
+
+&lt;p&gt;This is still a major pivot/focus point for the startup if we continue going (and there&amp;rsquo;s a lot of wind in our sails right now), but I think that a large part of why the group was able to be successful was that we didn&amp;rsquo;t kid ourselves about the fact that we were building something to create wealth by:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Easing pain points for people, especially those with cash to throw at the problem e.g. businesses and universities&lt;/li&gt;
+&lt;li&gt;Making money.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Granted, there was a lot of hand-wringing about &lt;em&gt;how&lt;/em&gt; we were going to accomplish this, but I think several of the core engineers (particularly &lt;a href=&#34;http://scottdlowe.com/&#34;&gt;Scott&lt;/a&gt;) had a vision about this product was going to fly, and didn&amp;rsquo;t let a relentless enthusiasm for making a fantastically great product interfere with the reality that we needed to make money from this somehow.  A favorite line to throw at our business team, when they would try to persuade us to take the product in a different direction, was &amp;ldquo;get us someone who will write us a check for the V1 of this app when it is finished&amp;rdquo;.  That really put things into perspective.  Shouldn&amp;rsquo;t every aspiring entrepreneur hear, &amp;ldquo;Yeah, but who&amp;rsquo;s going to use (and pay for) that?&amp;rdquo; in response to one of their ideas?&lt;/p&gt;
+
+&lt;p&gt;This kind of zeal prevented us from making yet another recipe app or a product with questionable monetization potential.  I feel confident that at the very least the core Fixworthy product could make moves into a space where they were making life easier for powerful (read: those with budgets to spend on sotware) people&amp;rsquo;s lifes a bit easier, and especially given the generally low standard for UI on enterprise software I&amp;rsquo;m optimistic about the opportunities in that market for easy-to-use products that are marketed well.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_5&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;I had a blast and learned a ton about technology and leading / working with a decent sized team.  We started the weekend with nothing and ended up with a company, however small and scrappy it was.  Best of all, we won.  &lt;a href=&#34;http://www.youtube.com/watch?v=GGXzlRoNtHU&amp;amp;feature=kp&#34;&gt;Who doesn&amp;rsquo;t like to win&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;I had an inkling that it might be so when we were some of the last participants to get shooed out of the common space on Saturday night, but I didn&amp;rsquo;t want to jinx us by bringing it up.  Besides, as all pseudo-mystics and hippies are so fond of pointing out, the journey is the destination.  Given that my last Startup Weekend company was less than satisfactory (though it was a long time ago), I couldn&amp;rsquo;t be any happier.&lt;/p&gt;
+
+&lt;p&gt;Until next time, stay sassy Internet.  And don&amp;rsquo;t forget to keep hustlin&amp;rsquo;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Nathan&lt;/li&gt;

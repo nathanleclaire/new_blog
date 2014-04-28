@@ -11,10 +11,10 @@
     
     <item>
       <title>What is this Docker thing that everyone is so hyped about?</title>
-      <link>http://localhost:1313/_posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</link>
+      <link>http://localhost:1313/posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/_posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</guid>
+      <guid>http://localhost:1313/posts/2014-03-22-what-is-this-docker-thing-that-everyone-is-so-hyped-about</guid>
       <description>
 
 &lt;p&gt;{%img /images/what-is-docker/moby-dick.jpg Just another day in Devops. %}&lt;/p&gt;
