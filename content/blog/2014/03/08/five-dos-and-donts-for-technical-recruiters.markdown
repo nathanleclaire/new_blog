@@ -6,7 +6,7 @@ comments: true
 categories: [recruiting]
 ---
 
-{%img /images/recruiter/super-recruiter.jpeg %}
+{{% img src="/images/recruiter/super-recruiter.jpeg" caption="" %}}
 
 Are you a technical recruiter?
 
@@ -40,7 +40,7 @@ Let's do this!
 
 ## Hustle.
 
-{%img /images/recruiter/hustle.png %}
+{{% img src="/images/recruiter/hustle.png" caption="" %}}
 
 If you are recruiting you are most definitely selling.
 
@@ -56,7 +56,7 @@ And what do they do after they get rejected?  They sulk away and never try again
 
 Don't be this guy.  Be the [Ultimate Sales Machine](http://www.amazon.com/gp/product/1591842158/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1591842158&linkCode=as2&tag=natlecwrionbu-20).
 
-{%img /images/recruiter/ultimate-sales-machine.jpeg %}
+{{% img src="/images/recruiter/ultimate-sales-machine.jpeg" caption="" %}}
 
 Start a (two-way) conversation.  What are the needs of the people you are trying to recruit?  Who are they?  Where can you meet them in real life?
 
@@ -78,7 +78,7 @@ Hustle.
 
 ## Flatter us.
 
-{%img /images/recruiter/flattery.jpeg %}
+{{% img src="/images/recruiter/flattery.jpeg" caption="" %}}
 
 Are you mentioning specifics in your pitch about why you think the candidate would be a good fit, down to details such as "I really enjoyed [your article on the Rapportive hack](http://nathanleclaire.com/blog/2013/11/23/how-i-automated-finding-almost-anyones-email-address/)" or "Looks like you are a pretty active JavaScripter on Github.  We love active open source contributors!"?   
 
@@ -92,7 +92,7 @@ So flatter us.
 
 ## Bribe us.
 
-{%img /images/recruiter/rubiks-cube.png %}
+{{% img src="/images/recruiter/rubiks-cube.png" caption="" %}}
 
 I'm not talking about huge stuff here.
 
@@ -124,7 +124,7 @@ Get technical people to be the first point of contact for technical roles.
 
 ## Cater to our laziness
 
-{%img /images/recruiter/lazy-cat.jpeg %}
+{{% img src="/images/recruiter/lazy-cat.jpeg" caption="" %}}
 
 Remember that you're fighting an uphill battle.  You have to actually persuade people to go through the (probably painful) process of interviewing at a company.  In doing this, they have to face something that is probably a great source of mental anguish for them (it is for most of us): the possibility of rejection.
 
@@ -154,7 +154,7 @@ So cater to our laziness.
 
 ## Message us or "connect" with us on LinkedIn
 
-{%img /images/recruiter/linkedin.jpeg %}
+{{% img src="/images/recruiter/linkedin.jpeg" caption="" %}}
 
 There may be some wiggle room here, and I know your gut reaction is probably vehemently against this, since it runs completely against everything you've probably been doing.
 
@@ -226,7 +226,7 @@ Don't show up at someone's current place of employment.
 
 ## Be clueless about technology
 
-{%img /images/recruiter/clueless-recruiter.jpeg %}
+{{% img src="/images/recruiter/clueless-recruiter.jpeg" caption="" %}}
 
 More than anything else, this will hurt your performance and get you all the worst kinds of candidates.
 

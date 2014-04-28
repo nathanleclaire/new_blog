@@ -6,7 +6,7 @@ comments: true
 categories: [data structures, python, binary tree, linked list]
 ---
 
-{%img /images/linkedListTree/binary_tree.png %}
+{{% img src="/images/linkedListTree/binary_tree.png" caption="" %}}
 
 I've been going through problems in [Cracking the Coding Interview](http://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X) to keep my chops strong and for giggles and this one took a little bit of wrangling for me to get:
 

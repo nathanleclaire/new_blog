@@ -6,7 +6,7 @@ comments: true
 categories: [javscript,hacking,angularJS,$scope.$apply,controllers,directives]
 ---
 
-{%img /images/scope-apply/frustration.jpg Have you been debugging something that seems trivial in Angular for so long that your face looks like this? %}
+{{% img src="/images/scope-apply/frustration.jpg" caption="Have you been debugging something that seems trivial in Angular for so long that your face looks like this? " %}}
 
 As I've gotten a [little](http://nathanleclaire.com/blog/2014/01/04/5-smooth-angularjs-application-tips/) [into](http://nathanleclaire.com/blog/2014/01/11/dragging-and-dropping-images-from-one-browser-tab-to-another-in-angularjs/) [AngularJS](http://angularjs.org) I've been surprised by how often my assumptions about how things will work have turned out to be wrong.  When you start to form a basic mental model of how Angular works and you hit your first stumbling block where your model turns out to be incorrect it can be really, really, frustrating.  In particular I had one issue that kept cropping up so often I began trying it before running to Google for help if something wasn't working the way I would have expected (all my views should just magically sync up with what's on `$scope`, right?).  This solution is to make sure `$scope.$apply` is getting used in the proper manner when updates to `$scope` are happening, especially if they are happening in unusual places e.g. inside of directives.  Since I don't really like "magical" or knee-jerk fixes to problems I highly recommend Jim Hoskins's article on `$scope.$apply` which you can find [here](http://jimhoskins.com/2012/12/17/angularjs-and-apply.html).
 
@@ -16,7 +16,7 @@ During your first foray into Angular you will probably not come across this as i
 
 The issue is around updating properties on `$scope`, either in directives or in controllers, and not having the updated changes be reflected on the front-end in the manner which you expect (either they will not show up at all, or they will happen in an order which you do not anticipate, which will cause bugs).  This is because Angular has what is known as a digest-watch cycle where all of this gets figured out:
 
-{%img /images/scope-apply/digest-cycle.png %} 
+{{% img src="/images/scope-apply/digest-cycle.png" caption="" %}} 
 
 As automagical as Angular is in some ways, it has no way of knowing when your property has been updated outside of Angular-land (and sometimes doesn't even bother when it is updated *in* Angular-land, as per the example that follows).  So it requires a call to `$scope.$apply` to stay in sync. 
 

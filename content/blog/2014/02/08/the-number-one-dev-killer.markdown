@@ -6,7 +6,7 @@ comments: true
 categories: [productivity,entrepreneurship,development,growth hacking,RethinkDB]
 ---
 
-{%img /images/dev-killer/rage.gif One of those days? %}
+{{% img src="/images/dev-killer/rage.gif" caption="One of those days? " %}}
 
 I frequently find myself fascinated by modern technology.  I mean, we went from computers that are the size of buildings to computers of equivalent power that fit in your pocket in ~50 years (I'll leave you to decide if it's sad or not that we use them mostly to look at pictures of cats and argue on the Internet).  A pretty impressive feat if you ask me, especially considering that 50 years is just about nothing in geographic terms.
 
@@ -16,11 +16,11 @@ What always fascinates me the most, however, is people and how they interact wit
 
 Do you recognize this guy?
 
-{%img /images/dev-killer/mailchimp.jpg %}
+{{% img src="/images/dev-killer/mailchimp.jpg" caption="" %}}
 
 Probably at least looks familiar, right?  It's the [MailChimp](http://mailchimp.com) monkey.  How about this guy?
 
-{%img /images/dev-killer/hermes.jpg %}
+{{% img src="/images/dev-killer/hermes.jpg" caption="" %}}
 
 It's [Hermes](http://en.wikipedia.org/Hermes), the Greek god of communication.  But unless you're a theology buff, Freddie the MailChimp mascot was probably a lot more meaningful to you in a modern context than Hermes.  So what?  Let me tell you a story to explain what I'll be getting at.
 
@@ -115,7 +115,7 @@ The point that I'm getting at, if you haven't guessed it already, is that develo
 + [Synapse](http://bruth.github.com/synapse/docs/)
 + [Ractive](http://www.ractivejs.org/)
 
-{%img /images/dev-killer/incredulous.gif %}
+{{% img src="/images/dev-killer/incredulous.gif" caption="" %}}
 
 Yeah.
 

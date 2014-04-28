@@ -8,7 +8,7 @@ categories: [angular,javascript,mvc,service,directive,controller]
 
 # Intro
 
-{%img /images/notmvc/angular-homepage-old.gif %}
+{{% img src="/images/notmvc/angular-homepage-old.gif" caption="" %}}
 
 I first started learning AngularJS because I was interested in exploring the world of MV&#42; JavaScript frameworks for the client side.  There was something intruiging and exciting happening about a year or two ago in that space, as several JS frameworks started to get some steam and critical mass and the mainstream of client-side development (even those boring [5:01 developers](http://www.hanselman.com/blog/501DevelopersFamilyAndExcitementAboutTheCraft.aspx) couldn't ignore the zeitgeist anymore) seemed to wake up and realize that maybe there was a need for something more than just vanilla jQuery in applications where everything was spiraling way out of control.
 
@@ -16,7 +16,7 @@ So I started looking into Angular for the myriad reasons you usually hear people
 
 My first foray went down in flames.
 
-{%img /images/notmvc/javascript.png %}
+{{% img src="/images/notmvc/javascript.png" caption="" %}}
 
 I fell into a common Angular antipattern (I may discuss Angular antipatterns more in a future article) where I stuffed everything into the controller.  Services and directives looked a little scary, and required learning esoteric things like what the meaning of `@`, `&`, and `=` was in a directive, and instead I saw fit to simply stuff everything into `$scope` and coordinate activities using event broadcasting and listening.
 

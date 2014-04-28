@@ -10,7 +10,7 @@ categories: [golang,algorithms,floodfill,concurrency]
 
 Lately as part of a coding exercise I found myself implementing a [Flood Fill](http://en.wikipedia.org/wiki/Flood_fill) for "painting" an ASCII canvas.  For those of you unfamiliar with what that is, think back to MSPaint - remember that little paint bucket that would fill a region with your color of choice?  That paint bucket implements a flood fill algorithm, although I didn't know that's what it was called until I started working on implementing one myself.
 
-{%img /images/flood-fill/flood-fill-basic.gif %}
+{{% img src="/images/flood-fill/flood-fill-basic.gif" caption="" %}}
 
 My original implementation was in PHP and I had to go through a few iterations before I got to an implementation I was satisfied with.  It was surprisingly tricky to get correct as my depth-first implementation kept blowing the stack through excessive use of recursion.  A naive flood fill algorithm (depth first) looks like this:
 

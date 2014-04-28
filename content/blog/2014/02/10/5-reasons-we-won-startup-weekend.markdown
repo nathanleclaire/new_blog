@@ -8,7 +8,7 @@ categories: [fixworthy,vagrant,startups,entrepreneurship,hacking,reasons]
 
 This previous weekend I participated in [Ann Arbor Startup Weekend](http://annarbor.startupweekend.org/) and had a blast.  Our company's name is [Fixworthy](http://fixworthy.co) and we built a photo-based bug tracking app for real life (think Github Issues meets Instagram).
 
-{%img /images/swaa/fixworthy.jpeg Hail to the victors. %}
+{{% img src="/images/swaa/fixworthy.jpeg" caption="Hail to the victors. " %}}
 
 Of course we worked hard on it, lost some sleep etc. but everyone does that.  There were some special factors at play in our case that helped us win such as:
 
@@ -22,7 +22,7 @@ Of course, all of these are forces stem from having a smart, talented, and easy-
 
 # Vagrant and Frequent Deploying
 
-{%img /images/swaa/vagrant.png Up up and away. %}
+{{% img src="/images/swaa/vagrant.png" caption="Up up and away. " %}}
 
 I'm going to start off with a technical point to hook in my fellow nerds here.  
 
@@ -35,7 +35,7 @@ Most companies account for this by having everyone work in the cloud on EC2 inst
 
 Vagrant is awesome, although I'm a little disappointed they have moved away from their original logo which features this scrappy dude:
 
-{%img /images/swaa/vagrant_chilling.png %}
+{{% img src="/images/swaa/vagrant_chilling.png" caption="" %}}
 
 We made everyone download and install Vagrant / VirtualBox (which Vagrant depends on) and use [this configuration](https://github.com/bryannielsen/Laravel4-Vagrant), which orchestrates the installation of a LAMP stack and the [Laravel framework](http://laravel.com/) using Puppet.  It took a little while for all of the dependencies to install on everyone's computer but we were able to sit back and sip a little beer while Puppet did most of the heavy lifting.  Once Puppet was all done, everyone could point their host OS's browser to `http://localhost:8888` and be greeted by a freshly minted Laravel install.  Shared folders allowed us all to get started hacking right away, which was seriously awesome for productivity.
 
@@ -45,7 +45,7 @@ One last point here, on the geeky technical side of things:  There was no squabb
 
 # Emphasizing "Done Is Better Than Perfect"
 
-{%img /images/swaa/done_is_better.png Lookin' good. %}
+{{% img src="/images/swaa/done_is_better.png" caption="Lookin' good. " %}}
 
 We've all probably heard this one [a ton of times](http://www.etsy.com/blog/en/2013/why-done-is-better-than-perfect/), so I won't spend *too* much time on it, but I do believe it played a huge role in our ability to push forward as a team and succeed.  Especially on front-end stuff I have way too much of a tendency towards "perfectionism" that can be counterproductive at best and harmful at worst as I am stricken by analysis paralysis and self-doubt.
 
@@ -55,7 +55,7 @@ I was shocked how quickly we could ship something that was working, if not ideal
 
 # Good Design and Aesthetics
 
-{%img /images/swaa/fw_logo.png Lookin' good. %}
+{{% img src="/images/swaa/fw_logo.png" caption="Lookin' good. " %}}
 
 Did you know that users begin forming impressions of a website's "visual appeal" in [as little as 50 milliseconds](http://www.websiteoptimization.com/speed/tweak/blink/)?  That's 50 milliseconds quicker than the [minimum application response delay humans are able to perceive](http://stackoverflow.com/questions/536300/what-is-the-shortest-perceivable-application-response-delay).  In other words, users decide if your website is beautiful or if it is garbage very, *very*, quickly.
 
@@ -65,7 +65,7 @@ Having good design instantly improves your social media presence (check that bac
 
 # Finding a Use For Everybody (especially developers)
 
-{%img /images/swaa/steve_ballmer_is_awesome.gif This man knows. %}
+{{% img src="/images/swaa/steve_ballmer_is_awesome.gif" caption="This man knows. " %}}
 
 When some of the hopefuls pitched their ideas or were trying to sell them to get people to join their team, there were a few who stood on stage and said in all honesty "I'm not looking for any other developers to join" while all the devs in the room's collective jaws dropped.  Our feelings of surprise were validated late on Saturday when about three or four companies went up to the mic again to try and persuade developers already engaged with one team to switch to their own.  
 
@@ -77,7 +77,7 @@ All in all, we made a hugely concentrated effort to rake in as much value as pos
 
 # Following the Pain and the Money
 
-{%img /images/swaa/mo_money_mo_problems.jpeg %}
+{{% img src="/images/swaa/mo_money_mo_problems.jpeg" caption="" %}}
 
 This is still a major pivot/focus point for the startup if we continue going (and there's a lot of wind in our sails right now), but I think that a large part of why the group was able to be successful was that we didn't kid ourselves about the fact that we were building something to create wealth by:
 

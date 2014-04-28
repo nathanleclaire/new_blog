@@ -8,7 +8,7 @@ categories: [angularjs,javascript,pitfall,service,controller]
 
 # The Angular Jungle
 
-{%img /images/angular-antipatterns/jungle.jpg %}
+{{% img src="/images/angular-antipatterns/jungle.jpg" caption="" %}}
 
 [AngularJS](http://angularjs.org) is a big JavaScript framework and it gives you just enough rope to hang yourself with.  I've written a lot about it in this blog and really hope that I have made a noteworthy impact on improving the general availability of resources.  I've been working on a project using AngularJS at my dayjob lately and noticed some antipatterns and pitfalls that people fall into when they are new to Angular (myself included, so they're based on my own sweat and blood learning the framework) and I've consolidated some of them here for you to peruse.  Hopefully I'll save you some pain.
 
@@ -22,7 +22,7 @@ They are:
 
 # 1. Not having a dot in your `ng-model` (or other places you need it!)
 
-{%img /images/angular-antipatterns/george.jpg %}
+{{% img src="/images/angular-antipatterns/george.jpg" caption="" %}}
 
 Angular's [directives](https://docs.angularjs.org/guide/directive) provide fantastic flexibility and an amazing way to write HTML that describes its interactive behavior in a clean and clear fashion.  They provide a way to create [isolate scope](https://egghead.io/lessons/angularjs-understanding-isolate-scope) to promote reusability and creating a directive that uses this looks something like:
 
@@ -152,7 +152,7 @@ $('body').attr('data-state', 'someNewState');
 
 This was my reaction upon finding this code in this controller:
 
-{%img /images/angular-antipatterns/hulk.gif %}
+{{% img src="/images/angular-antipatterns/hulk.gif" caption="" %}}
 
 Note:  My actual reaction was way more passive aggressive (wrote about it in my *blog*!  Showed that guy).
 
@@ -174,7 +174,7 @@ I've seen this a bit.  If you are passing a bunch of information down to your di
 
 # 5. Using the outside world instead of doing things the Angular way
 
-{%img /images/angular-antipatterns/but-computers.png Aren't we all nowadays? %}
+{{% img src="/images/angular-antipatterns/but-computers.png" caption="Aren't we all nowadays? " %}}
 
 It's really tempting, especially when first learning Angular, and directives in particular, to just write jQuery code like we always have that happens to be wrapped in an Angular directive.  While this is still probably better than rolling with no framework at all and creating a tangled mess, it indicates a basic ungrok of the Angular way.
 

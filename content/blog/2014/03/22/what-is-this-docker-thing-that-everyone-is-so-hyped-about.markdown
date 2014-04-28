@@ -6,7 +6,7 @@ comments: true
 categories: [docker,containers,virtualization,vagrant]
 ---
 
-{%img /images/what-is-docker/moby-dick.jpg Just another day in Devops. %}
+{{% img src="/images/what-is-docker/moby-dick.jpg" caption="Just another day in Devops. " %}}
 
 # Docker
 
@@ -24,7 +24,7 @@ Then about six months ago, things began to gel and sink in for me.
 
 # The Problem
 
-{%img /images/what-is-docker/matrix-from-hell.png %}
+{{% img src="/images/what-is-docker/matrix-from-hell.png" caption="" %}}
 
 In order to better understand Docker you have to understand the problem it is trying to solve.
 
@@ -36,7 +36,7 @@ Traditionally there have been a variety of solutions that have popped up in resp
 
 # Containers
 
-{%img /images/what-is-docker/containers.jpg %}
+{{% img src="/images/what-is-docker/containers.jpg" caption="" %}}
 
 [Containers](https://linuxcontainers.org/) popped up as a solution to this issue.  They are sort of like virtual machines, but they focus on process isolation and containment instead of emulating a full-fledged physical machine.  The "guest" container uses the same kernel as the "host" machine (and possibly some other resources as well, but my understanding of this at this time is a little fuzzy).  This allows many of the advantages of virtual machines without some of the aforementioned disadvantages.
 
@@ -44,7 +44,7 @@ Enter [Docker](http://docker.io) (from the homepage):
 
 > Docker is an open-source project to easily create lightweight, portable, self-sufficient containers from any application. The same container that a developer builds and tests on a laptop can run at scale, in production, on VMs, bare metal, OpenStack clusters, public clouds and more.
 
-{%img /images/what-is-docker/docker.png %}
+{{% img src="/images/what-is-docker/docker.png" caption="" %}}
 
 Docker's goal is to provide a software solution that will allow users to "pack up" their applications into a standardized container and "ship it off" to wherever their heart desires.  A container, once developed, can be deployed anywhere that Docker runs.  They compare these containers to actual [physical shipping containers](http://en.wikipedia.org/wiki/Containerization), pictured above, which revolutionized international trade when it was standardized after World War 2.  From Wikipedia:
 
@@ -54,7 +54,7 @@ Sound like benefits that would be nice to have for your business?
 
 # A Cambrian Explosion
 
-{%img /images/what-is-docker/cambrian.png %}
+{{% img src="/images/what-is-docker/cambrian.png" caption="" %}}
 
 What is really interesting about Docker though, to me personally at least, is the Cambrian Explosion-esque fugue of creativity that it has inspired so far and continues to inspire in people everywhere.  It is being used for things online that aren't exactly aligned to its original use case but really hearken to a bold new future of tech.  I know of at least one example where it is being used to make possible a interpreter-by-runnable-code editor for conducting Python interviews.  [Runnable.com](http://www.runnable.com) uses Docker to host self-contained executable / editable little code projects where you can look at existing code which you know works, edit it on the fly, and re-run it.  That's awesome!
 

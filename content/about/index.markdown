@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
-{%img /images/naaaate.jpg %}
+{{% img src="/images/naaaate.jpg" caption="" %}}
 
 Hi there!
 

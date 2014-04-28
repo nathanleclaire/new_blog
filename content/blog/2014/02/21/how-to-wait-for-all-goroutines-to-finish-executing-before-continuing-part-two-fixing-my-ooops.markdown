@@ -8,7 +8,7 @@ categories: [golang,concurrency,goroutines,waitGroup,sync]
 
 Earlier this week I published an article called [How To Wait for All Goroutines to Finish Executing Before Continuing](http://nathanleclaire.com/blog/2014/02/15/how-to-wait-for-all-goroutines-to-finish-executing-before-continuing/) detailing a problem that I'd run into while coding with Golang and the solution that I'd encountered, which was to use [sync.WaitGroup](http://golang.org/pkg/sync/#WaitGroup).  I was still basking a little in that I-just-finished-a-new-blog-article afterglow when something in the [Reddit comments](http://www.reddit.com/r/golang/comments/1y3spq/how_to_wait_for_all_goroutines_to_finish/) caught my eye!
 
-{%img /images/syncwaitgroup2/enneff_speaks.jpeg Oh. %}
+{{% img src="/images/syncwaitgroup2/enneff_speaks.jpeg" caption="Oh. " %}}
 
 Turns out that my approach in the previous article causes a race condition.  So, just so you guys are all aware, I was wrong, and here's why.
 

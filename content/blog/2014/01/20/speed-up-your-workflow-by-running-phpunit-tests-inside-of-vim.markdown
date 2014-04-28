@@ -6,7 +6,7 @@ comments: true
 categories: [php,vim,bash,phpunit,unit testing,vimscript]
 ---
 
-{%img /images/vim-phpunit/phpunitdemo.gif No more CTRL Z for me. %}
+{{% img src="/images/vim-phpunit/phpunitdemo.gif" caption="No more CTRL Z for me. " %}}
 
 If you're a dev that cares about nice, clean, working code you should probably be writing unit tests.  I've discussed unit testing in [AngularJS](http://angularjs.org) a bit in [one of my previous posts](http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/), but what if you are working on the server side with one of the [most wildly popular web application languages of all time](http://langpop.com/)?  That's right folks, I'm talking about [PHP](http://php.net/) and whether you love it or hate it if you are working with it there's a damn good chance that you are unit testing it with the venerable [PHPUnit](http://phpunit.de/) (if you're not unit testing at all, you're on the naughty list).  At the time of writing, this is what I do at my day job (my night job is as a costumed crusader fighting crime in the mean streets of [Ann Arbor, Michigan](http://www.a2gov.org/Pages/default.aspx).  For a long time the unit testing part of my development workflow in PHP went something like this:
 
@@ -86,7 +86,7 @@ nnoremap <leader>f :call RunPHPUnitTest(1)<cr>
 
 In action:
 
-{%img /images/vim-phpunit/phpunitdemofilter.gif So much faster, especially in big files. %}
+{{% img src="/images/vim-phpunit/phpunitdemofilter.gif" caption="So much faster, especially in big files. " %}}
 
 # Conclusion
 

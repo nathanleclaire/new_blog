@@ -6,7 +6,7 @@ comments: true
 categories: [golang]
 ---
 
-{%img /images/gopher/hardhat.png %}
+{{% img src="/images/gopher/hardhat.png" caption="" %}}
 
 # go blog.Article()
 

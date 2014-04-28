@@ -6,7 +6,7 @@ comments: true
 categories: [service,angularjs,unit testing,jasmine,spy]
 ---
 
-{%img /images/unit-test-angularjs-service/jasmine.png Your new best friend. %}
+{{% img src="/images/unit-test-angularjs-service/jasmine.png" caption="Your new best friend. " %}}
 
 If there was a way to reduce the number of defects in the code you write (or manage), improve the quality and time to market of deliverables, and make things easier to maintain for those who come after you- would you do it?
 
@@ -18,7 +18,7 @@ I think that stemmed more from a lack of understanding how to do it than anythin
 
 So what do you do?  You commit code without tests.  You are cowboy.  Cowboy no test.
 
-{%img /images/unit-test-angularjs-service/cowboy.png %}
+{{% img src="/images/unit-test-angularjs-service/cowboy.png" caption="" %}}
 
 But as some of you probably know all too well, this is dangerous.  It's like going on vacation in the Caribbean using your credit card.  Fun for a while, and everything seems great, until suddenly reality hits and [it takes all the running you can do just to stay in the same place](http://en.wikipedia.org/wiki/Red_Queen's_race).
 
