@@ -6,7 +6,7 @@ comments: true
 categories: [growth hacking,rapportive,python,cURL,API,sales,marketing]
 ---
 
-{% img /images/autorap/demo-fast.gif A demo, complete with colors. %}
+{{% img src="/images/autorap/demo-fast.gif" caption="A demo, complete with colors. " %}}
 
 *EDIT:  The original article author, Rob Ousbey, has popped up on various social media sites to remind everyone to use this tool/knowledge responsibly.  I agree.  Please be responsible.*
 
@@ -20,7 +20,7 @@ Then, users are encouraged to exhaustively test each possibility in their Gmail 
 
 When trying this out for the first time on a recruiter I was interested in contacting, I found myself clicking the generated permutations in succession with a looming disbelief that this trick would actually work.  Then, suddenly, Rapportive lit up with their portrait and social media info and I felt a funny buzzing sensation in my head as the possibilities swirled around in it.  
 
-{% img /images/autorap/larry.png I feel funny about this. %}
+{{% img src="/images/autorap/larry.png" caption="I feel funny about this. " %}}
 
 However, doing it this way was exhausting and tedious, as it required a lot of focus and time.  My programmer instincts revved up and I became convinced that I could automate the process.
 
@@ -28,7 +28,7 @@ However, doing it this way was exhausting and tedious, as it required a lot of f
 
 I won't be publishing my full source code because this has so much potential for abuse, but I will talk a little bit here about how I accomplished automating this.  I chose to reach for my old friend Python to write the script to automate this process.  I wanted to get things done quickly and easily and Python proved to be a great boon here, even providing the excellent `argparse` module to make the script much more usable from the command line.
 
-{% img /images/autorap/copy-as-curl.jpeg Useful Developer Tools are useful. %}
+{{% img src="/images/autorap/copy-as-curl.jpeg" caption="Useful Developer Tools are useful. " %}}
 
 First, I got an example cURL request using Chrome's handy developer tools.
 

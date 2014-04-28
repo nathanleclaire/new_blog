@@ -7,7 +7,7 @@ comments: true
 categories: [Angular,Controllers,Directives,JavaScript]
 ---
 
-{% img /images/directivefear/anghero.jpeg Superheroic. %}
+{{% img src="/images/directivefear/anghero.jpeg" caption="Superheroic. " %}}
 
 # Direct what?
 

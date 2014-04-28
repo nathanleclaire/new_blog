@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img /images/drag-drop-angular/demo.gif Nice. %}
+{{% img src="/images/drag-drop-angular/demo.gif" caption="Nice. " %}}
 
 So, I catch a lot of flak for not having a [Facebook](https://facebook.com).  I used to have one about six years ago, when `<trolling>` it was actually cool, our parents weren't on it, and we had no idea the NSA was watching our every little status update `</trolling>`.  Then, for a variety of reasons, I deleted it.  Since then, people have complained endlessly about a dearth of Nate on social media, so I have started on a new website/project called The Natewerk, which is going to be the #1 social network for people who know me.
 

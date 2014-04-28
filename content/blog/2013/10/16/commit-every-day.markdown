@@ -18,7 +18,7 @@ Also, I'd be geeked to get featured on [Hacker News](https://news.ycombinator.co
 
 # Why Commit?
 
-{% img /images/git.png Because it's a joy? %}
+{{% img src="/images/git.png" caption="Because it's a joy? " %}}
 
 I love open source and everything about it.  I've learned so much from reading the source code to things like [gorp](https://github.com/coopernurse/gorp) and the Golang libraries that I feel compelled to give back in some way.  At first I will start small with my own projects, but soon I intend to veer into other open source projects as a way of sharpening my coding chops and paying it forward to the community that, in many ways, made me who I am today.  One learns the hard way how frustrating it is when you can't fork, modify, or browse the source code of the software that you are using or the website you are accessing.  Working in the proprietary world makes that very clear.
 
@@ -28,7 +28,7 @@ Last but not least, seeing my Github commit-tile graph lack so much green (altho
 
 # Why Do Them With Such Fierce Regularity?
 
-{% img /images/jerryseinfeld.jpeg It worked for him. %}
+{{% img src="/images/jerryseinfeld.jpeg" caption="It worked for him. " %}}
 
 Everyone by now is most likely aware (if you're not, you're about to be) of the [Jerry Seinfeld Self-Improvement Program](http://dontbreakthechain.com).  Essentially, it is a self-improvement technique attributed to Jerry Seinfeld where you pick a goal and make small steps every day towards meeting that goal.  Jerry Seinfeld wanted to become a better comedian, so he made it a goal to come up with a good joke every day and and marked the day off on his calender with a big black "X".  The chain of "X"es served to reinforce his sense of making progress, and also as a commitment to continue forward in spite of the possibility (or reality) of failure and disappointment.  I find that kind of tenacity extremely admirable, and I think it will help me hone various skills in a variety of ways.
 
