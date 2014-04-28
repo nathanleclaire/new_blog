@@ -1,7 +1,59 @@
-Copyright &copy; {{ site.time | date: "%Y" }}
-{% if site.author %}
-	{{ site.author }}
-{% else %}
-	{{ site.title }}
-{% endif %}
-- Powered by <a href="http://octopress.org/">Octopress</a> 
+<script type="text/javascript" src="{{ .Site.BaseUrl }}/js/prettify.js"></script>
+<script>
+$(document).ready(function () {
+	var fuse;
+
+	$("code").addClass("prettyprint");
+	prettyPrint();
+
+	$.getJSON("/articles.json", function(data) {
+			// input:
+			// [{title: "Learn Node.js The Troll Way", href: "blahblah"}, { ... }]
+			fuse = new Fuse(data, {
+					keys: ['title', 'tags']
+			});
+	});
+	
+	$("#archive-search").keyup(function() {
+			var $this = $(this);
+			var val = $this.val();
+			var result = fuse.search(val).slice(0, 3);
+			$list = $("#archive-search-populate");
+			$list.empty();
+			if (result.length > 0 && val !== '') {
+					console.log(val);
+					$.each(result, function(i, e) {
+							$list.append('<li><a href="'+ e.href +'">'+ e.title +'</a></li>');
+					});
+			}
+	});
+	
+	$(".social-media-spam").each(function () {
+			var e = $(this);
+			var t = e.attr("href");
+			var n = $("article header h1 a").html();
+			t += encodeURIComponent(n);
+			e.attr("href", t)
+	});
+
+	var e = window.location.href;
+	var t = $("#pull-request-link");
+	var n = "https://github.com/nathanleclaire/blog/edit/master/source/_posts/" + e.split("/").slice(4, 8).join("-") + ".markdown";
+	t.attr("href", n);
+
+	if (document.domain !== "nathanleclaire.com" && document.domain !== "localhost") {
+			$('body').html('<h1>If you are reading this then you may be viewing this content on a domain outside of <a href="http://nathanleclaire.com">nathanleclaire.com</a>, the original site and source of this content, possibly (mis)lead here by an orig nal c
+	}
+
+});
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-26758702-2', 'nathanleclaire.com');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

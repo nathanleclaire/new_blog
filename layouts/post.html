@@ -3,8 +3,8 @@
 <div class="wrap">
 	{{ template "chrome/sidebar.html" . }}
 	<div id="content">
-		{{ .Content }}
+		{{ template "chrome/article.html" . }}
 	</div>
 </div>
 
-{{ template "chrome/footer.html" }}
+{{ template "chrome/footer.html" . }}

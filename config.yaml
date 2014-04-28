@@ -1,9 +1,11 @@
 ---
-contentdir: "content"
+baseurl: "http://nathanleclaire.com"
+title: "nathan leclaire"
 layoutdir: "layouts"
+contentdir: "content"
 publishdir: "public"
 indexes:
     category: "categories"
-baseurl: "http://nathanleclaire.com"
-title: "nathan leclaire"
+permalinks:
+    post: /:year/:month/:title/
 ---
