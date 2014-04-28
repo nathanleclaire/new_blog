@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "How to Unit Test Controllers In AngularJS Without Setting Your Hair On Fire"
-date: 2013-12-13 23:03
+date: 2013-12-13
 comments: true
 categories: [Angular,Controllers,Directives,JavaScript,Jasmine,Unit Testing,Karma]
 ---
 
 Developers almost universally agree that unit tests are a *VERY GOOD THING* when working on a project.  They help you feel like your code is airtight, ensure reliability in production, and let you refactor with confidence when there is a need to do so.  
 
-{% img /images/angularjs-unit-testing/test-code-refactor-cycle.png The Test-Driven Development cycle. %}
+{{% img src="/images/angularjs-unit-testing/test-code-refactor-cycle.png" caption="The Test-Driven Development cycle." %}}
 
 AngularJS code touts its high degree of [testability](http://angularjs.org/#embed-and-inject), which is a reasonable claim.  In much of the documentation end to end tests are provided with the examples.  Like so many things with Angular, however, I was finding that although unit testing was simple, it was not easy.  Examples were sparse and though the [official documentation](http://docs.angularjs.org/guide/dev_guide.unit-testing) provided some snippets of examples, putting it all together in my "real-world" case was proving challenging.  So here I've written a little bit about how I ended up getting that wonderful green light for a passing build to show up.
 
