@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Speed Up Your Workflow By Running PHPUnit Tests Inside of Vim"
-date: 2014-01-20 23:30
+date: 2014-01-20
 comments: true
 categories: [php,vim,bash,phpunit,unit testing,vimscript]
 ---

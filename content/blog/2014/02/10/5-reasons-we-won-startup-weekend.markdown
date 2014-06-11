@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "5 Reasons We Won Startup Weekend"
-date: 2014-02-10 18:27
+date: 2014-02-10
 comments: true
 categories: [fixworthy,vagrant,startups,entrepreneurship,hacking,reasons]
 ---

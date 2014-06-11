@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "I Love Hackathons, Long Live Hackathons. I Hate Hackathons, Hackathons Must Die."
-date: 2014-01-18 22:05
+date: 2014-01-18
 comments: true
 categories: [hackathons]
 ---

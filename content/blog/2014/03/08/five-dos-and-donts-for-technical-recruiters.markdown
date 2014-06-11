@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Double Your Talent Acquisition: Five Do's and Don'ts For Technical Recruiters"
-date: 2014-03-08 19:58
+date: 2014-03-08
 comments: true
 categories: [recruiting]
 ---

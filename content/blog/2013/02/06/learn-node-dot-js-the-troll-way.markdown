@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Learn Node.js The Troll Way"
-date: 2013-02-06 20:31
+date: 2013-02-06
 comments: true
 categories: [node.js,javascript,development]
 ---

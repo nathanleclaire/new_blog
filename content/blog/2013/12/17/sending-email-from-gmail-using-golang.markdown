@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sending Email From Gmail Using Golang"
-date: 2013-12-17 23:38
+date: 2013-12-17
 comments: true
 categories: [Email, Golang, SMTP]
 ---

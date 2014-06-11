@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unit Testing Services in AngularJS for Fun and for Profit"
-date: 2014-04-12 23:14
+date: 2014-04-12
 comments: true
 categories: [service,angularjs,unit testing,jasmine,spy]
 ---

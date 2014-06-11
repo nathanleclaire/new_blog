@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Wait for All Goroutines to Finish Executing Before Continuing, Part Two:  Fixing My Oops"
-date: 2014-02-21 17:03
+date: 2014-02-21
 comments: true
 categories: [golang,concurrency,goroutines,waitGroup,sync]
 ---

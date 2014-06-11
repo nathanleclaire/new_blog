@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Commit Every Day, Blog Every Week"
-date: 2013-10-16 23:46
+date: 2013-10-16
 comments: true
 categories: 
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Surprising Feature of Golang that Colored Me Impressed"
-date: 2014-04-27 00:16
+date: 2014-04-27
 comments: true
 categories: [golang]
 ---

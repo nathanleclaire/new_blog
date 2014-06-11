@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "5 Cool Unix Hacks For Fun and Productivity"
-date: 2013-10-27 19:44
+date: 2013-10-27
 comments: true
 categories: [unix,hacking,vi,git,bash,zsh,five]
 ---

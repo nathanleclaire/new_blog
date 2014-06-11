@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Number One Dev Killer"
-date: 2014-02-08 15:29
+date: 2014-02-08
 comments: true
 categories: [productivity,entrepreneurship,development,growth hacking,RethinkDB]
 ---

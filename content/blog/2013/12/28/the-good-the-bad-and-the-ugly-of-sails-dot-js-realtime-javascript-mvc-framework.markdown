@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Good, The Bad, and The Ugly of Sails.js, Realtime JavaScript MVC Framework"
-date: 2013-12-28 15:59
+date: 2013-12-28
 comments: true
 categories: [node.js,mvc,socket.io,rails,sails,javascript,server]
 ---

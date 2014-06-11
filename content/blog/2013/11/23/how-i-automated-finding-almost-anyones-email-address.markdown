@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How I Automated \"Finding Almost Anyone's Email Address\""
-date: 2013-11-23 17:22
+date: 2013-11-23
 comments: true
 categories: [growth hacking,rapportive,python,cURL,API,sales,marketing]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Three Elements That Sum To Zero"
-date: 2013-10-22 00:02
+date: 2013-10-22
 comments: true
 categories: [computer science,c++,stl,math,programming]
 ---

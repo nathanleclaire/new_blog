@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AngularJS isn't MVC, it's SDC"
-date: 2014-03-15 12:38
+date: 2014-03-15
 comments: true
 categories: [angular,javascript,mvc,service,directive,controller]
 ---

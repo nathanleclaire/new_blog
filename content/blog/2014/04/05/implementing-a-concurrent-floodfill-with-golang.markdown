@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Implementing a Concurrent Floodfill with Golang"
-date: 2014-04-05 13:34
+date: 2014-04-05
 comments: true
 categories: [golang,algorithms,floodfill,concurrency]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Build a Linked List For Each Layer in a Binary Tree"
-date: 2014-03-01 15:52
+date: 2014-03-01
 comments: true
 categories: [data structures, python, binary tree, linked list]
 ---

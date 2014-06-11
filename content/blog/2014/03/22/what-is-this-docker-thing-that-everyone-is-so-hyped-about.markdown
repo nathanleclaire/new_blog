@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What is this Docker thing that everyone is so hyped about?"
-date: 2014-03-22 20:38
+date: 2014-03-22
 comments: true
 categories: [docker,containers,virtualization,vagrant]
 ---

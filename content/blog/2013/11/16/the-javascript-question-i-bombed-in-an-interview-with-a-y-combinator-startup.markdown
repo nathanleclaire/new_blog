@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The (JavaScript) Question I Bombed In An Interview With a Y Combinator Startup"
-date: 2013-11-16 17:30
+date: 2013-11-16
 comments: true
 categories: [JavaScript,setTimeout,YCombinator,startups]
 ---

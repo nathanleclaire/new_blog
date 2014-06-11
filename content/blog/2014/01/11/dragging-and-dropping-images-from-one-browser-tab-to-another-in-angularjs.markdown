@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dragging and Dropping Images From One Browser Tab to Another In AngularJS"
-date: 2014-01-11 17:21
+date: 2014-01-11
 comments: true
 categories: 
 ---

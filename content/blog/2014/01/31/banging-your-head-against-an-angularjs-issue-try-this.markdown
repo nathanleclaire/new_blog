@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Banging Your Head Against an AngularJS Issue?  Try This"
-date: 2014-01-31 19:53
+date: 2014-01-31
 comments: true
 categories: [javscript,hacking,angularJS,$scope.$apply,controllers,directives]
 ---
